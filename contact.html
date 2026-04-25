@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="assets/css/meanmenu.css">
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
-<body>
+<body class="ulr-rich-subpage">
   <div class="body-overlay"></div>
   <!-- Preloader Start -->
   <div class="tj-preloader is-loading">
@@ -253,27 +253,24 @@
       <main id="primary" class="site-main">
         <div class="space-for-header"></div>
         <!-- start: Breadcrumb Section -->
-        <section class="tj-page-header section-gap-x" data-bg-image="assets/images/bg/pheader-bg.webp">
-          <div class="container">
+        <section class="tj-page-header section-gap-x" data-bg-image="assets/images/faq/ulr-faq-partnership-discussion.jpg">
+          <div class="container position-relative" style="z-index:2;">
             <div class="row">
               <div class="col-lg-12">
                 <div class="tj-page-header-content text-center">
-                  <h1 class="tj-page-title">Contact Us</h1>
+                  <h1 class="tj-page-title">Contact us</h1>
+                  <p class="pillar-header-lead">One public lead for Ubuntu Life Resources: <strong>Sanchia-Lynn Smit</strong>, CEO / founder. Use the form, phone, or email—mention your pillar or programme so we route you efficiently.</p>
                   <div class="tj-page-link">
                     <span><i class="tji-home"></i></span>
-                    <span>
-                      <a href="index.html">Home</a>
-                    </span>
+                    <span><a href="index.html">Home</a></span>
                     <span><i class="tji-arrow-right"></i></span>
-                    <span>
-                      <span>Contact Us</span>
-                    </span>
+                    <span><span>Contact us</span></span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="page-header-overlay" data-bg-image="assets/images/shape/pheader-overlay.webp"></div>
+          <div class="page-header-overlay ulr-pheader-overlay" aria-hidden="true"></div>
         </section>
         <!-- end: Breadcrumb Section -->
         <!-- start: Contact Top Section -->
@@ -323,12 +320,12 @@
               <div class="col-xl-3 col-lg-6 col-sm-6">
                 <div class="contact-item style-2 wow fadeInUp" data-wow-delay=".9s">
                   <div class="contact-icon">
-                    <i class="tji-chat"></i>
+                    <i class="tji-list"></i>
                   </div>
-                  <h3 class="contact-title">Live chat</h3>
+                  <h3 class="contact-title">Before you write</h3>
                   <ul class="contact-list">
-                    <li><a href="mailto:sanchia@ubuntuliferesources.co.za">sanchia@ubuntuliferesources.co.za</a></li>
-                    <li class="active"><a href="contact.html">Need help?</a></li>
+                    <li><a href="pillars.html">Core pillars overview</a></li>
+                    <li><a href="index.html#faq">FAQ on the home page</a></li>
                   </ul>
                 </div>
               </div>
@@ -336,13 +333,56 @@
           </div>
         </div>
         <!-- end: Contact Top Section -->
+
+        <section class="tj-choose-section section-gap">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <div class="sec-heading text-center">
+                  <span class="sub-title"><i class="tji-chart"></i> Scope your enquiry</span>
+                  <h2 class="sec-title">We respond faster when you <span>name the lane</span></h2>
+                </div>
+              </div>
+            </div>
+            <div class="row row-gap-4 rightSwipeWrap">
+              <div class="col-lg-4">
+                <div class="choose-box right-swipe">
+                  <div class="choose-content">
+                    <div class="choose-icon"><i class="tji-growth"></i></div>
+                    <h4 class="title">Agri or water programme</h4>
+                    <p class="desc">Mention volumes, geography, and whether you are private sector, NGO, or government so we match technical packs.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="choose-box right-swipe">
+                  <div class="choose-content">
+                    <div class="choose-icon"><i class="tji-add-cart"></i></div>
+                    <h4 class="title">Retail or feeding scheme</h4>
+                    <p class="desc">Shelf-stable nutrition and Tonno Bonno enquiries: share channel, certification needs, and forecast cases.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="choose-box right-swipe">
+                  <div class="choose-content">
+                    <div class="choose-icon"><i class="tji-operations"></i></div>
+                    <h4 class="title">RFQ or tender</h4>
+                    <p class="desc">Institutional supply: reference the tender or panel name, deadlines, and whether you need a single interface for multiple product lines.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- start: Contact Section -->
         <section class="tj-contact-section-2 section-bottom-gap">
           <div class="container">
             <div class="row">
               <div class="col-lg-6">
                 <div class="contact-form wow fadeInUp" data-wow-delay=".1s">
-                  <h3 class="title">Feel Free to Get in Touch or Visit our Location.</h3>
+                  <h3 class="title">Send a message to Sanchia-Lynn Smit</h3>
                   <form id="contact-form">
                     <div class="row">
                       <div class="col-sm-6">
@@ -371,6 +411,7 @@
                                 <option value="Food security">Food security</option>
                                 <option value="Distribution and supply">Distribution and supply</option>
                                 <option value="Partnership / representation">Partnership / representation</option>
+                                <option value="Institutional supply / tender">Institutional supply / tender</option>
                                 <option value="General enquiry">General enquiry</option>
                               </select>
                             </div>
@@ -393,9 +434,34 @@
                 </div>
               </div>
               <div class="col-lg-6">
-                <div class="map-area wow fadeInUp" data-wow-delay=".3s">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d316440.5712687838!2d-74.01091796224334!3d40.67186885683901!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1745918398047!5m2!1sen!2sbd"></iframe>
+                <div class="global-map wow fadeInUp" data-wow-delay=".3s">
+                  <div class="global-map-img">
+                    <img src="assets/images/bg/map.svg" alt="Southern Africa and selected Sub-Saharan markets">
+                    <div class="location-indicator loc-1">
+                      <div class="location-tooltip">
+                        <span>Market coverage:</span>
+                        <p>Southern Africa and selected Sub-Saharan African markets.</p>
+                        <a href="tel:+27796588189">P: +27 79 658 8189</a>
+                        <a href="mailto:sanchia@ubuntuliferesources.co.za">M: sanchia@ubuntuliferesources.co.za</a>
+                      </div>
+                    </div>
+                    <div class="location-indicator loc-2">
+                      <div class="location-tooltip">
+                        <span>Representation:</span>
+                        <p>Commercial representation and stakeholder engagement across regional channels.</p>
+                        <a href="tel:+27796588189">P: +27 79 658 8189</a>
+                        <a href="mailto:sanchia@ubuntuliferesources.co.za">M: sanchia@ubuntuliferesources.co.za</a>
+                      </div>
+                    </div>
+                    <div class="location-indicator loc-3">
+                      <div class="location-tooltip">
+                        <span>Supply execution:</span>
+                        <p>Cross-border trade facilitation and scalable supply execution.</p>
+                        <a href="tel:+27796588189">P: +27 79 658 8189</a>
+                        <a href="mailto:sanchia@ubuntuliferesources.co.za">M: sanchia@ubuntuliferesources.co.za</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -409,10 +475,10 @@
               <div class="col-12">
                 <div class="cta-area">
                   <div class="cta-content">
-                    <h2 class="title title-anim">Let’s Build Future Together.</h2>
+                    <h2 class="title title-anim">Prefer to read first?</h2>
                     <div class="cta-btn wow fadeInUp" data-wow-delay=".6s">
-                      <a class="tj-primary-btn btn-dark" href="contact.html">
-                        <span class="btn-text"><span>Get Started Now</span></span>
+                      <a class="tj-primary-btn btn-dark" href="index.html#faq">
+                        <span class="btn-text"><span>Open FAQ</span></span>
                         <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                       </a>
                     </div>

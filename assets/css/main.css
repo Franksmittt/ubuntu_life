@@ -29406,11 +29406,13 @@ START: Service CSS
 
 /* !END: Case Study CSS */
 
-/* Ubuntu Life — core pillar subpages (body.ulr-pillar-page) */
-body.ulr-pillar-page .tj-page-header {
+/* Ubuntu Life — pillar pages + other rich subpages */
+body.ulr-pillar-page .tj-page-header,
+body.ulr-rich-subpage .tj-page-header {
   background-blend-mode: normal;
 }
-body.ulr-pillar-page .page-header-overlay.ulr-pheader-overlay {
+body.ulr-pillar-page .page-header-overlay.ulr-pheader-overlay,
+body.ulr-rich-subpage .page-header-overlay.ulr-pheader-overlay {
   background-image: none !important;
   background: linear-gradient(
     180deg,
@@ -29419,7 +29421,8 @@ body.ulr-pillar-page .page-header-overlay.ulr-pheader-overlay {
   ) !important;
   opacity: 1;
 }
-body.ulr-pillar-page .pillar-header-lead {
+body.ulr-pillar-page .pillar-header-lead,
+body.ulr-rich-subpage .pillar-header-lead {
   color: rgba(255, 255, 255, 0.92);
   max-width: 40rem;
   margin: 1.1rem auto 0;
@@ -29428,16 +29431,19 @@ body.ulr-pillar-page .pillar-header-lead {
   position: relative;
   z-index: 2;
 }
-body.ulr-pillar-page .tj-page-header .tj-page-header-content {
+body.ulr-pillar-page .tj-page-header .tj-page-header-content,
+body.ulr-rich-subpage .tj-page-header .tj-page-header-content {
   position: relative;
   z-index: 2;
 }
-body.ulr-pillar-page .pillar-related-card {
+body.ulr-pillar-page .pillar-related-card,
+body.ulr-rich-subpage .pillar-related-card {
   transition: -webkit-transform 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   background: var(--tj-color-common-white);
 }
-body.ulr-pillar-page .pillar-related-card:hover {
+body.ulr-pillar-page .pillar-related-card:hover,
+body.ulr-rich-subpage .pillar-related-card:hover {
   -webkit-transform: translateY(-4px);
       -ms-transform: translateY(-4px);
           transform: translateY(-4px);
