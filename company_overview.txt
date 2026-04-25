@@ -1,0 +1,218 @@
+================================================================================
+UBUNTU LIFE RESOURCES - COMPANY OVERVIEW (internal working document)
+Generated from: knowledge/Company Profile.docx, knowledge/*.pdf, and the
+Ubuntu_Life_Resources sales pitch PDFs. Use this to align the website and
+sales story. Public contact for the company: Sanchia-Lynn Smit only.
+================================================================================
+
+PRIMARY CONTACT (public-facing)
+--------------------------------------------------------------------------------
+Sanchia-Lynn Smit, CEO / Founder, Ubuntu Life Resources
+Email: sanchia@ubuntuliferesources.co.za
+Phone (mobile): +27 79 658 8189
+
+(Use this email on the website and in proposals. Other supplier or partner
+contacts belong in partner documentation, not on the main Ubuntu Life site.)
+
+
+WHAT UBUNTU LIFE RESOURCES ACTUALLY IS (plain English)
+--------------------------------------------------------------------------------
+Ubuntu Life Resources is NOT a factory and NOT “random consulting.”
+
+It is a commercial go-to-market and execution partner for Africa:
+
+• It represents trusted international suppliers and helps them SELL, DELIVER,
+  and SCALE in Southern Africa and selected Sub-Saharan markets.
+• It works with governments, large institutions, and private companies that
+  need compliant supply, technical credibility, and local access.
+• It combines: market access + stakeholder engagement + sales pipeline work +
+  deal structuring + supplier coordination + cross-border trade facilitation.
+
+Think: “distribution + representation + structured supply” for products that
+fit the company’s three pillars: agricultural biosecurity, safe water, and
+food security (high-protein shelf-stable foods).
+
+
+WHY THIS CAN FEEL CONFUSING
+--------------------------------------------------------------------------------
+The role sits BETWEEN brands:
+
+• Ubuntu Life Resources presents and sells solutions in its territories.
+• Scientific Sanitation Solutions (SSS) is the technology / sanitation supplier
+  behind SANI-99™ for AGRI and SANI-AMANZI water treatment (see sales pitch:
+  “Strategic Agents for SSS (Scientific Sanitation Solutions)”).
+• Tonno Bonno International is a separate food brand (canned seafood). The
+  Tonno Bonno company profile lists Ubuntu Life Resources as the “Agent” for
+  South Africa, Botswana, Nigeria, Mozambique, and Middle East operations.
+
+So Sanchia’s “job” is: open doors, qualify buyers, run the commercial narrative,
+align with regulations and procurement, and make sure product stories are
+backed by evidence (lab reports, field tests, case links).
+
+
+THREE SOLUTION PILLARS (what you sell / represent)
+--------------------------------------------------------------------------------
+
+1) AGRICULTURAL BIOSECURITY / SANI-99™ FOR AGRI (via SSS)
+   Positioning: veterinary-grade / farm-grade disinfection for pathogen control
+   on farms, in transport, and in food production environments.
+
+   Storyline from sales pitch PDF:
+   • Targets risks such as avian influenza, Newcastle disease, Salmonella,
+     E. coli, foot-and-mouth context (see FOOT AND MOUTH DISEASE BROCHURE.pdf
+     and 52871gon6319.pdf for regulatory / biosecurity framing).
+   • Claims to support log-reduction performance, residual protection claims,
+     concentrated powder and sachet formats, DEFRA / BEIC / PCS and BS EN /
+     SANS references as cited in the pitch. Always cite the official supplier
+     sheet when making compliance statements on the website.
+
+   Evidence in knowledge/ (use on a “Proof & downloads” or portfolio page):
+   • Sani-99_Agri.pdf, product / agri positioning
+   • CPT SANI-AMANZI 2022.pdf, KZN SANI-AMANZI test 2022.pdf, regional water /
+     sanitation testing context (customer named as Scientific Sanitation
+     Solutions on certificates)
+   • Field / before-after: Mooikloof Borehole Before/After, Mooikloof stream
+     before/after, Riverton Before and After, SANI-AMANZI SMT Before and After
+     Hennops River.pdf, SANI-AMANZI before and after test 2020.pdf,
+     SANI-AMANZI field and lab test 15-Jan-2021.pdf,
+     SANI-AMANZI Certified Class 1 Good quality water.pdf
+
+2) WATER PURIFICATION / SANI-AMANZI (via SSS)
+   Positioning: powder-based treatment for contaminated water in rural, bulk,
+   and off-grid settings. Coagulation, flocculation, sedimentation, then
+   filtration of the top layer (see SANI_AMANZI_Technical_Guidelines.pdf).
+
+   Practical protocol (from technical guidelines extract):
+   • Dosage example: 6 g per 20 L; scales linearly (e.g. 300 g / 1000 L).
+   • Steps: collect water → dose → stir → stand ≥30 min → draw from top layer
+     → filter through dense cloth.
+   • Limitations called out: boreholes (do not dose in situ), JoJo tanks
+     (mixing / sludge issues, treat in containers first).
+
+   Strong lab narrative:
+   • 170022-Water Purification-16-Nov-2023.pdf, Aquatico report for Scientific
+     Sanitation Solutions; raw vs treated time series (supports “before /
+     after” storytelling on a portfolio or case-study page).
+
+3) FOOD SECURITY / TONNO BONNO INTERNATIONAL (high-protein canned seafood)
+   Positioning: FMCG seafood (pilchards, sardines, tuna) for African and export
+   markets; Ubuntu Life Resources listed as distribution / agent partner in the
+   TonnoBonno Company Profile Updated.pdf.
+
+   Website angle: institutional buyers, wholesalers, government feeding
+   programmes, and retail distributors. Not “Ubuntu manufactures tuna,” but
+   “Ubuntu represents Tonno Bonno for market growth and supply in its
+   territories.”
+
+
+WHO BUYS (ICP / ideal customer profile)
+--------------------------------------------------------------------------------
+• Private: farms, abattoirs, processors, distributors, retailers, mining camps,
+  logistics firms handling food or animals, NGOs with WASH programmes.
+• Public: national/provincial departments (agriculture, health, water, disaster
+  management), municipalities, schools, hospitals, military / correctional
+  feeding, humanitarian clusters.
+
+Ubuntu’s value to them: one accountable regional partner that can combine
+product truth (tests, certifications, protocols) with commercial execution.
+
+
+WEBSITE / TEMPLATE PLAN (Bexon demo as a parts bin)
+--------------------------------------------------------------------------------
+The Theme Junction Bexon HTML pack is a component library. You do NOT need
+every demo page live. Suggested mapping:
+
+• index.html: Home: hero + three pillars + proof strip + CTA (already started).
+• about.html: Company profile + registration + leadership (already started).
+• contact.html: Single entry point for Sanchia (already started).
+
+Add when ready:
+
+• services.html (or solutions.html): Three cards: Biosecurity | Water | Food.
+  Each links to a detail page. Mirrors Bexon “service.html” layout.
+• service-sani-99-agri.html: Uses Bexon “service-details.html” sections: hero,
+  bullet benefits, “applications” grid, FAQ accordion, CTA, downloadable PDFs.
+• service-sani-amanzi.html: Same pattern; embed protocol summary from
+  SANI_AMANZI_Technical_Guidelines.pdf; link full PDF.
+• service-tonno-bonno.html: Product range, markets, agent model; link Tonno
+  Bonno profile PDF for buyers who need depth.
+
+Evidence / trust pages (mix portfolio + blog components):
+
+• case-studies.html: Bexon “portfolio.html”: grid of cards (Mooikloof stream,
+  borehole, Riverton, Hennops, CPT/KZN lab certs). Each opens a
+  “portfolio-details” style page with before/after PDFs embedded or download
+  links.
+• resources.html: Bexon “blog-grid.html”: list posts that are really white
+  papers (FMD brochure, government notice PDF summary, “how to treat a 20L
+  bucket” one-pager). Keeps SEO without running a real blog.
+
+Optional later: faq.html, terms.html, privacy.html (only if procurement asks).
+
+External reference pages (same template family) for ideas only:
+https://themejunction.net/html/bexon/demo/service-details.html
+https://themejunction.net/html/bexon/demo/portfolio.html
+https://themejunction.net/html/bexon/demo/blog.html
+
+
+KNOWLEDGE FOLDER INVENTORY (source documents)
+--------------------------------------------------------------------------------
+Company narrative:
+  Company Profile.docx
+  Ubuntu_Life_Resources_Final_Sales_Pitch.1 new Updated.pdf
+  Ubuntu_Life_Resources_Final_Sales_Pitch.1 new Updated (1).pdf
+
+SSS / water / sanitation evidence:
+  SANI_AMANZI_Technical_Guidelines.pdf
+  170022-Water Purification-16-Nov-2023.pdf
+  CPT SANI-AMANZI 2022.pdf
+  KZN SANI-AMANZI test 2022.pdf
+  SANI-AMANZI before and after test 2020.pdf
+  SANI-AMANZI Certified Class 1 Good quality water.pdf
+  SANI-AMANZI field and lab test 15-Jan-2021.pdf
+  SANI-AMANZI SMT Before and After Hennops River.pdf
+  Mooikloof Borehole Before.pdf / Mooikloof Borehole After.pdf
+  Mooikloof stream before treatment.pdf / Mooikloof Stream After Treatment.pdf
+  Riverton Before and After Test.pdf
+
+Agri / disease control context:
+  Sani-99_Agri.pdf
+  FOOT AND MOUTH DISEASE BROCHURE.pdf
+  52871gon6319.pdf (government / regulatory PDF)
+
+Food brand (partner):
+  TonnoBonno Company Profile Updated.pdf
+
+Brand assets (logos; export to PNG/WebP for web):
+  Logo.pdf, Logo (1).pdf, Logo (2).pdf
+
+Misc:
+  52871gon6319.pdf (large): use for regulatory citations only where relevant.
+
+
+LEGAL / CLAIMS DISCIPLINE (important before going live)
+--------------------------------------------------------------------------------
+• Water and disinfection claims on the public site should track the exact
+  wording of supplier documentation and lab reports (client name on a report
+  may be SSS, present that transparently).
+• Do not imply Ubuntu operates the Aquatico or SABS laboratory; attribute tests
+  to the issuing body shown on each PDF.
+• Registration number: 2026 / 215685 / 07 (from Company Profile.docx).
+
+
+NEXT ACTIONS (build order)
+--------------------------------------------------------------------------------
+1) Export logos from Logo PDFs to web formats; replace template logos in
+   assets/images/logos/.
+2) Add services index + three service detail pages (reuse service-details
+   layout from demo).
+3) Add “Case studies” (portfolio) linking to PDFs in /knowledge/ or move
+   public copies into /assets/downloads/.
+4) Replace placeholder phone on the site with Sanchia’s real mobile when
+   confirmed.
+5) Optional: single “Downloads” page listing all evidence PDFs with one-line
+   descriptions for procurement officers.
+
+================================================================================
+END OF DOCUMENT
+================================================================================
