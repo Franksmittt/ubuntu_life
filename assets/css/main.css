@@ -29404,4 +29404,43 @@ START: Service CSS
   }
 }
 
-/* !END: Case Study CSS *//*# sourceMappingURL=main.css.map */
+/* !END: Case Study CSS */
+
+/* Ubuntu Life — core pillar subpages (body.ulr-pillar-page) */
+body.ulr-pillar-page .tj-page-header {
+  background-blend-mode: normal;
+}
+body.ulr-pillar-page .page-header-overlay.ulr-pheader-overlay {
+  background-image: none !important;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 14, 22, 0.5) 0%,
+    rgba(8, 14, 22, 0.78) 100%
+  ) !important;
+  opacity: 1;
+}
+body.ulr-pillar-page .pillar-header-lead {
+  color: rgba(255, 255, 255, 0.92);
+  max-width: 40rem;
+  margin: 1.1rem auto 0;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  position: relative;
+  z-index: 2;
+}
+body.ulr-pillar-page .tj-page-header .tj-page-header-content {
+  position: relative;
+  z-index: 2;
+}
+body.ulr-pillar-page .pillar-related-card {
+  transition: -webkit-transform 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: var(--tj-color-common-white);
+}
+body.ulr-pillar-page .pillar-related-card:hover {
+  -webkit-transform: translateY(-4px);
+      -ms-transform: translateY(-4px);
+          transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.1);
+}
+/*# sourceMappingURL=main.css.map */
