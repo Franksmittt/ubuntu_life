@@ -29450,6 +29450,226 @@ body.ulr-rich-subpage .pillar-related-card:hover {
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.1);
 }
 
+/* Pillar pages: point-of-contact card (replaces flat “Leadership” grey box) */
+.ulr-pillar-leadership-section .ulr-pillar-leadership-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 16px 44px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 16px 44px rgba(0, 0, 0, 0.08);
+  background-color: var(--tj-color-common-white, #fff);
+}
+.ulr-pillar-leadership-section .ulr-pillar-leadership-card-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
+}
+@media only screen and (min-width: 992px) {
+  .ulr-pillar-leadership-section .ulr-pillar-leadership-card-grid {
+    -ms-grid-columns: minmax(220px, 300px) 1fr;
+    grid-template-columns: minmax(220px, 300px) 1fr;
+  }
+}
+.ulr-pillar-leadership-section .ulr-pillar-leadership-visual {
+  position: relative;
+  overflow: hidden;
+  min-height: 15rem;
+  padding: 0;
+  background-color: #121a22;
+}
+@media only screen and (min-width: 992px) {
+  .ulr-pillar-leadership-section .ulr-pillar-leadership-visual {
+    min-height: 100%;
+  }
+}
+body.ulr-pillar-page main#primary .ulr-pillar-leadership-section .ulr-pillar-leadership-photo,
+body.ulr-rich-subpage main#primary .ulr-pillar-leadership-section .ulr-pillar-leadership-photo {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center 15%;
+     object-position: center 15%;
+}
+.ulr-pillar-leadership-section .ulr-pillar-leadership-body {
+  padding: clamp(1.5rem, 4vw, 2.35rem);
+}
+.ulr-pillar-leadership-section .ulr-pillar-leadership-name {
+  font-size: clamp(1.35rem, 3vw, 1.65rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--tj-color-heading-primary, #0f172a);
+}
+.ulr-pillar-leadership-section .ulr-pillar-leadership-role {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+.ulr-pillar-leadership-section .ulr-pillar-leadership-channels li + li {
+  margin-top: 0.65rem;
+}
+.ulr-pillar-leadership-section .ulr-pillar-leadership-channel-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.85rem;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba(0, 0, 0, 0.025);
+  text-decoration: none;
+  color: inherit;
+  -webkit-transition: border-color 0.2s ease, background-color 0.2s ease, -webkit-transform 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease, -webkit-transform 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease, -webkit-transform 0.2s ease;
+}
+.ulr-pillar-leadership-section .ulr-pillar-leadership-channel-link:hover {
+  border-color: rgba(0, 0, 0, 0.14);
+  background-color: rgba(0, 0, 0, 0.04);
+  -webkit-transform: translateY(-1px);
+      -ms-transform: translateY(-1px);
+          transform: translateY(-1px);
+}
+.ulr-pillar-leadership-section .ulr-pillar-leadership-channel-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  background-color: var(--tj-color-common-white, #fff);
+  color: var(--tj-color-theme-primary, #0d6efd);
+  font-size: 1.1rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+.ulr-pillar-leadership-section .ulr-pillar-leadership-channel-label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tj-color-text-body-2, #6b7280);
+  margin-bottom: 0.15rem;
+}
+.ulr-pillar-leadership-section .ulr-pillar-leadership-channel-value {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.35;
+  word-break: break-word;
+  color: var(--tj-color-heading-primary, #0f172a);
+}
+
+/* Pillar “This pillar” intro: match image column height to copy (desktop) */
+@media only screen and (min-width: 992px) {
+  body.ulr-pillar-page .tj-about-section.section-gap .ulr-pillar-intro-row {
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+  }
+  body.ulr-pillar-page .tj-about-section.section-gap .ulr-pillar-intro-row .ulr-pillar-intro-img {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  body.ulr-pillar-page .tj-about-section.section-gap .ulr-pillar-intro-row .ulr-pillar-intro-img .about-img {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 200px;
+  }
+  body.ulr-pillar-page main#primary .tj-about-section.section-gap .ulr-pillar-intro-row .ulr-pillar-intro-img .about-img img.ulr-pillar-intro-photo {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    max-width: none;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
+  }
+}
+body.ulr-pillar-page .ulr-pillar-intro-copy .sec-title {
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+}
+body.ulr-pillar-page .ulr-pillar-intro-body {
+  margin-top: 0.25rem;
+}
+body.ulr-pillar-page .ulr-pillar-intro-body p {
+  line-height: 1.62;
+}
+
+/* ULR: small-screen polish (pillars, products, long-form subpages) */
+@media only screen and (max-width: 575px) {
+  body.ulr-pillar-page .tj-page-header .tj-page-header-content,
+  body.ulr-rich-subpage .tj-page-header .tj-page-header-content {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    max-width: 100%;
+  }
+  body.ulr-pillar-page .tj-page-header .tj-page-title,
+  body.ulr-rich-subpage .tj-page-header .tj-page-title {
+    font-size: clamp(1.65rem, 9vw, 2.35rem);
+    line-height: 1.12;
+  }
+  body.ulr-pillar-page .tj-page-link,
+  body.ulr-rich-subpage .tj-page-link {
+    max-width: 100%;
+    row-gap: 6px;
+  }
+  body.ulr-pillar-page .tj-page-link span,
+  body.ulr-rich-subpage .tj-page-link span {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 991px) {
+  body.ulr-pillar-page .ulr-pillar-leadership-section .ulr-pillar-leadership-visual {
+    min-height: 14rem;
+    max-height: min(70vw, 22rem);
+  }
+  body.ulr-pillar-page .ulr-related-products-section .ulr-card-img-placeholder {
+    aspect-ratio: 16 / 9;
+  }
+  body.ulr-pillar-page .ulr-product-split-actions {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+  }
+  body.ulr-pillar-page .ulr-product-split-actions .text-btn {
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+  }
+}
+
 /* ULR: tighter vertical rhythm + consistent inner width on pillar/catalog/product pages */
 body.ulr-pillar-page main#primary > .section-gap,
 body.ulr-pillar-page main#primary > .tj-about-section,
@@ -29481,6 +29701,172 @@ body.ulr-pillar-page main#primary img,
 body.ulr-rich-subpage main#primary img {
   max-width: 100%;
   height: auto;
+}
+
+/* CTA band uses a fixed 50/50 flex layout; do not let the ULR img reset override theme height:100% */
+body.ulr-pillar-page main#primary .tj-cta-section .cta-area .cta-img img,
+body.ulr-rich-subpage main#primary .tj-cta-section .cta-area .cta-img img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* Products catalogue: SANI split rows — copy column and photo column share height (lg+) */
+@media only screen and (min-width: 992px) {
+  body.ulr-pillar-page main#primary .ulr-product-split-row {
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+  }
+  body.ulr-pillar-page main#primary .ulr-product-split-row .ulr-product-split-img {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  body.ulr-pillar-page main#primary .ulr-product-split-row .ulr-product-split-img .about-img {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+    min-height: 200px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  body.ulr-pillar-page main#primary .ulr-product-split-row .ulr-product-split-img .about-img img.ulr-product-split-photo {
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: center;
+       object-position: center;
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+  }
+  body.ulr-pillar-page main#primary .ulr-product-split-row .ulr-product-split-li {
+    border-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Product catalogue: pair View product + pillar links on one row, same vertical alignment */
+.ulr-product-split-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.75rem 1.75rem;
+  margin-top: 1.125rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+.ulr-product-split-actions .text-btn {
+  margin-bottom: 0;
+}
+
+/* Tonno Bonno SKU pages: dual “Ideal placements” + “Nutrition” panels */
+.ulr-sku-panels-section .ulr-sku-info-card {
+  background-color: var(--tj-color-common-white, #fff);
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 14px;
+  -webkit-box-shadow: 0 10px 32px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 10px 32px rgba(0, 0, 0, 0.06);
+  padding: clamp(1.25rem, 3vw, 1.65rem);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100%;
+}
+.ulr-sku-panels-section .ulr-sku-info-card-head {
+  margin-bottom: 1.1rem;
+  padding-bottom: 1.1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+.ulr-sku-panels-section .ulr-sku-info-card-head .sub-title {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.ulr-sku-panels-section .ulr-sku-info-card-title {
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.ulr-sku-panels-section .ulr-sku-info-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
+.ulr-sku-panels-section .ulr-sku-info-list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.65rem;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 0.65rem 0.65rem 0.65rem 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--tj-color-text-body, #4b5563);
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.ulr-sku-panels-section .ulr-sku-info-list-item:last-child {
+  margin-bottom: 0;
+}
+.ulr-sku-panels-section .ulr-sku-info-list-item::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  margin-top: 0.42em;
+  border-radius: 50%;
+  background-color: var(--tj-color-theme-primary, #0d6efd);
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+.ulr-sku-panels-section .ulr-sku-info-card-body {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.65rem;
+}
+.ulr-sku-panels-section .ulr-sku-info-card-body p {
+  margin: 0;
+  padding: 0.75rem 0.85rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--tj-color-text-body, #4b5563);
+  background-color: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
 }
 
 /* Product catalogue: SKU cards + enquiry panel share one grid */
@@ -29525,6 +29911,50 @@ a.ulr-range-link:hover {
   -webkit-box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
           box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
+
+/* Tonno Bonno SKU: related product cards + utility tiles (image placeholders) */
+.ulr-related-products-section .ulr-card-img-placeholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: -webkit-gradient(linear, left top, right bottom, from(#eceff3), to(#dfe5ec));
+  background: linear-gradient(155deg, #eceff3 0%, #dfe5ec 100%);
+  color: rgba(15, 23, 42, 0.22);
+  font-size: clamp(1.65rem, 3.5vw, 2.1rem);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+.ulr-related-products-section .ulr-related-product-card-surface,
+.ulr-related-products-section .ulr-utility-tile {
+  -webkit-transition: border-color 0.2s ease, box-shadow 0.2s ease, -webkit-transform 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, -webkit-transform 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, -webkit-transform 0.2s ease;
+}
+.ulr-related-products-section a.ulr-related-product-card:hover .ulr-related-product-card-surface {
+  border-color: rgba(0, 0, 0, 0.14) !important;
+  -webkit-box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  -webkit-transform: translateY(-2px);
+      -ms-transform: translateY(-2px);
+          transform: translateY(-2px);
+}
+.ulr-related-products-section .ulr-utility-tile:hover {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  -webkit-box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+          box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+}
+
 .ulr-enquiry-panel {
   height: 100%;
   display: -webkit-box;
