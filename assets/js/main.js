@@ -737,9 +737,9 @@ Progressbar js
 	// Service Slider Js
 	if ($(".service-slider").length > 0) {
 		var service = new Swiper(".service-slider", {
-			slidesPerView: 4.2,
-			spaceBetween: 28,
-			centeredSlides: true,
+			slidesPerView: 1,
+			spaceBetween: 20,
+			centeredSlides: false,
 			loop: true,
 			speed: 1500,
 			autoplay: {
@@ -755,31 +755,16 @@ Progressbar js
 			},
 			breakpoints: {
 				0: {
-					slidesPerView: 1.3,
-					spaceBetween: 15,
-				},
-				576: {
-					slidesPerView: 2,
-					spaceBetween: 15,
+					slidesPerView: 1,
+					spaceBetween: 18,
 				},
 				768: {
-					slidesPerView: 2.3,
-					spaceBetween: 15,
-				},
-				900: {
-					slidesPerView: 2.6,
-					spaceBetween: 15,
-				},
-				1024: {
-					slidesPerView: 3.2,
-					spaceBetween: 15,
+					slidesPerView: 2,
+					spaceBetween: 22,
 				},
 				1200: {
-					slidesPerView: 3.4,
+					slidesPerView: 3,
 					spaceBetween: 28,
-				},
-				1400: {
-					slidesPerView: 4.2,
 				},
 			},
 		});

@@ -3073,6 +3073,10 @@ START: Theme Footer CSS
   border-bottom: 1px solid var(--tj-color-border-1);
   padding: 20px 0;
 }
+/* ULR: hide footer copyright strip social icons (phone/email + copyright remain) */
+.tj-copyright-area .copyright-content-area > .social-links {
+  display: none !important;
+}
 
 .tj-footer-section.footer-2 {
   background-color: var(--tj-color-theme-dark);
@@ -9375,6 +9379,39 @@ START: About CSS
   }
 }
 
+/* Home #about: full-width field photo (replaces leader text + tiny video-img strip) */
+#about .about-content-area.style-1 .about-bottom-area.ulr-home-about-field-wrap {
+  display: block;
+  width: 100%;
+  margin-top: clamp(1.25rem, 3vw, 1.75rem);
+}
+#about .ulr-home-about-field {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  -webkit-box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
+}
+#about .ulr-home-about-field img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+@media only screen and (max-width: 575px) {
+  #about .ulr-home-about-field {
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+  }
+}
+
 .video-btn {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -9673,6 +9710,26 @@ START: Services CSS
 }
 .tj-service-section .sec-heading {
   max-width: 550px;
+}
+/* Home #solutions: wider heading so “What we represent & supply today.” does not over-wrap */
+#solutions.tj-service-section > .container .sec-heading {
+  max-width: min(100%, 42rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+@media only screen and (min-width: 768px) {
+  #solutions.tj-service-section > .container .sec-heading {
+    max-width: min(100%, 52rem);
+  }
+}
+@media only screen and (min-width: 1200px) {
+  #solutions.tj-service-section > .container .sec-heading {
+    max-width: min(100%, 58rem);
+  }
+}
+#solutions .ulr-home-services-title {
+  line-height: 1.18;
+  text-wrap: balance;
 }
 .tj-service-section .sec-heading .sub-title {
   color: var(--tj-color-common-white);
