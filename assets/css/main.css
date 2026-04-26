@@ -29406,7 +29406,7 @@ START: Service CSS
 
 /* !END: Case Study CSS */
 
-/* Ubuntu Life — pillar pages + other rich subpages */
+/* Ubuntu Life: pillar pages + other rich subpages */
 body.ulr-pillar-page .tj-page-header,
 body.ulr-rich-subpage .tj-page-header {
   background-blend-mode: normal;
@@ -29448,5 +29448,124 @@ body.ulr-rich-subpage .pillar-related-card:hover {
       -ms-transform: translateY(-4px);
           transform: translateY(-4px);
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.1);
+}
+
+/* ULR: tighter vertical rhythm + consistent inner width on pillar/catalog/product pages */
+body.ulr-pillar-page main#primary > .section-gap,
+body.ulr-pillar-page main#primary > .tj-about-section,
+body.ulr-rich-subpage main#primary > .section-gap,
+body.ulr-rich-subpage main#primary > .tj-about-section {
+  padding-top: clamp(2.5rem, 5vw, 3.75rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3.75rem);
+}
+body.ulr-pillar-page main#primary > .tj-page-header,
+body.ulr-rich-subpage main#primary > .tj-page-header {
+  padding-top: clamp(3rem, 8vw, 5rem);
+  padding-bottom: clamp(3rem, 8vw, 5rem);
+}
+body.ulr-pillar-page main#primary > .tj-cta-section,
+body.ulr-rich-subpage main#primary > .tj-cta-section {
+  margin-top: 0;
+}
+body.ulr-pillar-page main#primary .container,
+body.ulr-rich-subpage main#primary .container {
+  max-width: 1140px;
+}
+@media only screen and (min-width: 1400px) {
+  body.ulr-pillar-page main#primary .container,
+  body.ulr-rich-subpage main#primary .container {
+    max-width: 1140px;
+  }
+}
+body.ulr-pillar-page main#primary img,
+body.ulr-rich-subpage main#primary img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Product catalogue: SKU cards + enquiry panel share one grid */
+.ulr-catalog-grid .ulr-sku-card {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: clamp(1.1rem, 2.5vw, 1.5rem);
+}
+.ulr-catalog-grid .ulr-sku-card h3 {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+}
+.ulr-catalog-grid .ulr-sku-card .ulr-sku-meta {
+  font-size: 0.8125rem;
+  color: var(--tj-color-text-body-2, #5c6574);
+  margin-bottom: 0.75rem;
+}
+.ulr-catalog-grid .ulr-sku-card ul {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.ulr-catalog-grid .ulr-sku-card a {
+  word-break: break-word;
+}
+a.ulr-range-link {
+  min-height: 3.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+a.ulr-range-link:hover {
+  border-color: rgba(0, 0, 0, 0.14) !important;
+  -webkit-box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+.ulr-enquiry-panel {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.75rem;
+  background: #fff;
+  -webkit-box-shadow: 0 10px 32px rgba(0, 0, 0, 0.07);
+          box-shadow: 0 10px 32px rgba(0, 0, 0, 0.07);
+}
+@media only screen and (min-width: 992px) {
+  .ulr-enquiry-panel {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 6.5rem;
+    min-height: 18rem;
+  }
+}
+.ulr-enquiry-panel h3 {
+  font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+  margin-bottom: 0.75rem;
+}
+.ulr-enquiry-panel .ulr-enquiry-actions {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+.ulr-enquiry-panel .tj-primary-btn {
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+@media only screen and (min-width: 576px) {
+  .ulr-enquiry-panel .ulr-enquiry-actions .tj-primary-btn {
+    width: auto;
+  }
 }
 /*# sourceMappingURL=main.css.map */
