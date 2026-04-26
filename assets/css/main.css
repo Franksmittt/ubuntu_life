@@ -29709,7 +29709,8 @@ body.ulr-pillar-page .ulr-pillar-intro-body p {
     min-height: 14rem;
     max-height: min(70vw, 22rem);
   }
-  body.ulr-pillar-page .ulr-related-products-section .ulr-card-img-placeholder {
+  body.ulr-pillar-page .ulr-related-products-section .ulr-card-img-placeholder,
+  body.ulr-pillar-page .ulr-related-products-section .ulr-card-img-thumb {
     aspect-ratio: 16 / 9;
   }
   body.ulr-pillar-page .ulr-product-split-actions {
@@ -30010,6 +30011,33 @@ a.ulr-range-link:hover {
   border-color: rgba(0, 0, 0, 0.12) !important;
   -webkit-box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
           box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+}
+
+/* Tonno SKU cards: real photo thumbs (same frame as former icon placeholders) */
+.ulr-related-products-section .ulr-card-img-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: #e8ecf0;
+}
+.ulr-related-products-section .ulr-card-img-thumb .ulr-card-thumb-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  display: block;
+}
+body.ulr-pillar-page main#primary .ulr-related-products-section .ulr-card-img-thumb .ulr-card-thumb-img {
+  height: 100%;
 }
 
 .ulr-enquiry-panel {

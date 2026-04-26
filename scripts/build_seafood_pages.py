@@ -153,7 +153,9 @@ def sku_page(
             <div class="row g-4 mt-2">
               <div class="col-md-4">
                 <div class="ulr-utility-tile h-100 bg-white border rounded-3 shadow-sm overflow-hidden d-flex flex-column">
-                  <div class="ulr-card-img-placeholder" aria-hidden="true"><i class="tji-list"></i></div>
+                  <div class="ulr-card-img-thumb">
+                    <img class="ulr-card-thumb-img" src="assets/images/tonno-bonno/ulr-utility-full-catalogue.jpg" width="1200" height="900" loading="lazy" alt="Retail shelf with canned fish.">
+                  </div>
                   <div class="p-4 flex-grow-1">
                     <h5 class="mb-2">Full catalogue</h5>
                     <p class="small mb-0"><a href="product-tonno-bonno.html">Tonno Bonno overview</a> lists every tuna, pilchard, and sardine page.</p>
@@ -162,7 +164,9 @@ def sku_page(
               </div>
               <div class="col-md-4">
                 <div class="ulr-utility-tile h-100 bg-white border rounded-3 shadow-sm overflow-hidden d-flex flex-column">
-                  <div class="ulr-card-img-placeholder" aria-hidden="true"><i class="tji-growth"></i></div>
+                  <div class="ulr-card-img-thumb">
+                    <img class="ulr-card-thumb-img" src="assets/images/tonno-bonno/ulr-utility-sector-nutrition.jpg" width="1200" height="900" loading="lazy" alt="Community kitchen and meal service.">
+                  </div>
                   <div class="p-4 flex-grow-1">
                     <h5 class="mb-2">Sector context</h5>
                     <p class="small mb-0"><a href="pillar-shelf-stable-nutrition.html">Shelf-stable nutrition pillar</a> explains how Ubuntu supports programmes.</p>
@@ -171,7 +175,9 @@ def sku_page(
               </div>
               <div class="col-md-4">
                 <div class="ulr-utility-tile h-100 bg-white border rounded-3 shadow-sm overflow-hidden d-flex flex-column">
-                  <div class="ulr-card-img-placeholder" aria-hidden="true"><i class="tji-organize"></i></div>
+                  <div class="ulr-card-img-thumb">
+                    <img class="ulr-card-thumb-img" src="assets/images/tonno-bonno/ulr-utility-logistics.jpg" width="1200" height="900" loading="lazy" alt="Warehouse pallets and distribution.">
+                  </div>
                   <div class="p-4 flex-grow-1">
                     <h5 class="mb-2">Logistics</h5>
                     <p class="small mb-0">Ambient container loads, long dated stock, and consolidated mixed-SKU pallets for retail DCs.</p>
@@ -231,13 +237,32 @@ def sku_page(
         </section>
 """.rstrip()
 
+RELATED_THUMB_TUNA = "assets/images/tonno-bonno/ulr-related-tuna-thumb.jpg"
+RELATED_THUMB_PILCHARD = "assets/images/tonno-bonno/ulr-related-pilchard-thumb.jpg"
+RELATED_THUMB_SARDINE = "assets/images/tonno-bonno/ulr-related-sardine-thumb.jpg"
+
+
+def related_thumb_meta(href: str) -> tuple[str, str]:
+    h = href.lower()
+    if "pilchards" in h:
+        return RELATED_THUMB_PILCHARD, "Pilchards-style canned fish in a home kitchen context."
+    if "sardines" in h:
+        return RELATED_THUMB_SARDINE, "Small canned sardines at retail or in the pantry."
+    if "tuna" in h or "tonno" in h:
+        return RELATED_THUMB_TUNA, "Tuna can opened for a simple meal."
+    return RELATED_THUMB_TUNA, "Shelf-stable canned fish."
+
 
 def rel_card(href: str, title: str, sub: str) -> str:
+    src, alt = related_thumb_meta(href)
+    alt_esc = alt.replace("&", "&amp;")
     return f"""
               <div class="col-12 col-sm-6 col-lg-4">
                 <a class="ulr-related-product-card text-decoration-none text-reset d-block h-100" href="{href}">
                   <div class="ulr-related-product-card-surface border rounded-3 bg-white shadow-sm h-100 overflow-hidden d-flex flex-column">
-                    <div class="ulr-card-img-placeholder" aria-hidden="true"><i class="tji-box"></i></div>
+                    <div class="ulr-card-img-thumb">
+                      <img class="ulr-card-thumb-img" src="{src}" width="1200" height="900" loading="lazy" alt="{alt_esc}">
+                    </div>
                     <div class="p-3 p-lg-4 flex-grow-1">
                       <span class="d-block fw-semibold">{title}</span>
                       <span class="small text-muted">{sub}</span>
