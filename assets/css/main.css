@@ -1,4 +1,4 @@
-/*-----------------------------------------------------------------------------------
+﻿/*-----------------------------------------------------------------------------------
 
     Theme Name: Bexon - Corporate Business HTML5 Template
     Author: Theme-Junction
@@ -969,6 +969,22 @@ START: Theme Header CSS
 .header-area.header-1 .header-wrapper {
   padding: 0 18px;
   background-color: var(--tj-color-common-white);
+}
+/* ULR primary nav labels (uppercase) */
+.header-area.header-1 .menu-area .mainmenu > ul > li > a {
+  font-size: 14px;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .header-area.header-1 .menu-area .mainmenu > ul > li > a {
+    font-size: 13px;
+    letter-spacing: 0.055em;
+  }
+}
+.hamburger_menu .mean-nav > ul > li > a {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 .header-area.header-2.header-absolute {
   position: absolute;
@@ -9711,7 +9727,7 @@ START: Services CSS
 .tj-service-section .sec-heading {
   max-width: 550px;
 }
-/* Home #solutions: wider heading so “What we represent & supply today.” does not over-wrap */
+/* Home #solutions: wider heading so ΓÇ£What we represent & supply today.ΓÇ¥ does not over-wrap */
 #solutions.tj-service-section > .container .sec-heading {
   max-width: min(100%, 42rem);
   margin-left: auto;
@@ -13568,8 +13584,9 @@ START: Contact CSS
 }
 @media (max-width: 575px) {
   .global-map {
-    width: 580px;
-    inset-inline-start: -20px;
+    width: 100%;
+    max-width: 100%;
+    inset-inline-start: 0;
   }
 }
 
@@ -29507,7 +29524,7 @@ body.ulr-rich-subpage .pillar-related-card:hover {
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.1);
 }
 
-/* Pillar pages: point-of-contact card (replaces flat “Leadership” grey box) */
+/* Pillar pages: point-of-contact card (replaces flat ΓÇ£LeadershipΓÇ¥ grey box) */
 .ulr-pillar-leadership-section .ulr-pillar-leadership-card {
   border-radius: 14px;
   overflow: hidden;
@@ -29634,7 +29651,7 @@ body.ulr-rich-subpage main#primary .ulr-pillar-leadership-section .ulr-pillar-le
   color: var(--tj-color-heading-primary, #0f172a);
 }
 
-/* Pillar “This pillar” intro: match image column height to copy (desktop) */
+/* Pillar ΓÇ£This pillarΓÇ¥ intro: match image column height to copy (desktop) */
 @media only screen and (min-width: 992px) {
   body.ulr-pillar-page .tj-about-section.section-gap .ulr-pillar-intro-row {
     -webkit-box-align: stretch;
@@ -29771,7 +29788,7 @@ body.ulr-rich-subpage main#primary .tj-cta-section .cta-area .cta-img img {
      object-fit: cover;
 }
 
-/* Products catalogue: SANI split rows — copy column and photo column share height (lg+) */
+/* Products catalogue: SANI split rows ΓÇö copy column and photo column share height (lg+) */
 @media only screen and (min-width: 992px) {
   body.ulr-pillar-page main#primary .ulr-product-split-row {
     -webkit-box-align: stretch;
@@ -29831,7 +29848,7 @@ body.ulr-rich-subpage main#primary .tj-cta-section .cta-area .cta-img img {
   margin-bottom: 0;
 }
 
-/* Tonno Bonno SKU pages: dual “Ideal placements” + “Nutrition” panels */
+/* Tonno Bonno SKU pages: dual ΓÇ£Ideal placementsΓÇ¥ + ΓÇ£NutritionΓÇ¥ panels */
 .ulr-sku-panels-section .ulr-sku-info-card {
   background-color: var(--tj-color-common-white, #fff);
   border: 1px solid rgba(0, 0, 0, 0.09);
@@ -30081,6 +30098,383 @@ body.ulr-pillar-page main#primary .ulr-related-products-section .ulr-card-img-th
 @media only screen and (min-width: 576px) {
   .ulr-enquiry-panel .ulr-enquiry-actions .tj-primary-btn {
     width: auto;
+  }
+}
+
+/** Ubuntu Life Resources — site footer ================================== */
+.tj-footer-section.ulr-site-footer {
+  background: -webkit-linear-gradient(165deg, #152a2d 0%, var(--tj-color-theme-dark) 48%, #0a1517 100%);
+  background: linear-gradient(165deg, #152a2d 0%, var(--tj-color-theme-dark) 48%, #0a1517 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  --ulr-footer-ink-muted: rgba(255, 255, 255, 0.58);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-panel {
+  position: relative;
+  z-index: 2;
+  padding: clamp(48px, 6vw, 88px) 0 clamp(40px, 5vw, 56px);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  inset-inline-start: 50%;
+  width: min(920px, 60vw);
+  height: min(520px, 55vh);
+  -webkit-transform: translateX(-42%) translateY(-12%);
+          transform: translateX(-42%) translateY(-12%);
+  background: radial-gradient(ellipse at center, rgba(30, 138, 138, 0.22) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: 0;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-panel > .container {
+  position: relative;
+  z-index: 1;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-logo {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(255, 255, 255, 0.97);
+  padding: 11px 16px;
+  border-radius: 12px;
+  -webkit-box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-logo img {
+  display: block;
+  max-height: 46px;
+  width: auto;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-tagline {
+  margin-top: clamp(18px, 3vw, 24px);
+  margin-bottom: 10px;
+  max-width: 38ch;
+  font-size: 15px;
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.82);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-reg {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.45);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-heading {
+  margin-bottom: clamp(14px, 2.4vw, 20px);
+  font-size: 12px;
+  font-weight: var(--tj-fw-sbold);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ulr-footer-ink-muted);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-links li {
+  margin: 0;
+  padding: 0;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-links a {
+  display: inline-block;
+  padding: 5px 0;
+  font-size: 15px;
+  font-weight: var(--tj-fw-medium);
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  -webkit-transition: color 0.2s ease, -webkit-transform 0.2s ease;
+  transition: color 0.2s ease, -webkit-transform 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease, -webkit-transform 0.2s ease;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-links a:hover {
+  color: #5cd4d4;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-contact {
+  margin-top: 4px;
+  padding: clamp(20px, 3vw, 26px) clamp(18px, 3vw, 24px);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: rgba(255, 255, 255, 0.055);
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-contact .ulr-footer-heading {
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.75);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-lead {
+  margin: 0 0 clamp(16px, 2.5vw, 22px);
+  font-size: 14px;
+  line-height: 1.58;
+  color: rgba(255, 255, 255, 0.72);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-list {
+  list-style: none;
+  margin: 0 0 clamp(16px, 2.5vw, 22px);
+  padding: 0;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-list > li {
+  margin-bottom: 12px;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-list > li:last-child {
+  margin-bottom: 0;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-label {
+  display: block;
+  font-size: 11px;
+  font-weight: var(--tj-fw-sbold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 2px;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-name {
+  display: block;
+  font-size: 16px;
+  font-weight: var(--tj-fw-medium);
+  color: rgba(255, 255, 255, 0.95);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-list a {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  word-break: break-word;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-list a:hover {
+  color: #5cd4d4;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-ico {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 32px;
+  height: 32px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--tj-color-theme-primary);
+  font-size: 14px;
+  line-height: 1;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-ico i {
+  color: var(--tj-color-common-white);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-cta {
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+@media only screen and (min-width: 576px) {
+  .tj-footer-section.ulr-site-footer .ulr-footer-cta {
+    width: auto;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-bottom {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-bottom-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: clamp(14px, 3vw, 24px);
+  padding: clamp(16px, 2.6vw, 22px) 0;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-copy {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.52);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-social ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 8px;
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-social ul li a {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-social ul li a i {
+  color: rgba(255, 255, 255, 0.88);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-social ul li a:hover {
+  background-color: var(--tj-color-theme-primary);
+}
+.tj-footer-section.ulr-site-footer .ulr-footer-social ul li a:hover i {
+  color: var(--tj-color-common-white);
+}
+@media only screen and (max-width: 575px) {
+  .tj-footer-section.ulr-site-footer .ulr-footer-bottom-inner {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    text-align: center;
+  }
+  .tj-footer-section.ulr-site-footer .ulr-footer-social ul {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+/** ULR — site-wide responsive baseline (all pages) ===================== */
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
+}
+@supports not (overflow: clip) {
+  html {
+    overflow-x: hidden;
+  }
+}
+body {
+  position: relative;
+  max-width: 100%;
+}
+#smooth-wrapper,
+#smooth-content {
+  max-width: 100%;
+  overflow-x: clip;
+}
+@supports not (overflow: clip) {
+  #smooth-wrapper,
+  #smooth-content {
+    overflow-x: hidden;
+  }
+}
+img,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+iframe {
+  max-width: 100%;
+}
+.tj-contact-section-2 .row {
+  --bs-gutter-x: clamp(1rem, 4vw, 1.5rem);
+}
+.tj-contact-section-2 .row > [class*="col-"] {
+  min-width: 0;
+}
+.tj-contact-section-2 .global-map {
+  max-width: 100%;
+}
+.location-tooltip {
+  max-width: min(222px, calc(100vw - 32px));
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+@media (max-width: 575px) {
+  .location-tooltip {
+    max-width: min(205px, calc(100vw - 32px));
+  }
+}
+@media only screen and (max-width: 767px) {
+  .contact-form {
+    padding: clamp(28px, 7vw, 48px) clamp(18px, 5vw, 32px);
+    margin-inline-end: 0;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .contact-form .submit-btn .tj-primary-btn {
+    width: 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+@media (max-width: 374px) {
+  .banner-content .banner-title {
+    font-size: clamp(1.35rem, 8.2vw, 2rem);
+    line-height: 1.14;
+  }
+}
+@media (max-width: 374px) {
+  .cta-area .cta-content .title {
+    font-size: clamp(1.65rem, 10vw, 2.15rem);
+    word-break: break-word;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .header-area.header-1 .mainmenu ul {
+    -webkit-column-gap: 16px;
+       -moz-column-gap: 16px;
+            column-gap: 16px;
+  }
+  .header-area.header-1 .menu-area .mainmenu > ul > li > a {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+@media only screen and (min-width: 992px) and (max-width: 1099px) {
+  .header-area.header-1 .header-button .tj-primary-btn .btn-text span {
+    font-size: 13px;
+  }
+}
+@media (max-width: 575px) {
+  .ulr-partner-cta .cta-content .title {
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
+    line-height: 1.12;
+    word-break: break-word;
+  }
+}
+body.ulr-pillar-page main#primary .row > [class*="col-"],
+body.ulr-rich-subpage main#primary .row > [class*="col-"],
+body.ulr-home main#primary .row > [class*="col-"] {
+  min-width: 0;
+}
+@media (max-width: 575px) {
+  .nice-select .list {
+    max-width: calc(100vw - 32px);
   }
 }
 /*# sourceMappingURL=main.css.map */
