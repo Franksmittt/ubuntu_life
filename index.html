@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Ubuntu Life Resources: Africa-focused partner for agricultural biosecurity, clean water, and food supply. Proven solutions, distribution, and institutional programmes across Southern, East &amp; West Africa.">
   <!-- Site Title -->
-  <title>Ubuntu Life Resources | Biosecurity, clean water &amp; food supply for Africa</title>
+  <title>Ubuntu Life Resources | Agricultural biosecurity, clean water &amp; strategic food supply for Africa</title>
   <!-- Place favicon.ico in the root directory -->
   <link rel="shortcut icon" type="image/x-icon" href="assets/images/fav.png">
   <!-- CSS here -->
@@ -251,9 +251,6 @@
       max-width: 100%;
       height: auto;
     }
-    .ulr-home-about-after-hero .experience-box .customers-text {
-      overflow-wrap: anywhere;
-    }
 
     /* Solutions: lead line uses theme colours (no Bootstrap greys fighting the palette) */
     .ulr-solution-lead {
@@ -478,6 +475,16 @@
       -webkit-box-direction: normal;
           -ms-flex-direction: column;
               flex-direction: column;
+    }
+    .ulr-hero-tile__image img {
+      width: 100%;
+      -webkit-box-flex: 1;
+          -ms-flex: 1 1 auto;
+              flex: 1 1 auto;
+      min-height: 0;
+      -o-object-fit: cover;
+         object-fit: cover;
+      display: block;
     }
     .ulr-hero-tile__image-placeholder {
       -webkit-box-flex: 1;
@@ -802,9 +809,9 @@
               <nav id="mobile-menu" class="mainmenu">
                 <ul>
                   <li class="current-menu-item"><a href="index.html">Home</a></li>
-                  <li><a href="pillar-agri-biosecurity.html">Biosecurity</a></li>
+                  <li><a href="pillar-agri-biosecurity.html">Agricultural Biosecurity</a></li>
                   <li><a href="pillar-water-purification.html">Water</a></li>
-                  <li><a href="pillar-shelf-stable-nutrition.html">Food security</a></li>
+                  <li><a href="pillar-shelf-stable-nutrition.html">Strategic Food Supply Solutions</a></li>
                 </ul>
               </nav>
             </div>
@@ -850,9 +857,9 @@
               <nav class="mainmenu">
                 <ul>
                   <li class="current-menu-item"><a href="index.html">Home</a></li>
-                  <li><a href="pillar-agri-biosecurity.html">Biosecurity</a></li>
+                  <li><a href="pillar-agri-biosecurity.html">Agricultural Biosecurity</a></li>
                   <li><a href="pillar-water-purification.html">Water</a></li>
-                  <li><a href="pillar-shelf-stable-nutrition.html">Food security</a></li>
+                  <li><a href="pillar-shelf-stable-nutrition.html">Strategic Food Supply Solutions</a></li>
                 </ul>
               </nav>
             </div>
@@ -893,7 +900,7 @@
             <div class="banner-area banner-area--hero-full">
               <div class="banner-left-box">
                 <div class="banner-content">
-                  <h1 class="banner-title title-anim wow fadeInDown" data-wow-delay=".1s">Africa&rsquo;s Partner in <span>Biosecurity, Clean Water &amp; Food Supply Solutions</span></h1>
+                  <h1 class="banner-title title-anim wow fadeInDown" data-wow-delay=".1s">Africa&rsquo;s Partner in <span>Agricultural Biosecurity, Clean Water &amp; Strategic Food Supply Solutions</span></h1>
                   <p class="hero-subheadline wow fadeInUp" data-wow-delay=".35s">Protect livestock. Deliver safe drinking water. Secure reliable food supply across Africa through proven, scalable solutions.</p>
                   <div class="d-flex flex-wrap gap-2 mt-4 hero-cta-row wow fadeInUp" data-wow-delay=".5s">
                     <a class="tj-primary-btn" href="assets/downloads/sani-99-for-agri-brochure.pdf" download><span class="btn-text"><span>Request Pricing</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>
@@ -914,17 +921,14 @@
             </div>
           </div>
           <div class="hero-visual-strip wow fadeIn" data-wow-delay=".25s">
-            <div class="hero-split-banner" role="group" aria-label="Featured photography: biosecurity, clean water, food supply">
+            <div class="hero-split-banner" role="group" aria-label="Featured photography: agricultural biosecurity, clean water, strategic food supply solutions">
               <div class="hero-split-banner__cell">
                 <article class="ulr-hero-tile">
                   <header class="ulr-hero-tile__heading">
-                    <p class="ulr-hero-tile__tag">Biosecurity</p>
+                    <p class="ulr-hero-tile__tag">Agricultural Biosecurity</p>
                   </header>
                   <div class="ulr-hero-tile__image">
-                    <div class="ulr-hero-tile__image-placeholder" role="img" aria-label="Biosecurity — replace with photo">
-                      <i class="fa-regular fa-image" aria-hidden="true"></i>
-                      <span class="ulr-hero-tile__image-placeholder-label">Image placeholder</span>
-                    </div>
+                    <img src="bio.jpeg" alt="Agricultural biosecurity and on-farm hygiene." width="640" height="480" decoding="async" fetchpriority="high">
                   </div>
                   <footer class="ulr-hero-tile__footer">
                     <p class="ulr-hero-tile__title">Livestock protection &amp; on-farm hygiene</p>
@@ -937,10 +941,7 @@
                     <p class="ulr-hero-tile__tag">Clean water</p>
                   </header>
                   <div class="ulr-hero-tile__image">
-                    <div class="ulr-hero-tile__image-placeholder" role="img" aria-label="Clean water — replace with photo">
-                      <i class="fa-regular fa-image" aria-hidden="true"></i>
-                      <span class="ulr-hero-tile__image-placeholder-label">Image placeholder</span>
-                    </div>
+                    <img src="water.jpeg" alt="Clean drinking water programmes." width="640" height="480" decoding="async" fetchpriority="high">
                   </div>
                   <footer class="ulr-hero-tile__footer">
                     <p class="ulr-hero-tile__title">Safe drinking water for communities &amp; programmes</p>
@@ -950,13 +951,10 @@
               <div class="hero-split-banner__cell">
                 <article class="ulr-hero-tile">
                   <header class="ulr-hero-tile__heading">
-                    <p class="ulr-hero-tile__tag">Food supply</p>
+                    <p class="ulr-hero-tile__tag">Strategic Food Supply Solutions</p>
                   </header>
                   <div class="ulr-hero-tile__image">
-                    <div class="ulr-hero-tile__image-placeholder" role="img" aria-label="Food supply — replace with photo">
-                      <i class="fa-regular fa-image" aria-hidden="true"></i>
-                      <span class="ulr-hero-tile__image-placeholder-label">Image placeholder</span>
-                    </div>
+                    <img src="food.jpeg" alt="Strategic food supply solutions and shelf-stable protein." width="640" height="480" decoding="async" fetchpriority="high">
                   </div>
                   <footer class="ulr-hero-tile__footer">
                     <p class="ulr-hero-tile__title">Shelf-stable protein for retail &amp; institutions</p>
@@ -974,21 +972,14 @@
               <div class="col-lg-6 order-2 order-lg-1">
                 <div class="about-img-area wow fadeInLeft" data-wow-delay=".2s">
                   <div class="about-img overflow-hidden">
-                    <img data-speed="0.8" src="assets/images/about/ulr-about-manufacturer-to-market.jpg" alt="B2B supply and partnership discussion." loading="lazy" decoding="async">
-                  </div>
-                  <div class="box-area">
-                    <div class="experience-box wow fadeInUp" data-wow-delay=".3s">
-                      <span class="sub-title">Registration</span>
-                      <div class="customers-number">2026</div>
-                      <h6 class="customers-text">2026/215685/07. Representation, programme alignment &amp; compliant supply.</h6>
-                    </div>
+                    <img data-speed="0.8" src="assets/images/about/ulr-home-who-we-are.jpeg" alt="Ubuntu Life Resources — who we are." loading="lazy" decoding="async">
                   </div>
                 </div>
               </div>
               <div class="col-lg-6 order-1 order-lg-2">
                 <div class="sec-heading wow fadeInUp" data-wow-delay=".15s">
                   <h2 class="sec-title title-anim">Who <span>We Are</span></h2>
-                  <p class="desc mt-3 wow fadeInUp" data-wow-delay=".25s">Ubuntu Life Resources is an Africa-focused market development and commercial execution partner enabling the successful introduction, distribution, and scaling of high-impact solutions across agricultural biosecurity, water purification, and food security sectors.</p>
+                  <p class="desc mt-3 wow fadeInUp" data-wow-delay=".25s">Ubuntu Life Resources is an Africa-focused market development and commercial execution partner enabling the successful introduction, distribution, and scaling of high-impact solutions across agricultural biosecurity, water purification, and strategic food supply solutions.</p>
                   <p class="desc wow fadeInUp" data-wow-delay=".35s">We work with global manufacturers, distributors, and institutional buyers to bridge the gap between supply and real market demand &mdash; delivering structured market entry, trusted relationships, and revenue-driven expansion across Southern, East, and West Africa.</p>
                 </div>
                 <div class="mt-4 wow fadeInUp" data-wow-delay=".45s">
@@ -1007,7 +998,7 @@
           <div class="container-fluid px-0">
             <div class="sec-heading text-center mb-5 px-3 px-lg-0">
               <span class="sub-title wow fadeInUp" data-wow-delay=".1s"><i class="tji-list"></i>Solutions</span>
-              <h2 class="sec-title title-anim wow fadeInUp" data-wow-delay=".15s">Biosecurity, water purification &amp; <span>food security</span></h2>
+              <h2 class="sec-title title-anim wow fadeInUp" data-wow-delay=".15s">Agricultural Biosecurity, water purification &amp; <span>strategic food supply solutions</span></h2>
               <p class="desc mt-3 mb-0 mx-auto ulr-solutions-section-lead wow fadeInUp" data-wow-delay=".2s">Proven product lines for agricultural disease control, point-of-use water treatment, and bulk shelf-stable nutrition — built for African markets.</p>
             </div>
 
@@ -1021,11 +1012,11 @@
               </div>
               <div class="col-lg-6 order-lg-2">
                 <div class="ulr-solution-pillar ulr-solution-pillar--bio ps-lg-2 wow fadeInUp" data-wow-delay=".2s">
-                  <h3 class="sec-title h4 mb-3">Biosecurity Solutions</h3>
+                  <h3 class="sec-title h4 mb-3">Agricultural Biosecurity Solutions</h3>
                   <p class="ulr-solution-lead">Protect livestock. Prevent disease outbreaks. Safeguard productivity.</p>
                   <p class="desc mb-4">Veterinary-grade disinfection systems designed to eliminate harmful pathogens, reduce contamination risks, and protect agricultural operations at scale.</p>
                   <a class="tj-primary-btn" href="product-sani-99-agri.html">
-                    <span class="btn-text"><span>Explore Biosecurity</span></span>
+                    <span class="btn-text"><span>Explore Agricultural Biosecurity</span></span>
                     <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                   </a>
                 </div>
@@ -1063,7 +1054,7 @@
               </div>
               <div class="col-lg-6 order-lg-2">
                 <div class="ulr-solution-pillar ulr-solution-pillar--food ps-lg-2 wow fadeInUp" data-wow-delay=".2s">
-                  <h3 class="sec-title h4 mb-3">Food Security Solutions</h3>
+                  <h3 class="sec-title h4 mb-3">Strategic Food Supply Solutions</h3>
                   <p class="ulr-solution-lead">Reliable bulk food supply for growing African markets.</p>
                   <p class="desc mb-4">High-quality, shelf-stable protein products designed for large-scale distribution across government programs, wholesalers, and retail networks.</p>
                   <a class="tj-primary-btn" href="product-tonno-bonno.html">
@@ -1185,9 +1176,9 @@
                 <div class="ulr-footer-col wow fadeInUp" data-wow-delay=".15s">
                   <h5 class="ulr-footer-heading">Pillars</h5>
                   <ul class="ulr-footer-links">
-                    <li><a href="pillar-agri-biosecurity.html">Biosecurity</a></li>
+                    <li><a href="pillar-agri-biosecurity.html">Agricultural Biosecurity</a></li>
                     <li><a href="pillar-water-purification.html">Water</a></li>
-                    <li><a href="pillar-shelf-stable-nutrition.html">Food security</a></li>
+                    <li><a href="pillar-shelf-stable-nutrition.html">Strategic Food Supply Solutions</a></li>
                     <li><a href="pillar-institutional-supply.html">Institutional supply</a></li>
                     <li><a href="pillars.html">Overview</a></li>
                   </ul>
