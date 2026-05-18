@@ -1,0 +1,69 @@
+/* Docx brief layout for pillar pages */
+.ulr-brief-section .row {
+  --bs-gutter-x: var(--ulr-grid-gap, clamp(1rem, 3vw, 1.75rem));
+}
+
+.ulr-brief-section .row > [class*="col-"] {
+  min-width: 0;
+}
+
+.ulr-brief-section .ulr-brief-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(520px, 70vh);
+  object-fit: contain;
+  background: #f4f8f8;
+}
+.ulr-brief-copy .desc {
+  line-height: 1.6;
+}
+.ulr-brief-copy ul.desc li {
+  margin-bottom: 0.35rem;
+}
+.ulr-brief-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+@media (max-width: 575px) {
+  .ulr-brief-compare {
+    grid-template-columns: 1fr;
+  }
+}
+.ulr-brief-compare-card {
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--tj-color-border-1, #dce5e5);
+  background: #fff;
+  text-align: center;
+}
+.ulr-brief-compare-card strong {
+  display: block;
+  font-size: 1.75rem;
+  color: var(--tj-color-theme-primary, #1e8a8a);
+}
+.ulr-product-table-wrap,
+.ulr-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ulr-product-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  min-width: 0;
+}
+.ulr-product-table th,
+.ulr-product-table td {
+  border: 1px solid var(--tj-color-border-1, #dce5e5);
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+}
+.ulr-product-table th {
+  background: #f4f8f8;
+}

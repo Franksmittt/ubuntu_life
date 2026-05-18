@@ -1,0 +1,546 @@
+/**
+ * Ubuntu Life Resources — unified layout grid & content width
+ * Single source of truth for max-width, gutters, section rhythm, overflow fixes.
+ */
+
+:root {
+  --ulr-content-max: 1140px;
+  --ulr-content-wide: 1280px;
+  --ulr-prose-max: 40rem;
+  --ulr-prose-narrow: 36rem;
+  --ulr-gutter: clamp(16px, 4vw, 24px);
+  --ulr-edge: clamp(12px, 3vw, 15px);
+  --ulr-grid-gap: clamp(1rem, 3vw, 1.75rem);
+  --ulr-section-y: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* ------------------------------------------------------------------ */
+/* Core layout shell — replaces ad-hoc container-fluid px-0 bands     */
+/* ------------------------------------------------------------------ */
+.ulr-layout {
+  width: 100%;
+  max-width: var(--ulr-content-max);
+  margin-inline: auto;
+  padding-inline: var(--ulr-gutter);
+  box-sizing: border-box;
+}
+
+.ulr-layout--wide {
+  max-width: var(--ulr-content-wide);
+}
+
+.ulr-layout--prose {
+  max-width: var(--ulr-prose-max);
+}
+
+.ulr-layout--prose-narrow {
+  max-width: var(--ulr-prose-narrow);
+}
+
+/* Full-bleed band with centred readable column inside */
+.ulr-layout-bleed {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ulr-layout-bleed > .ulr-layout,
+.ulr-layout-bleed > .ulr-layout--wide {
+  margin-inline: auto;
+}
+
+/* ------------------------------------------------------------------ */
+/* CSS grid utilities                                                   */
+/* ------------------------------------------------------------------ */
+.ulr-grid {
+  display: grid;
+  gap: var(--ulr-grid-gap);
+  min-width: 0;
+}
+
+.ulr-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ulr-grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ulr-grid--auto {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+@media (max-width: 767px) {
+  .ulr-grid--2,
+  .ulr-grid--3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Site-wide: align Bootstrap .container with layout tokens             */
+/* ------------------------------------------------------------------ */
+body.ulr-home main#primary .container,
+body.ulr-home .tj-footer-section.ulr-site-footer .ulr-footer-panel > .container,
+body.ulr-home .tj-footer-section.ulr-site-footer .footer-bottom-area > .container,
+body.ulr-pillar-page main#primary .container,
+body.ulr-rich-subpage main#primary .container,
+body.ulr-pillar-page .tj-page-header .container,
+body.ulr-rich-subpage .tj-page-header .container {
+  max-width: var(--ulr-content-max);
+  padding-inline: var(--ulr-gutter);
+  box-sizing: border-box;
+}
+
+@media only screen and (min-width: 1400px) {
+  body.ulr-home main#primary .container,
+  body.ulr-pillar-page main#primary .container,
+  body.ulr-rich-subpage main#primary .container {
+    max-width: var(--ulr-content-max);
+  }
+}
+
+/* Page headers: same inner width as body */
+body.ulr-pillar-page .tj-page-header .container,
+body.ulr-rich-subpage .tj-page-header .container {
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------ */
+/* Section vertical rhythm (all ULR body types)                       */
+/* ------------------------------------------------------------------ */
+body.ulr-home main#primary > .section-gap:not(.tj-banner-section),
+body.ulr-pillar-page main#primary > .section-gap,
+body.ulr-pillar-page main#primary > .tj-about-section,
+body.ulr-pillar-page main#primary > .ulr-pillar-leadership-section,
+body.ulr-rich-subpage main#primary > .section-gap,
+body.ulr-rich-subpage main#primary > .tj-about-section,
+body.ulr-rich-subpage main#primary > .ulr-pillar-leadership-section {
+  padding-top: var(--ulr-section-y);
+  padding-bottom: var(--ulr-section-y);
+}
+
+body.ulr-pillar-page main#primary > .tj-page-header,
+body.ulr-rich-subpage main#primary > .tj-page-header {
+  padding-top: clamp(3rem, 8vw, 5rem);
+  padding-bottom: clamp(3rem, 8vw, 5rem);
+}
+
+/* Homepage: legacy container-fluid px-0 → centred column via layout class   */
+body.ulr-home main#primary .container-fluid.px-0:not(.ulr-layout-bleed) {
+  max-width: var(--ulr-content-max);
+  margin-inline: auto;
+  padding-inline: var(--ulr-gutter);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------------ */
+/* Flex / grid children: prevent overflow in columns                    */
+/* ------------------------------------------------------------------ */
+body.ulr-home main#primary .row,
+body.ulr-pillar-page main#primary .row,
+body.ulr-rich-subpage main#primary .row {
+  --bs-gutter-x: var(--ulr-grid-gap);
+}
+
+body.ulr-home main#primary .row > [class*="col-"],
+body.ulr-pillar-page main#primary .row > [class*="col-"],
+body.ulr-rich-subpage main#primary .row > [class*="col-"],
+.ulr-layout .row > [class*="col-"],
+.ulr-brief-section .row > [class*="col-"] {
+  min-width: 0;
+}
+
+body.ulr-home main#primary .sec-heading,
+body.ulr-home main#primary .desc,
+body.ulr-pillar-page main#primary .sec-heading,
+body.ulr-pillar-page main#primary .desc,
+body.ulr-rich-subpage main#primary .sec-heading,
+body.ulr-rich-subpage main#primary .desc,
+.ulr-brief-copy,
+.cta-area .cta-content .title,
+.cta-area .cta-content .desc {
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+}
+
+/* Prose width helpers (replaces inline max-width on pillar pages) */
+.pillar-header-lead,
+.ulr-brief-section .sec-heading .desc.mx-auto,
+.ulr-brief-section .sec-heading p.desc[style*="max-width"] {
+  max-width: var(--ulr-prose-max) !important;
+  margin-inline: auto;
+}
+
+/* ------------------------------------------------------------------ */
+/* CTA sections — kill theme negative overlap (all breakpoints)         */
+/* ------------------------------------------------------------------ */
+.tj-cta-section {
+  margin-bottom: 0 !important;
+}
+
+body.ulr-pillar-page main#primary > .tj-cta-section,
+body.ulr-rich-subpage main#primary > .tj-cta-section,
+body.ulr-pillar-page main#primary > .tj-cta-section.section-gap-x,
+body.ulr-rich-subpage main#primary > .tj-cta-section.section-gap-x {
+  margin-top: 0;
+  margin-bottom: 0 !important;
+  padding-top: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(1.25rem, 3vw, 2rem);
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+/* CTA then leadership (pillar pages) — never stack/overlap */
+body.ulr-pillar-page main#primary > .ulr-pillar-leadership-section + .tj-cta-section,
+body.ulr-rich-subpage main#primary > .ulr-pillar-leadership-section + .tj-cta-section {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem) !important;
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+body.ulr-pillar-page main#primary > .tj-cta-section + .ulr-pillar-leadership-section,
+body.ulr-rich-subpage main#primary > .tj-cta-section + .ulr-pillar-leadership-section {
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem) !important;
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+  clear: both;
+}
+
+body.ulr-pillar-page main#primary > .tj-cta-section + .tj-footer-section,
+body.ulr-rich-subpage main#primary > .tj-cta-section + .tj-footer-section {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+body.ulr-pillar-page .cta-area,
+body.ulr-rich-subpage .cta-area {
+  position: relative;
+  z-index: 1;
+  align-items: stretch;
+}
+
+body.ulr-pillar-page .cta-area .cta-content,
+body.ulr-rich-subpage .cta-area .cta-content {
+  width: 100%;
+  max-width: 100%;
+  padding: clamp(1.75rem, 4vw, 2.75rem) clamp(1.25rem, 4vw, 2.5rem);
+  box-sizing: border-box;
+}
+
+body.ulr-pillar-page .cta-area .cta-content .title,
+body.ulr-rich-subpage .cta-area .cta-content .title {
+  font-size: clamp(1.65rem, 4.5vw, 2.75rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+body.ulr-pillar-page .cta-area .cta-content .desc,
+body.ulr-rich-subpage .cta-area .cta-content .desc,
+body.ulr-pillar-page .cta-area .cta-content ul.desc,
+body.ulr-rich-subpage .cta-area .cta-content ul.desc {
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1.6;
+}
+
+body.ulr-pillar-page .cta-area .cta-content ul.desc,
+body.ulr-rich-subpage .cta-area .cta-content ul.desc {
+  margin: 0.75rem 0 0;
+  padding-left: 1.15rem;
+}
+
+body.ulr-pillar-page .cta-area .cta-content ul.desc li,
+body.ulr-rich-subpage .cta-area .cta-content ul.desc li {
+  margin-bottom: 0.35rem;
+}
+
+body.ulr-pillar-page .cta-area .cta-img,
+body.ulr-rich-subpage .cta-area .cta-img {
+  width: 100%;
+  min-height: 200px;
+  max-height: 280px;
+}
+
+body.ulr-pillar-page .cta-area .cta-img img,
+body.ulr-rich-subpage .cta-area .cta-img img {
+  min-height: 200px;
+  max-height: 280px;
+  object-fit: cover;
+}
+
+@media only screen and (min-width: 992px) {
+  body.ulr-pillar-page .cta-area .cta-content,
+  body.ulr-rich-subpage .cta-area .cta-content {
+    width: 50%;
+  }
+
+  body.ulr-pillar-page .cta-area .cta-img,
+  body.ulr-rich-subpage .cta-area .cta-img {
+    width: 50%;
+    min-height: 280px;
+    max-height: none;
+  }
+
+  body.ulr-pillar-page .cta-area .cta-img img,
+  body.ulr-rich-subpage .cta-area .cta-img img {
+    min-height: 280px;
+    max-height: none;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  body.ulr-pillar-page .cta-area .cta-content,
+  body.ulr-rich-subpage .cta-area .cta-content {
+    order: 1;
+  }
+
+  body.ulr-pillar-page .cta-area .cta-img,
+  body.ulr-rich-subpage .cta-area .cta-img {
+    order: 2;
+  }
+}
+
+/* Homepage partner band — light card, high contrast */
+body.ulr-home .ulr-partner-section {
+  margin-bottom: 0 !important;
+  padding-top: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.ulr-partner-card {
+  background: #fff;
+  border: 1px solid var(--tj-color-border-1, #e2e6ea);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(11, 46, 79, 0.08);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-inline-start: 5px solid var(--ulr-brand-green-dark, #2e7d32);
+}
+
+.ulr-partner-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ulr-brand-blue, #0b5fa5);
+  margin-bottom: 0.75rem;
+}
+
+.ulr-partner-title {
+  font-size: clamp(1.5rem, 3.8vw, 2.15rem);
+  line-height: 1.18;
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+  margin: 0 0 1rem;
+  max-width: 28ch;
+}
+
+.ulr-partner-lead {
+  color: #3d4349;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.65;
+  margin: 0 0 0.85rem;
+  max-width: 52rem;
+}
+
+.ulr-partner-tagline {
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+  font-weight: 600;
+  font-size: clamp(15px, 2vw, 16px);
+  margin: 0 0 1.25rem;
+}
+
+.ulr-partner-aside {
+  background: var(--tj-color-theme-bg, #f0f6fb);
+  border: 1px solid var(--tj-color-border-1, #e2e6ea);
+  border-radius: 12px;
+  padding: clamp(1.1rem, 3vw, 1.5rem);
+  height: 100%;
+}
+
+.ulr-partner-aside-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ulr-brand-blue, #0b5fa5);
+  margin: 0 0 0.65rem;
+}
+
+.ulr-partner-aside-name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+}
+
+.ulr-partner-aside-role {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #4a5560;
+  margin: 0 0 0.75rem;
+}
+
+.ulr-partner-aside a {
+  color: var(--ulr-brand-green-dark, #2e7d32);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ulr-partner-aside-loc {
+  margin-top: 0.65rem !important;
+  font-size: 14px;
+  color: #5c6570;
+}
+
+@media (max-width: 991px) {
+  .ulr-partner-aside {
+    margin-top: 0.25rem;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Contact page                                                         */
+/* ------------------------------------------------------------------ */
+body.ulr-rich-subpage .tj-contact-section-2 .contact-form {
+  margin-inline-end: 0;
+}
+
+body.ulr-rich-subpage .tj-contact-section-2 .row {
+  align-items: stretch;
+}
+
+/* ------------------------------------------------------------------ */
+/* Pillar brief sections                                                */
+/* ------------------------------------------------------------------ */
+.ulr-brief-section .container {
+  max-width: var(--ulr-content-max);
+  padding-inline: var(--ulr-gutter);
+}
+
+.ulr-brief-section .ulr-brief-figure {
+  min-width: 0;
+}
+
+.ulr-brief-section .ulr-brief-figure img {
+  max-width: 100%;
+}
+
+.ulr-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1rem 0;
+}
+
+.ulr-table-scroll .ulr-product-table {
+  min-width: 480px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Product / catalogue cards                                            */
+/* ------------------------------------------------------------------ */
+body.ulr-pillar-page .ulr-related-product-card-surface,
+body.ulr-pillar-page .ulr-utility-tile {
+  min-width: 0;
+}
+
+body.ulr-pillar-page main#primary .about-img,
+body.ulr-pillar-page main#primary .about-img img {
+  max-width: 100%;
+}
+
+/* ------------------------------------------------------------------ */
+/* Footer aligns with content column                                    */
+/* ------------------------------------------------------------------ */
+.tj-footer-section.ulr-site-footer.section-gap-x {
+  margin-inline: var(--ulr-edge);
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-panel > .container,
+.tj-footer-section.ulr-site-footer .footer-bottom-area > .container {
+  max-width: var(--ulr-content-max);
+  padding-inline: var(--ulr-gutter);
+  margin-inline: auto;
+}
+
+/* Pillars overview & product catalogue card grids */
+body.ulr-rich-subpage .ulr-pillar-card,
+body.ulr-pillar-page .ulr-product-card,
+body.ulr-pillar-page .service-item {
+  min-width: 0;
+}
+
+body.ulr-pillar-page main#primary .col-lg-10.mx-auto,
+body.ulr-rich-subpage main#primary .col-lg-10.mx-auto {
+  max-width: 100%;
+  padding-inline: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Overflow baseline (complement main.css)                            */
+/* ------------------------------------------------------------------ */
+#primary.site-main {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+  #primary.site-main {
+    overflow-x: hidden;
+  }
+}
+
+.location-tooltip {
+  max-width: min(222px, calc(100% - 32px));
+}
+
+@media (max-width: 575px) {
+  .location-tooltip {
+    max-width: min(205px, calc(100% - 32px));
+  }
+
+  .nice-select .list {
+    max-width: calc(100% - 32px);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Homepage-specific band alignment                                     */
+/* ------------------------------------------------------------------ */
+body.ulr-home .ulr-why-band {
+  max-width: 100%;
+}
+
+body.ulr-home .ulr-why-band-inner {
+  padding-inline: 0;
+}
+
+body.ulr-home .ulr-vision-mission-panel {
+  max-width: 100%;
+}
+
+body.ulr-home .ulr-home-solutions .sec-heading {
+  max-width: var(--ulr-prose-max);
+  margin-inline: auto;
+  padding-inline: 0;
+}
+
+body.ulr-home #solutions .sec-heading.mb-5 {
+  padding-inline: 0;
+}
+
+/* Images never escape their column */
+body.ulr-home main#primary img,
+body.ulr-home .ulr-solution-img-wrap,
+body.ulr-home .about-img {
+  max-width: 100%;
+}
+
+body.ulr-home .ulr-solution-img-wrap img {
+  display: block;
+}

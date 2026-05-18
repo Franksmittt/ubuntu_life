@@ -1,0 +1,230 @@
+/**
+ * Ubuntu Life Resources — brand system
+ * Source: Ubuntu_Life_Resources_Full_Brand_Guide.docx
+ */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap");
+
+:root {
+  --ulr-brand-blue: #0b5fa5;
+  --ulr-brand-blue-deep: #0b2e4f;
+  --ulr-brand-blue-light: #3fa9f5;
+  --ulr-brand-green: #6fbf3a;
+  --ulr-brand-green-dark: #2e7d32;
+  --ulr-brand-gold: #c9a86a;
+  --ulr-brand-grey: #6d6e71;
+
+  --tj-ff-body: "Poppins", sans-serif;
+  --tj-ff-heading: "Montserrat", sans-serif;
+
+  --tj-color-heading-primary: var(--ulr-brand-blue-deep);
+  --tj-color-text-body: #3d4349;
+  --tj-color-text-body-3: #525a63;
+  --tj-color-text-body-4: var(--ulr-brand-blue-deep);
+  --tj-color-theme-primary: var(--ulr-brand-green-dark);
+  --tj-color-theme-bg: #f0f6fb;
+  --tj-color-theme-bg-2: #eef5eb;
+  --tj-color-theme-dark: var(--ulr-brand-blue-deep);
+  --tj-color-theme-dark-2: #0a3560;
+  --tj-color-theme-dark-3: #4a4b4d;
+  --tj-color-grey-1: #f7f8f9;
+  --tj-color-border-1: #e2e6ea;
+  --tj-color-border-5: rgba(46, 125, 50, 0.18);
+}
+
+body {
+  font-family: var(--tj-ff-body);
+  color: var(--tj-color-text-body);
+  background-color: var(--tj-color-common-white);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.sec-title,
+.tj-page-title,
+.title {
+  font-family: var(--tj-ff-heading);
+  color: var(--ulr-brand-blue-deep);
+}
+
+.sec-heading .sec-title span,
+.sec-title span {
+  color: var(--ulr-brand-green-dark);
+}
+
+.sec-heading .sub-title {
+  border-color: var(--ulr-brand-gold);
+  color: var(--ulr-brand-blue-deep);
+}
+
+.sec-heading .sub-title i {
+  color: var(--ulr-brand-green-dark);
+}
+
+.tj-primary-btn {
+  background-color: var(--ulr-brand-green-dark);
+  border-color: var(--ulr-brand-green-dark);
+}
+
+.tj-primary-btn:hover {
+  background-color: var(--ulr-brand-blue);
+  border-color: var(--ulr-brand-blue);
+}
+
+.text-btn {
+  color: var(--ulr-brand-green-dark);
+}
+
+.text-btn:hover {
+  color: var(--ulr-brand-blue);
+}
+
+a {
+  color: var(--ulr-brand-green-dark);
+}
+
+a:hover {
+  color: var(--ulr-brand-blue);
+}
+
+/* Footer — deep blue per brand guide */
+.tj-footer-section.ulr-site-footer {
+  background: linear-gradient(
+    165deg,
+    #0a4a82 0%,
+    var(--ulr-brand-blue-deep) 45%,
+    #071a33 100%
+  );
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-panel::before {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(63, 169, 245, 0.22) 0%,
+    transparent 68%
+  );
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-links a:hover,
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-list a:hover {
+  color: var(--ulr-brand-blue-light);
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-reg {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-bottom {
+  border-top-color: rgba(201, 168, 106, 0.35);
+}
+
+/* Why band + CTA dark sections */
+.ulr-why-band {
+  background-color: var(--ulr-brand-blue-deep);
+}
+
+.ulr-why-band::before {
+  background: var(--ulr-brand-blue);
+  opacity: 0.14;
+}
+
+.ulr-why-band-intro .sec-title span {
+  color: var(--ulr-brand-green);
+}
+
+.ulr-why-pillar h4 {
+  color: var(--ulr-brand-green);
+}
+
+.ulr-why-pillar p,
+.ulr-why-band__sub,
+.ulr-why-band-bullets li {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ulr-why-pillar {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.ulr-why-band-bullets li::before {
+  background: var(--ulr-brand-green);
+}
+
+/* Vision / mission panels */
+.ulr-vision-mission-panel .sec-title span {
+  color: var(--ulr-brand-blue);
+}
+
+.ulr-vision-mission-panel {
+  border-color: var(--tj-color-border-1);
+}
+
+/* Solution pillar accent borders (homepage) */
+.ulr-solution-pillar--bio {
+  border-inline-start-color: var(--ulr-brand-green-dark) !important;
+}
+
+.ulr-solution-pillar--water {
+  border-inline-start-color: var(--ulr-brand-blue) !important;
+}
+
+.ulr-solution-pillar--food {
+  border-inline-start-color: var(--ulr-brand-gold) !important;
+}
+
+/* Homepage hero tiles — override inline teal */
+body.ulr-home .ulr-hero-tile__image {
+  background: linear-gradient(
+    165deg,
+    rgba(11, 95, 165, 0.08) 0%,
+    rgba(238, 246, 238, 0.45) 55%
+  ) !important;
+}
+
+body.ulr-home .ulr-hero-tile__image-placeholder {
+  border-color: rgba(46, 125, 50, 0.35) !important;
+}
+
+body.ulr-home .ulr-hero-tile__image-placeholder i {
+  color: rgba(11, 95, 165, 0.45) !important;
+}
+
+/* Pillar / page headers */
+body.ulr-pillar-page .tj-page-header,
+body.ulr-rich-subpage .tj-page-header {
+  background-color: var(--ulr-brand-blue-deep);
+}
+
+body.ulr-pillar-page .sec-title span,
+body.ulr-rich-subpage .sec-title span {
+  color: var(--ulr-brand-green);
+}
+
+.ulr-pillar-leadership-channel-icon {
+  background-color: var(--ulr-brand-green-dark);
+}
+
+.ulr-brief-compare-card strong {
+  color: var(--ulr-brand-blue);
+}
+
+.ulr-brief-section .desc a {
+  color: var(--ulr-brand-green-dark);
+}
+
+/* Lists use brand green bullets where theme primary is used */
+.desc li::marker,
+ul.desc li::marker {
+  color: var(--ulr-brand-green-dark);
+}
+
+/* Registration / footnotes */
+.ulr-footer-reg,
+.registration,
+.customers-text {
+  font-weight: 300;
+}

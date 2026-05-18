@@ -1,0 +1,322 @@
+/**
+ * Ubuntu Life Resources — WCAG 2.1 AA contrast (brand-aligned)
+ * Light surfaces: deep blue / green-dark text. Dark surfaces: white / light green accents.
+ */
+
+:root {
+  --ulr-text-on-light: #3d4349;
+  --ulr-text-on-light-muted: #525a63;
+  --ulr-text-on-dark: #ffffff;
+  --ulr-text-on-dark-muted: rgba(255, 255, 255, 0.9);
+  --ulr-text-on-dark-subtle: rgba(255, 255, 255, 0.82);
+  --ulr-accent-on-light: #2e7d32;
+  --ulr-accent-on-light-hover: #0b5fa5;
+  --ulr-accent-on-dark: #8fd456;
+  --ulr-link-on-light: #256029;
+  --ulr-cta-bg: #1b5e20;
+  --ulr-footer-muted: rgba(255, 255, 255, 0.8);
+
+  --tj-color-text-body: var(--ulr-text-on-light);
+  --tj-color-text-body-3: var(--ulr-text-on-light-muted);
+  --tj-color-heading-primary: var(--ulr-brand-blue-deep);
+}
+
+/* ------------------------------------------------------------------ */
+/* Body copy on white / light grey bands                                */
+/* ------------------------------------------------------------------ */
+body,
+.desc,
+p,
+li,
+.contact-item p,
+.choose-box .desc,
+.form-input input,
+.form-input textarea {
+  color: var(--ulr-text-on-light);
+}
+
+.text-muted,
+.ulr-pillar-leadership-role.text-muted,
+.small.text-muted {
+  color: var(--ulr-text-on-light-muted) !important;
+}
+
+/* Green accent on LIGHT backgrounds — use dark green (not #6fbf3a) */
+.sec-heading .sec-title span,
+.sec-title span,
+body.ulr-pillar-page .sec-title span,
+body.ulr-rich-subpage .sec-title span,
+.ulr-vision-mission-panel .sec-title span {
+  color: var(--ulr-brand-blue);
+}
+
+.ulr-solution-lead {
+  color: var(--ulr-brand-blue-deep);
+}
+
+a {
+  color: var(--ulr-link-on-light);
+}
+
+a:hover {
+  color: var(--ulr-accent-on-light-hover);
+}
+
+.text-btn,
+.text-btn .btn-text span {
+  color: var(--ulr-accent-on-light);
+}
+
+.text-btn:hover {
+  color: var(--ulr-accent-on-light-hover);
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero — dark panel                                                    */
+/* ------------------------------------------------------------------ */
+.banner-area--hero-full .hero-subheadline,
+.banner-content .banner-desc,
+.banner-left-box .desc {
+  color: var(--ulr-text-on-dark-muted) !important;
+}
+
+.banner-area--hero-full .hero-eyebrow {
+  color: var(--ulr-text-on-dark);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.banner-area--hero-full .banner-title.hero-headline .hero-headline__line {
+  color: var(--ulr-text-on-dark) !important;
+}
+
+.banner-area--hero-full .banner-title.hero-headline .hero-headline__line em {
+  color: var(--ulr-accent-on-dark) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* Page headers (dark blue)                                             */
+/* ------------------------------------------------------------------ */
+body.ulr-pillar-page .tj-page-title,
+body.ulr-rich-subpage .tj-page-title,
+body.ulr-pillar-page .tj-page-header .tj-page-title,
+body.ulr-rich-subpage .tj-page-header .tj-page-title {
+  color: var(--ulr-text-on-dark);
+}
+
+body.ulr-pillar-page .pillar-header-lead,
+body.ulr-rich-subpage .pillar-header-lead,
+body.ulr-pillar-page .tj-page-link,
+body.ulr-rich-subpage .tj-page-link,
+body.ulr-pillar-page .tj-page-link a,
+body.ulr-rich-subpage .tj-page-link a {
+  color: var(--ulr-text-on-dark-muted);
+}
+
+body.ulr-pillar-page .pillar-header-lead strong,
+body.ulr-rich-subpage .pillar-header-lead strong {
+  color: var(--ulr-text-on-dark);
+}
+
+/* ------------------------------------------------------------------ */
+/* Why band (dark blue) — brighter body + green headings                */
+/* ------------------------------------------------------------------ */
+.ulr-why-band-intro .sub-title {
+  color: var(--ulr-text-on-dark-muted);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.ulr-why-band-intro .sec-title {
+  color: var(--ulr-text-on-dark);
+}
+
+.ulr-why-band-intro .sec-title span {
+  color: var(--ulr-accent-on-dark) !important;
+}
+
+.ulr-why-band__sub {
+  color: var(--ulr-text-on-dark-muted) !important;
+}
+
+.ulr-why-band-bullets li {
+  color: var(--ulr-text-on-dark-muted) !important;
+}
+
+.ulr-why-pillar h4 {
+  color: var(--ulr-accent-on-dark) !important;
+}
+
+.ulr-why-pillar p {
+  color: var(--ulr-text-on-dark-muted) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* CTA bands (green) — darken bg slightly, pure white text             */
+/* ------------------------------------------------------------------ */
+.cta-area {
+  background-color: var(--ulr-cta-bg) !important;
+}
+
+.cta-area .cta-content .title,
+.cta-area .cta-content .desc,
+.cta-area .cta-content p,
+.cta-area .cta-content ul,
+.cta-area .cta-content ul.desc li,
+.cta-area .cta-content a:not(.tj-primary-btn) {
+  color: var(--ulr-text-on-dark) !important;
+}
+
+.cta-area .cta-content a:not(.tj-primary-btn):hover {
+  color: var(--ulr-accent-on-dark) !important;
+}
+
+.cta-area .cta-content .desc,
+.cta-area .cta-content p {
+  opacity: 1 !important;
+}
+
+/* Dark buttons on green CTA — white outline for contrast */
+.cta-area .tj-primary-btn.btn-dark {
+  background-color: var(--ulr-brand-blue-deep) !important;
+  border-color: var(--ulr-brand-blue-deep) !important;
+  color: var(--ulr-text-on-dark) !important;
+}
+
+.cta-area .tj-primary-btn.btn-dark:hover {
+  background-color: var(--ulr-brand-blue) !important;
+  border-color: var(--ulr-brand-blue) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* Footer (deep blue)                                                   */
+/* ------------------------------------------------------------------ */
+.tj-footer-section.ulr-site-footer {
+  --ulr-footer-ink-muted: var(--ulr-footer-muted);
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-heading {
+  color: var(--ulr-footer-muted) !important;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-tagline {
+  color: var(--ulr-text-on-dark-muted) !important;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-reg {
+  color: var(--ulr-footer-muted) !important;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-contact .ulr-footer-heading {
+  color: var(--ulr-text-on-dark-muted) !important;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-lead {
+  color: var(--ulr-text-on-dark-muted) !important;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-label {
+  color: var(--ulr-footer-muted) !important;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-links a,
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-list a {
+  color: var(--ulr-text-on-dark) !important;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-links a:hover,
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-list a:hover {
+  color: var(--ulr-brand-blue-light) !important;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-bottom,
+.tj-footer-section.ulr-site-footer .copyright-text,
+.tj-footer-section.ulr-site-footer .footer-bottom-menu a {
+  color: var(--ulr-text-on-dark-muted) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* Partner card (light) — already tuned; reinforce                      */
+/* ------------------------------------------------------------------ */
+.ulr-partner-lead {
+  color: var(--ulr-text-on-light) !important;
+}
+
+.ulr-partner-aside-role,
+.ulr-partner-aside-loc {
+  color: var(--ulr-text-on-light-muted) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* Leadership / contact cards                                           */
+/* ------------------------------------------------------------------ */
+.ulr-pillar-leadership-name {
+  color: var(--ulr-brand-blue-deep) !important;
+}
+
+.ulr-pillar-leadership-role {
+  color: var(--ulr-text-on-light-muted) !important;
+}
+
+.ulr-pillar-leadership-channel-label {
+  color: var(--ulr-text-on-light-muted) !important;
+}
+
+.ulr-pillar-leadership-channel-value {
+  color: var(--ulr-brand-blue-deep) !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* Forms, contact tiles, choose boxes                                   */
+/* ------------------------------------------------------------------ */
+.contact-item.style-2 p,
+.contact-item .contact-list li,
+.contact-form .title {
+  color: var(--ulr-text-on-light);
+}
+
+.contact-item .contact-title {
+  color: var(--ulr-brand-blue-deep);
+}
+
+.choose-box .title {
+  color: var(--ulr-brand-blue-deep);
+}
+
+/* ------------------------------------------------------------------ */
+/* Brief / product tables                                               */
+/* ------------------------------------------------------------------ */
+.ulr-brief-compare-card {
+  color: var(--ulr-text-on-light);
+}
+
+.ulr-brief-compare-card strong {
+  color: var(--ulr-brand-blue) !important;
+}
+
+.ulr-product-table th {
+  color: var(--ulr-brand-blue-deep);
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero tiles — footer text on white                                    */
+/* ------------------------------------------------------------------ */
+.ulr-hero-tile__title,
+.ulr-hero-tile__tag {
+  color: var(--ulr-brand-blue-deep);
+}
+
+.ulr-hero-tile__footer {
+  color: var(--ulr-text-on-light);
+}
+
+/* ------------------------------------------------------------------ */
+/* Focus visibility (keyboard users)                                    */
+/* ------------------------------------------------------------------ */
+a:focus-visible,
+button:focus-visible,
+.tj-primary-btn:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--ulr-brand-blue);
+  outline-offset: 2px;
+}

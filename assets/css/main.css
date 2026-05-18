@@ -46,7 +46,7 @@
 /**----------------------------------------
 START: Theme Default CSS
 ----------------------------------------*/
-@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+/* Brand fonts loaded via assets/css/ulr-brand.css */
 :root {
   /**
      @Font-Family Declaration
@@ -29761,6 +29761,13 @@ body.ulr-rich-subpage main#primary > .tj-page-header {
 body.ulr-pillar-page main#primary > .tj-cta-section,
 body.ulr-rich-subpage main#primary > .tj-cta-section {
   margin-top: 0;
+  margin-bottom: 0 !important;
+}
+
+body.ulr-pillar-page main#primary > .tj-cta-section + .ulr-pillar-leadership-section,
+body.ulr-rich-subpage main#primary > .tj-cta-section + .ulr-pillar-leadership-section {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem) !important;
+  clear: both;
 }
 body.ulr-pillar-page main#primary .container,
 body.ulr-rich-subpage main#primary .container {
@@ -30164,7 +30171,7 @@ body.ulr-pillar-page main#primary .ulr-related-products-section .ulr-card-img-th
   margin: 0;
   font-size: 13px;
   letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.8);
 }
 .tj-footer-section.ulr-site-footer .ulr-footer-heading {
   margin-bottom: clamp(14px, 2.4vw, 20px);
@@ -30215,7 +30222,7 @@ body.ulr-pillar-page main#primary .ulr-related-products-section .ulr-card-img-th
   margin: 0 0 clamp(16px, 2.5vw, 22px);
   font-size: 14px;
   line-height: 1.58;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.9);
 }
 .tj-footer-section.ulr-site-footer .ulr-footer-contact-list {
   list-style: none;
@@ -30234,7 +30241,7 @@ body.ulr-pillar-page main#primary .ulr-related-products-section .ulr-card-img-th
   font-weight: var(--tj-fw-sbold);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 2px;
 }
 .tj-footer-section.ulr-site-footer .ulr-footer-contact-name {
@@ -30476,5 +30483,9 @@ body.ulr-home main#primary .row > [class*="col-"] {
   .nice-select .list {
     max-width: calc(100vw - 32px);
   }
+}
+/* ULR brand/layout: load via <link> in HTML (invalid @import after rules in this file). */
+.tj-cta-section {
+  margin-bottom: 0 !important;
 }
 /*# sourceMappingURL=main.css.map */
