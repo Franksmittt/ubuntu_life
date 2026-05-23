@@ -29539,11 +29539,12 @@ body.ulr-rich-subpage .pillar-related-card:hover {
   -ms-grid-columns: 1fr;
   grid-template-columns: 1fr;
 }
-@media only screen and (min-width: 992px) {
-  .ulr-pillar-leadership-section .ulr-pillar-leadership-card-grid {
-    -ms-grid-columns: minmax(220px, 300px) 1fr;
-    grid-template-columns: minmax(220px, 300px) 1fr;
-  }
+.ulr-pillar-leadership-section .ulr-pillar-leadership-card-grid {
+  grid-template-columns: 1fr !important;
+}
+
+.ulr-pillar-leadership-section .ulr-pillar-leadership-visual {
+  display: none !important;
 }
 .ulr-pillar-leadership-section .ulr-pillar-leadership-visual {
   position: relative;

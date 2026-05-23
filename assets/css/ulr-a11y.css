@@ -245,9 +245,15 @@ body.ulr-rich-subpage .pillar-header-lead strong {
   color: var(--ulr-text-on-light-muted) !important;
 }
 
-/* ------------------------------------------------------------------ */
-/* Leadership / contact cards                                           */
-/* ------------------------------------------------------------------ */
+/* Leadership contact card — no profile photo */
+.ulr-pillar-leadership-section .ulr-pillar-leadership-card-grid {
+  grid-template-columns: 1fr !important;
+}
+
+.ulr-pillar-leadership-section .ulr-pillar-leadership-visual {
+  display: none !important;
+}
+
 .ulr-pillar-leadership-name {
   color: var(--ulr-brand-blue-deep) !important;
 }
