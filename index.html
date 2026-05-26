@@ -21,814 +21,9 @@
   <link rel="stylesheet" href="assets/css/odometer-theme-default.css">
   <link rel="stylesheet" href="assets/css/meanmenu.css">
   <link rel="stylesheet" href="assets/css/main.css">
-  <style>
-    /*
-     * ULR homepage � custom blocks (hero / about / solutions).
-     * Designer image notes (for asset swap): Hero 3 panels � (1) SANI-99 brochure: farmer spraying, livestock or barn
-     * (2) SANI Amanzi brochure cover: hands with clean water (3) Tonno Bonno: cans / shelf stack.
-     * Solutions rows use service photography until brochure crops are supplied.
-     */
-    /* Sticky header + ScrollSmoother: keep in-page anchors visible */
-    #about,
-    #solutions,
-    #why-choose,
-    #vision,
-    #mission,
-    #partner {
-      scroll-margin-top: 120px;
-    }
-    @media only screen and (max-width: 991px) {
-      #about,
-      #solutions,
-      #why-choose,
-      #vision,
-      #mission,
-      #partner {
-        scroll-margin-top: 96px;
-      }
-    }
-    @media only screen and (max-width: 575px) {
-      #about,
-      #solutions,
-      #why-choose,
-      #vision,
-      #mission,
-      #partner {
-        scroll-margin-top: 80px;
-      }
-    }
-    /* Prevent rare horizontal scroll from full-bleed rows / negative margins */
-    #primary.site-main {
-      overflow-x: clip;
-    }
-    @supports not (overflow: clip) {
-      #primary.site-main {
-        overflow-x: hidden;
-      }
-    }
-    /* Hero: full-width copy block + visual strip below */
-    .hero-top-wrap {
-      position: relative;
-    }
-    .banner-area--hero-full {
-      min-height: 0 !important;
-    }
-    .banner-area--hero-full .banner-left-box {
-      width: 100%;
-      max-width: 100%;
-      -webkit-margin-end: 0;
-              margin-inline-end: 0;
-      margin-bottom: 0;
-      padding-top: clamp(40px, 8vw, 88px);
-      padding-bottom: clamp(40px, 8vw, 88px);
-      padding-left: clamp(16px, 4vw, 70px);
-      padding-right: clamp(16px, 4vw, 70px);
-      -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-    }
-    .banner-area--hero-full .banner-content {
-      max-width: min(960px, 100%);
-      width: 100%;
-      margin-inline-start: 0;
-      -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-    }
-    .hero-eyebrow {
-      display: inline-block;
-      margin: 0 0 0.85rem;
-      padding: 0.35rem 0.75rem;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 4px;
-    }
-    .banner-area--hero-full .banner-title.hero-headline {
-      margin-bottom: clamp(1rem, 2.5vw, 1.35rem);
-      font-size: clamp(1.35rem, 4.2vw, 3.25rem);
-      line-height: 1.12;
-      letter-spacing: -0.02em;
-      color: var(--tj-color-common-white) !important;
-      font-weight: var(--tj-fw-bold);
-      overflow-wrap: anywhere;
-    }
-    .banner-area--hero-full .banner-title.hero-headline .hero-headline__dot {
-      color: var(--ulr-brand-green, #6fbf3a);
-      font-weight: var(--tj-fw-bold);
-      padding-inline: 0.12em;
-    }
-    @media only screen and (min-width: 1200px) {
-      .banner-area--hero-full .banner-title.hero-headline {
-        font-size: clamp(2.1rem, 3.4vw, 3.25rem);
-      }
-    }
-    /* Hero CTAs: full-width on small phones, row + wrap from sm up */
-    .hero-cta-row {
-      width: 100%;
-      max-width: 100%;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-              flex-direction: column;
-      -webkit-box-align: stretch;
-          -ms-flex-align: stretch;
-              align-items: stretch;
-    }
-    .hero-cta-row .tj-primary-btn {
-      width: 100%;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-    }
-    @media only screen and (min-width: 576px) {
-      .hero-cta-row {
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-            -ms-flex-direction: row;
-                flex-direction: row;
-        -webkit-box-align: start;
-            -ms-flex-align: start;
-                align-items: flex-start;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-      }
-      .hero-cta-row .tj-primary-btn {
-        width: auto;
-        -webkit-box-pack: start;
-            -ms-flex-pack: start;
-                justify-content: flex-start;
-      }
-    }
-    .hero-visual-strip {
-      margin-top: 15px;
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
-    }
-    /* About sits directly under hero imagery � breathing room without a huge gap */
-    .ulr-home-about-after-hero {
-      padding-top: clamp(40px, 5vw, 64px);
-    }
-
-    .ulr-home-solutions {
-      padding-top: clamp(40px, 5vw, 64px);
-      padding-bottom: clamp(32px, 4vw, 56px);
-    }
-    .ulr-home-about-after-hero .row,
-    .ulr-home-solutions .row {
-      --bs-gutter-x: clamp(1rem, 3vw, 1.75rem);
-    }
-    .ulr-home-about-after-hero .row > [class*="col-"],
-    .ulr-home-solutions .row > [class*="col-"] {
-      min-width: 0;
-    }
-    .ulr-solution-row--divide {
-      border-bottom: 1px solid var(--tj-color-border-1);
-    }
-    .ulr-solution-pillar--bio {
-      border-inline-start: 4px solid var(--tj-color-theme-primary);
-      padding-inline-start: 1.25rem;
-    }
-    .ulr-solution-pillar--water {
-      border-inline-start: 4px solid #2b7abf;
-      padding-inline-start: 1.25rem;
-    }
-    .ulr-solution-pillar--food {
-      border-inline-start: 4px solid #c8832c;
-      padding-inline-start: 1.25rem;
-    }
-    .ulr-home-about-text-only {
-      max-width: 48rem;
-      margin-inline: auto;
-    }
-    .ulr-home-solutions--copy-only .ulr-solution-pillar {
-      max-width: 40rem;
-      margin-inline: auto;
-    }
-    @media only screen and (max-width: 991px) {
-      .ulr-solution-pillar--bio,
-      .ulr-solution-pillar--water,
-      .ulr-solution-pillar--food {
-        padding-inline-start: 1rem;
-      }
-    }
-    /* Solution row images: compact � roughly text-block height + a step (not full-bleed) */
-    .ulr-solution-visual .ulr-solution-img-wrap {
-      max-height: clamp(220px, 26vmin, 300px);
-      overflow: hidden;
-      border-radius: 12px;
-      -webkit-box-shadow: 0 4px 24px rgba(12, 30, 33, 0.08);
-              box-shadow: 0 4px 24px rgba(12, 30, 33, 0.08);
-    }
-    .ulr-solution-visual .ulr-solution-img-wrap img {
-      width: 100%;
-      max-width: 100%;
-      height: clamp(220px, 26vmin, 300px);
-      -o-object-fit: cover;
-         object-fit: cover;
-      -o-object-position: center;
-         object-position: center;
-      display: block;
-    }
-    @media only screen and (min-width: 576px) and (max-width: 991px) {
-      .ulr-solution-visual .ulr-solution-img-wrap,
-      .ulr-solution-visual .ulr-solution-img-wrap img {
-        max-height: min(288px, 38vw);
-        height: min(288px, 38vw);
-      }
-    }
-    @media only screen and (max-width: 575px) {
-      .ulr-solution-visual .ulr-solution-img-wrap,
-      .ulr-solution-visual .ulr-solution-img-wrap img {
-        max-height: min(240px, 52vw);
-        height: min(240px, 52vw);
-      }
-    }
-    @media only screen and (max-width: 374px) {
-      .ulr-solution-visual .ulr-solution-img-wrap,
-      .ulr-solution-visual .ulr-solution-img-wrap img {
-        max-height: min(200px, 48vw);
-        height: min(200px, 48vw);
-      }
-    }
-    .ulr-solution-pillar h3,
-    .ulr-solution-pillar .desc,
-    .ulr-solution-pillar .ulr-solution-lead {
-      overflow-wrap: anywhere;
-    }
-    .ulr-home-solutions .sec-heading .sec-title {
-      overflow-wrap: anywhere;
-    }
-    @media only screen and (max-width: 575px) {
-      .ulr-home-solutions .sec-heading .sec-title {
-        font-size: clamp(1.35rem, 6.5vw, 1.75rem);
-        line-height: 1.2;
-      }
-      .ulr-solution-pillar h3.sec-title {
-        font-size: clamp(1.2rem, 5.5vw, 1.5rem);
-      }
-      .ulr-solution-row {
-        padding-bottom: 1.5rem !important;
-        margin-bottom: 1.5rem !important;
-      }
-      .ulr-solution-pillar .tj-primary-btn {
-        width: 100%;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-      }
-    }
-    @media only screen and (min-width: 576px) {
-      .ulr-solution-pillar .tj-primary-btn {
-        width: auto;
-      }
-    }
-    .ulr-home-about-after-hero .about-img img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    /* Solutions: lead line uses theme colours (no Bootstrap greys fighting the palette) */
-    .ulr-solution-lead {
-      color: var(--tj-color-heading-primary);
-      font-weight: var(--tj-fw-sbold);
-      font-size: clamp(1rem, 2.35vw, 1.125rem);
-      line-height: 1.45;
-      margin: 0 0 1rem 0;
-    }
-    .ulr-home-solutions .sec-heading {
-      max-width: 40rem;
-      margin-inline: auto;
-    }
-    .ulr-home-solutions .ulr-solutions-section-lead {
-      max-width: 36rem;
-    }
-    /* Why choose us � compact dark band; heading + subcopy left; bullets right */
-    .ulr-why-choose {
-      padding-top: clamp(28px, 4vw, 48px);
-      padding-bottom: clamp(28px, 4vw, 48px);
-    }
-    .ulr-why-band {
-      position: relative;
-      background-color: var(--tj-color-theme-dark);
-      border-radius: 14px;
-      padding: clamp(22px, 3.8vw, 40px) clamp(16px, 3vw, 40px);
-      overflow: hidden;
-    }
-    .ulr-why-band::before {
-      content: "";
-      position: absolute;
-      inset: -35% -25% auto auto;
-      width: min(380px, 65vw);
-      height: min(380px, 65vw);
-      border-radius: 50%;
-      background: var(--tj-color-theme-primary);
-      opacity: 0.13;
-      -webkit-filter: blur(72px);
-              filter: blur(72px);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .ulr-why-band-inner {
-      position: relative;
-      z-index: 1;
-    }
-    .ulr-why-band .row > [class*="col-"] {
-      min-width: 0;
-    }
-    .ulr-why-band-intro .sub-title {
-      color: rgba(255, 255, 255, 0.88);
-      border-color: rgba(255, 255, 255, 0.28);
-    }
-    .ulr-why-band-intro .sec-title {
-      color: var(--tj-color-common-white);
-      font-size: clamp(1.55rem, 3.8vw, 2.35rem);
-      line-height: 1.14;
-      margin-bottom: 0;
-    }
-    .ulr-why-band-intro .sec-title span:last-of-type {
-      color: var(--tj-color-theme-primary);
-      font-weight: var(--tj-fw-medium);
-    }
-    .ulr-why-band__sub {
-      margin: 0.85rem 0 0;
-      font-size: clamp(14px, 2.05vw, 16px);
-      line-height: 1.52;
-      color: rgba(255, 255, 255, 0.9);
-      max-width: 28rem;
-    }
-    .ulr-why-band-bullets {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .ulr-why-band-bullets li {
-      position: relative;
-      margin: 0 0 clamp(8px, 1.8vw, 12px);
-      padding-left: 1.25rem;
-      font-size: clamp(14px, 2vw, 16px);
-      line-height: 1.4;
-      font-weight: var(--tj-fw-medium);
-      color: rgba(255, 255, 255, 0.9);
-      overflow-wrap: anywhere;
-    }
-    .ulr-why-band-bullets li:last-child {
-      margin-bottom: 0;
-    }
-    .ulr-why-band-bullets li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.52em;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--tj-color-theme-primary);
-    }
-    .ulr-why-pillars {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: clamp(14px, 2.5vw, 20px);
-    }
-    @media only screen and (min-width: 768px) {
-      .ulr-why-pillars {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    @media only screen and (min-width: 992px) {
-      .ulr-why-pillars--capabilities {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-    .ulr-why-pillar {
-      margin: 0;
-      padding: clamp(14px, 2.5vw, 18px);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .ulr-why-pillar h4 {
-      margin: 0 0 0.45rem;
-      font-size: clamp(15px, 2.1vw, 17px);
-      font-weight: var(--tj-fw-sbold);
-      color: var(--tj-color-common-white);
-    }
-    .ulr-why-pillar p {
-      margin: 0;
-      font-size: clamp(13px, 1.9vw, 15px);
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.9);
-    }
-    .ulr-vision-mission-panel {
-      position: relative;
-      background-color: var(--tj-color-common-white);
-      border: 1px solid var(--tj-color-border-1);
-      border-radius: 14px;
-      padding: clamp(28px, 5vw, 52px) clamp(18px, 4vw, 40px);
-      overflow: hidden;
-    }
-    .ulr-vision-mission-panel-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 52rem;
-      margin-inline: auto;
-    }
-    .ulr-vision-mission-panel .sec-title span {
-      color: var(--tj-color-theme-primary);
-      font-weight: var(--tj-fw-medium);
-    }
-    .ulr-vision-mission-panel .desc {
-      margin-bottom: 0;
-      font-size: clamp(15px, 2vw, 17px);
-      line-height: 1.6;
-    }
-    .ulr-mission-section {
-      padding-top: clamp(28px, 4vw, 48px);
-      padding-bottom: clamp(28px, 4vw, 48px);
-    }
-    .ulr-mission-list {
-      margin: 1rem 0 1.25rem;
-      padding-left: 1.25rem;
-    }
-    .ulr-mission-list li {
-      margin-bottom: 0.35rem;
-    }
-    .ulr-partner-cta .cta-area {
-      -webkit-box-align: start;
-          -ms-flex-align: start;
-              align-items: flex-start;
-    }
-    .ulr-partner-cta .cta-content {
-      max-width: 100%;
-    }
-    .ulr-partner-cta .cta-content .desc,
-    .ulr-partner-cta .cta-content p {
-      font-size: clamp(15px, 2vw, 16px);
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-    .ulr-partner-cta .cta-content .desc:last-of-type,
-    .ulr-partner-cta .cta-content p:last-of-type {
-      margin-bottom: 0;
-    }
-    .ulr-partner-signature {
-      margin-top: 1.5rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .ulr-partner-signature .ulr-partner-signature-name {
-      font-weight: var(--tj-fw-sbold);
-      color: var(--tj-color-common-white);
-      margin: 0 0 0.2rem;
-    }
-    .ulr-partner-signature .ulr-partner-signature-role {
-      margin: 0 0 0.5rem;
-      opacity: 0.9;
-    }
-    .ulr-partner-signature a {
-      color: var(--tj-color-common-white);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    @media only screen and (min-width: 992px) {
-      .ulr-partner-cta--extended .cta-img {
-        display: none;
-      }
-      .ulr-partner-cta--extended .cta-content {
-        -webkit-box-flex: 1;
-            -ms-flex: 1 1 100%;
-                flex: 1 1 100%;
-        max-width: 100%;
-      }
-    }
-    @media only screen and (max-width: 575px) {
-      .ulr-why-choose .tj-primary-btn {
-        width: 100%;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-      }
-    }
-
-    /* Africa footprint � centred narrative + regions (countup sits below without repeating copy) */
-    .ulr-africa-footprint {
-      padding-top: clamp(28px, 4vw, 48px);
-      padding-bottom: clamp(28px, 4vw, 48px);
-    }
-    .ulr-africa-footprint-panel {
-      position: relative;
-      background-color: var(--tj-color-common-white);
-      border: 1px solid var(--tj-color-border-1);
-      border-radius: 14px;
-      padding: clamp(28px, 5vw, 52px) clamp(18px, 4vw, 40px);
-      overflow: hidden;
-    }
-    .ulr-africa-footprint-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url('assets/images/bg/map.svg') no-repeat 50% 45%;
-      background-size: min(920px, 160%);
-      opacity: 0.055;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .ulr-africa-footprint-panel-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 44rem;
-      margin-inline: auto;
-    }
-    .ulr-africa-footprint .sec-title span {
-      color: var(--tj-color-theme-primary);
-      font-weight: var(--tj-fw-medium);
-    }
-    .ulr-africa-region-strip {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-          justify-content: center;
-      gap: clamp(8px, 2vw, 14px);
-      margin: clamp(18px, 3vw, 26px) 0 clamp(14px, 2.5vw, 22px);
-      font-family: var(--tj-ff-heading);
-      font-weight: var(--tj-fw-sbold);
-      font-size: clamp(15px, 2.35vw, 18px);
-      color: var(--tj-color-heading-primary);
-      letter-spacing: 0.02em;
-    }
-    .ulr-africa-region-strip__div {
-      color: rgba(30, 138, 138, 0.55);
-      font-weight: var(--tj-fw-regular);
-      -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-              user-select: none;
-    }
-    .ulr-africa-footprint-panel-inner .desc {
-      margin-bottom: 0;
-      font-size: clamp(15px, 2vw, 17px);
-      line-height: 1.55;
-      overflow-wrap: anywhere;
-    }
-
-    /* Hero strip: 3 tiles � heading | image (main) | subtitle; grid auto / flexible / auto */
-    .hero-split-banner {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      gap: clamp(8px, 2vw, 12px);
-      width: 100%;
-      max-width: 100%;
-      min-height: 0;
-      min-width: 0;
-      border-radius: 12px;
-      overflow: visible;
-    }
-    .hero-split-banner__cell {
-      -webkit-box-flex: 1;
-          -ms-flex: 1;
-              flex: 1;
-      min-width: 0;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-    }
-    .ulr-hero-tile {
-      display: grid;
-      grid-template-rows: auto minmax(0, 3fr) auto;
-      width: 100%;
-      margin: 0;
-      min-height: clamp(300px, 46vmin, 480px);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--tj-color-border-1);
-      background-color: var(--tj-color-common-white);
-      -webkit-box-shadow: 0 8px 28px rgba(12, 30, 33, 0.06);
-              box-shadow: 0 8px 28px rgba(12, 30, 33, 0.06);
-      -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-    }
-    .ulr-hero-tile__image {
-      min-height: 0;
-      overflow: hidden;
-      background: -webkit-gradient(linear, left top, left bottom, from(rgba(30, 138, 138, 0.1)), color-stop(55%, rgba(216, 229, 229, 0.35)));
-      background: linear-gradient(165deg, rgba(30, 138, 138, 0.1) 0%, rgba(216, 229, 229, 0.35) 55%);
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-              flex-direction: column;
-    }
-    .ulr-hero-tile__image img {
-      width: 100%;
-      -webkit-box-flex: 1;
-          -ms-flex: 1 1 auto;
-              flex: 1 1 auto;
-      min-height: 0;
-      -o-object-fit: cover;
-         object-fit: cover;
-      display: block;
-    }
-    .ulr-hero-tile__image-placeholder {
-      -webkit-box-flex: 1;
-          -ms-flex: 1 1 auto;
-              flex: 1 1 auto;
-      min-height: 9rem;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-              flex-direction: column;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      gap: 8px;
-      margin: clamp(8px, 2vw, 12px);
-      padding: clamp(12px, 3vw, 20px);
-      border: 2px dashed rgba(30, 138, 138, 0.38);
-      border-radius: 10px;
-      background-color: rgba(255, 255, 255, 0.55);
-      -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-    }
-    .ulr-hero-tile__image-placeholder i {
-      font-size: clamp(22px, 5vmin, 30px);
-      color: rgba(30, 138, 138, 0.4);
-      line-height: 1;
-    }
-    .ulr-hero-tile__image-placeholder-label {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: var(--tj-fw-bold);
-      color: rgba(12, 30, 33, 0.42);
-    }
-    .ulr-hero-tile__heading {
-      padding: clamp(12px, 2.4vw, 16px) clamp(14px, 3vw, 18px) clamp(10px, 2vw, 14px);
-      text-align: center;
-      background-color: var(--tj-color-common-white);
-      border-bottom: 1px solid var(--tj-color-border-1);
-    }
-    .ulr-hero-tile__footer {
-      padding: clamp(12px, 2.6vw, 18px) clamp(14px, 3vw, 18px);
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-              flex-direction: column;
-      -webkit-box-pack: center;
-          -ms-flex-pack: center;
-              justify-content: center;
-      border-top: 1px solid var(--tj-color-border-1);
-      background-color: var(--tj-color-common-white);
-      text-align: center;
-    }
-    .ulr-hero-tile__heading .ulr-hero-tile__tag {
-      margin: 0;
-      font-size: clamp(11px, 2.2vw, 13px);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: var(--tj-fw-bold);
-      color: var(--tj-color-theme-primary);
-    }
-    .ulr-hero-tile__title {
-      margin: 0;
-      font-size: clamp(13px, 2.8vw, 15px);
-      line-height: 1.45;
-      font-weight: var(--tj-fw-sbold);
-      font-family: var(--tj-ff-heading);
-      color: var(--tj-color-heading-primary);
-      overflow-wrap: anywhere;
-    }
-    .ulr-hero-tile--hygiene .ulr-hero-tile__tag {
-      color: #7a4b9a;
-    }
-    @media only screen and (max-width: 991px) {
-      .hero-split-banner {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: clamp(8px, 2vw, 12px);
-      }
-      .ulr-hero-tile {
-        min-height: clamp(260px, 42vmin, 360px);
-      }
-    }
-    @media only screen and (max-width: 575px) {
-      .hero-split-banner {
-        grid-template-columns: 1fr;
-      }
-    }
-    @media only screen and (min-width: 992px) {
-      .hero-split-banner {
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-            -ms-flex-direction: row;
-                flex-direction: row;
-      }
-    }
-    @media only screen and (max-width: 374px) {
-      .ulr-hero-tile {
-        min-height: clamp(260px, 52vmin, 340px);
-      }
-      .ulr-hero-tile__heading,
-      .ulr-hero-tile__footer {
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-    }
-
-    @media only screen and (max-height: 520px) and (orientation: landscape) {
-      .banner-area--hero-full .banner-left-box {
-        padding-top: 28px;
-        padding-bottom: 28px;
-      }
-      .ulr-hero-tile {
-        min-height: 200px;
-        grid-template-rows: auto minmax(0, 3fr) auto;
-      }
-      .tj-banner-section .banner-scroll {
-        display: none;
-      }
-    }
-
-    .hero-subheadline {
-      margin-top: clamp(20px, 4vw, 28px);
-      margin-bottom: 0;
-      max-width: min(900px, 100%);
-      color: rgba(255, 255, 255, 0.92);
-      font-size: clamp(15px, 3.8vw, 18px);
-      line-height: 1.5;
-      overflow-wrap: anywhere;
-    }
-    @media only screen and (min-width: 1200px) and (max-width: 1399px) {
-      .hero-subheadline {
-        font-size: 16px;
-      }
-    }
-
-    /* Partner CTA: keep theme overlap � .tj-cta-section uses negative margin-bottom
-       so the CTA sits into the footer�s padded area; resetting margin-bottom left a void. */
-    .ulr-home .tj-cta-section.ulr-partner-cta {
-      margin-top: clamp(32px, 5vw, 56px);
-    }
-    .ulr-partner-cta .cta-content .ulr-partner-cta-eyebrow {
-      display: -webkit-inline-box;
-      display: -ms-inline-flexbox;
-      display: inline-flex;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
-      gap: 8px;
-      color: rgba(255, 255, 255, 0.88);
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: var(--tj-fw-bold);
-      border: 1px dashed rgba(255, 255, 255, 0.35);
-      padding: 6px 12px;
-      border-radius: 4px;
-      margin-bottom: 14px;
-    }
-    @media only screen and (max-width: 575px) {
-      .ulr-partner-cta .cta-btn {
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-            -ms-flex-direction: column;
-                flex-direction: column;
-        -webkit-box-align: stretch;
-            -ms-flex-align: stretch;
-                align-items: stretch;
-      }
-      .ulr-partner-cta .cta-btn .tj-primary-btn {
-        width: 100%;
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-      }
-    }
-  </style>
   <link rel="stylesheet" href="assets/css/ulr-brand.css">
   <link rel="stylesheet" href="assets/css/ulr-layout.css">
+  <link rel="stylesheet" href="assets/css/ulr-home.css">
   <link rel="stylesheet" href="assets/css/ulr-a11y.css">
 </head>
 <body class="ulr-home">
@@ -1080,80 +275,48 @@
                 </div>
               </div>
             </div>
-            <div class="banner-scroll wow fadeInDown" data-wow-delay="2s">
-              <a href="#about" class="scroll-down tj-scroll-btn">
-                <span><i class="tji-arrow-down-long"></i></span>
-                Scroll Down
-              </a>
-            </div>
           </div>
           <div class="hero-visual-strip wow fadeIn" data-wow-delay=".25s">
             <div class="hero-split-banner" role="group" aria-label="Featured photography: farmer spraying, clean water hands, Tonno Bonno warehouse, hygiene and sanitation">
-              <div class="hero-split-banner__cell">
-                <article class="ulr-hero-tile">
-                  <header class="ulr-hero-tile__heading">
-                    <p class="ulr-hero-tile__tag">Agricultural Biosecurity</p>
-                  </header>
-                  <div class="ulr-hero-tile__image">
-                    <img src="bio.jpeg" alt="Farmer spraying � agricultural biosecurity." width="640" height="480" decoding="async" fetchpriority="high">
+              <article class="ulr-hero-tile">
+                <div class="ulr-hero-tile__image">
+                  <img src="bio.jpeg" alt="Farmer spraying, agricultural biosecurity." width="640" height="480" decoding="async" fetchpriority="high">
+                  <span class="ulr-hero-tile__label">Agricultural Biosecurity</span>
+                </div>
+              </article>
+              <article class="ulr-hero-tile">
+                <div class="ulr-hero-tile__image">
+                  <img src="water.jpeg" alt="Hands with clean water, water purification." width="640" height="480" decoding="async" fetchpriority="high">
+                  <span class="ulr-hero-tile__label">Clean Water</span>
+                </div>
+              </article>
+              <article class="ulr-hero-tile">
+                <div class="ulr-hero-tile__image">
+                  <img src="food.jpeg" alt="Tonno Bonno warehouse, shelf-stable food supply." width="640" height="480" decoding="async" fetchpriority="high">
+                  <span class="ulr-hero-tile__label">Food Security</span>
+                </div>
+              </article>
+              <article class="ulr-hero-tile ulr-hero-tile--hygiene">
+                <div class="ulr-hero-tile__image">
+                  <div class="ulr-hero-tile__image-placeholder" role="img" aria-label="Hygiene and sanitation image placeholder">
+                    <i class="tji-image" aria-hidden="true"></i>
+                    <span class="ulr-hero-tile__image-placeholder-label">Coming soon</span>
                   </div>
-                  <footer class="ulr-hero-tile__footer">
-                    <p class="ulr-hero-tile__title">Farmer spraying</p>
-                  </footer>
-                </article>
-              </div>
-              <div class="hero-split-banner__cell">
-                <article class="ulr-hero-tile">
-                  <header class="ulr-hero-tile__heading">
-                    <p class="ulr-hero-tile__tag">Clean Water</p>
-                  </header>
-                  <div class="ulr-hero-tile__image">
-                    <img src="water.jpeg" alt="Hands with clean water � water purification." width="640" height="480" decoding="async" fetchpriority="high">
-                  </div>
-                  <footer class="ulr-hero-tile__footer">
-                    <p class="ulr-hero-tile__title">Clean water hands</p>
-                  </footer>
-                </article>
-              </div>
-              <div class="hero-split-banner__cell">
-                <article class="ulr-hero-tile">
-                  <header class="ulr-hero-tile__heading">
-                    <p class="ulr-hero-tile__tag">Food Security</p>
-                  </header>
-                  <div class="ulr-hero-tile__image">
-                    <img src="food.jpeg" alt="Tonno Bonno warehouse � shelf-stable food supply." width="640" height="480" decoding="async" fetchpriority="high">
-                  </div>
-                  <footer class="ulr-hero-tile__footer">
-                    <p class="ulr-hero-tile__title">Tonno Bonno warehouse</p>
-                  </footer>
-                </article>
-              </div>
-              <div class="hero-split-banner__cell">
-                <article class="ulr-hero-tile ulr-hero-tile--hygiene">
-                  <header class="ulr-hero-tile__heading">
-                    <p class="ulr-hero-tile__tag">Hygiene &amp; Sanitation</p>
-                  </header>
-                  <div class="ulr-hero-tile__image">
-                    <div class="ulr-hero-tile__image-placeholder" role="img" aria-label="Image placeholder — hygiene and sanitation photography to be added">
-                      <i class="tji-image" aria-hidden="true"></i>
-                      <span class="ulr-hero-tile__image-placeholder-label">Image coming soon</span>
-                    </div>
-                  </div>
-                  <footer class="ulr-hero-tile__footer">
-                    <p class="ulr-hero-tile__title">Hygiene &amp; sanitation</p>
-                  </footer>
-                </article>
-              </div>
+                  <span class="ulr-hero-tile__label">Hygiene &amp; Sanitation</span>
+                </div>
+              </article>
             </div>
           </div>
         </section>
         <!-- end: Banner Section -->
         <!-- start: About Section -->
-        <section id="about" class="tj-about-section section-gap section-gap-x ulr-home-about-after-hero">
+        <section id="about" class="ulr-home-section section-gap-x">
           <div class="ulr-layout">
-            <div class="ulr-home-about-text-only sec-heading wow fadeInUp" data-wow-delay=".15s">
-              <h2 class="sec-title title-anim">Who <span>We Are</span></h2>
-              <p class="desc mt-3">Ubuntu Life Resources (2026 / 215685 / 07) is a commercial trading, supply, and market expansion company focused on delivering practical, life-sustaining solutions across African markets.</p>
+            <div class="ulr-home-about-panel wow fadeInUp" data-wow-delay=".1s">
+              <div class="ulr-home-section-head">
+                <h2 class="sec-title title-anim">Who <span>We Are</span></h2>
+              </div>
+              <p class="desc">Ubuntu Life Resources (2026 / 215685 / 07) is a commercial trading, supply, and market expansion company focused on delivering practical, life-sustaining solutions across African markets.</p>
               <p class="desc">We support governments, institutions, agricultural operations, distributors, and commercial buyers with structured access to trusted solutions in agricultural biosecurity, clean water, and food security.</p>
               <p class="desc mb-0">Our role is simple: we connect reliable products with real regional demand through professional sourcing, stakeholder engagement, supplier coordination, and execution-driven delivery.</p>
             </div>
@@ -1161,63 +324,52 @@
         </section>
         <!-- end: About Section -->
         <!-- start: Solutions Section -->
-        <section id="solutions" class="tj-about-section section-gap section-gap-x ulr-home-solutions ulr-home-solutions--copy-only">
+        <section id="solutions" class="ulr-home-section ulr-home-section--alt section-gap-x">
           <div class="ulr-layout">
-            <div class="sec-heading text-center mb-5">
-              <h2 class="sec-title title-anim wow fadeInUp" data-wow-delay=".15s">Our Three Core <span>Solutions</span></h2>
+            <div class="ulr-home-section-head ulr-home-section-head--center wow fadeInUp" data-wow-delay=".1s">
+              <h2 class="sec-title title-anim">Our Three Core <span>Solutions</span></h2>
             </div>
-
-            <div class="pb-5 mb-5 ulr-solution-row ulr-solution-row--divide">
-              <div class="ulr-solution-pillar ulr-solution-pillar--bio wow fadeInUp" data-wow-delay=".2s">
-                <h3 class="sec-title h4 mb-3">Agricultural Biosecurity</h3>
+            <div class="ulr-solutions-grid">
+              <article class="ulr-solution-card wow fadeInUp" data-wow-delay=".15s">
+                <h3 class="sec-title">Agricultural Biosecurity</h3>
                 <p class="ulr-solution-lead">Protecting livestock. Securing production.</p>
-                <p class="desc mb-4">We support farms, abattoirs, dairies, feedlots, hatcheries, and livestock transporters with biosecurity and sanitation solutions designed to reduce contamination risk, support hygiene compliance, and protect agricultural productivity.</p>
+                <p class="desc">We support farms, abattoirs, dairies, feedlots, hatcheries, and livestock transporters with biosecurity and sanitation solutions designed to reduce contamination risk, support hygiene compliance, and protect agricultural productivity.</p>
                 <a class="tj-primary-btn" href="pillar-agri-biosecurity.html">
                   <span class="btn-text"><span>View Agricultural Biosecurity</span></span>
                   <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                 </a>
-              </div>
-            </div>
-
-            <div class="pb-5 mb-5 ulr-solution-row ulr-solution-row--divide">
-              <div class="ulr-solution-pillar ulr-solution-pillar--water wow fadeInUp" data-wow-delay=".2s">
-                <h3 class="sec-title h4 mb-3">Clean Water Solutions</h3>
+              </article>
+              <article class="ulr-solution-card ulr-solution-card--water wow fadeInUp" data-wow-delay=".2s">
+                <h3 class="sec-title">Clean Water Solutions</h3>
                 <p class="ulr-solution-lead">Safe water. Sustainable communities.</p>
-                <p class="desc mb-4">Our water purification solutions support households, communities, institutions, emergency relief programmes, and regional water resilience initiatives by improving access to cleaner, safer usable water.</p>
+                <p class="desc">Our water purification solutions support households, communities, institutions, emergency relief programmes, and regional water resilience initiatives by improving access to cleaner, safer usable water.</p>
                 <a class="tj-primary-btn" href="pillar-water-purification.html">
                   <span class="btn-text"><span>View Clean Water Solutions</span></span>
                   <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                 </a>
-              </div>
-            </div>
-
-            <div class="ulr-solution-row">
-              <div class="ulr-solution-pillar ulr-solution-pillar--food wow fadeInUp" data-wow-delay=".2s">
-                <h3 class="sec-title h4 mb-3">Strategic Food Supply</h3>
+              </article>
+              <article class="ulr-solution-card ulr-solution-card--food wow fadeInUp" data-wow-delay=".25s">
+                <h3 class="sec-title">Strategic Food Supply</h3>
                 <p class="ulr-solution-lead">Reliable supply. Nutritious food. Delivered at scale.</p>
-                <p class="desc mb-4">Through our food security offering, Ubuntu Life Resources supports institutional buyers, wholesalers, distributors, and government supply programmes with shelf-stable, high-protein canned seafood solutions.</p>
+                <p class="desc">Through our food security offering, Ubuntu Life Resources supports institutional buyers, wholesalers, distributors, and government supply programmes with shelf-stable, high-protein canned seafood solutions.</p>
                 <a class="tj-primary-btn" href="pillar-shelf-stable-nutrition.html">
                   <span class="btn-text"><span>View Food Supply Solutions</span></span>
                   <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                 </a>
-              </div>
+              </article>
             </div>
           </div>
         </section>
         <!-- end: Solutions Section -->
         <!-- start: Why Choose Us Section -->
-        <section id="why-choose" class="tj-about-section section-gap section-gap-x ulr-why-choose">
+        <section id="why-choose" class="ulr-home-section section-gap-x">
           <div class="ulr-layout">
             <div class="ulr-why-band">
               <div class="ulr-why-band-inner">
-                <div class="row align-items-lg-center g-4 g-lg-5">
-                  <div class="col-lg-12 text-center text-lg-start">
-                    <div class="sec-heading ulr-why-band-intro mb-0 wow fadeInUp" data-wow-delay=".06s">
-                      <h2 class="sec-title title-anim">Why Ubuntu Life <span>Resources</span></h2>
-                    </div>
-                  </div>
-                  <div class="col-lg-12">
-                    <ul class="ulr-why-pillars ulr-why-pillars--capabilities mx-auto mx-lg-0 wow fadeInUp" data-wow-delay=".12s">
+                <div class="ulr-why-band-intro wow fadeInUp" data-wow-delay=".06s">
+                  <h2 class="sec-title title-anim">Why Ubuntu Life <span>Resources</span></h2>
+                </div>
+                <ul class="ulr-why-pillars ulr-why-pillars--capabilities wow fadeInUp" data-wow-delay=".12s">
                       <li class="ulr-why-pillar">
                         <h4>Structured Supply</h4>
                         <p>We facilitate supply solutions through reliable supplier networks and commercial partnerships.</p>
@@ -1234,35 +386,24 @@
                         <h4>Africa-Focused Growth</h4>
                         <p>Our focus is practical implementation across Southern Africa and selected Sub-Saharan African markets.</p>
                       </li>
-                    </ul>
-                  </div>
-                </div>
+                </ul>
               </div>
             </div>
           </div>
         </section>
         <!-- end: Why Choose Us Section -->
-        <!-- start: Vision Section -->
-        <section id="vision" class="tj-about-section section-gap section-gap-x ulr-africa-footprint">
+        <section id="vision" class="ulr-home-section ulr-home-section--tight section-gap-x" aria-labelledby="vision-heading">
           <div class="ulr-layout">
-            <div class="ulr-vision-mission-panel">
-              <div class="ulr-vision-mission-panel-inner text-center wow fadeInUp" data-wow-delay=".06s">
-                <h2 class="sec-title title-anim">Our <span>Vision</span></h2>
-                <p class="desc mt-3 mb-0">To become a leading African market expansion and supply partner recognised for enabling the successful adoption of agricultural biosecurity, clean water, and food security solutions that contribute to healthier populations, stronger industries, and sustainable regional growth.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- end: Vision Section -->
-        <!-- start: Mission Section -->
-        <section id="mission" class="tj-about-section section-gap section-gap-x ulr-mission-section">
-          <div class="ulr-layout">
-            <div class="ulr-vision-mission-panel">
-              <div class="ulr-vision-mission-panel-inner wow fadeInUp" data-wow-delay=".06s">
-                <h2 class="sec-title title-anim">Our <span>Mission</span></h2>
-                <p class="desc mt-3">Our mission is to support governments, institutions, agricultural sectors, distributors, and commercial partners through strategic supply, stakeholder engagement, market development, and execution-driven delivery of practical solutions across Africa.</p>
+            <div class="ulr-statements-stack">
+              <article class="ulr-statement-card wow fadeInUp" data-wow-delay=".06s">
+                <h2 id="vision-heading" class="sec-title title-anim">Our <span>Vision</span></h2>
+                <p class="desc mb-0">To become a leading African market expansion and supply partner recognised for enabling the successful adoption of agricultural biosecurity, clean water, and food security solutions that contribute to healthier populations, stronger industries, and sustainable regional growth.</p>
+              </article>
+              <article id="mission" class="ulr-statement-card wow fadeInUp" data-wow-delay=".1s" aria-labelledby="mission-heading">
+                <h2 id="mission-heading" class="sec-title title-anim">Our <span>Mission</span></h2>
+                <p class="desc">Our mission is to support governments, institutions, agricultural sectors, distributors, and commercial partners through strategic supply, stakeholder engagement, market development, and execution-driven delivery of practical solutions across Africa.</p>
                 <p class="desc mb-2">We are committed to facilitating reliable access to:</p>
-                <ul class="desc ulr-mission-list">
+                <ul class="ulr-mission-list">
                   <li>Agricultural biosecurity solutions</li>
                   <li>Water purification technologies</li>
                   <li>Nutritional food supply programmes</li>
@@ -1271,14 +412,13 @@
                 <p class="desc">We are continuously expanding our network of strategic partners, suppliers, distributors, and market representatives who share our vision of driving impactful solutions across African markets.</p>
                 <p class="desc">Ubuntu Life Resources is actively seeking to collaborate with organizations and individuals looking to introduce and scale across Southern Africa and selected Sub-Saharan African regions.</p>
                 <p class="desc mb-0">Through structured market access, stakeholder engagement, commercial execution, and regional relationship networks, we aim to create sustainable growth opportunities while delivering practical, high-impact solutions into markets where they are needed most.</p>
-              </div>
+              </article>
             </div>
           </div>
         </section>
-        <!-- end: Mission Section -->
         <!-- start: Partner CTA -->
-        <section id="partner" class="section-gap section-gap-x ulr-partner-section">
-          <div class="container">
+        <section id="partner" class="ulr-home-section section-gap-x ulr-partner-section">
+          <div class="ulr-layout">
             <div class="ulr-partner-card wow fadeInUp" data-wow-delay=".08s">
               <div class="row g-4 g-lg-5 align-items-start">
                 <div class="col-lg-8">

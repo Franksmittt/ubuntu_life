@@ -108,6 +108,7 @@ body.ulr-rich-subpage .tj-page-header .container {
 /* ------------------------------------------------------------------ */
 /* Section vertical rhythm (all ULR body types)                       */
 /* ------------------------------------------------------------------ */
+body.ulr-home main#primary > .ulr-home-section,
 body.ulr-home main#primary > .section-gap:not(.tj-banner-section),
 body.ulr-pillar-page main#primary > .section-gap,
 body.ulr-pillar-page main#primary > .tj-about-section,

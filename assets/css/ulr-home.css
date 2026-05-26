@@ -1,0 +1,452 @@
+/**
+ * Ubuntu Life Resources — homepage layout & rhythm
+ * Fixes double section-gap padding, inconsistent widths, and oversized hero tiles.
+ */
+
+body.ulr-home main#primary {
+  background-color: var(--tj-color-theme-bg, #f4f8fa);
+}
+
+/* One vertical rhythm — theme .section-gap (120px) stacks with .ulr-section-y */
+body.ulr-home main#primary > section.tj-about-section.section-gap,
+body.ulr-home main#primary > section.section-gap.ulr-partner-section,
+body.ulr-home main#primary > section.tj-banner-section {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+body.ulr-home .ulr-home-section {
+  padding-block: clamp(2.5rem, 4.5vw, 3.75rem);
+}
+
+body.ulr-home .ulr-home-section--tight {
+  padding-block: clamp(2rem, 3.5vw, 3rem);
+}
+
+body.ulr-home .ulr-home-section--alt {
+  background-color: #fff;
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero                                                                */
+/* ------------------------------------------------------------------ */
+body.ulr-home .tj-banner-section.section-gap-x {
+  margin-inline: var(--ulr-edge, 15px);
+  margin-bottom: 0;
+}
+
+body.ulr-home .banner-area.banner-area--hero-full {
+  min-height: 0 !important;
+}
+
+body.ulr-home .banner-area--hero-full .banner-left-box {
+  width: 100%;
+  margin: 0;
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 4vw, 2rem);
+  border-radius: 16px 16px 0 0;
+}
+
+body.ulr-home .banner-area--hero-full .banner-content {
+  max-width: 52rem;
+}
+
+body.ulr-home .banner-title.hero-headline {
+  margin-bottom: 1rem;
+  font-size: clamp(1.5rem, 3.8vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--tj-color-common-white) !important;
+  font-weight: var(--tj-fw-bold);
+}
+
+body.ulr-home .hero-headline__dot {
+  color: var(--ulr-brand-green, #6fbf3a);
+  padding-inline: 0.15em;
+}
+
+body.ulr-home .hero-subheadline {
+  margin: 0;
+  max-width: 42rem;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+body.ulr-home .hero-cta-row {
+  margin-top: 1.35rem !important;
+  gap: 0.65rem;
+}
+
+body.ulr-home .hero-cta-row .tj-primary-btn {
+  width: auto;
+}
+
+body.ulr-home .tj-banner-section .banner-scroll {
+  display: none;
+}
+
+body.ulr-home .hero-visual-strip {
+  margin: 0;
+  padding: 0 clamp(1.25rem, 4vw, 2rem) clamp(1.25rem, 3vw, 1.75rem);
+  background-color: var(--tj-color-theme-dark);
+  border-radius: 0 0 16px 16px;
+}
+
+body.ulr-home .hero-split-banner {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  max-width: var(--ulr-content-wide, 1280px);
+  margin-inline: auto;
+}
+
+@media (min-width: 768px) {
+  body.ulr-home .hero-split-banner {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+body.ulr-home .ulr-hero-tile {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+body.ulr-home .ulr-hero-tile__image {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+  overflow: hidden;
+  background: linear-gradient(165deg, rgba(30, 138, 138, 0.12), rgba(216, 229, 229, 0.4));
+}
+
+body.ulr-home .ulr-hero-tile__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+body.ulr-home .ulr-hero-tile__label {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 0.5rem 0.65rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  color: #fff;
+  background: linear-gradient(to top, rgba(12, 30, 33, 0.82), transparent);
+}
+
+body.ulr-home .ulr-hero-tile--hygiene .ulr-hero-tile__label {
+  color: #fff;
+}
+
+/* Legacy tile chrome (if old markup remains) */
+body.ulr-home .ulr-hero-tile__heading,
+body.ulr-home .ulr-hero-tile__footer {
+  display: none;
+}
+
+body.ulr-home .ulr-hero-tile__image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+body.ulr-home .ulr-hero-tile__image-placeholder i {
+  font-size: 1.5rem;
+  color: rgba(30, 138, 138, 0.45);
+}
+
+body.ulr-home .ulr-hero-tile__image-placeholder-label {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(12, 30, 33, 0.5);
+}
+
+/* ------------------------------------------------------------------ */
+/* Section headings                                                    */
+/* ------------------------------------------------------------------ */
+body.ulr-home .ulr-home-section-head {
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+  max-width: 40rem;
+}
+
+body.ulr-home .ulr-home-section-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+body.ulr-home .ulr-home-section-head .sec-title {
+  margin-bottom: 0;
+  font-size: clamp(1.65rem, 3.5vw, 2.35rem);
+  line-height: 1.15;
+}
+
+body.ulr-home .ulr-home-section-head .sec-title span {
+  color: var(--tj-color-theme-primary);
+}
+
+/* ------------------------------------------------------------------ */
+/* Who we are                                                          */
+/* ------------------------------------------------------------------ */
+body.ulr-home .ulr-home-about-panel {
+  background: #fff;
+  border: 1px solid var(--tj-color-border-1, #e2e6ea);
+  border-radius: 16px;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  box-shadow: 0 8px 28px rgba(11, 46, 79, 0.06);
+}
+
+body.ulr-home .ulr-home-about-panel .desc {
+  margin-bottom: 1rem;
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.65;
+  max-width: none;
+}
+
+body.ulr-home .ulr-home-about-panel .desc:last-child {
+  margin-bottom: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Solutions — equal cards                                               */
+/* ------------------------------------------------------------------ */
+body.ulr-home .ulr-solutions-grid {
+  display: grid;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+@media (min-width: 992px) {
+  body.ulr-home .ulr-solutions-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+body.ulr-home .ulr-solution-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border: 1px solid var(--tj-color-border-1, #e2e6ea);
+  border-radius: 16px;
+  padding: clamp(1.35rem, 3vw, 1.75rem);
+  box-shadow: 0 8px 24px rgba(11, 46, 79, 0.06);
+  border-top: 4px solid var(--tj-color-theme-primary);
+}
+
+body.ulr-home .ulr-solution-card--water {
+  border-top-color: #2b7abf;
+}
+
+body.ulr-home .ulr-solution-card--food {
+  border-top-color: #c8832c;
+}
+
+body.ulr-home .ulr-solution-card h3 {
+  font-size: clamp(1.1rem, 2.2vw, 1.25rem);
+  margin: 0 0 0.5rem;
+  line-height: 1.25;
+}
+
+body.ulr-home .ulr-solution-card .ulr-solution-lead {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+}
+
+body.ulr-home .ulr-solution-card .desc {
+  flex: 1;
+  margin: 0 0 1.25rem;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+body.ulr-home .ulr-solution-card .tj-primary-btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/* ------------------------------------------------------------------ */
+/* Why band                                                            */
+/* ------------------------------------------------------------------ */
+body.ulr-home .ulr-why-band {
+  position: relative;
+  background-color: var(--tj-color-theme-dark);
+  border-radius: 16px;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  overflow: hidden;
+}
+
+body.ulr-home .ulr-why-band::before {
+  content: "";
+  position: absolute;
+  inset: -35% -25% auto auto;
+  width: min(380px, 65vw);
+  height: min(380px, 65vw);
+  border-radius: 50%;
+  background: var(--tj-color-theme-primary);
+  opacity: 0.13;
+  filter: blur(72px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body.ulr-home .ulr-why-band-inner {
+  position: relative;
+  z-index: 1;
+}
+
+body.ulr-home .ulr-why-band-intro .sec-title {
+  margin-bottom: 1.25rem;
+  color: var(--tj-color-common-white);
+  font-size: clamp(1.55rem, 3.5vw, 2.1rem);
+  line-height: 1.15;
+}
+
+body.ulr-home .ulr-why-band-intro .sec-title span {
+  color: var(--tj-color-theme-primary);
+}
+
+body.ulr-home .ulr-why-pillars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+body.ulr-home .ulr-why-pillar h4 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  font-weight: var(--tj-fw-sbold);
+  color: var(--tj-color-common-white);
+}
+
+body.ulr-home .ulr-why-pillar p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+body.ulr-home .ulr-solution-lead {
+  color: var(--tj-color-heading-primary);
+  font-weight: var(--tj-fw-sbold);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+body.ulr-home .ulr-why-pillars--capabilities {
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  body.ulr-home .ulr-why-pillars--capabilities {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+body.ulr-home .ulr-why-pillar {
+  padding: 1.1rem 1.15rem;
+  border-radius: 12px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Vision + mission stack                                                */
+/* ------------------------------------------------------------------ */
+body.ulr-home .ulr-statements-stack {
+  display: grid;
+  gap: 1.25rem;
+}
+
+body.ulr-home .ulr-statement-card {
+  background: #fff;
+  border: 1px solid var(--tj-color-border-1, #e2e6ea);
+  border-radius: 16px;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  box-shadow: 0 8px 24px rgba(11, 46, 79, 0.05);
+}
+
+body.ulr-home .ulr-statement-card .sec-title {
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  margin-bottom: 0.75rem;
+}
+
+body.ulr-home .ulr-statement-card .sec-title span {
+  color: var(--tj-color-theme-primary);
+}
+
+body.ulr-home .ulr-statement-card .desc {
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 0.85rem;
+}
+
+body.ulr-home .ulr-statement-card .desc:last-child {
+  margin-bottom: 0;
+}
+
+body.ulr-home .ulr-mission-list {
+  margin: 0.5rem 0 0.85rem;
+  padding-left: 1.2rem;
+}
+
+body.ulr-home .ulr-mission-list li {
+  margin-bottom: 0.25rem;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* ------------------------------------------------------------------ */
+/* Partner CTA                                                         */
+/* ------------------------------------------------------------------ */
+body.ulr-home .ulr-partner-section {
+  padding-bottom: clamp(2.5rem, 5vw, 3.5rem) !important;
+}
+
+body.ulr-home .ulr-partner-title {
+  max-width: none;
+  font-size: clamp(1.35rem, 3.2vw, 2rem);
+  margin-bottom: 1rem;
+}
+
+body.ulr-home .ulr-partner-card .desc {
+  margin-bottom: 1rem;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+body.ulr-home .ulr-partner-card .tj-primary-btn {
+  margin-top: 0.5rem;
+}
+
+body.ulr-home #about,
+body.ulr-home #solutions,
+body.ulr-home #why-choose,
+body.ulr-home #vision,
+body.ulr-home #mission,
+body.ulr-home #partner {
+  scroll-margin-top: 100px;
+}
