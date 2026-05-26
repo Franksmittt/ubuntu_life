@@ -25,8 +25,13 @@
   box-sizing: border-box;
 }
 
-.ulr-layout--wide {
+.ulr-layout--wide,
+.ulr-home-band__inner,
+.ulr-hero-band__inner {
+  width: 100%;
   max-width: var(--ulr-content-wide);
+  margin-inline: auto;
+  box-sizing: border-box;
 }
 
 .ulr-layout--prose {
@@ -463,10 +468,15 @@ body.ulr-pillar-page main#primary .about-img img {
 }
 
 .tj-footer-section.ulr-site-footer .ulr-footer-panel > .container,
+.tj-footer-section.ulr-site-footer .ulr-footer-panel > .ulr-home-band__inner,
+.tj-footer-section.ulr-site-footer .ulr-footer-bottom > .container,
+.tj-footer-section.ulr-site-footer .ulr-footer-bottom > .ulr-home-band__inner,
 .tj-footer-section.ulr-site-footer .footer-bottom-area > .container {
-  max-width: var(--ulr-content-max);
-  padding-inline: var(--ulr-gutter);
+  max-width: var(--ulr-content-wide, 1280px);
+  padding-inline: 0;
   margin-inline: auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Pillars overview & product catalogue card grids */

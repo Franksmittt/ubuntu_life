@@ -1,0 +1,195 @@
+/**
+ * Ubuntu Life Resources — compact site footer
+ */
+
+.tj-footer-section.ulr-site-footer {
+  padding-top: 0 !important;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-panel {
+  padding: clamp(1.75rem, 3vw, 2.25rem) 0 clamp(1.25rem, 2.5vw, 1.5rem);
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-panel::before {
+  width: min(640px, 80vw);
+  height: min(280px, 40vh);
+  opacity: 0.85;
+  transform: translateX(-50%) translateY(-20%);
+  inset-inline-start: 50%;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-panel > .container,
+.tj-footer-section.ulr-site-footer .ulr-footer-panel > .ulr-home-band__inner,
+.tj-footer-section.ulr-site-footer .ulr-footer-bottom > .container,
+.tj-footer-section.ulr-site-footer .ulr-footer-bottom > .ulr-home-band__inner {
+  max-width: var(--ulr-content-wide, 1280px);
+  padding-inline: 0;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-panel .row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 1.25rem;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-logo {
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-logo img {
+  max-height: 36px;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-tagline {
+  margin-top: 0.75rem;
+  margin-bottom: 0.35rem;
+  max-width: 36ch;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-reg {
+  font-size: 12px;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-heading {
+  margin-bottom: 0.65rem;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-links a {
+  padding: 0.2rem 0;
+  font-size: 13px;
+  font-weight: var(--tj-fw-regular, 400);
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-contact {
+  margin-top: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-contact .ulr-footer-heading {
+  margin-bottom: 0.5rem;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-lead {
+  display: none;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-list {
+  margin: 0;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-list > li {
+  margin-bottom: 0.45rem;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-label {
+  font-size: 10px;
+  margin-bottom: 0;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-name {
+  font-size: 14px;
+  margin-bottom: 0.35rem;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-role {
+  font-size: 12px;
+  font-weight: var(--tj-fw-regular, 400);
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-list a {
+  font-size: 13px;
+  gap: 8px;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-contact-ico {
+  width: 26px;
+  height: 26px;
+  font-size: 12px;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-cta {
+  display: none;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-bottom {
+  background-color: rgba(0, 0, 0, 0.28);
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-bottom-inner {
+  padding: 0.75rem 0;
+  gap: 0.75rem;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-copy {
+  font-size: 12px;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-social ul {
+  gap: 6px;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-social ul li a {
+  width: 32px;
+  height: 32px;
+  font-size: 14px;
+}
+
+@media (min-width: 992px) {
+  .tj-footer-section.ulr-site-footer .ulr-footer-panel .row {
+    align-items: flex-start;
+  }
+
+  .tj-footer-section.ulr-site-footer .col-lg-4:first-child {
+    flex: 0 0 auto;
+    width: 32%;
+  }
+
+  .tj-footer-section.ulr-site-footer .col-lg-4:last-child {
+    flex: 0 0 auto;
+    width: 34%;
+  }
+}
+
+@media (max-width: 767px) {
+  .tj-footer-section.ulr-site-footer .ulr-footer-panel .row {
+    --bs-gutter-y: 1.5rem;
+  }
+
+  .tj-footer-section.ulr-site-footer .ulr-footer-tagline {
+    max-width: none;
+  }
+}
+
+@media (max-width: 575px) {
+  .tj-footer-section.ulr-site-footer .ulr-footer-panel .row > .col-6,
+  .tj-footer-section.ulr-site-footer .ulr-footer-panel .row > .col-md-3,
+  .tj-footer-section.ulr-site-footer .ulr-footer-panel .row > .col-lg-4,
+  .tj-footer-section.ulr-site-footer .ulr-footer-panel .row > .col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .tj-footer-section.ulr-site-footer .ulr-footer-contact-list a {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .tj-footer-section.ulr-site-footer .ulr-footer-bottom-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: start;
+  }
+}

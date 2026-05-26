@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/ulr-brand.css">
   <link rel="stylesheet" href="assets/css/ulr-layout.css">
+  <link rel="stylesheet" href="assets/css/ulr-footer.css">
   <link rel="stylesheet" href="assets/css/ulr-home.css">
   <link rel="stylesheet" href="assets/css/ulr-a11y.css">
 </head>
@@ -257,85 +258,93 @@
     <div id="smooth-content">
       <main id="primary" class="site-main">
         <div class="space-for-header"></div>
-        <!-- start: Banner Section -->
-        <section class="tj-banner-section section-gap-x">
-          <div class="hero-top-wrap">
-            <div class="banner-area banner-area--hero-full">
-              <div class="banner-left-box">
-                <div class="banner-content">
-                  <h1 class="banner-title hero-headline title-anim wow fadeInDown" data-wow-delay=".1s">Agricultural Biosecurity<span class="hero-headline__dot">.</span> Clean Water<span class="hero-headline__dot">.</span> Food Security</h1>
-                  <p class="hero-subheadline wow fadeInUp" data-wow-delay=".35s">Ubuntu Life Resources is an Africa-focused commercial supply and market development company delivering essential solutions across agriculture, water purification, and strategic food supply.</p>
-                  <div class="d-flex flex-wrap gap-2 mt-4 hero-cta-row wow fadeInUp" data-wow-delay=".5s">
+        <!-- start: Hero band (copy + pillar photos, shared width) -->
+        <section class="ulr-hero-band section-gap-x" aria-label="Ubuntu Life Resources homepage hero">
+          <div class="ulr-hero-band__inner">
+            <div class="ulr-hero__frame wow fadeIn" data-wow-delay=".05s">
+              <div class="ulr-hero__copy">
+                <h1 class="ulr-hero__pillars title-anim wow fadeInDown" data-wow-delay=".1s">
+                  <span class="ulr-hero__pillar"><span class="ulr-hero__pillar-line">Agricultural</span><span class="ulr-hero__pillar-line ulr-hero__pillar-line--accent">Biosecurity</span></span>
+                  <span class="ulr-hero__pillar"><span class="ulr-hero__pillar-line">Clean</span><span class="ulr-hero__pillar-line ulr-hero__pillar-line--accent">Water</span></span>
+                  <span class="ulr-hero__pillar"><span class="ulr-hero__pillar-line">Food</span><span class="ulr-hero__pillar-line ulr-hero__pillar-line--accent">Security</span></span>
+                  <span class="ulr-hero__pillar"><span class="ulr-hero__pillar-line">Hygiene</span><span class="ulr-hero__pillar-line ulr-hero__pillar-line--accent">Sanitation</span></span>
+                </h1>
+                <div class="ulr-hero__body wow fadeInUp" data-wow-delay=".25s">
+                  <p class="ulr-hero__lead">Ubuntu Life Resources is an Africa-focused commercial supply and market development company delivering essential solutions across agriculture, water purification, and strategic food supply.</p>
+                  <div class="ulr-hero__actions">
                     <a class="tj-primary-btn" href="#solutions"><span class="btn-text"><span>Explore Our Solutions</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>
-                    <a class="tj-primary-btn" href="contact.html"><span class="btn-text"><span>Contact Us</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>
+                    <a class="tj-primary-btn ulr-hero__btn-secondary" href="contact.html"><span class="btn-text"><span>Contact Us</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>
                   </div>
-                </div>
-                <div class="banner-shape">
-                  <img src="assets/images/shape/pattern-bg.webp" alt="">
                 </div>
               </div>
             </div>
-          </div>
-          <div class="hero-visual-strip wow fadeIn" data-wow-delay=".25s">
-            <div class="hero-split-banner" role="group" aria-label="Featured photography: farmer spraying, clean water hands, Tonno Bonno warehouse, hygiene and sanitation">
-              <article class="ulr-hero-tile">
-                <div class="ulr-hero-tile__image">
-                  <img src="bio.jpeg" alt="Farmer spraying, agricultural biosecurity." width="640" height="480" decoding="async" fetchpriority="high">
-                  <span class="ulr-hero-tile__label">Agricultural Biosecurity</span>
-                </div>
-              </article>
-              <article class="ulr-hero-tile">
-                <div class="ulr-hero-tile__image">
-                  <img src="water.jpeg" alt="Hands with clean water, water purification." width="640" height="480" decoding="async" fetchpriority="high">
-                  <span class="ulr-hero-tile__label">Clean Water</span>
-                </div>
-              </article>
-              <article class="ulr-hero-tile">
-                <div class="ulr-hero-tile__image">
-                  <img src="food.jpeg" alt="Tonno Bonno warehouse, shelf-stable food supply." width="640" height="480" decoding="async" fetchpriority="high">
-                  <span class="ulr-hero-tile__label">Food Security</span>
-                </div>
-              </article>
-              <article class="ulr-hero-tile ulr-hero-tile--hygiene">
-                <div class="ulr-hero-tile__image">
-                  <div class="ulr-hero-tile__image-placeholder" role="img" aria-label="Hygiene and sanitation image placeholder">
-                    <i class="tji-image" aria-hidden="true"></i>
-                    <span class="ulr-hero-tile__image-placeholder-label">Coming soon</span>
-                  </div>
-                  <span class="ulr-hero-tile__label">Hygiene &amp; Sanitation</span>
-                </div>
-              </article>
+            <div class="ulr-hero__grid wow fadeInUp" data-wow-delay=".15s" role="group" aria-label="Featured photography: agricultural biosecurity, clean water, food security, hygiene and sanitation">
+              <a class="ulr-hero__shot-link" href="pillar-agri-biosecurity.html">
+                <figure class="ulr-hero__shot">
+                  <img src="assets/images/hero/ulr-hero-agricultural-biosecurity.jpg" alt="Agricultural biosecurity in the field." width="640" height="480" decoding="async" fetchpriority="high">
+                  <figcaption>Agricultural Biosecurity</figcaption>
+                </figure>
+              </a>
+              <a class="ulr-hero__shot-link" href="pillar-water-purification.html">
+                <figure class="ulr-hero__shot">
+                  <img src="assets/images/hero/ulr-hero-clean-water.jpg" alt="Clean water purification and access." width="640" height="480" decoding="async" fetchpriority="high">
+                  <figcaption>Clean Water</figcaption>
+                </figure>
+              </a>
+              <a class="ulr-hero__shot-link" href="pillar-shelf-stable-nutrition.html">
+                <figure class="ulr-hero__shot">
+                  <img src="assets/images/hero/ulr-hero-food-security.jpg" alt="Strategic food supply and shelf-stable nutrition." width="640" height="480" decoding="async" fetchpriority="high">
+                  <figcaption>Food Security</figcaption>
+                </figure>
+              </a>
+              <a class="ulr-hero__shot-link" href="products.html#hygiene-sanitation">
+                <figure class="ulr-hero__shot">
+                  <img src="assets/images/hero/ulr-hero-hygiene-sanitation.jpg" alt="Hygiene and sanitation solutions." width="640" height="480" decoding="async" fetchpriority="high">
+                  <figcaption>Hygiene &amp; Sanitation</figcaption>
+                </figure>
+              </a>
             </div>
           </div>
         </section>
-        <!-- end: Banner Section -->
+        <!-- end: Hero band -->
         <!-- start: About Section -->
         <section id="about" class="ulr-home-section section-gap-x">
-          <div class="ulr-layout">
-            <div class="ulr-home-about-panel wow fadeInUp" data-wow-delay=".1s">
-              <div class="ulr-home-section-head">
-                <h2 class="sec-title title-anim">Who <span>We Are</span></h2>
+          <div class="ulr-home-band__inner">
+            <div class="ulr-about-editorial wow fadeInUp" data-wow-delay=".1s">
+              <div class="ulr-about-editorial__media">
+                <img src="assets/images/about/ulr-home-who-we-are.jpeg" alt="Ubuntu Life Resources team and operations." loading="lazy" decoding="async">
               </div>
-              <p class="desc">Ubuntu Life Resources (2026 / 215685 / 07) is a commercial trading, supply, and market expansion company focused on delivering practical, life-sustaining solutions across African markets.</p>
-              <p class="desc">We support governments, institutions, agricultural operations, distributors, and commercial buyers with structured access to trusted solutions in agricultural biosecurity, clean water, and food security.</p>
-              <p class="desc mb-0">Our role is simple: we connect reliable products with real regional demand through professional sourcing, stakeholder engagement, supplier coordination, and execution-driven delivery.</p>
+              <div class="ulr-about-editorial__body">
+                <h2 class="sec-title title-anim">Who <span>We Are</span></h2>
+                <p class="ulr-about-editorial__lead">Ubuntu Life Resources (2026 / 215685 / 07) is a commercial trading, supply, and market expansion company focused on delivering practical, life-sustaining solutions across African markets.</p>
+                <div class="ulr-about-editorial__grid">
+                  <article class="ulr-about-editorial__card">
+                    <span class="ulr-about-editorial__icon" aria-hidden="true"><i class="tji-worldwide"></i></span>
+                    <p>We support governments, institutions, agricultural operations, distributors, and commercial buyers with structured access to trusted solutions in agricultural biosecurity, clean water, and food security.</p>
+                  </article>
+                  <article class="ulr-about-editorial__card ulr-about-editorial__card--highlight">
+                    <span class="ulr-about-editorial__icon" aria-hidden="true"><i class="tji-chart"></i></span>
+                    <p class="mb-0">Our role is simple: we connect reliable products with real regional demand through professional sourcing, stakeholder engagement, supplier coordination, and execution-driven delivery.</p>
+                  </article>
+                </div>
+              </div>
             </div>
           </div>
         </section>
         <!-- end: About Section -->
         <!-- start: Solutions Section -->
         <section id="solutions" class="ulr-home-section ulr-home-section--alt section-gap-x">
-          <div class="ulr-layout">
+          <div class="ulr-home-band__inner">
             <div class="ulr-home-section-head ulr-home-section-head--center wow fadeInUp" data-wow-delay=".1s">
-              <h2 class="sec-title title-anim">Our Three Core <span>Solutions</span></h2>
+              <h2 class="sec-title title-anim">Our Four Core <span>Solutions</span></h2>
             </div>
             <div class="ulr-solutions-grid">
               <article class="ulr-solution-card wow fadeInUp" data-wow-delay=".15s">
                 <h3 class="sec-title">Agricultural Biosecurity</h3>
                 <p class="ulr-solution-lead">Protecting livestock. Securing production.</p>
                 <p class="desc">We support farms, abattoirs, dairies, feedlots, hatcheries, and livestock transporters with biosecurity and sanitation solutions designed to reduce contamination risk, support hygiene compliance, and protect agricultural productivity.</p>
-                <a class="tj-primary-btn" href="pillar-agri-biosecurity.html">
-                  <span class="btn-text"><span>View Agricultural Biosecurity</span></span>
+                <a class="tj-primary-btn ulr-solution-card__link" href="pillar-agri-biosecurity.html" aria-label="View agricultural biosecurity solutions">
+                  <span class="btn-text"><span>Explore biosecurity</span></span>
                   <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                 </a>
               </article>
@@ -343,8 +352,8 @@
                 <h3 class="sec-title">Clean Water Solutions</h3>
                 <p class="ulr-solution-lead">Safe water. Sustainable communities.</p>
                 <p class="desc">Our water purification solutions support households, communities, institutions, emergency relief programmes, and regional water resilience initiatives by improving access to cleaner, safer usable water.</p>
-                <a class="tj-primary-btn" href="pillar-water-purification.html">
-                  <span class="btn-text"><span>View Clean Water Solutions</span></span>
+                <a class="tj-primary-btn ulr-solution-card__link" href="pillar-water-purification.html" aria-label="View clean water solutions">
+                  <span class="btn-text"><span>Explore water</span></span>
                   <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                 </a>
               </article>
@@ -352,8 +361,17 @@
                 <h3 class="sec-title">Strategic Food Supply</h3>
                 <p class="ulr-solution-lead">Reliable supply. Nutritious food. Delivered at scale.</p>
                 <p class="desc">Through our food security offering, Ubuntu Life Resources supports institutional buyers, wholesalers, distributors, and government supply programmes with shelf-stable, high-protein canned seafood solutions.</p>
-                <a class="tj-primary-btn" href="pillar-shelf-stable-nutrition.html">
-                  <span class="btn-text"><span>View Food Supply Solutions</span></span>
+                <a class="tj-primary-btn ulr-solution-card__link" href="pillar-shelf-stable-nutrition.html" aria-label="View food supply solutions">
+                  <span class="btn-text"><span>Explore food supply</span></span>
+                  <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+                </a>
+              </article>
+              <article class="ulr-solution-card ulr-solution-card--hygiene wow fadeInUp" data-wow-delay=".3s">
+                <h3 class="sec-title">Hygiene &amp; Sanitation</h3>
+                <p class="ulr-solution-lead">Cleaner facilities. Safer operations.</p>
+                <p class="desc">We support farms, abattoirs, food processing sites, and institutional programmes with veterinary-grade disinfection and sanitation solutions — from surface hygiene and foot baths to fogging and compliant deployment across Southern Africa.</p>
+                <a class="tj-primary-btn ulr-solution-card__link" href="products.html#hygiene-sanitation" aria-label="View hygiene and sanitation solutions">
+                  <span class="btn-text"><span>Explore hygiene</span></span>
                   <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                 </a>
               </article>
@@ -363,7 +381,7 @@
         <!-- end: Solutions Section -->
         <!-- start: Why Choose Us Section -->
         <section id="why-choose" class="ulr-home-section section-gap-x">
-          <div class="ulr-layout">
+          <div class="ulr-home-band__inner">
             <div class="ulr-why-band">
               <div class="ulr-why-band-inner">
                 <div class="ulr-why-band-intro wow fadeInUp" data-wow-delay=".06s">
@@ -392,54 +410,68 @@
           </div>
         </section>
         <!-- end: Why Choose Us Section -->
-        <section id="vision" class="ulr-home-section ulr-home-section--tight section-gap-x" aria-labelledby="vision-heading">
-          <div class="ulr-layout">
-            <div class="ulr-statements-stack">
-              <article class="ulr-statement-card wow fadeInUp" data-wow-delay=".06s">
-                <h2 id="vision-heading" class="sec-title title-anim">Our <span>Vision</span></h2>
-                <p class="desc mb-0">To become a leading African market expansion and supply partner recognised for enabling the successful adoption of agricultural biosecurity, clean water, and food security solutions that contribute to healthier populations, stronger industries, and sustainable regional growth.</p>
+        <section id="vision" class="ulr-home-section section-gap-x ulr-home-vision-mission" aria-labelledby="vision-heading">
+          <div class="ulr-home-band__inner">
+            <div class="ulr-vm-stack">
+              <article class="ulr-vm-vision wow fadeInUp" data-wow-delay=".06s" aria-labelledby="vision-heading">
+                <div class="ulr-vm-vision__inner">
+                  <div class="ulr-vm-vision__head">
+                    <span class="ulr-vm-tag"><i class="tji-worldwide" aria-hidden="true"></i> Vision</span>
+                    <h2 id="vision-heading" class="sec-title title-anim">Our <span>Vision</span></h2>
+                  </div>
+                  <p class="ulr-vm-vision__text mb-0">To become a leading African market expansion and supply partner recognised for enabling the successful adoption of agricultural biosecurity, clean water, and food security solutions that contribute to healthier populations, stronger industries, and sustainable regional growth.</p>
+                </div>
               </article>
-              <article id="mission" class="ulr-statement-card wow fadeInUp" data-wow-delay=".1s" aria-labelledby="mission-heading">
-                <h2 id="mission-heading" class="sec-title title-anim">Our <span>Mission</span></h2>
-                <p class="desc">Our mission is to support governments, institutions, agricultural sectors, distributors, and commercial partners through strategic supply, stakeholder engagement, market development, and execution-driven delivery of practical solutions across Africa.</p>
-                <p class="desc mb-2">We are committed to facilitating reliable access to:</p>
-                <ul class="ulr-mission-list">
-                  <li>Agricultural biosecurity solutions</li>
-                  <li>Water purification technologies</li>
-                  <li>Nutritional food supply programmes</li>
+              <article id="mission" class="ulr-vm-mission wow fadeInUp" data-wow-delay=".1s" aria-labelledby="mission-heading">
+                <header class="ulr-vm-mission__head">
+                  <span class="ulr-vm-tag"><i class="tji-list" aria-hidden="true"></i> Mission</span>
+                  <h2 id="mission-heading" class="sec-title title-anim">Our <span>Mission</span></h2>
+                </header>
+                <p class="ulr-vm-mission__lead">Our mission is to support governments, institutions, agricultural sectors, distributors, and commercial partners through strategic supply, stakeholder engagement, market development, and execution-driven delivery of practical solutions across Africa.</p>
+                <p class="ulr-vm-mission__intro">We are committed to facilitating reliable access to:</p>
+                <ul class="ulr-vm-pillar-links">
+                  <li><a href="pillar-agri-biosecurity.html">Agricultural biosecurity solutions</a></li>
+                  <li><a href="pillar-water-purification.html">Water purification technologies</a></li>
+                  <li><a href="pillar-shelf-stable-nutrition.html">Nutritional food supply programmes</a></li>
+                  <li><a href="products.html#hygiene-sanitation">Hygiene and sanitation solutions</a></li>
                 </ul>
-                <p class="desc">while building long-term partnerships that create measurable impact, operational resilience, and sustainable growth across regional markets.</p>
-                <p class="desc">We are continuously expanding our network of strategic partners, suppliers, distributors, and market representatives who share our vision of driving impactful solutions across African markets.</p>
-                <p class="desc">Ubuntu Life Resources is actively seeking to collaborate with organizations and individuals looking to introduce and scale across Southern Africa and selected Sub-Saharan African regions.</p>
-                <p class="desc mb-0">Through structured market access, stakeholder engagement, commercial execution, and regional relationship networks, we aim to create sustainable growth opportunities while delivering practical, high-impact solutions into markets where they are needed most.</p>
+                <p class="ulr-vm-mission__connector">while building long-term partnerships that create measurable impact, operational resilience, and sustainable growth across regional markets.</p>
+                <div class="ulr-vm-mission__points">
+                  <p>We are continuously expanding our network of strategic partners, suppliers, distributors, and market representatives who share our vision of driving impactful solutions across African markets.</p>
+                  <p>Ubuntu Life Resources is actively seeking to collaborate with organizations and individuals looking to introduce and scale across Southern Africa and selected Sub-Saharan African regions.</p>
+                  <p class="mb-0">Through structured market access, stakeholder engagement, commercial execution, and regional relationship networks, we aim to create sustainable growth opportunities while delivering practical, high-impact solutions into markets where they are needed most.</p>
+                </div>
               </article>
             </div>
           </div>
         </section>
         <!-- start: Partner CTA -->
         <section id="partner" class="ulr-home-section section-gap-x ulr-partner-section">
-          <div class="ulr-layout">
-            <div class="ulr-partner-card wow fadeInUp" data-wow-delay=".08s">
-              <div class="row g-4 g-lg-5 align-items-start">
-                <div class="col-lg-8">
-                  <h2 class="ulr-partner-title title-anim">Looking to expand your products, solutions, or supply capabilities into African markets?</h2>
-                  <p class="ulr-partner-lead">Ubuntu Life Resources welcomes collaboration opportunities with manufacturers, suppliers, distributors, investors, institutions, NGOs, agricultural groups, and strategic partners seeking structured market access and commercial growth across Southern Africa and selected Sub-Saharan African regions.</p>
-                  <p class="ulr-partner-tagline">Let&rsquo;s build scalable, impact-driven solutions together.</p>
-                  <p class="desc">Contact us today to explore partnership, distribution, supply, or market representation opportunities.</p>
-                  <a class="tj-primary-btn" href="contact.html">
+          <div class="ulr-home-band__inner">
+            <div class="ulr-partner-panel wow fadeInUp" data-wow-delay=".08s">
+              <div class="ulr-partner-panel__main">
+                <span class="ulr-partner-panel__eyebrow">Partner with us</span>
+                <h2 class="ulr-partner-title title-anim">Looking to expand your products, solutions, or supply capabilities into African markets?</h2>
+                <p class="ulr-partner-lead">Ubuntu Life Resources welcomes collaboration opportunities with manufacturers, suppliers, distributors, investors, institutions, NGOs, agricultural groups, and strategic partners seeking structured market access and commercial growth across Southern Africa and selected Sub-Saharan African regions.</p>
+                <p class="ulr-partner-highlight">Let&rsquo;s build scalable, impact-driven solutions together.</p>
+                <p class="ulr-partner-panel__cta-line mb-0">Contact us today to explore partnership, distribution, supply, or market representation opportunities.</p>
+              </div>
+              <aside class="ulr-partner-panel__contact">
+                <div class="ulr-partner-contact-card">
+                  <p class="ulr-partner-contact-card__label">Leadership</p>
+                  <p class="ulr-partner-aside-name mb-0">Sanchia-Lynn Smit</p>
+                  <p class="ulr-partner-aside-role">CEO / Founder<br>Ubuntu Life Resources</p>
+                  <ul class="ulr-partner-contact-card__links">
+                    <li><a href="mailto:sanchia@ubuntuliferesources.co.za">sanchia@ubuntuliferesources.co.za</a></li>
+                    <li><a href="https://www.linkedin.com/in/sanchia-lynn-smit-935a44404" target="_blank" rel="noopener noreferrer">LinkedIn profile</a></li>
+                    <li><span>South Africa</span></li>
+                  </ul>
+                  <a class="tj-primary-btn ulr-partner-contact-card__btn" href="contact.html">
                     <span class="btn-text"><span>Contact Us</span></span>
                     <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
                   </a>
                 </div>
-                <div class="col-lg-4">
-                  <aside class="ulr-partner-aside">
-                    <p class="ulr-partner-aside-name mb-0">Sanchia-Lynn Smit</p>
-                    <p class="ulr-partner-aside-role">CEO / Founder<br>Ubuntu Life Resources</p>
-                    <p class="mb-0"><a href="mailto:sanchia@ubuntuliferesources.co.za">sanchia@ubuntuliferesources.co.za</a></p>
-                    <p class="ulr-partner-aside-loc mb-0">South Africa</p>
-                  </aside>
-                </div>
-              </div>
+              </aside>
             </div>
           </div>
         </section>
@@ -448,16 +480,15 @@
       <!-- start: Footer Section -->
       <footer class="tj-footer-section footer-1 section-gap-x ulr-site-footer">
         <div class="ulr-footer-panel">
-          <div class="container">
-            <div class="row g-4 g-xl-5 align-items-start">
+          <div class="ulr-home-band__inner">
+            <div class="row g-3 align-items-start">
               <div class="col-lg-4 col-md-6">
                 <div class="ulr-footer-brand wow fadeInUp" data-wow-delay=".1s">
                   <a class="ulr-footer-logo" href="index.html">
                     <img src="assets/images/logos/ulr-logo.png" alt="Ubuntu Life Resources">
                   </a>
-                  <p class="ulr-footer-tagline">Africa-focused market development, sales and commercial representation for agricultural biosecurity, water purification and food security solutions.</p>
-                  <p class="ulr-footer-reg">Reg. 2026/215685/07</p>
-                </div>
+                  <p class="ulr-footer-tagline">Market development and commercial representation across agricultural biosecurity, water, food security, and hygiene solutions in Africa.</p>
+</div>
               </div>
               <div class="col-6 col-md-3 col-lg-2">
                 <div class="ulr-footer-col wow fadeInUp" data-wow-delay=".15s">
@@ -485,13 +516,9 @@
               </div>
               <div class="col-lg-4 col-md-12">
                 <div class="ulr-footer-contact wow fadeInUp" data-wow-delay=".25s">
-                  <h5 class="ulr-footer-heading">Partner with us</h5>
-                  <p class="ulr-footer-contact-lead">Structured distribution and programme alignment for distributors, agents, and institutional buyers.</p>
+                  <h5 class="ulr-footer-heading">Contact</h5>
+                  <p class="ulr-footer-contact-name mb-1">Sanchia-Lynn Smit <span class="ulr-footer-contact-role">· CEO / Founder</span></p>
                   <ul class="ulr-footer-contact-list">
-                    <li>
-                      <span class="ulr-footer-contact-label">Leadership</span>
-                      <span class="ulr-footer-contact-name">Sanchia-Lynn Smit</span>
-                    </li>
                     <li>
                       <a href="tel:+27796588189">
                         <span class="ulr-footer-contact-ico"><i class="tji-phone-2"></i></span>
@@ -505,39 +532,22 @@
                     <li>
                       <a href="https://www.linkedin.com/in/sanchia-lynn-smit-935a44404" target="_blank" rel="noopener noreferrer">
                         <span class="ulr-footer-contact-ico"><i class="fa-brands fa-linkedin-in"></i></span>
-                        linkedin.com/in/sanchia-lynn-smit-935a44404</a>
+                        LinkedIn</a>
                     </li>
                   </ul>
-                  <a class="tj-primary-btn ulr-footer-cta" href="contact.html">
-                    <span class="btn-text"><span>Open enquiry form</span></span>
-                    <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="ulr-footer-bottom">
-          <div class="container">
+          <div class="ulr-home-band__inner">
             <div class="ulr-footer-bottom-inner">
-              <p class="ulr-footer-copy">&copy; <span>2026</span> Ubuntu Life Resources. All rights reserved.</p>
+              <p class="ulr-footer-copy">&copy; <span>2026</span> Ubuntu Life Resources · Reg. 2026/215685/07</p>
               <div class="social-links ulr-footer-social">
                 <ul>
                   <li>
-                    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
-                        class="fa-brands fa-facebook-f"></i></a>
-                  </li>
-                  <li>
-                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
-                        class="fa-brands fa-instagram"></i></a>
-                  </li>
-                  <li>
-                    <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X"><i
-                        class="fa-brands fa-x-twitter"></i></a>
-                  </li>
-                  <li>
-                    <a href="https://www.linkedin.com/in/sanchia-lynn-smit-935a44404" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile of Sanchia-Lynn Smit"><i
-                        class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/in/sanchia-lynn-smit-935a44404" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn — Sanchia-Lynn Smit"><i class="fa-brands fa-linkedin-in"></i></a>
                   </li>
                 </ul>
               </div>

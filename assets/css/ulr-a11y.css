@@ -234,15 +234,56 @@ body.ulr-rich-subpage .pillar-header-lead strong {
 }
 
 /* ------------------------------------------------------------------ */
-/* Partner card (light) — already tuned; reinforce                      */
+/* Partner — light card layouts only (not homepage dark panel)          */
 /* ------------------------------------------------------------------ */
-.ulr-partner-lead {
+.ulr-partner-card .ulr-partner-lead {
   color: var(--ulr-text-on-light) !important;
 }
 
-.ulr-partner-aside-role,
-.ulr-partner-aside-loc {
+.ulr-partner-card .ulr-partner-aside-role,
+.ulr-partner-card .ulr-partner-aside-loc {
   color: var(--ulr-text-on-light-muted) !important;
+}
+
+/* Homepage partner panel — dark surface, high contrast */
+body.ulr-home .ulr-partner-panel,
+body.ulr-home .ulr-partner-panel p {
+  color: var(--ulr-text-on-dark);
+}
+
+body.ulr-home .ulr-partner-panel .ulr-partner-title {
+  color: var(--ulr-text-on-dark) !important;
+}
+
+body.ulr-home .ulr-partner-panel .ulr-partner-lead,
+body.ulr-home .ulr-partner-panel .ulr-partner-panel__cta-line {
+  color: var(--ulr-text-on-dark-muted) !important;
+}
+
+body.ulr-home .ulr-partner-panel .ulr-partner-highlight {
+  color: var(--ulr-text-on-dark) !important;
+}
+
+body.ulr-home .ulr-partner-panel .ulr-partner-panel__eyebrow,
+body.ulr-home .ulr-partner-panel .ulr-partner-contact-card__label {
+  color: var(--ulr-accent-on-dark) !important;
+}
+
+body.ulr-home .ulr-partner-panel .ulr-partner-aside-name {
+  color: var(--ulr-text-on-dark) !important;
+}
+
+body.ulr-home .ulr-partner-panel .ulr-partner-aside-role {
+  color: var(--ulr-text-on-dark-muted) !important;
+}
+
+body.ulr-home .ulr-partner-panel .ulr-partner-contact-card__links a,
+body.ulr-home .ulr-partner-panel .ulr-partner-contact-card__links span {
+  color: var(--ulr-text-on-dark) !important;
+}
+
+body.ulr-home .ulr-partner-panel .ulr-partner-contact-card__links a:hover {
+  color: var(--ulr-accent-on-dark) !important;
 }
 
 /* Leadership contact card — no profile photo */
