@@ -1,0 +1,390 @@
+/**
+ * Ubuntu Life Resources — Dark glassmorphic hero (reusable component)
+ * Brand tokens + layout; use on .ulr-hero-glass root.
+ */
+
+@keyframes ulr-hero-glass-blob {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+@keyframes ulr-hero-glass-text-shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes ulr-hero-glass-badge-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* Layer 1 — environment */
+.ulr-hero-glass {
+  --ulr-hero-footer2: #071a33;
+  --ulr-hero-footer1: #0a4a82;
+  --ulr-hero-blue-dark2: #0a3560;
+  --ulr-hero-blue: #0b5fa5;
+  --ulr-hero-blue-light: #3fa9f5;
+  --ulr-hero-green-dark: #2e7d32;
+  --ulr-hero-green: #6fbf3a;
+  --ulr-hero-green-accent: #8fd456;
+  --ulr-hero-theme-bg: #f0f6fb;
+
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ulr-hero-glass__env {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ulr-hero-glass__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    var(--ulr-hero-footer2) 0%,
+    var(--ulr-hero-blue-dark2) 50%,
+    var(--ulr-hero-footer1) 100%
+  );
+}
+
+.ulr-hero-glass__grid-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+  background-image:
+    linear-gradient(to right, rgba(63, 169, 245, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(63, 169, 245, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.ulr-hero-glass__orb {
+  position: absolute;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  animation: ulr-hero-glass-blob 10s ease-in-out infinite;
+}
+
+.ulr-hero-glass__orb--blue {
+  top: 25%;
+  left: 25%;
+  width: min(400px, 55vw);
+  height: min(400px, 55vw);
+  background: var(--ulr-hero-blue);
+  opacity: 0.5;
+  filter: blur(120px);
+}
+
+.ulr-hero-glass__orb--green {
+  top: 33%;
+  right: 25%;
+  width: min(350px, 48vw);
+  height: min(350px, 48vw);
+  background: var(--ulr-hero-green);
+  opacity: 0.4;
+  filter: blur(100px);
+  animation-delay: 2s;
+}
+
+.ulr-hero-glass__orb--light {
+  bottom: -8rem;
+  left: 35%;
+  width: min(500px, 65vw);
+  height: min(500px, 65vw);
+  background: var(--ulr-hero-blue-light);
+  opacity: 0.3;
+  filter: blur(150px);
+  animation-delay: 4s;
+}
+
+/* Layer 2 — glass panel */
+.ulr-hero-glass__panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+  padding: clamp(2rem, 5vw, 3rem) clamp(1.25rem, 3vw, 1.5rem);
+  background: linear-gradient(
+    135deg,
+    rgba(10, 53, 96, 0.4) 0%,
+    rgba(11, 46, 79, 0.1) 100%
+  );
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(63, 169, 245, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 768px) {
+  .ulr-hero-glass__panel {
+    padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2rem);
+  }
+}
+
+@media (min-width: 992px) {
+  .ulr-hero-glass__panel {
+    padding: clamp(3rem, 5vw, 5rem) clamp(2rem, 3vw, 2.5rem);
+  }
+}
+
+.ulr-hero-glass__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(143, 212, 86, 0.3);
+  background: rgba(46, 125, 50, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: var(--tj-ff-body, "Poppins", sans-serif);
+  font-size: clamp(11px, 1.5vw, 14px);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ulr-hero-green-accent);
+}
+
+.ulr-hero-glass__badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ulr-hero-green-accent);
+  box-shadow: 0 0 8px var(--ulr-hero-green-accent);
+  animation: ulr-hero-glass-badge-pulse 2s ease-in-out infinite;
+}
+
+.ulr-hero-glass__title {
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto clamp(1.25rem, 2.5vw, 2rem);
+  font-family: var(--tj-ff-heading, "Montserrat", sans-serif);
+  font-size: clamp(1.5rem, 3.5vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-align: center;
+}
+
+.ulr-hero-glass__flip {
+  --flip-h: 1.2em;
+  display: block;
+  min-height: var(--flip-h);
+  perspective: 900px;
+}
+
+.ulr-hero-glass__flip-live {
+  display: inline-block;
+  max-width: 100%;
+  line-height: var(--flip-h);
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+  transform-origin: center center;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.ulr-hero-glass__flip.is-exit .ulr-hero-glass__flip-live {
+  transform: rotateX(-88deg);
+  opacity: 0;
+}
+
+.ulr-hero-glass__flip.is-pre-enter .ulr-hero-glass__flip-live {
+  transform: rotateX(88deg);
+  opacity: 0;
+  transition: none;
+}
+
+.ulr-hero-glass__shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--ulr-hero-theme-bg) 0%,
+    var(--ulr-hero-blue-light) 50%,
+    var(--ulr-hero-theme-bg) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: ulr-hero-glass-text-shimmer 3s ease-out infinite alternate;
+}
+
+.ulr-hero-glass__lead {
+  max-width: 48rem;
+  margin: 0 auto clamp(1.5rem, 3vw, 3rem);
+  font-family: var(--tj-ff-body, "Poppins", sans-serif);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.65;
+  color: rgba(240, 246, 251, 0.8);
+}
+
+.ulr-hero-glass__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 22rem;
+}
+
+@media (min-width: 576px) {
+  .ulr-hero-glass__actions {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    max-width: none;
+    gap: 1.25rem;
+  }
+}
+
+.ulr-hero-glass__btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  font-family: var(--tj-ff-body, "Poppins", sans-serif);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.ulr-hero-glass__btn--primary {
+  color: #fff;
+  background: linear-gradient(
+    to right,
+    var(--ulr-hero-green-dark),
+    var(--ulr-hero-green)
+  );
+  box-shadow: 0 0 20px rgba(111, 191, 58, 0.3);
+}
+
+.ulr-hero-glass__btn--primary:hover {
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(111, 191, 58, 0.5);
+}
+
+.ulr-hero-glass__btn-shine {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: width 0.5s ease-out;
+  pointer-events: none;
+}
+
+.ulr-hero-glass__btn--primary:hover .ulr-hero-glass__btn-shine {
+  width: 100%;
+}
+
+.ulr-hero-glass__btn-label {
+  position: relative;
+  z-index: 1;
+}
+
+.ulr-hero-glass__btn--secondary {
+  color: var(--ulr-hero-blue-light);
+  background: rgba(63, 169, 245, 0.1);
+  border: 1px solid rgba(63, 169, 245, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.ulr-hero-glass__btn--secondary:hover {
+  color: var(--ulr-hero-blue-light);
+  transform: scale(1.05);
+  background: rgba(63, 169, 245, 0.2);
+  border-color: rgba(63, 169, 245, 0.6);
+}
+
+.ulr-hero-glass__btn:focus-visible {
+  outline: 2px solid var(--ulr-hero-green-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 575px) {
+  .ulr-hero-glass {
+    border-radius: 1rem;
+  }
+
+  .ulr-hero-glass__panel {
+    padding: 1.5rem 1rem;
+  }
+
+  .ulr-hero-glass__title {
+    font-size: clamp(1.2rem, 5vw, 1.65rem);
+  }
+
+  .ulr-hero-glass__actions {
+    max-width: none;
+    width: 100%;
+  }
+
+  .ulr-hero-glass__btn {
+    width: 100%;
+  }
+
+  .ulr-hero-glass__orb {
+    filter: blur(80px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ulr-hero-glass__orb,
+  .ulr-hero-glass__shimmer,
+  .ulr-hero-glass__badge-dot {
+    animation: none;
+  }
+
+  .ulr-hero-glass__flip-live {
+    transition: none;
+  }
+
+  .ulr-hero-glass__shimmer {
+    color: var(--ulr-hero-blue-light);
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+  }
+
+  .ulr-hero-glass__btn--primary:hover,
+  .ulr-hero-glass__btn--secondary:hover {
+    transform: none;
+  }
+}

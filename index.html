@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="assets/css/ulr-brand.css">
   <link rel="stylesheet" href="assets/css/ulr-layout.css">
   <link rel="stylesheet" href="assets/css/ulr-footer.css">
+  <link rel="stylesheet" href="assets/css/ulr-hero-glass.css">
   <link rel="stylesheet" href="assets/css/ulr-home.css">
   <link rel="stylesheet" href="assets/css/ulr-a11y.css">
 </head>
@@ -261,36 +262,37 @@
         <!-- start: Hero band (copy + pillar photos, shared width) -->
         <section class="ulr-hero-band section-gap-x" aria-label="Ubuntu Life Resources homepage hero">
           <div class="ulr-hero-band__inner">
-            <div class="ulr-hero-kinetic wow fadeIn" data-wow-delay=".05s">
-              <div class="ulr-hero-kinetic__bg" aria-hidden="true">
-                <div class="ulr-hero-kinetic__gradient"></div>
-                <div class="ulr-hero-kinetic__grid-pattern"></div>
-                <span class="ulr-hero-kinetic__orb ulr-hero-kinetic__orb--blue"></span>
-                <span class="ulr-hero-kinetic__orb ulr-hero-kinetic__orb--green"></span>
-                <span class="ulr-hero-kinetic__orb ulr-hero-kinetic__orb--light"></span>
+            <div class="ulr-hero-glass wow fadeIn" data-wow-delay=".05s">
+              <div class="ulr-hero-glass__env" aria-hidden="true">
+                <div class="ulr-hero-glass__gradient"></div>
+                <div class="ulr-hero-glass__grid-pattern"></div>
+                <span class="ulr-hero-glass__orb ulr-hero-glass__orb--blue"></span>
+                <span class="ulr-hero-glass__orb ulr-hero-glass__orb--green"></span>
+                <span class="ulr-hero-glass__orb ulr-hero-glass__orb--light"></span>
               </div>
-              <div class="ulr-hero-kinetic__glass">
-                <div class="ulr-hero-kinetic__badge wow fadeInDown" data-wow-delay=".1s">
-                  <span class="ulr-hero-kinetic__badge-dot" aria-hidden="true"></span>
+              <div class="ulr-hero-glass__panel">
+                <div class="ulr-hero-glass__badge wow fadeInDown" data-wow-delay=".1s">
+                  <span class="ulr-hero-glass__badge-dot" aria-hidden="true"></span>
                   <span>Ubuntu Life Resources</span>
                 </div>
-                <h1 class="ulr-hero-kinetic__title title-anim wow fadeInDown" data-wow-delay=".15s">
-                  <span class="ulr-hero-kinetic__pillar">Agricultural Biosecurity</span>
-                  <span class="ulr-hero-kinetic__sep" aria-hidden="true">&bull;</span>
-                  <span class="ulr-hero-kinetic__pillar">Clean Water</span>
-                  <span class="ulr-hero-kinetic__sep" aria-hidden="true">&bull;</span>
-                  <br class="ulr-hero-kinetic__break" aria-hidden="true">
-                  <span class="ulr-hero-kinetic__pillar">Food Security</span>
-                  <span class="ulr-hero-kinetic__sep" aria-hidden="true">&bull;</span>
-                  <span class="ulr-hero-kinetic__pillar ulr-hero-kinetic__pillar--shimmer">Hygiene and Sanitation</span>
+                <h1 class="ulr-hero-glass__title wow fadeInDown" data-wow-delay=".15s">
+                  <span class="ulr-hero-glass__flip" data-ulr-hero-flip>
+                    <span class="ulr-hero-glass__flip-live" data-ulr-hero-flip-live aria-live="polite">Agricultural Biosecurity</span>
+                    <span class="ulr-hero-glass__flip-store" hidden>
+                      <span data-label>Agricultural Biosecurity</span>
+                      <span data-label>Clean Water</span>
+                      <span data-label>Food Security</span>
+                      <span data-label class="ulr-hero-glass__shimmer">Hygiene and Sanitation</span>
+                    </span>
+                  </span>
                 </h1>
-                <p class="ulr-hero-kinetic__lead wow fadeInUp" data-wow-delay=".25s">An Africa-focused commercial supply and market development company delivering essential solutions across agriculture, water purification, and strategic food supply.</p>
-                <div class="ulr-hero-kinetic__actions wow fadeInUp" data-wow-delay=".35s">
-                  <a class="ulr-hero-kinetic__btn ulr-hero-kinetic__btn--primary" href="#solutions">
-                    <span class="ulr-hero-kinetic__btn-text">Explore Our Solutions</span>
-                    <span class="ulr-hero-kinetic__btn-shine" aria-hidden="true"></span>
+                <p class="ulr-hero-glass__lead wow fadeInUp" data-wow-delay=".25s">An Africa-focused commercial supply and market development company delivering essential solutions across agriculture, water purification, and strategic food supply.</p>
+                <div class="ulr-hero-glass__actions wow fadeInUp" data-wow-delay=".35s">
+                  <a class="ulr-hero-glass__btn ulr-hero-glass__btn--primary" href="#solutions">
+                    <span class="ulr-hero-glass__btn-label">Explore Our Solutions</span>
+                    <span class="ulr-hero-glass__btn-shine" aria-hidden="true"></span>
                   </a>
-                  <a class="ulr-hero-kinetic__btn ulr-hero-kinetic__btn--secondary" href="contact.html">Contact Us</a>
+                  <a class="ulr-hero-glass__btn ulr-hero-glass__btn--secondary" href="contact.html">Contact Us</a>
                 </div>
               </div>
             </div>
@@ -590,5 +592,6 @@
   <script src="assets/js/wow.min.js"></script>
   <script src="assets/js/meanmenu.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/ulr-hero-flip.js"></script>
 </body>
 </html>
