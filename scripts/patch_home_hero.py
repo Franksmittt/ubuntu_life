@@ -13,7 +13,7 @@ t = re.sub(
 )
 
 new_hero = """          <div class="hero-visual-strip wow fadeIn" data-wow-delay=".25s">
-            <div class="hero-split-banner" role="group" aria-label="Featured photography: farmer spraying, clean water hands, Tonno Bonno warehouse, hygiene and sanitation">
+            <div class="hero-split-banner" role="group" aria-label="Featured photography: farmer spraying, Water Purification Solutions hands, Tonno Bonno warehouse, hygiene and sanitation">
               <article class="ulr-hero-tile">
                 <div class="ulr-hero-tile__image">
                   <img src="bio.jpeg" alt="Farmer spraying, agricultural biosecurity." width="640" height="480" decoding="async" fetchpriority="high">
@@ -22,8 +22,8 @@ new_hero = """          <div class="hero-visual-strip wow fadeIn" data-wow-delay
               </article>
               <article class="ulr-hero-tile">
                 <div class="ulr-hero-tile__image">
-                  <img src="water.jpeg" alt="Hands with clean water, water purification." width="640" height="480" decoding="async" fetchpriority="high">
-                  <span class="ulr-hero-tile__label">Clean Water</span>
+                  <img src="water.jpeg" alt="Hands with water, water purification solutions." width="640" height="480" decoding="async" fetchpriority="high">
+                  <span class="ulr-hero-tile__label">Water Purification Solutions</span>
                 </div>
               </article>
               <article class="ulr-hero-tile">

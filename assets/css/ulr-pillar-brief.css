@@ -67,3 +67,247 @@
 .ulr-product-table th {
   background: #f4f8f8;
 }
+
+/* Strategic food supply pillar — hero banner (1536×1024, 3:2) */
+.ulr-food-banner__figure {
+  width: 100%;
+  margin: 0;
+  background: #f4f8f8;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.ulr-food-banner__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  object-position: top center;
+}
+
+.ulr-food-intro {
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+  padding-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+.ulr-food-intro .desc,
+.ulr-food-intro__lead,
+.ulr-food-intro__sub {
+  max-width: 52rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.65;
+}
+
+.ulr-food-intro__lead {
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+}
+
+.ulr-food-supply-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ulr-food-supply-grid li {
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--tj-color-border-1, #dce5e5);
+  background: #fff;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.ulr-food-range-heading {
+  margin-bottom: 1.25rem;
+}
+
+.ulr-food-category {
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.ulr-food-category:last-child {
+  margin-bottom: 0;
+}
+
+.ulr-food-category__title {
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tj-color-theme-primary, #1e8a8a);
+  margin-bottom: 1rem;
+}
+
+.ulr-food-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.ulr-food-product-card {
+  height: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--tj-color-border-1, #dce5e5);
+  background: #fff;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.ulr-food-product-card:hover {
+  border-color: var(--tj-color-theme-primary, #1e8a8a);
+  box-shadow: 0 8px 24px rgba(30, 138, 138, 0.12);
+}
+
+.ulr-food-product-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ulr-food-product-card__link:hover {
+  color: inherit;
+}
+
+.ulr-food-product-card__media {
+  margin: 0;
+  background: #f4f8f8;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+}
+
+.ulr-food-product-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ulr-food-product-card__body {
+  padding: 1rem 1.1rem 1.15rem;
+  flex: 1;
+}
+
+.ulr-food-product-card__title {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.35;
+}
+
+.ulr-food-product-card__sizes {
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: var(--tj-color-text-body, #4a5c5c);
+}
+
+.ulr-food-why-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ulr-food-why-list li {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--tj-color-border-1, #dce5e5);
+}
+
+.ulr-food-why-list li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.ulr-food-why-list strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* Food supply CTA — white on green, simple layout */
+body.ulr-pillar-page .ulr-food-cta .cta-area {
+  display: block;
+}
+
+body.ulr-pillar-page .ulr-food-cta .cta-area .cta-content {
+  width: 100% !important;
+  max-width: none;
+  padding: clamp(2rem, 4vw, 2.75rem) clamp(1.5rem, 4vw, 3rem) !important;
+  box-sizing: border-box;
+}
+
+body.ulr-pillar-page .ulr-food-cta .cta-area .cta-content .title {
+  font-size: clamp(1.5rem, 3vw, 2rem) !important;
+  line-height: 1.2 !important;
+  margin-bottom: 0.75rem !important;
+  color: #ffffff !important;
+}
+
+body.ulr-pillar-page .ulr-food-cta .cta-area .cta-content .desc,
+body.ulr-pillar-page .ulr-food-cta .cta-area .cta-content p,
+body.ulr-pillar-page .ulr-food-cta .cta-area .cta-content li,
+body.ulr-pillar-page .ulr-food-cta .cta-area .cta-content strong {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+body.ulr-pillar-page .ulr-food-cta .cta-area .cta-content a:not(.tj-primary-btn) {
+  color: #ffffff !important;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+body.ulr-pillar-page .ulr-food-cta .cta-area .cta-content a:not(.tj-primary-btn):hover,
+body.ulr-pillar-page .ulr-food-cta .cta-area .cta-content a:not(.tj-primary-btn):focus-visible {
+  color: #e8f5e9 !important;
+}
+
+body.ulr-pillar-page .ulr-food-cta .ulr-food-cta__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  margin: 1.5rem 0 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 767px) {
+  body.ulr-pillar-page .ulr-food-cta .ulr-food-cta__split {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+body.ulr-pillar-page .ulr-food-cta .ulr-food-cta__split ul.desc {
+  columns: 2;
+  column-gap: 1.25rem;
+  padding-left: 1.15rem;
+  margin: 0;
+}
+
+@media (max-width: 575px) {
+  body.ulr-pillar-page .ulr-food-cta .ulr-food-cta__split ul.desc {
+    columns: 1;
+  }
+}
+
+body.ulr-pillar-page .ulr-food-cta .ulr-food-cta__split ul.desc li {
+  break-inside: avoid;
+  margin-bottom: 0.35rem;
+}
+
+body.ulr-pillar-page .ulr-food-cta .ulr-food-cta__services {
+  margin: 0 0 1.25rem !important;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  font-size: 0.95rem;
+}
+
+body.ulr-pillar-page .ulr-food-cta .cta-btn {
+  margin-top: 0;
+}

@@ -102,7 +102,7 @@ def build_agri():
         ),
         f"""        <section class="section-gap pt-0 pb-4">
           <{T} class="container text-center">
-            <p class="desc mb-3">Agricultural Biosecurity &middot; Clean Water &middot; Food Security</p>
+            <p class="desc mb-3">Agricultural Biosecurity &middot; Water Purification Solutions &middot; Food Security</p>
             <{T} class="d-flex flex-wrap gap-2 justify-content-center">
               <a class="tj-primary-btn" href="product-sani-99-agri.html"><span class="btn-text"><span>SANI-99&trade; Product Page</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>
               <a class="tj-primary-btn" href="contact.html"><span class="btn-text"><span>Contact Us</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>
@@ -334,7 +334,7 @@ def build_agri():
         sec(
             "Why Ubuntu Life Resources",
             "<p class=\"desc mb-2\">Ubuntu Life Resources focuses on supporting:</p>"
-            + ul(["Agricultural Biosecurity", "Clean Water Solutions", "Food Security Initiatives"])
+            + ul(["Agricultural Biosecurity", "Water Purification Solutions", "Food Security Initiatives"])
             + "<p class=\"desc mt-3 mb-0\">We work alongside agricultural networks, institutional stakeholders and operational partners to help strengthen hygiene and biosecurity standards across Africa and international markets.</p>",
             media(s, 14),
             "Ubuntu Life Resources.",
@@ -465,7 +465,7 @@ def build_amanzi():
         page_header(
             "Safe Drinking Water Solutions For Communities, Governments &amp; Emergency Response",
             "SANI AMANZI&trade; is a scalable water purification solution designed to support safer drinking water access in rural communities, disaster response environments, humanitarian operations and regions facing water insecurity.",
-            "Clean Water Solutions",
+            "Water Purification Solutions",
             media(s, 1) or "assets/images/service/ulr-service-water-treatment-programme.jpg",
         ),
         f"""        <section class="section-gap pt-0 pb-4">
@@ -478,12 +478,12 @@ def build_amanzi():
           </{T}>
         </section>""",
         sec(
-            "Access To Clean Water Saves Lives",
+            "Water Purification Solutions Save Lives",
             "<p class=\"desc\">Unsafe drinking water remains one of the leading causes of preventable disease worldwide.</p><p class=\"desc\">Millions of people across Africa, Asia and developing regions continue to rely on untreated water sources that expose communities to harmful pathogens, bacteria and contamination.</p><p class=\"desc mb-2\">Waterborne diseases continue to place pressure on:</p>"
             + ul(["public health systems", "schools", "communities", "healthcare infrastructure", "humanitarian organisations"])
-            + "<p class=\"desc mt-3 mb-0\">Ubuntu Life Resources supports scalable clean water initiatives through SANI AMANZI&trade; water purification solutions.</p>",
+            + "<p class=\"desc mt-3 mb-0\">Ubuntu Life Resources supports scalable water purification initiatives through SANI AMANZI&trade; water purification solutions.</p>",
             media(s, 4),
-            "Clean water access.",
+            "Water purification solutions.",
         ),
         sec(
             "What Is SANI AMANZI&trade;",
@@ -571,7 +571,7 @@ def build_amanzi():
         ),
         cta(
             "Partner With Ubuntu Life Resources",
-            "We support scalable clean water initiatives across Africa and developing regions through practical water purification solutions designed for real-world deployment.",
+            "We support scalable water purification initiatives across Africa and developing regions through practical water purification solutions designed for real-world deployment.",
             None,
         ),
     ]

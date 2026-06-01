@@ -161,6 +161,8 @@ body.ulr-rich-subpage .pillar-header-lead strong {
 .cta-area .cta-content p,
 .cta-area .cta-content ul,
 .cta-area .cta-content ul.desc li,
+.cta-area .cta-content li,
+.cta-area .cta-content strong,
 .cta-area .cta-content a:not(.tj-primary-btn) {
   color: var(--ulr-text-on-dark) !important;
 }
@@ -170,7 +172,9 @@ body.ulr-rich-subpage .pillar-header-lead strong {
 }
 
 .cta-area .cta-content .desc,
-.cta-area .cta-content p {
+.cta-area .cta-content p,
+.cta-area .cta-content li,
+.cta-area .cta-content strong {
   opacity: 1 !important;
 }
 
