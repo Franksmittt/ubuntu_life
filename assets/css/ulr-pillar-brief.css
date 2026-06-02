@@ -13,7 +13,70 @@
   height: auto;
   max-height: min(520px, 70vh);
   object-fit: contain;
+  object-position: center;
   background: #f4f8f8;
+}
+
+/* SANI AMANZI doc page — preserve full image visibility */
+.ulr-amanzi-hero-logos img {
+  width: auto;
+  max-width: min(220px, 45vw);
+  height: auto;
+  max-height: 72px;
+  object-fit: contain;
+}
+
+.ulr-amanzi-compare {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+  align-items: center;
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.ulr-amanzi-compare__vs {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--tj-color-theme-primary, #1e8a8a);
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .ulr-amanzi-compare {
+    grid-template-columns: 1fr;
+  }
+  .ulr-amanzi-compare__vs {
+    padding: 0.25rem 0;
+  }
+}
+
+.ulr-amanzi-char-grid .ulr-brief-figure img {
+  max-height: min(200px, 40vw);
+  margin: 0 auto;
+}
+
+.ulr-amanzi-stat-block {
+  text-align: center;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-radius: 12px;
+  border: 1px solid var(--tj-color-border-1, #dce5e5);
+  background: #f4f8f8;
+}
+
+.ulr-amanzi-stat-quote {
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--tj-color-theme-primary, #1e8a8a);
+}
+
+.ulr-amanzi-safety-grid .ulr-brief-figure img {
+  max-height: 150px;
+}
+
+.ulr-amanzi-steps li {
+  margin-bottom: 0.65rem;
 }
 .ulr-brief-copy .desc {
   line-height: 1.6;

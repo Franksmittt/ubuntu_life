@@ -459,123 +459,16 @@ def build_food():
 
 
 def build_amanzi():
-    s = "sani-amanzi"
-    # PNG-only slots (EMF not browser-safe): 1,4,5,8,9,10,11,13
-    parts = [
-        page_header(
-            "Safe Drinking Water Solutions For Communities, Governments &amp; Emergency Response",
-            "SANI AMANZI&trade; is a scalable water purification solution designed to support safer drinking water access in rural communities, disaster response environments, humanitarian operations and regions facing water insecurity.",
-            "Water Purification Solutions",
-            media(s, 1) or "assets/images/service/ulr-service-water-treatment-programme.jpg",
-        ),
-        f"""        <section class="section-gap pt-0 pb-4">
-          <{T} class="container text-center">
-            <p class="desc mb-3">Portable &middot; Scalable &middot; Emergency Ready</p>
-            <{T} class="d-flex flex-wrap gap-2 justify-content-center">
-              <a class="tj-primary-btn" href="product-sani-amanzi.html"><span class="btn-text"><span>Request Information</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>
-              <a class="tj-primary-btn" href="contact.html"><span class="btn-text"><span>Become a Distribution Partner</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>
-            </{T}>
-          </{T}>
-        </section>""",
-        sec(
-            "Water Purification Solutions Save Lives",
-            "<p class=\"desc\">Unsafe drinking water remains one of the leading causes of preventable disease worldwide.</p><p class=\"desc\">Millions of people across Africa, Asia and developing regions continue to rely on untreated water sources that expose communities to harmful pathogens, bacteria and contamination.</p><p class=\"desc mb-2\">Waterborne diseases continue to place pressure on:</p>"
-            + ul(["public health systems", "schools", "communities", "healthcare infrastructure", "humanitarian organisations"])
-            + "<p class=\"desc mt-3 mb-0\">Ubuntu Life Resources supports scalable water purification initiatives through SANI AMANZI&trade; water purification solutions.</p>",
-            media(s, 4),
-            "Water purification solutions.",
-        ),
-        sec(
-            "What Is SANI AMANZI&trade;",
-            "<p class=\"desc\">SANI AMANZI&trade; is a point-of-use water purification solution developed to help transform contaminated water into safer drinking water through a structured purification process.</p><p class=\"desc mb-2\">Each lightweight sachet treats up to 20 litres of contaminated water, making the product suitable for:</p>"
-            + ul(["households", "rural communities", "disaster relief", "schools", "NGOs", "emergency response operations", "humanitarian deployment", "institutional programs"])
-            + "<p class=\"desc mt-3 mb-0\">The compact sachet format allows simplified transportation, scalable distribution and rapid deployment into remote or water-stressed regions.</p>",
-            media(s, 5),
-            "SANI AMANZI product.",
-            flip=True,
-        ),
-        sec(
-            "Why SANI AMANZI&trade; Stands Apart",
-            ul(
-                [
-                    "<strong>Compact Sachet Technology</strong> &mdash; easy to transport and distribute.",
-                    "<strong>Accurate Dosage</strong> &mdash; each sachet delivers consistent treatment ratios.",
-                    "<strong>Chlorine-Free Approach</strong> &mdash; supports safer water treatment without chlorine taste and odour.",
-                    "<strong>Strong Pathogen Reduction</strong> &mdash; designed to support the reduction of harmful contaminants and microorganisms.",
-                    "<strong>Scalable For Large Populations</strong> &mdash; suitable for both household and institutional deployment.",
-                    "<strong>Sustainable Solution</strong> &mdash; reduces transport requirements and plastic waste compared to bottled water distribution.",
-                ]
-            ),
-            media(s, 8),
-            "SANI AMANZI benefits.",
-        ),
-        sec(
-            "Designed To Address Waterborne Risks",
-            "<p class=\"desc mb-2\">SANI AMANZI&trade; supports treatment processes associated with harmful bacteria, microbial contamination, suspended solids, waterborne pathogens and contaminated water sources.</p><p class=\"desc mb-2\">Potential contaminants may include:</p>"
-            + ul(["arsenic", "nitrates", "fluorides", "pesticides", "iron contamination"])
-            + "<p class=\"desc mt-3 mb-0\">Water quality challenges differ across regions and water sources, requiring scalable treatment support systems.</p>",
-            media(s, 9),
-            "Waterborne risks.",
-            flip=True,
-        ),
-        sec(
-            "Chlorine-Free Water Treatment",
-            "<p class=\"desc\">Unlike many traditional water purification systems, SANI AMANZI&trade; uses a chlorine-free treatment approach.</p><p class=\"desc mb-2\">This helps avoid chlorine taste, strong odours and chemical aftertaste while still supporting effective water purification processes.</p><p class=\"desc mb-0\">The result is improved usability and better drinking acceptance across communities and households.</p>",
-            media(s, 10),
-            "Chlorine-free treatment.",
-        ),
-        sec(
-            "Simple Water Treatment Process",
-            "<ol class=\"desc\"><li><strong>Step 1:</strong> Add 1 sachet to 20 litres of contaminated water.</li><li><strong>Step 2:</strong> Stir thoroughly to create strong agitation.</li><li><strong>Step 3:</strong> Allow water to stand for a minimum of 30 minutes.</li><li><strong>Step 4:</strong> Filter treated water through a dense cloth before use.</li></ol><p class=\"desc mt-3 mb-0\"><strong>Important:</strong> Optimal performance depends on correct dosage, proper agitation, full settling time and correct filtration protocol.</p>",
-            media(s, 11),
-            "How to use SANI AMANZI.",
-            flip=True,
-        ),
-        f"""        <section class="section-gap ulr-brief-section bg-light">
-          <{T} class="container">
-            <h2 class="sec-title h3 mb-3">Scalable Water Treatment</h2>
-            <table class="ulr-product-table">
-              <thead><tr><th>Water Volume</th><th>Recommended Dosage</th></tr></thead>
-              <tbody>
-                <tr><td>20 Litres</td><td>6g</td></tr>
-                <tr><td>1,000 Litres</td><td>300g</td></tr>
-                <tr><td>5,000 Litres</td><td>1.5kg</td></tr>
-              </tbody>
-            </table>
-          </{T}>
-        </section>""",
-        sec(
-            "Independently Evaluated Performance",
-            "<p class=\"desc mb-2\">SANI AMANZI&trade; has undergone independent laboratory testing focused on microbiological contamination, E.coli reduction, coliform reduction, water quality improvement and treatment effectiveness.</p><p class=\"desc mb-2\">Testing references include Aquatico, Waterlab, M&eacute;rieux NutriSciences and BioScience.</p><p class=\"desc mb-0\">Results demonstrated strong reductions in microbial contamination following treatment.</p>",
-            media(s, 13),
-            "Laboratory testing.",
-        ),
-        sec(
-            "Emergency Response &amp; Water Security",
-            "<p class=\"desc mb-2\">In situations such as flooding, infrastructure failure, drought, contamination events, humanitarian emergencies and municipal water interruptions, SANI AMANZI&trade; provides an immediate portable solution to support safer drinking water access.</p><p class=\"desc mb-2\"><strong>Strategic Water Preparedness:</strong> Maintaining reserve stock levels supports rapid deployment during water crises. Given Nigeria&rsquo;s population of over 215 million people, scalable preparedness frameworks may involve maintaining millions of sachets monthly across regional emergency stock programs.</p><p class=\"desc mb-0\">Ubuntu Life Resources supports engagement with governments, NGOs, disaster response organisations, humanitarian programs, institutional buyers and distribution partners.</p>",
-            "assets/images/service/ulr-service-water-treatment-programme.jpg",
-            "Emergency water response.",
-            flip=True,
-        ),
-        sec(
-            "Sustainable Water Solutions",
-            "<p class=\"desc mb-0\">SANI AMANZI&trade; supports environmentally responsible water purification through lightweight powder sachets that reduce transport requirements, packaging waste, plastic consumption and logistical pressure compared to transporting bottled water at scale.</p>",
-            media(s, 1),
-            "Sustainable purification.",
-        ),
-        sec(
-            "Frequently Asked Questions",
-            "<p class=\"desc\"><strong>How much water does one sachet treat?</strong><br>One sachet treats up to 20 litres of contaminated water.</p><p class=\"desc\"><strong>Why must water stand for 30 minutes?</strong><br>This allows proper settling and treatment activation.</p><p class=\"desc\"><strong>Is SANI AMANZI&trade; suitable for emergency response?</strong><br>Yes. Its lightweight sachet format supports scalable emergency deployment.</p><p class=\"desc mb-0\"><strong>Who can use SANI AMANZI&trade;?</strong><br>Governments, NGOs, institutions, humanitarian organisations, distributors and communities.</p>",
-            None,
-            bg=True,
-        ),
-        cta(
-            "Partner With Ubuntu Life Resources",
-            "We support scalable water purification initiatives across Africa and developing regions through practical water purification solutions designed for real-world deployment.",
-            None,
-        ),
-    ]
-    return "\n".join(parts)
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "generate_amanzi_page",
+        ROOT / "scripts" / "generate_amanzi_page.py",
+    )
+    mod = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(mod)
+    return mod.build_main()
 
 
 def splice_page(filename, main_html, leadership_marker='        <section class="section-gap ulr-pillar-leadership-section">'):
