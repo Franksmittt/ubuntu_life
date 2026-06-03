@@ -462,8 +462,8 @@ def build_amanzi():
     import importlib.util
 
     spec = importlib.util.spec_from_file_location(
-        "generate_amanzi_page",
-        ROOT / "scripts" / "generate_amanzi_page.py",
+        "generate_amanzi_scisan_page",
+        ROOT / "scripts" / "generate_amanzi_scisan_page.py",
     )
     mod = importlib.util.module_from_spec(spec)
     assert spec.loader is not None
