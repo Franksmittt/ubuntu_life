@@ -623,6 +623,17 @@ body.ulr-amanzi-page .ulr-brief-figure img {
   margin-inline: auto;
 }
 
+.ulr-amanzi-faq--accordion {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 767px) {
+  .ulr-amanzi-faq--accordion {
+    grid-template-columns: 1fr;
+  }
+}
+
 .ulr-amanzi-faq__item {
   padding: 1rem 1.15rem;
   background: #fff;
@@ -631,13 +642,70 @@ body.ulr-amanzi-page .ulr-brief-figure img {
   border-left: 4px solid var(--ulr-brand-green-dark, #2e7d32);
 }
 
+.ulr-amanzi-faq--accordion .ulr-amanzi-faq__item {
+  padding: 0;
+  overflow: hidden;
+  align-self: start;
+}
+
+.ulr-amanzi-faq__question {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.15rem;
+  font-weight: 600;
+  font-size: 0.98rem;
+  line-height: 1.4;
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.ulr-amanzi-faq__question::-webkit-details-marker {
+  display: none;
+}
+
+.ulr-amanzi-faq__question::after {
+  content: "+";
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid var(--ulr-brand-blue, #0b5fa5);
+  color: var(--ulr-brand-blue, #0b5fa5);
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.ulr-amanzi-faq__item[open] .ulr-amanzi-faq__question {
+  border-bottom: 1px dashed var(--tj-color-border-1, #e2e6ea);
+}
+
+.ulr-amanzi-faq__item[open] .ulr-amanzi-faq__question::after {
+  content: "−";
+  background-color: var(--ulr-brand-blue, #0b5fa5);
+  color: #fff;
+}
+
+.ulr-amanzi-faq__answer {
+  padding: 0 1.15rem 1rem;
+}
+
 .ulr-amanzi-faq__item strong {
   display: block;
   margin-bottom: 0.35rem;
   color: var(--ulr-brand-blue-deep, #0b2e4f);
 }
 
-.ulr-amanzi-faq__item p {
+.ulr-amanzi-faq__item p,
+.ulr-amanzi-faq__answer p {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.55;

@@ -52,10 +52,12 @@ def flip_card(title: str, front: str, back_title: str, back: str) -> str:
 
 
 def faq_item(q: str, a: str) -> str:
-    return f"""<div class="ulr-amanzi-faq__item">
-<strong>{q}</strong>
+    return f"""<details class="ulr-amanzi-faq__item">
+<summary class="ulr-amanzi-faq__question">{q}</summary>
+<div class="ulr-amanzi-faq__answer">
 <p>{a}</p>
-</div>"""
+</div>
+</details>"""
 
 
 def build_main() -> str:
@@ -289,7 +291,7 @@ def build_main() -> str:
     parts.append(f"""        <section id="faq" class="ulr-amanzi-band section-gap">
           <div class="ulr-amanzi-band__inner">
             <h2 class="sec-title ulr-amanzi-heading">Frequently <span class="ulr-accent">Asked Questions</span></h2>
-            <div class="ulr-amanzi-faq">
+            <div class="ulr-amanzi-faq ulr-amanzi-faq--accordion">
               {"".join(faq_item(q, a) for q, a in faqs)}
             </div>
           </div>
