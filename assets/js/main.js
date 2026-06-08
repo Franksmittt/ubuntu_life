@@ -1983,6 +1983,125 @@ Progressbar js
 	}
 
 	/*---------------------------------------------------------
+	 brochure request modal
+	---------------------------------------------------------*/
+	const brochureModalMarkup = `
+	<div class="modal" id="brochure_request_modal" tabindex="-1" aria-labelledby="brochure_request_title" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="brochure_request_title">Request a brochure</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p class="mb-4">Complete the form below and our team will contact you with the requested brochure.</p>
+					<form id="brochure-request-form" class="contact-form ulr-brochure-request-form">
+						<input type="hidden" name="brochureName" id="brochure-request-name" value="">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-input">
+									<label class="form-label" for="brochure-request-first-name">Name</label>
+									<input type="text" id="brochure-request-first-name" name="conFirstName" placeholder="Name" required>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-input">
+									<label class="form-label" for="brochure-request-surname">Surname</label>
+									<input type="text" id="brochure-request-surname" name="conSurname" placeholder="Surname" required>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-input">
+									<label class="form-label" for="brochure-request-email">Email</label>
+									<input type="email" id="brochure-request-email" name="conEmail" placeholder="Email address" required>
+								</div>
+							</div>
+							<div class="col-sm-6">
+								<div class="form-input">
+									<label class="form-label" for="brochure-request-phone">Contact number</label>
+									<input type="tel" id="brochure-request-phone" name="conPhone" placeholder="Contact number" required>
+								</div>
+							</div>
+							<div class="col-sm-12">
+								<div class="form-input message-input">
+									<label class="form-label" for="brochure-request-message">Message</label>
+									<textarea id="brochure-request-message" name="conMessage" placeholder="Your message" required></textarea>
+								</div>
+							</div>
+							<div class="submit-btn">
+								<button class="tj-primary-btn" type="submit">
+									<span class="btn-text"><span>Submit</span></span>
+									<span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+								</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>`;
+
+	if ($("#brochure_request_modal").length === 0) {
+		$("body").append(brochureModalMarkup);
+	}
+
+	const brochureModalEl = document.getElementById("brochure_request_modal");
+	const brochureModal = brochureModalEl ? new bootstrap.Modal(brochureModalEl) : null;
+
+	$(document).on("click", ".js-request-brochure", function () {
+		const brochureName = $(this).data("brochure-name") || "Brochure";
+		$("#brochure-request-name").val(brochureName);
+		$("#brochure_request_title").text("Request a brochure");
+		if (brochureModal) {
+			brochureModal.show();
+		}
+	});
+
+	if ($("#brochure-request-form").length > 0) {
+		$("#brochure-request-form").validate({
+			rules: {
+				conFirstName: "required",
+				conSurname: "required",
+				conEmail: {
+					required: true,
+					email: true,
+				},
+				conPhone: "required",
+				conMessage: "required",
+			},
+			messages: {
+				conFirstName: "Enter your name.",
+				conSurname: "Enter your surname.",
+				conEmail: "Enter your valid email address.",
+				conPhone: "Enter your contact number.",
+				conMessage: "Enter your message.",
+			},
+			submitHandler: function () {
+				$.ajax({
+					type: "POST",
+					url: "assets/mail/brochure-request.php",
+					data: $("#brochure-request-form").serialize(),
+					cache: false,
+					success: function (data) {
+						if (data == "Y") {
+							if (brochureModal) {
+								brochureModal.hide();
+							}
+							$("#message_sent").modal("show");
+							$("#brochure-request-form").trigger("reset");
+						} else {
+							$("#message_fail").modal("show");
+						}
+					},
+					error: function () {
+						$("#message_fail").modal("show");
+					},
+				});
+			},
+		});
+	}
+
+	/*---------------------------------------------------------
 	 copyright year
 	---------------------------------------------------------*/
 	const yearEl = document.querySelector(".copyright-text span");

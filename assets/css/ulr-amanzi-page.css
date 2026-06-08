@@ -16,8 +16,8 @@ body.ulr-amanzi-page .ulr-amanzi-jump {
   padding-bottom: 0;
 }
 
-body.ulr-amanzi-page main#primary > .section-gap,
-body.ulr-amanzi-page main#primary > .section-gap-x {
+body.ulr-amanzi-page main#primary > .section-gap:not(.ulr-amanzi-scisan-hero),
+body.ulr-amanzi-page main#primary > .section-gap-x:not(.ulr-amanzi-scisan-hero) {
   padding-top: var(--ulr-section-y, clamp(2.5rem, 5vw, 4rem));
   padding-bottom: var(--ulr-section-y, clamp(2.5rem, 5vw, 4rem));
 }

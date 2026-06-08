@@ -362,7 +362,7 @@ def brochure_actions() -> str:
     return """<div class="ulr-amanzi-doc-cta">
   <p class="ulr-amanzi-doc-cta__title">Get the brochure or speak with our team</p>
   <div class="ulr-amanzi-doc-actions">
-  <a class="tj-primary-btn" href="assets/downloads/sani-amanzi-brochure-2023.pdf" target="_blank" rel="noopener noreferrer"><span class="btn-text"><span>Download brochure</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>
+  <button type="button" class="tj-primary-btn js-request-brochure" data-brochure-name="SANI AMANZI Brochure"><span class="btn-text"><span>Request a brochure</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></button>
   <a class="tj-primary-btn" href="contact.html"><span class="btn-text"><span>Contact us</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>
   <a class="tj-primary-btn" href="tel:+27796588189"><span class="btn-text"><span>Call 079 658 8189</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>
   </div>

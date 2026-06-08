@@ -1,0 +1,135 @@
+/**
+ * Ubuntu Life Resources — blog listing & article prose
+ */
+
+body.ulr-blog-page main#primary {
+  background: var(--tj-color-theme-bg, #f0f6fb);
+}
+
+body.ulr-blog-page .ulr-blog-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--tj-color-text-body-3, #67787a);
+}
+
+body.ulr-blog-page .ulr-blog-meta .ulr-blog-tag {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+  background: rgba(63, 169, 245, 0.15);
+  border: 1px solid rgba(11, 95, 165, 0.2);
+  border-radius: 4px;
+}
+
+body.ulr-blog-page .post-details-wrapper {
+  max-width: var(--ulr-content-max, 1140px);
+  margin-inline: auto;
+}
+
+body.ulr-blog-page .post-details-wrapper .blog-text {
+  max-width: 46rem;
+}
+
+body.ulr-blog-page .post-details-wrapper .blog-text h3 {
+  font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+  margin-top: 2rem;
+}
+
+body.ulr-blog-page .post-details-wrapper .blog-text ol {
+  margin: 0 0 1.5rem;
+  padding-left: 1.25rem;
+}
+
+body.ulr-blog-page .post-details-wrapper .blog-text ol li {
+  margin-bottom: 0.65rem;
+  line-height: 1.6;
+}
+
+body.ulr-blog-page .post-details-wrapper .blog-text blockquote {
+  margin: 1.75rem 0;
+  padding: 1.15rem 1.25rem;
+  border-left: 4px solid var(--ulr-brand-green-dark, #2e7d32);
+  background: rgba(111, 191, 58, 0.08);
+  border-radius: 0 10px 10px 0;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+}
+
+body.ulr-blog-page .post-details-wrapper .blog-text blockquote cite {
+  display: block;
+  margin-top: 0.65rem;
+  font-size: 0.875rem;
+  font-style: normal;
+  color: var(--tj-color-text-body-3, #67787a);
+}
+
+body.ulr-blog-page .ulr-blog-figure {
+  margin: 1.75rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--tj-color-border-1, #e2e6ea);
+  background: #fff;
+}
+
+body.ulr-blog-page .ulr-blog-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+body.ulr-blog-page .ulr-blog-figure figcaption {
+  padding: 0.65rem 1rem;
+  font-size: 0.85rem;
+  color: var(--tj-color-text-body-3, #67787a);
+  border-top: 1px solid var(--tj-color-border-1, #e2e6ea);
+}
+
+body.ulr-blog-page .ulr-blog-highlight {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+  list-style: none;
+  padding: 0;
+}
+
+@media (max-width: 767px) {
+  body.ulr-blog-page .ulr-blog-highlight {
+    grid-template-columns: 1fr;
+  }
+}
+
+body.ulr-blog-page .ulr-blog-highlight li {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid var(--tj-color-border-1, #e2e6ea);
+  border-top: 3px solid var(--ulr-brand-blue, #0b5fa5);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+body.ulr-blog-page .ulr-blog-highlight strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+}
+
+body.ulr-blog-page .blog-item .blog-thumb img {
+  object-fit: cover;
+}
+
+body.ulr-blog-page .ulr-blog-back {
+  margin-top: 2rem;
+}

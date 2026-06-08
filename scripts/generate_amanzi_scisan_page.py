@@ -7,14 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TM = "&trade;"
 IMG = "assets/images/pillars/sani-amanzi/scisan"
-HERO = "assets/images/pillars/sani-amanzi/ulr-sani-amanzi-opening.jpg"
-BROCHURE = "SANI-AMANZI-Brochure-2023-1.pdf"
-
-WAVE = """<div class="ulr-amanzi-scisan-hero__wave" aria-hidden="true">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 283.5 27" preserveAspectRatio="none">
-<path class="fill" d="M283.5,9.7c0,0-7.3,4.3-14,4.6c-6.8,0.3-12.6,0-20.9-1.5c-11.3-2-33.1-10.1-44.7-5.7 s-12.1,4.6-18,7.4c-6.6,3.2-20,9.6-36.6,9.3C131.6,23.5,99.5,7.2,86.3,8c-1.4,0.1-6.6,0.8-10.5,2c-3.8,1.2-9.4,3.8-17,4.7 c-3.2,0.4-8.3,1.1-14.2,0.9c-1.5-0.1-6.3-0.4-12-1.6c-5.7-1.2-11-3.1-15.8-3.7C6.5,9.2,0,10.8,0,10.8V0h283.5V9.7z"/>
-</svg>
-</div>"""
+HERO = "assets/images/pillars/sani-amanzi/cleanwater.jpg"
 
 
 def src(name: str) -> str:
@@ -68,8 +61,8 @@ def faq_item(q: str, a: str) -> str:
 def build_main() -> str:
     parts: list[str] = []
 
-    parts.append(f"""        <section class="ulr-amanzi-scisan-hero section-gap-x" style="--ulr-amanzi-hero-image: url('{HERO}');">
-          <div class="ulr-amanzi-scisan-hero__bg" aria-hidden="true"></div>
+    parts.append(f"""        <section class="ulr-amanzi-scisan-hero section-gap-x">
+          <div class="ulr-amanzi-scisan-hero__bg" style="background-image: url('{HERO}');" aria-hidden="true"></div>
           <div class="ulr-amanzi-scisan-hero__content">
             <h1 class="ulr-amanzi-scisan-hero__title">
               SANI <span class="ulr-accent">AMANZI</span>{TM}<br>
@@ -77,7 +70,6 @@ def build_main() -> str:
               &amp; Purification Solution
             </h1>
           </div>
-          {WAVE}
         </section>""")
 
     parts.append("""        <section id="caring" class="ulr-amanzi-band section-gap">
@@ -240,10 +232,10 @@ def build_main() -> str:
               <img src="{src('amanzi-bottom-1024x477.jpg')}" alt="SANI AMANZI product range" loading="lazy" decoding="async">
             </div>
             <div class="ulr-amanzi-actions">
-              <a class="tj-primary-btn" href="{BROCHURE}" target="_blank" rel="noopener noreferrer">
-                <span class="btn-text"><span>Brochure</span></span>
+              <button type="button" class="tj-primary-btn js-request-brochure" data-brochure-name="SANI AMANZI Brochure">
+                <span class="btn-text"><span>Request a brochure</span></span>
                 <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
-              </a>
+              </button>
               <a class="tj-primary-btn tj-primary-btn--outline" href="#faq">
                 <span class="btn-text"><span>FAQ</span></span>
                 <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>

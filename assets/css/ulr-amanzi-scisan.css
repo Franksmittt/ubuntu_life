@@ -14,11 +14,11 @@ body.ulr-amanzi-scisan main#primary [id] {
   color: var(--ulr-scisan-accent, #3d9be9);
 }
 
-/* Hero with wave */
+/* Hero */
 .ulr-amanzi-scisan-hero {
   position: relative;
   padding: clamp(6rem, 14vw, 10rem) var(--ulr-gutter, clamp(16px, 4vw, 24px))
-    clamp(5rem, 10vw, 7rem);
+    clamp(4rem, 8vw, 6rem);
   overflow: hidden;
   color: #fff;
   text-align: center;
@@ -27,15 +27,25 @@ body.ulr-amanzi-scisan main#primary [id] {
 .ulr-amanzi-scisan-hero__bg {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(7, 26, 51, 0.55) 0%,
-      rgba(11, 46, 79, 0.72) 55%,
-      rgba(11, 95, 165, 0.45) 100%
-    ),
-    var(--ulr-amanzi-hero-image) center / cover no-repeat;
   z-index: 0;
+  background-color: #1a3a52;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Light overlay so the photo stays visible behind the headline */
+.ulr-amanzi-scisan-hero__bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 26, 51, 0.28) 0%,
+    rgba(11, 46, 79, 0.38) 55%,
+    rgba(11, 95, 165, 0.22) 100%
+  );
+  pointer-events: none;
 }
 
 .ulr-amanzi-scisan-hero__content {
@@ -51,27 +61,22 @@ body.ulr-amanzi-scisan main#primary [id] {
   line-height: 1.15;
   font-weight: 700;
   margin: 0;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  text-shadow:
+    0 0 2px rgba(0, 0, 0, 1),
+    0 0 12px rgba(0, 0, 0, 0.95),
+    0 0 28px rgba(0, 0, 0, 0.85),
+    0 0 48px rgba(0, 0, 0, 0.65),
+    0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
-.ulr-amanzi-scisan-hero__wave {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  line-height: 0;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.ulr-amanzi-scisan-hero__wave svg {
-  display: block;
-  width: 100%;
-  height: clamp(2rem, 5vw, 3.5rem);
-}
-
-.ulr-amanzi-scisan-hero__wave .fill {
-  fill: #fff;
+.ulr-amanzi-scisan-hero__title .ulr-accent {
+  text-shadow:
+    0 0 2px rgba(0, 0, 0, 1),
+    0 0 10px rgba(0, 0, 0, 0.95),
+    0 0 24px rgba(0, 0, 0, 0.85),
+    0 0 40px rgba(0, 0, 0, 0.7),
+    0 0 16px rgba(61, 155, 233, 0.55),
+    0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 /* Section headings — scisan split colour */
@@ -152,7 +157,11 @@ body.ulr-amanzi-scisan main#primary [id] {
   opacity: 0.92;
 }
 
-/* Flip cards */
+/* Flip cards — override theme `button { color: green }` for readable copy */
+body.ulr-amanzi-scisan button.ulr-amanzi-scisan-flip {
+  color: #fff;
+}
+
 .ulr-amanzi-scisan-flips {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -176,6 +185,8 @@ body.ulr-amanzi-scisan main#primary [id] {
   cursor: pointer;
   text-align: left;
   width: 100%;
+  font: inherit;
+  color: inherit;
 }
 
 .ulr-amanzi-scisan-flip__inner {
@@ -205,30 +216,47 @@ body.ulr-amanzi-scisan main#primary [id] {
   box-shadow: 0 8px 28px rgba(11, 46, 79, 0.12);
 }
 
+/* Front — dark background, full white copy (WCAG AA+) before flip */
 .ulr-amanzi-scisan-flip__face--front {
-  background: linear-gradient(145deg, #0b5fa5 0%, #0b2e4f 100%);
+  background: linear-gradient(165deg, #0b2e4f 0%, #071a33 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #fff;
 }
 
+.ulr-amanzi-scisan-flip__face--front,
+.ulr-amanzi-scisan-flip__face--front .ulr-amanzi-scisan-flip__title,
+.ulr-amanzi-scisan-flip__face--front p {
+  color: #fff;
+}
+
+/* Back — near-black body copy on white */
 .ulr-amanzi-scisan-flip__face--back {
   background: #fff;
-  color: var(--ulr-brand-blue-deep, #0b2e4f);
-  border: 1px solid var(--tj-color-border-1, #e2e6ea);
+  color: #18292c;
+  border: 1px solid #b8c9d6;
   transform: rotateY(180deg);
+}
+
+.ulr-amanzi-scisan-flip__face--back,
+.ulr-amanzi-scisan-flip__face--back .ulr-amanzi-scisan-flip__title,
+.ulr-amanzi-scisan-flip__face--back p {
+  color: #18292c;
 }
 
 .ulr-amanzi-scisan-flip__title {
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 800;
   margin: 0 0 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  line-height: 1.25;
 }
 
 .ulr-amanzi-scisan-flip__face p {
   margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.55;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.6;
 }
 
 /* Benefits wheel centre */
