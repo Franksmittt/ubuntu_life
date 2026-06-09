@@ -5,8 +5,8 @@
 (function () {
   "use strict";
 
-  /** Highest phase the client has approved (1 = home + food supply only). */
-  var APPROVED_PHASE = 1;
+  /** Highest phase the client has approved (3 = all pages unlocked). */
+  var APPROVED_PHASE = 3;
 
   /** Pages open for review before their phase is fully approved. */
   var EARLY_ACCESS = {

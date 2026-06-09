@@ -1,5 +1,5 @@
 <?php
-header('Content-Type: text/plain; charset=UTF-8');
+require_once __DIR__ . '/form-page.php';
 
 $to = 'sanchia@ubuntuliferesources.co.za';
 
@@ -11,13 +11,11 @@ $message = isset($_POST['conMessage']) ? trim(strip_tags($_POST['conMessage'])) 
 $brochure = isset($_POST['brochureName']) ? trim(strip_tags($_POST['brochureName'])) : 'Brochure';
 
 if ($firstName === '' || $surname === '' || $email === '' || $phone === '' || $message === '') {
-    echo 'N';
-    exit;
+    ulr_form_page('Missing information', 'Please fill in all fields and try again.', true);
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo 'N';
-    exit;
+    ulr_form_page('Invalid email', 'Please enter a valid email address and try again.', true);
 }
 
 $subject = 'Brochure request: ' . $brochure;
@@ -33,7 +31,7 @@ $headers .= "Reply-To: {$firstName} {$surname} <{$email}>\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
 if (mail($to, $subject, $body, $headers)) {
-    echo 'Y';
-} else {
-    echo 'N';
+    ulr_form_page('Request sent', 'Thank you. We have received your brochure request and will be in touch shortly.');
 }
+
+ulr_form_page('Something went wrong', 'Your request could not be sent. Please try again or contact us directly.', true);

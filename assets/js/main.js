@@ -1943,45 +1943,6 @@ Progressbar js
 	}
 	tjQuantityController();
 
-	// Form Submission
-	if ($("#contact-form").length > 0) {
-		$("#contact-form").validate({
-			rules: {
-				conName: "required",
-				conEmail: {
-					required: true,
-					email: true,
-				},
-				conPhone: "required",
-				conMessage: "required",
-			},
-
-			messages: {
-				conName: "Enter your full name.",
-				conEmail: "Enter your valid email address.",
-				conPhone: "Enter your valid phone number.",
-				conMessage: "Enter your query message.",
-			},
-			submitHandler: function (form) {
-				// start ajax request
-				$.ajax({
-					type: "POST",
-					url: "assets/mail/contact-form.php",
-					data: $("#contact-form").serialize(),
-					cache: false,
-					success: function (data) {
-						if (data == "Y") {
-							$("#message_sent").modal("show");
-							$("#contact-form").trigger("reset");
-						} else {
-							$("#message_fail").modal("show");
-						}
-					},
-				});
-			},
-		});
-	}
-
 	/*---------------------------------------------------------
 	 brochure request modal
 	---------------------------------------------------------*/
@@ -1995,7 +1956,13 @@ Progressbar js
 				</div>
 				<div class="modal-body">
 					<p class="mb-4">Complete the form below and our team will contact you with the requested brochure.</p>
-					<form id="brochure-request-form" class="contact-form ulr-brochure-request-form">
+					<form id="brochure-request-form" class="contact-form ulr-brochure-request-form" action="https://formsubmit.co/sanchia@ubuntuliferesources.co.za" method="POST">
+						<input type="hidden" name="_subject" id="brochure-form-subject" value="Brochure request">
+						<input type="hidden" name="_captcha" value="false">
+						<input type="hidden" name="_template" value="table">
+						<input type="hidden" name="_next" value="https://www.ubuntuliferesources.co.za/brochure-thank-you.html">
+						<input type="hidden" name="name" id="brochure-form-name-sync" value="">
+						<input type="hidden" name="email" id="brochure-form-email-sync" value="">
 						<input type="hidden" name="brochureName" id="brochure-request-name" value="">
 						<div class="row">
 							<div class="col-sm-6">
@@ -2051,55 +2018,24 @@ Progressbar js
 	$(document).on("click", ".js-request-brochure", function () {
 		const brochureName = $(this).data("brochure-name") || "Brochure";
 		$("#brochure-request-name").val(brochureName);
+		$("#brochure-form-subject").val("Brochure request: " + brochureName);
 		$("#brochure_request_title").text("Request a brochure");
 		if (brochureModal) {
 			brochureModal.show();
 		}
 	});
 
-	if ($("#brochure-request-form").length > 0) {
-		$("#brochure-request-form").validate({
-			rules: {
-				conFirstName: "required",
-				conSurname: "required",
-				conEmail: {
-					required: true,
-					email: true,
-				},
-				conPhone: "required",
-				conMessage: "required",
-			},
-			messages: {
-				conFirstName: "Enter your name.",
-				conSurname: "Enter your surname.",
-				conEmail: "Enter your valid email address.",
-				conPhone: "Enter your contact number.",
-				conMessage: "Enter your message.",
-			},
-			submitHandler: function () {
-				$.ajax({
-					type: "POST",
-					url: "assets/mail/brochure-request.php",
-					data: $("#brochure-request-form").serialize(),
-					cache: false,
-					success: function (data) {
-						if (data == "Y") {
-							if (brochureModal) {
-								brochureModal.hide();
-							}
-							$("#message_sent").modal("show");
-							$("#brochure-request-form").trigger("reset");
-						} else {
-							$("#message_fail").modal("show");
-						}
-					},
-					error: function () {
-						$("#message_fail").modal("show");
-					},
-				});
-			},
-		});
-	}
+	$(document).on("submit", "#brochure-request-form", function () {
+		const firstName = $("#brochure-request-first-name").val() || "";
+		const surname = $("#brochure-request-surname").val() || "";
+		$("#brochure-form-name-sync").val((firstName + " " + surname).trim());
+		$("#brochure-form-email-sync").val($("#brochure-request-email").val() || "");
+	});
+
+	$(document).on("submit", "#contact-form", function () {
+		$("#contact-form-name-sync").val($('#contact-form input[name="conName"]').val() || "");
+		$("#contact-form-email-sync").val($('#contact-form input[name="conEmail"]').val() || "");
+	});
 
 	/*---------------------------------------------------------
 	 copyright year
