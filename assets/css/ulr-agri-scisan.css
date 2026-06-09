@@ -1,0 +1,351 @@
+/**
+ * SANI-99 for AGRI — Scisan-style layout with Ubuntu Life Resources branding
+ */
+
+body.ulr-agri-scisan {
+  --ulr-scisan-accent: var(--ulr-brand-green-dark, #2e7d32);
+}
+
+body.ulr-agri-scisan .ulr-accent {
+  color: var(--ulr-scisan-accent, #2e7d32);
+}
+
+/* Hero — multi-line pillar intro */
+.ulr-agri-hero__content {
+  max-width: min(52rem, 94vw);
+}
+
+.ulr-agri-hero__lead,
+.ulr-agri-hero__desc,
+.ulr-agri-hero__pillars {
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 1),
+    0 0 12px rgba(255, 255, 255, 0.95),
+    0 0 28px rgba(255, 255, 255, 0.85),
+    0 0 48px rgba(255, 255, 255, 0.65),
+    0 2px 8px rgba(255, 255, 255, 0.75);
+}
+
+.ulr-agri-hero__lead {
+  margin: 0 0 1rem;
+  font-family: var(--tj-ff-heading);
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.4;
+  color: #000;
+}
+
+.ulr-agri-hero__desc {
+  margin: 0 0 1.15rem;
+  font-size: clamp(0.92rem, 1.8vw, 1.05rem);
+  line-height: 1.6;
+  color: #000;
+}
+
+.ulr-agri-hero__pillars {
+  margin: 0;
+  font-size: clamp(0.85rem, 1.6vw, 0.98rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #000;
+}
+
+body.ulr-agri-scisan main#primary {
+  background: #fff;
+}
+
+body.ulr-agri-scisan main#primary > .section-gap:not(.ulr-amanzi-scisan-hero),
+body.ulr-agri-scisan main#primary > .section-gap-x:not(.ulr-amanzi-scisan-hero) {
+  padding-top: var(--ulr-section-y, clamp(2.5rem, 5vw, 4rem));
+  padding-bottom: var(--ulr-section-y, clamp(2.5rem, 5vw, 4rem));
+}
+
+/* What is SANI-99 — image + copy split */
+.ulr-agri-split__figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(11, 46, 79, 0.12);
+}
+
+.ulr-agri-split__copy .sec-title {
+  text-align: left;
+}
+
+.ulr-agri-split__copy ul.desc {
+  padding-left: 1.2rem;
+}
+
+.ulr-agri-split__copy ul.desc li + li {
+  margin-top: 0.35rem;
+}
+
+@media (max-width: 991px) {
+  .ulr-agri-split__copy .sec-title {
+    text-align: center;
+  }
+}
+
+.ulr-agri-feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.ulr-agri-feature-item__title {
+  margin: 0 0 0.35rem;
+  font-family: var(--tj-ff-heading);
+  font-size: clamp(1rem, 1.8vw, 1.12rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ulr-brand-green-dark, #2e7d32);
+}
+
+.ulr-agri-discover-quote {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-left: 4px solid var(--ulr-brand-green-dark, #2e7d32);
+  background: rgba(46, 125, 50, 0.08);
+  font-weight: 600;
+  font-size: clamp(0.95rem, 1.7vw, 1.05rem);
+  line-height: 1.45;
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+}
+
+.ulr-agri-duo-images .ulr-agri-split__figure img,
+.ulr-agri-trio-images .ulr-agri-split__figure img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.ulr-agri-poultry-copy,
+.ulr-agri-block-copy {
+  max-width: min(48rem, 100%);
+  margin-inline: auto;
+}
+
+.ulr-agri-format-grid {
+  max-width: min(56rem, 100%);
+  margin-inline: auto;
+}
+
+.ulr-agri-format-card {
+  height: 100%;
+  padding: clamp(1rem, 2.5vw, 1.35rem);
+  border: 1px solid var(--tj-color-border-1, #e2e6ea);
+  border-radius: 12px;
+  background: #f8faf9;
+}
+
+.ulr-agri-format-card ul.desc {
+  padding-left: 1.2rem;
+}
+
+.ulr-agri-format-card ul.desc li + li {
+  margin-top: 0.35rem;
+}
+
+.ulr-amanzi-compare__col .ulr-agri-split__figure img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Long-form prose stack below truck compare */
+.ulr-agri-prose-stack {
+  max-width: min(52rem, 100%);
+  margin-inline: auto;
+}
+
+.ulr-agri-prose-block + .ulr-agri-prose-block,
+.ulr-agri-prose-block + .ulr-agri-section-rule,
+.ulr-agri-section-rule + .ulr-agri-prose-block,
+header.ulr-agri-prose-block + .ulr-agri-section-rule {
+  margin-top: 0;
+}
+
+.ulr-agri-section-rule {
+  margin: clamp(1.75rem, 4vw, 2.5rem) 0;
+  border: 0;
+  border-top: 1px solid var(--tj-color-border-1, #e2e6ea);
+  opacity: 1;
+}
+
+.ulr-agri-prose-block__title {
+  margin: 0 0 0.85rem;
+  font-family: var(--tj-ff-heading);
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ulr-brand-green-dark, #2e7d32);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ulr-agri-prose-stack .sec-title.ulr-amanzi-heading {
+  text-align: left;
+}
+
+.ulr-agri-prose-stack ul.desc {
+  padding-left: 1.2rem;
+}
+
+.ulr-agri-prose-stack ul.desc li + li {
+  margin-top: 0.35rem;
+}
+
+.ulr-agri-mix-example {
+  padding: 0.9rem 1.1rem;
+  border-left: 4px solid var(--ulr-brand-green-dark, #2e7d32);
+  background: rgba(46, 125, 50, 0.08);
+  border-radius: 0 8px 8px 0;
+}
+
+.ulr-agri-mix-example__label {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+}
+
+.ulr-agri-mix-example__ratio {
+  margin: 0;
+  font-family: var(--tj-ff-heading);
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  font-weight: 700;
+  color: var(--ulr-brand-green-dark, #2e7d32);
+}
+
+.ulr-agri-block-copy .ulr-agri-prose-block__title.text-center {
+  text-align: center;
+}
+
+.ulr-agri-contact-list li + li {
+  margin-top: 0.65rem;
+}
+
+.ulr-agri-contact-list a {
+  color: var(--ulr-brand-green-dark, #2e7d32);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ulr-agri-contact-list a:hover {
+  text-decoration: underline;
+}
+
+.ulr-agri-contact-list__ico {
+  display: inline-block;
+  min-width: 1.5rem;
+}
+
+.ulr-agri-apps-list {
+  padding-left: 1.2rem;
+  column-count: 1;
+}
+
+@media (min-width: 576px) {
+  .ulr-agri-apps-list {
+    column-count: 2;
+    column-gap: 1.5rem;
+  }
+
+  .ulr-agri-apps-list li {
+    break-inside: avoid;
+  }
+}
+
+/* Green feature / characteristics bands */
+body.ulr-agri-scisan .ulr-agri-features-band {
+  background: linear-gradient(165deg, #2e7d32 0%, #1b5e20 50%, #0d3d14 100%);
+}
+
+body.ulr-agri-scisan .ulr-agri-features-band .sec-title.ulr-amanzi-heading {
+  text-align: center;
+  color: #fff;
+}
+
+body.ulr-agri-scisan .ulr-agri-features-band .sec-title.ulr-amanzi-heading span,
+body.ulr-agri-scisan .ulr-agri-features-band .ulr-amanzi-heading span {
+  color: #fff;
+}
+
+/* Full-width image — scale to fit, never crop */
+.ulr-agri-fit-image {
+  max-width: 100%;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.ulr-agri-fit-image img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  max-height: none;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Key features banner (single strip image) */
+.ulr-agri-kf-banner {
+  max-width: min(1024px, 100%);
+  margin-inline: auto;
+}
+
+.ulr-agri-kf-banner img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Blockquote */
+.ulr-agri-quote {
+  margin: 1.25rem auto;
+  padding: 1rem 1.25rem;
+  max-width: 42rem;
+  border-left: 4px solid var(--ulr-brand-green-dark, #2e7d32);
+  background: rgba(46, 125, 50, 0.08);
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+}
+
+/* Four flip cards — 2×2 grid */
+.ulr-amanzi-scisan-flips--quad {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 767px) {
+  .ulr-amanzi-scisan-flips--quad {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ulr-scisan-flip-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.ulr-scisan-flip-list li + li {
+  margin-top: 0.25rem;
+}
+
+.ulr-amanzi-scisan-flip__back {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* Single-row instruction strip */
+.ulr-amanzi-scisan-instructions img {
+  display: block;
+  width: 100%;
+  max-width: 1024px;
+  height: auto;
+  margin-inline: auto;
+}

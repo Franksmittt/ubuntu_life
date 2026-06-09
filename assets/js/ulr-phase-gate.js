@@ -11,6 +11,7 @@
   /** Pages open for review before their phase is fully approved. */
   var EARLY_ACCESS = {
     "pillar-water-purification.html": true,
+    "pillar-agri-biosecurity.html": true,
     "blog.html": true,
     "blog-sani-amanzi-point-of-use-water.html": true,
   };
@@ -20,8 +21,8 @@
     "index.html": 1,
     "": 1,
     "pillar-shelf-stable-nutrition.html": 1,
+    "pillar-agri-biosecurity.html": 1,
 
-    "pillar-agri-biosecurity.html": 2,
     "pillar-water-purification.html": 2,
     "pillar-institutional-supply.html": 2,
     "pillars.html": 2,
@@ -108,7 +109,7 @@
       '<p class="ulr-phase-gate__next"><strong>Next unlock:</strong> ' +
       msg.phaseLabel +
       "</p>" +
-      '<p class="ulr-phase-gate__open"><strong>Currently available:</strong> Home · Strategic Food Supply · Water Purification Solutions · Insights (blog)</p>' +
+      '<p class="ulr-phase-gate__open"><strong>Currently available:</strong> Home · Strategic Food Supply · Water Purification Solutions · Agricultural Biosecurity · Insights (blog)</p>' +
       '<div class="ulr-phase-gate__actions">' +
       '<a class="tj-primary-btn" href="index.html"><span class="btn-text"><span>Back to Home</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>' +
       '<a class="tj-primary-btn ulr-phase-gate__btn-secondary" href="pillar-shelf-stable-nutrition.html"><span class="btn-text"><span>Strategic Food Supply</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>' +

@@ -80,7 +80,8 @@ body.ulr-amanzi-scisan main#primary [id] {
 }
 
 /* Section headings — scisan split colour */
-.ulr-amanzi-scisan .sec-title.ulr-amanzi-heading {
+.ulr-amanzi-scisan .sec-title.ulr-amanzi-heading,
+.ulr-agri-scisan .sec-title.ulr-amanzi-heading {
   font-size: clamp(1.5rem, 3.5vw, 2.25rem);
   text-align: center;
   margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
