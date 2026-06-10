@@ -16,6 +16,18 @@
     "blog-sani-amanzi-point-of-use-water.html": true,
   };
 
+  /** Pages temporarily held back while content changes are in progress. */
+  var SOFT_LOCKED_PAGES = {
+    "pillar-agri-biosecurity.html": {
+      title: "Agricultural page restricted",
+      lead:
+        "This page is temporarily restricted while updates are in progress. Please check back soon once the agricultural content has been reviewed.",
+      phaseLabel: "Agricultural Biosecurity updates",
+      currentlyAvailable:
+        "Home · Strategic Food Supply · Water Purification Solutions · Insights (blog)",
+    },
+  };
+
   /** Minimum phase required to view each page. */
   var PAGE_PHASE = {
     "index.html": 1,
@@ -72,13 +84,20 @@
   }
 
   function isUnlocked(file) {
+    if (SOFT_LOCKED_PAGES[file]) {
+      return false;
+    }
     if (EARLY_ACCESS[file]) {
       return true;
     }
     return requiredPhase(file) <= APPROVED_PHASE;
   }
 
-  function gateMessage(required) {
+  function gateMessage(file, required) {
+    if (SOFT_LOCKED_PAGES[file]) {
+      return SOFT_LOCKED_PAGES[file];
+    }
+
     var prev = required - 1;
     return {
       title: "Complete Phase " + prev,
@@ -87,6 +106,8 @@
         prev +
         " is reviewed and approved. We are publishing the site in stages so each section can be signed off before the next goes live.",
       phaseLabel: PHASE_LABELS[required] || "Next release",
+      currentlyAvailable:
+        "Home · Strategic Food Supply · Water Purification Solutions · Agricultural Biosecurity · Insights (blog)",
     };
   }
 
@@ -109,7 +130,9 @@
       '<p class="ulr-phase-gate__next"><strong>Next unlock:</strong> ' +
       msg.phaseLabel +
       "</p>" +
-      '<p class="ulr-phase-gate__open"><strong>Currently available:</strong> Home · Strategic Food Supply · Water Purification Solutions · Agricultural Biosecurity · Insights (blog)</p>' +
+      '<p class="ulr-phase-gate__open"><strong>Currently available:</strong> ' +
+      msg.currentlyAvailable +
+      "</p>" +
       '<div class="ulr-phase-gate__actions">' +
       '<a class="tj-primary-btn" href="index.html"><span class="btn-text"><span>Back to Home</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>' +
       '<a class="tj-primary-btn ulr-phase-gate__btn-secondary" href="pillar-shelf-stable-nutrition.html"><span class="btn-text"><span>Strategic Food Supply</span></span><span class="btn-icon"><i class="tji-arrow-right-long"></i></span></a>' +
@@ -126,7 +149,7 @@
       return;
     }
 
-    var msg = gateMessage(requiredPhase(file));
+    var msg = gateMessage(file, requiredPhase(file));
     document.documentElement.classList.add("ulr-phase-locked");
 
     var hide = document.getElementById("smooth-wrapper");
