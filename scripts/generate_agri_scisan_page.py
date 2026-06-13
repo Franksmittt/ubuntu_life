@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Build pillar-agri-biosecurity.html matching scisan.co.za/sani-99-for-agri layout."""
+"""Build agriculture pages matching scisan.co.za/sani-99-for-agri layout."""
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -10,6 +11,15 @@ IMG = "assets/images/pillars/agri-biosecurity/scisan"
 HERO = "assets/images/pillars/agri-biosecurity/0001.jpg"
 SUSTAINABILITY_SECTION = Path(__file__).resolve().parent / "agri_sustainability_section.html"
 DEPLOY_CLOSING_SECTION = Path(__file__).resolve().parent / "agri_deploy_closing_section.html"
+PAGES = (
+    ROOT / "pillar-agri-biosecurity.html",
+    ROOT / "product-sani-99-agri.html",
+)
+REQUIRED_STYLES = (
+    "assets/css/ulr-amanzi-page.css",
+    "assets/css/ulr-amanzi-scisan.css",
+    "assets/css/ulr-agri-scisan.css",
+)
 
 
 def sustainability_section() -> str:
@@ -402,11 +412,37 @@ def build_main() -> str:
     return "\n".join(parts)
 
 
-def splice_page(main_html: str) -> None:
-    path = ROOT / "pillar-agri-biosecurity.html"
+def ensure_body_classes(head: str) -> str:
+    match = re.search(r'<body class="([^"]*)">', head)
+    if not match:
+        return head
+
+    classes = match.group(1).split()
+    for required in ("ulr-pillar-page", "ulr-amanzi-page", "ulr-agri-scisan"):
+        if required not in classes:
+            classes.append(required)
+
+    return head[: match.start(1)] + " ".join(classes) + head[match.end(1) :]
+
+
+def ensure_styles(head: str) -> str:
+    missing = [
+        href
+        for href in REQUIRED_STYLES
+        if f'href="{href}"' not in head
+    ]
+    if not missing:
+        return head
+
+    links = "".join(f'  <link rel="stylesheet" href="{href}">\n' for href in missing)
+    return head.replace("</head>", links + "</head>", 1)
+
+
+def splice_page(path: Path, main_html: str) -> None:
     text = path.read_text(encoding="utf-8")
     for marker in (
         '        <section class="ulr-amanzi-scisan-hero section-gap-x"',
+        '        <section class="ulr-amanzi-scisan-hero ulr-agri-hero section-gap-x"',
         '        <section class="tj-page-header section-gap-x"',
     ):
         if marker in text:
@@ -417,33 +453,7 @@ def splice_page(main_html: str) -> None:
     end = text.index('      </main>')
     head, tail = text[:start], text[end:]
 
-    for old, new in (
-        ('body class="ulr-pillar-page ulr-agri-page ulr-agri-scisan"', 'body class="ulr-pillar-page ulr-amanzi-page ulr-agri-scisan"'),
-        ('body class="ulr-pillar-page ulr-agri-page"', 'body class="ulr-pillar-page ulr-amanzi-page ulr-agri-scisan"'),
-        ('body class="ulr-pillar-page"', 'body class="ulr-pillar-page ulr-amanzi-page ulr-agri-scisan"'),
-    ):
-        head = head.replace(old, new)
-
-    if "ulr-amanzi-page.css" not in head:
-        head = head.replace(
-            '  <link rel="stylesheet" href="assets/css/ulr-pillar-brief.css">',
-            '  <link rel="stylesheet" href="assets/css/ulr-pillar-brief.css">\n  <link rel="stylesheet" href="assets/css/ulr-amanzi-page.css">',
-        )
-    if "ulr-amanzi-scisan.css" not in head:
-        head = head.replace(
-            '  <link rel="stylesheet" href="assets/css/ulr-amanzi-page.css">',
-            '  <link rel="stylesheet" href="assets/css/ulr-amanzi-page.css">\n  <link rel="stylesheet" href="assets/css/ulr-amanzi-scisan.css">',
-        )
-    if "ulr-agri-scisan.css" not in head:
-        head = head.replace(
-            '  <link rel="stylesheet" href="assets/css/ulr-amanzi-scisan.css">',
-            '  <link rel="stylesheet" href="assets/css/ulr-amanzi-scisan.css">\n  <link rel="stylesheet" href="assets/css/ulr-agri-scisan.css">',
-        )
-        if "ulr-agri-scisan.css" not in head:
-            head = head.replace(
-                '  <link rel="stylesheet" href="assets/css/ulr-pillar-brief.css">',
-                '  <link rel="stylesheet" href="assets/css/ulr-pillar-brief.css">\n  <link rel="stylesheet" href="assets/css/ulr-agri-scisan.css">',
-            )
+    head = ensure_body_classes(ensure_styles(head))
 
     head = head.replace(
         "<title>Agricultural Biosecurity | SANI-99 for AGRI | Ubuntu Life Resources</title>",
@@ -459,8 +469,10 @@ def splice_page(main_html: str) -> None:
 
 
 def main() -> None:
-    splice_page(build_main())
-    print("Updated pillar-agri-biosecurity.html (scisan layout).")
+    main_html = build_main()
+    for page in PAGES:
+        splice_page(page, main_html)
+        print(f"Updated {page.name} (scisan layout).")
 
 
 if __name__ == "__main__":
