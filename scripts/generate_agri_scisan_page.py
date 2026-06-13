@@ -412,6 +412,13 @@ def build_main() -> str:
     return "\n".join(parts)
 
 
+def build_exact_embed_main() -> str:
+    return """        <section class="ulr-scisan-exact-page" aria-labelledby="ulr-scisan-agri-title">
+          <h1 id="ulr-scisan-agri-title" class="visually-hidden">SANI-99 for AGRI</h1>
+          <iframe id="ulr-scisan-agri-frame" class="ulr-scisan-exact-page__frame" src="scisan-agri-content.html" title="SANI-99 for AGRI SciSan page content" loading="eager"></iframe>
+        </section>"""
+
+
 def ensure_body_classes(head: str) -> str:
     match = re.search(r'<body class="([^"]*)">', head)
     if not match:
@@ -441,6 +448,7 @@ def ensure_styles(head: str) -> str:
 def splice_page(path: Path, main_html: str) -> None:
     text = path.read_text(encoding="utf-8")
     for marker in (
+        '        <section class="ulr-scisan-exact-page"',
         '        <section class="ulr-amanzi-scisan-hero section-gap-x"',
         '        <section class="ulr-amanzi-scisan-hero ulr-agri-hero section-gap-x"',
         '        <section class="tj-page-header section-gap-x"',
@@ -469,7 +477,7 @@ def splice_page(path: Path, main_html: str) -> None:
 
 
 def main() -> None:
-    main_html = build_main()
+    main_html = build_exact_embed_main()
     for page in PAGES:
         splice_page(page, main_html)
         print(f"Updated {page.name} (scisan layout).")
