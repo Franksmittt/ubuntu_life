@@ -17,16 +17,7 @@
   };
 
   /** Pages temporarily held back while content changes are in progress. */
-  var SOFT_LOCKED_PAGES = {
-    "pillar-agri-biosecurity.html": {
-      title: "Agricultural page restricted",
-      lead:
-        "This page is temporarily restricted while updates are in progress. Please check back soon once the agricultural content has been reviewed.",
-      phaseLabel: "Agricultural Biosecurity updates",
-      currentlyAvailable:
-        "Home · Strategic Food Supply · Water Purification Solutions · Insights (blog)",
-    },
-  };
+  var SOFT_LOCKED_PAGES = {};
 
   /** Minimum phase required to view each page. */
   var PAGE_PHASE = {
