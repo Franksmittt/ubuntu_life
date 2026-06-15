@@ -377,6 +377,71 @@ margin-right: auto;
   .ulr-scisan-source-page .elementor-element,
   .ulr-scisan-source-page .e-con,
   .ulr-scisan-source-page .e-con-inner { box-sizing: border-box; }
+
+  /* Elementor scroll animations do not run in the iframe — show content immediately */
+  .ulr-scisan-source-page .elementor-invisible {
+    visibility: visible !important;
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* Disable load animations that cause flip-card text overlap */
+  .ulr-scisan-source-page .eael-animate-zoom-in,
+  .ulr-scisan-source-page .eael-animate-flip {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-container {
+    overflow: hidden !important;
+    perspective: 1200px;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-flip-card {
+    position: relative;
+    width: 100%;
+    min-height: 280px;
+    transform-style: preserve-3d;
+    transition: transform 0.55s ease;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-front-container,
+  .ulr-scisan-source-page .eael-elements-flip-box-rear-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-rear-container {
+    transform: rotateY(180deg);
+  }
+
+  .ulr-scisan-source-page .eael-flip-box-hover:hover .eael-elements-flip-box-flip-card {
+    transform: rotateY(180deg);
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-heading,
+  .ulr-scisan-source-page .eael-elements-flip-box-content,
+  .ulr-scisan-source-page .flipcontent {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-content .flipcontent {
+    margin: 0;
+    padding-left: 1.1rem;
+    text-align: left;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-content .flipcontent li + li {
+    margin-top: 0.2rem;
+  }
 </style>
 
 </head>
@@ -465,7 +530,7 @@ Hand &amp; Surface Disinfectant</h2>				</div>
 					<div class="e-con-inner">
 				<div class="elementor-element elementor-element-234e37d elementor-widget elementor-widget-eael-flip-box" data-id="234e37d" data-element_type="widget" data-widget_type="eael-flip-box.default">
 				<div class="elementor-widget-container">
-					        <div class="eael-elements-flip-box-container eael-animate-flip eael-animate-zoom-in eael-content eael-flip-box-hover eael-flipbox-fixed-height eael-flipbox-dynamic">
+					        <div class="eael-elements-flip-box-container eael-content eael-flip-box-hover eael-flipbox-fixed-height eael-flipbox-dynamic">
 
             <div class="eael-elements-flip-box-flip-card">
                 <div class="eael-elements-flip-box-front-container">
@@ -505,7 +570,7 @@ Hand &amp; Surface Disinfectant</h2>				</div>
 					<div class="e-con-inner">
 				<div class="elementor-element elementor-element-6f2023c elementor-widget elementor-widget-eael-flip-box" data-id="6f2023c" data-element_type="widget" data-widget_type="eael-flip-box.default">
 				<div class="elementor-widget-container">
-					        <div class="eael-elements-flip-box-container eael-animate-flip eael-animate-zoom-in eael-content eael-flip-box-hover eael-flipbox-fixed-height eael-flipbox-dynamic">
+					        <div class="eael-elements-flip-box-container eael-content eael-flip-box-hover eael-flipbox-fixed-height eael-flipbox-dynamic">
 
             <div class="eael-elements-flip-box-flip-card">
                 <div class="eael-elements-flip-box-front-container">
@@ -545,7 +610,7 @@ Hand &amp; Surface Disinfectant</h2>				</div>
 					<div class="e-con-inner">
 				<div class="elementor-element elementor-element-b5c4e10 elementor-widget elementor-widget-eael-flip-box" data-id="b5c4e10" data-element_type="widget" data-widget_type="eael-flip-box.default">
 				<div class="elementor-widget-container">
-					        <div class="eael-elements-flip-box-container eael-animate-flip eael-animate-zoom-in eael-content eael-flip-box-hover eael-flipbox-fixed-height eael-flipbox-dynamic">
+					        <div class="eael-elements-flip-box-container eael-content eael-flip-box-hover eael-flipbox-fixed-height eael-flipbox-dynamic">
 
             <div class="eael-elements-flip-box-flip-card">
                 <div class="eael-elements-flip-box-front-container">
@@ -754,7 +819,7 @@ Environmentally<span style="color:#E21C21"> Responsible</span></h2>				</div>
 					<div class="e-con-inner">
 		<div data-particle_enable="false" data-particle-mobile-disabled="false" class="wd-negative-gap elementor-element elementor-element-5c85a14 e-flex e-con-boxed e-con e-child" data-id="5c85a14" data-element_type="container" data-settings="{&quot;_ha_eqh_enable&quot;:false}">
 					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-dc63de8 elementor-invisible elementor-widget elementor-widget-image" data-id="dc63de8" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;slideInLeft&quot;}" data-widget_type="image.default">
+				<div class="elementor-element elementor-element-dc63de8 elementor-widget elementor-widget-image" data-id="dc63de8" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;slideInLeft&quot;}" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 															<img loading="lazy" decoding="async" width="550" height="350" src="https://www.scisan.co.za/wp-content/uploads/2023/11/sani-truck-2.png" class="attachment-large size-large wp-image-2183" alt="" srcset="https://www.scisan.co.za/wp-content/uploads/2023/11/sani-truck-2.png 550w, https://www.scisan.co.za/wp-content/uploads/2023/11/sani-truck-2-150x95.png 150w, https://www.scisan.co.za/wp-content/uploads/2023/11/sani-truck-2-300x191.png 300w" sizes="(max-width: 550px) 100vw, 550px" />															</div>
 				</div>
@@ -771,7 +836,7 @@ Environmentally<span style="color:#E21C21"> Responsible</span></h2>				</div>
 				</div>
 		<div data-particle_enable="false" data-particle-mobile-disabled="false" class="wd-negative-gap elementor-element elementor-element-bd513c1 e-flex e-con-boxed e-con e-child" data-id="bd513c1" data-element_type="container" data-settings="{&quot;_ha_eqh_enable&quot;:false}">
 					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-b3fc7f5 elementor-invisible elementor-widget elementor-widget-image" data-id="b3fc7f5" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;slideInRight&quot;}" data-widget_type="image.default">
+				<div class="elementor-element elementor-element-b3fc7f5 elementor-widget elementor-widget-image" data-id="b3fc7f5" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;slideInRight&quot;}" data-widget_type="image.default">
 				<div class="elementor-widget-container">
 															<img loading="lazy" decoding="async" width="550" height="350" src="https://www.scisan.co.za/wp-content/uploads/2023/11/sani-truck-1.png" class="attachment-large size-large wp-image-2184" alt="" srcset="https://www.scisan.co.za/wp-content/uploads/2023/11/sani-truck-1.png 550w, https://www.scisan.co.za/wp-content/uploads/2023/11/sani-truck-1-150x95.png 150w, https://www.scisan.co.za/wp-content/uploads/2023/11/sani-truck-1-300x191.png 300w" sizes="(max-width: 550px) 100vw, 550px" />															</div>
 				</div>
@@ -1109,52 +1174,7 @@ Product<span style="color:#E21C21"> Range</span></h2>				</div>
 				</div>
 					</div>
 				</div>
-		<div data-particle_enable="false" data-particle-mobile-disabled="false" class="elementor-element elementor-element-cffe84c e-flex e-con-boxed e-con e-parent" data-id="cffe84c" data-element_type="container" data-settings="{&quot;_ha_eqh_enable&quot;:false}">
-					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-0537f2c elementor-widget elementor-widget-heading" data-id="0537f2c" data-element_type="widget" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-					<h2 class="elementor-heading-title elementor-size-default">Available to<span style="color:#E21C21"> Order Today</span></h2>				</div>
-				</div>
-				<div class="elementor-element elementor-element-86cb989 color-scheme-inherit text-left elementor-widget elementor-widget-text-editor" data-id="86cb989" data-element_type="widget" data-widget_type="text-editor.default">
-				<div class="elementor-widget-container">
-									<div id="comp-llaw8ttv" class="KcpHeO tz5f0K comp-llaw8ttv wixui-rich-text" data-testid="richTextElement"><p class="font_8 wixui-rich-text__text"><span class="wixui-rich-text__text">Discover the power of SANI-99™, the ultimate disinfectant solution, now available for order through the NHS Supply Chain and Lyreco. </span></p></div>								</div>
-				</div>
-		<div data-particle_enable="false" data-particle-mobile-disabled="false" class="wd-negative-gap elementor-element elementor-element-aaa4109 e-flex e-con-boxed e-con e-child" data-id="aaa4109" data-element_type="container" data-settings="{&quot;_ha_eqh_enable&quot;:false}">
-					<div class="e-con-inner">
-		<div data-particle_enable="false" data-particle-mobile-disabled="false" class="wd-negative-gap elementor-element elementor-element-88697a8 e-flex e-con-boxed e-con e-child" data-id="88697a8" data-element_type="container" data-settings="{&quot;_ha_eqh_enable&quot;:false}">
-					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-13e7366 elementor-align-center elementor-widget elementor-widget-button" data-id="13e7366" data-element_type="widget" data-widget_type="button.default">
-				<div class="elementor-widget-container">
-									<div class="elementor-button-wrapper">
-					<a class="elementor-button elementor-button-link elementor-size-lg" href="https://my.supplychain.nhs.uk/catalogue/product/mfb85187" target="_blank">
-						<span class="elementor-button-content-wrapper">
-									<span class="elementor-button-text">NHS SUPPLY CHAIN</span>
-					</span>
-					</a>
-				</div>
-								</div>
-				</div>
-					</div>
-				</div>
-		<div data-particle_enable="false" data-particle-mobile-disabled="false" class="wd-negative-gap elementor-element elementor-element-e907d49 e-flex e-con-boxed e-con e-child" data-id="e907d49" data-element_type="container" data-settings="{&quot;_ha_eqh_enable&quot;:false}">
-					<div class="e-con-inner">
-				<div class="elementor-element elementor-element-dceefb6 elementor-align-center elementor-widget elementor-widget-button" data-id="dceefb6" data-element_type="widget" data-widget_type="button.default">
-				<div class="elementor-widget-container">
-									<div class="elementor-button-wrapper">
-					<a class="elementor-button elementor-button-link elementor-size-lg" href="https://www.lyreco.com/webshop/ENEN/sani-99-disinfectant-sanitiser-25-sachets-product-000000000017017013.html" target="_blank">
-						<span class="elementor-button-content-wrapper">
-									<span class="elementor-button-text">LYRECO</span>
-					</span>
-					</a>
-				</div>
-								</div>
-				</div>
-					</div>
-				</div>
-					</div>
-				</div>
-					</div>
-				</div>
+		
 				</div>
 		
   </main>

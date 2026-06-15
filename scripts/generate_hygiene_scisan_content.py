@@ -21,6 +21,71 @@ EMBED_FIXES = """
   .ulr-scisan-source-page .elementor-element,
   .ulr-scisan-source-page .e-con,
   .ulr-scisan-source-page .e-con-inner { box-sizing: border-box; }
+
+  /* Elementor scroll animations do not run in the iframe — show content immediately */
+  .ulr-scisan-source-page .elementor-invisible {
+    visibility: visible !important;
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* Disable load animations that cause flip-card text overlap */
+  .ulr-scisan-source-page .eael-animate-zoom-in,
+  .ulr-scisan-source-page .eael-animate-flip {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-container {
+    overflow: hidden !important;
+    perspective: 1200px;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-flip-card {
+    position: relative;
+    width: 100%;
+    min-height: 280px;
+    transform-style: preserve-3d;
+    transition: transform 0.55s ease;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-front-container,
+  .ulr-scisan-source-page .eael-elements-flip-box-rear-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-rear-container {
+    transform: rotateY(180deg);
+  }
+
+  .ulr-scisan-source-page .eael-flip-box-hover:hover .eael-elements-flip-box-flip-card {
+    transform: rotateY(180deg);
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-heading,
+  .ulr-scisan-source-page .eael-elements-flip-box-content,
+  .ulr-scisan-source-page .flipcontent {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-content .flipcontent {
+    margin: 0;
+    padding-left: 1.1rem;
+    text-align: left;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-content .flipcontent li + li {
+    margin-top: 0.2rem;
+  }
 </style>
 """
 
@@ -94,6 +159,50 @@ def extract_elementor_content(html: str) -> str:
     raise ValueError("Could not close elementor wrapper")
 
 
+def remove_element_by_data_id(content: str, data_id: str) -> str:
+    marker = f'data-id="{data_id}"'
+    start = content.find(marker)
+    if start == -1:
+        return content
+
+    open_tag_start = content.rfind("<div", 0, start)
+    if open_tag_start == -1:
+        return content
+
+    depth = 0
+    index = open_tag_start
+    length = len(content)
+    while index < length:
+        next_open = content.find("<div", index)
+        next_close = content.find("</div>", index)
+        if next_close == -1:
+            return content
+        if next_open != -1 and next_open < next_close:
+            depth += 1
+            index = next_open + 4
+            continue
+        depth -= 1
+        index = next_close + 6
+        if depth == 0:
+            return content[:open_tag_start] + content[index:]
+    return content
+
+
+def apply_ulr_fixes(content: str) -> str:
+    updated = remove_element_by_data_id(content, "cffe84c")
+    updated = updated.replace(
+        "elementor-element-dc63de8 elementor-invisible elementor-widget",
+        "elementor-element-dc63de8 elementor-widget",
+    )
+    updated = updated.replace(
+        "elementor-element-b3fc7f5 elementor-invisible elementor-widget",
+        "elementor-element-b3fc7f5 elementor-widget",
+    )
+    updated = updated.replace("eael-animate-flip eael-animate-zoom-in ", "")
+    updated = updated.replace("eael-animate-zoom-in eael-animate-flip ", "")
+    return updated
+
+
 def wire_brochure_links(content: str) -> str:
     updated = content
     for old, new in BROCHURE_REPLACEMENTS:
@@ -103,7 +212,7 @@ def wire_brochure_links(content: str) -> str:
 
 def build_document(html: str) -> str:
     head = extract_head(html)
-    elementor = wire_brochure_links(extract_elementor_content(html))
+    elementor = apply_ulr_fixes(wire_brochure_links(extract_elementor_content(html)))
     body_class = (
         "wp-singular page-template-default page page-id-1959 wp-theme-woodmart "
         "wp-child-theme-woodmart-child ehf-header ehf-footer ehf-template-woodmart "
