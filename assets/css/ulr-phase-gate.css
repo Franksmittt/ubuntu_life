@@ -88,3 +88,13 @@ html.ulr-phase-locked .tj-offcanvas-area {
   background-color: #0b2e4f !important;
   border-color: #0b2e4f !important;
 }
+
+.ulr-inline-phase-lock {
+  display: flex;
+  justify-content: center;
+  padding: clamp(2rem, 5vw, 4rem) 0;
+}
+
+.ulr-inline-phase-lock .ulr-phase-gate__card {
+  box-shadow: 0 18px 40px rgba(11, 46, 79, 0.14);
+}
