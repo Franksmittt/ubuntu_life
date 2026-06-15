@@ -108,6 +108,41 @@ EMBED_FIXES = """
     height: 100%;
     border: 0;
   }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {
+    min-height: 434px;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper {
+    background: #000;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content {
+    display: none !important;
+    height: 100%;
+    background: #000;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active {
+    display: block !important;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active > div,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed .elementor-wrapper,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    aspect-ratio: auto;
+    background: #000;
+  }
 </style>
 """
 
@@ -264,7 +299,9 @@ def build_document(html: str) -> str:
         + "\">\n"
         + '  <main class="ulr-scisan-source-page" aria-label="SANI-99 SciSan source content">\n\t\t'
         + elementor
-        + "\n\t\t\n  </main>\n</body>\n</html>\n"
+        + "\n\t\t\n  </main>\n"
+        + '  <script src="assets/js/ulr-scisan-playlist.js" defer></script>\n'
+        + "</body>\n</html>\n"
     )
 
 
