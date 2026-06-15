@@ -86,6 +86,28 @@ EMBED_FIXES = """
   .ulr-scisan-source-page .eael-elements-flip-box-content .flipcontent li + li {
     margin-top: 0.2rem;
   }
+
+  .ulr-scisan-source-page .ulr-scisan-video-embed,
+  .ulr-scisan-source-page .e-tab-content-video {
+    width: 100%;
+  }
+
+  .ulr-scisan-source-page .ulr-scisan-video-embed .elementor-wrapper,
+  .ulr-scisan-source-page .e-tab-content-video .elementor-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+
+  .ulr-scisan-source-page .ulr-scisan-video-embed iframe,
+  .ulr-scisan-source-page .e-tab-content-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
 </style>
 """
 
@@ -188,6 +210,19 @@ def remove_element_by_data_id(content: str, data_id: str) -> str:
     return content
 
 
+def apply_brochure_copy(content: str) -> str:
+    updated = content.replace("Download the ", "Request the ")
+    updated = updated.replace(
+        "download the full brochure below",
+        "request the full brochure below",
+    )
+    updated = updated.replace(
+        '<span class="elementor-button-text">BROCHURE</span>',
+        '<span class="elementor-button-text">REQUEST BROCHURE</span>',
+    )
+    return updated
+
+
 def apply_ulr_fixes(content: str) -> str:
     updated = remove_element_by_data_id(content, "cffe84c")
     updated = updated.replace(
@@ -200,7 +235,7 @@ def apply_ulr_fixes(content: str) -> str:
     )
     updated = updated.replace("eael-animate-flip eael-animate-zoom-in ", "")
     updated = updated.replace("eael-animate-zoom-in eael-animate-flip ", "")
-    return updated
+    return apply_brochure_copy(updated)
 
 
 def wire_brochure_links(content: str) -> str:
