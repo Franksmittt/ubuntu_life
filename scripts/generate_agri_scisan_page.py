@@ -19,6 +19,7 @@ REQUIRED_STYLES = (
     "assets/css/ulr-amanzi-page.css",
     "assets/css/ulr-amanzi-scisan.css",
     "assets/css/ulr-agri-scisan.css",
+    "assets/css/ulr-scisan-embed-shell.css",
 )
 
 
@@ -415,7 +416,7 @@ def build_main() -> str:
 def build_exact_embed_main() -> str:
     return """        <section class="ulr-scisan-exact-page" aria-labelledby="ulr-scisan-agri-title">
           <h1 id="ulr-scisan-agri-title" class="visually-hidden">SANI-99 for AGRI</h1>
-          <iframe id="ulr-scisan-agri-frame" class="ulr-scisan-exact-page__frame" src="scisan-agri-content.html" title="SANI-99 for AGRI SciSan page content" loading="eager"></iframe>
+          <iframe id="ulr-scisan-agri-frame" class="ulr-scisan-exact-page__frame" src="scisan-agri-content.html" title="SANI-99 for AGRI SciSan page content" loading="eager" scrolling="no"></iframe>
         </section>"""
 
 
@@ -468,10 +469,18 @@ def splice_page(path: Path, main_html: str) -> None:
         "<title>SANI-99&trade; for AGRI | Agricultural Biosecurity | Ubuntu Life Resources</title>",
     )
 
-    script = '  <script src="assets/js/ulr-agri-scisan.js" defer></script>'
+    script = (
+        '  <script src="assets/js/ulr-scisan-embed.js" defer></script>\n'
+        '  <script src="assets/js/ulr-agri-scisan.js" defer></script>'
+    )
     if "ulr-agri-scisan.js" not in tail:
         tail = tail.replace('  <script src="assets/js/ulr-amanzi-scisan.js" defer></script>\n', "")
         tail = tail.replace("</body>", f"{script}\n</body>", 1)
+    elif "ulr-scisan-embed.js" not in tail:
+        tail = tail.replace(
+            '  <script src="assets/js/ulr-agri-scisan.js" defer></script>',
+            script,
+        )
 
     path.write_text(head + main_html + "\n" + tail, encoding="utf-8")
 

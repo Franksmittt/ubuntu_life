@@ -54,21 +54,6 @@ body.ulr-agri-scisan main#primary {
   background: #fff;
 }
 
-.ulr-scisan-exact-page {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  background: #fff;
-}
-
-.ulr-scisan-exact-page__frame {
-  display: block;
-  width: 100%;
-  min-height: 1400px;
-  border: 0;
-  background: #fff;
-}
-
 body.ulr-agri-scisan main#primary > .section-gap:not(.ulr-amanzi-scisan-hero),
 body.ulr-agri-scisan main#primary > .section-gap-x:not(.ulr-amanzi-scisan-hero) {
   padding-top: var(--ulr-section-y, clamp(2.5rem, 5vw, 4rem));

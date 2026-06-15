@@ -1,8 +1,6 @@
 (function () {
   "use strict";
 
-  var scisanFrame = document.getElementById("ulr-scisan-hygiene-frame");
-
   function requestBrochure(brochureName) {
     var trigger = document.createElement("button");
     trigger.type = "button";
@@ -26,13 +24,27 @@
     );
   }
 
-  function wireScisanBrochureLinks() {
-    if (!scisanFrame || !scisanFrame.contentWindow) {
+  function normalizeBrochureCopy(anchor) {
+    var textNode = anchor.querySelector(".elementor-button-text");
+    if (!textNode) {
+      return;
+    }
+
+    var text = textNode.textContent || "";
+    if (/^download\b/i.test(text)) {
+      textNode.textContent = text.replace(/^Download/i, "Request");
+    } else if (text.trim().toUpperCase() === "BROCHURE") {
+      textNode.textContent = "REQUEST BROCHURE";
+    }
+  }
+
+  function wireScisanBrochureLinks(frame) {
+    if (!frame || !frame.contentWindow) {
       return;
     }
 
     try {
-      var doc = scisanFrame.contentWindow.document;
+      var doc = frame.contentWindow.document;
       doc.querySelectorAll("a").forEach(function (anchor) {
         if (!isBrochureAnchor(anchor) || anchor.dataset.ulrBrochureWired === "true") {
           return;
@@ -52,52 +64,13 @@
     }
   }
 
-  function resizeScisanFrame() {
-    if (!scisanFrame || !scisanFrame.contentWindow) {
+  function fixScisanEmbedContent(frame) {
+    if (!frame || !frame.contentWindow) {
       return;
     }
 
     try {
-      var doc = scisanFrame.contentWindow.document;
-      var body = doc.body;
-      var html = doc.documentElement;
-      var height = Math.max(
-        body ? body.scrollHeight : 0,
-        body ? body.offsetHeight : 0,
-        html ? html.clientHeight : 0,
-        html ? html.scrollHeight : 0,
-        html ? html.offsetHeight : 0
-      );
-
-      if (height) {
-        scisanFrame.style.height = height + "px";
-      }
-    } catch (error) {
-      scisanFrame.style.minHeight = "12000px";
-    }
-  }
-
-  function normalizeBrochureCopy(anchor) {
-    var textNode = anchor.querySelector(".elementor-button-text");
-    if (!textNode) {
-      return;
-    }
-
-    var text = textNode.textContent || "";
-    if (/^download\b/i.test(text)) {
-      textNode.textContent = text.replace(/^Download/i, "Request");
-    } else if (text.trim().toUpperCase() === "BROCHURE") {
-      textNode.textContent = "REQUEST BROCHURE";
-    }
-  }
-
-  function fixScisanEmbedContent() {
-    if (!scisanFrame || !scisanFrame.contentWindow) {
-      return;
-    }
-
-    try {
-      var doc = scisanFrame.contentWindow.document;
+      var doc = frame.contentWindow.document;
 
       doc.querySelectorAll(".elementor-invisible").forEach(function (node) {
         node.classList.remove("elementor-invisible");
@@ -111,18 +84,12 @@
     }
   }
 
-  function refreshEmbed() {
-    fixScisanEmbedContent();
-    wireScisanBrochureLinks();
-    resizeScisanFrame();
-  }
-
-  if (scisanFrame) {
-    scisanFrame.addEventListener("load", function () {
-      refreshEmbed();
-      window.setTimeout(refreshEmbed, 500);
-      window.setTimeout(refreshEmbed, 1500);
+  if (typeof window.ulrInitScisanEmbed === "function") {
+    window.ulrInitScisanEmbed("ulr-scisan-hygiene-frame", {
+      onRefresh: function (frame) {
+        fixScisanEmbedContent(frame);
+        wireScisanBrochureLinks(frame);
+      },
     });
-    window.addEventListener("resize", resizeScisanFrame);
   }
 })();
