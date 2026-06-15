@@ -76,13 +76,40 @@
     }
   }
 
+  function fixScisanEmbedContent() {
+    if (!scisanFrame || !scisanFrame.contentWindow) {
+      return;
+    }
+
+    try {
+      var doc = scisanFrame.contentWindow.document;
+
+      doc.querySelectorAll(".elementor-invisible").forEach(function (node) {
+        node.classList.remove("elementor-invisible");
+      });
+
+      doc.querySelectorAll(".eael-animate-zoom-in, .eael-animate-flip").forEach(function (node) {
+        node.classList.remove("eael-animate-zoom-in", "eael-animate-flip");
+      });
+    } catch (error) {
+      // Keep rendered HTML/CSS fixes as fallback.
+    }
+  }
+
   if (scisanFrame) {
     scisanFrame.addEventListener("load", function () {
+      fixScisanEmbedContent();
       wireScisanBrochureLinks();
       resizeScisanFrame();
-      window.setTimeout(resizeScisanFrame, 500);
-      window.setTimeout(resizeScisanFrame, 1500);
-      window.setTimeout(wireScisanBrochureLinks, 1500);
+      window.setTimeout(function () {
+        fixScisanEmbedContent();
+        resizeScisanFrame();
+      }, 500);
+      window.setTimeout(function () {
+        fixScisanEmbedContent();
+        wireScisanBrochureLinks();
+        resizeScisanFrame();
+      }, 1500);
     });
     window.addEventListener("resize", resizeScisanFrame);
   }
