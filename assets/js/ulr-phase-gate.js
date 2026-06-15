@@ -12,6 +12,7 @@
   var EARLY_ACCESS = {
     "pillar-water-purification.html": true,
     "pillar-agri-biosecurity.html": true,
+    "pillar-hygiene-sanitation.html": true,
     "blog.html": true,
     "blog-sani-amanzi-point-of-use-water.html": true,
   };
@@ -20,16 +21,7 @@
   var SOFT_LOCKED_PAGES = {};
 
   /** Hash routes temporarily held back while content changes are in progress. */
-  var SOFT_LOCKED_ROUTES = {
-    "products.html#hygiene-sanitation": {
-      title: "Hygiene page restricted",
-      lead:
-        "This hygiene and sanitation section is temporarily restricted while updates are in progress. Please check back soon once the content has been reviewed.",
-      phaseLabel: "Hygiene and sanitation updates",
-      currentlyAvailable:
-        "Home · Agricultural Biosecurity · Water Purification Solutions · Strategic Food Supply · Insights (blog)",
-    },
-  };
+  var SOFT_LOCKED_ROUTES = {};
 
   /** Minimum phase required to view each page. */
   var PAGE_PHASE = {
@@ -37,6 +29,7 @@
     "": 1,
     "pillar-shelf-stable-nutrition.html": 1,
     "pillar-agri-biosecurity.html": 1,
+    "pillar-hygiene-sanitation.html": 1,
 
     "pillar-water-purification.html": 2,
     "pillar-institutional-supply.html": 2,
