@@ -161,14 +161,13 @@ def render_paragraph(text: str, bold: bool) -> str:
     return f'<p class="desc">{linkify(text)}</p>'
 
 
-def docx_body_html(path: Path) -> tuple[str, str, str | None]:
+def parse_docx_blocks(path: Path) -> tuple[str, str, list[dict]]:
     from docx import Document
 
     doc = Document(str(path))
-    cover_image: str | None = None
-    chunks: list[str] = []
     title = ""
     subtitle = ""
+    blocks: list[dict] = []
     pending_list: list[str] = []
     pending_checks = False
 
@@ -176,8 +175,13 @@ def docx_body_html(path: Path) -> tuple[str, str, str | None]:
         nonlocal pending_list, pending_checks
         if not pending_list:
             return
-        joined = "\n".join(f"• {item}" for item in pending_list)
-        chunks.append(render_bullet_list(joined, checkmarks=pending_checks))
+        blocks.append(
+            {
+                "type": "ul",
+                "items": pending_list[:],
+                "checks": pending_checks,
+            }
+        )
         pending_list = []
         pending_checks = False
 
@@ -192,13 +196,9 @@ def docx_body_html(path: Path) -> tuple[str, str, str | None]:
         if paragraph_has_image(paragraph):
             flush_list()
             if path == DOCX_FILES["hygiene"]:
-                cover_image = extract_hygiene_cover_image()
-                if cover_image:
-                    chunks.append(
-                        f'<figure class="ulr-preparedness-figure m-0 mb-4">'
-                        f'<img src="{cover_image}" alt="Environmental hygiene and infection-control readiness" '
-                        f'class="w-100 rounded-3 shadow-sm" loading="lazy" decoding="async"></figure>'
-                    )
+                image_path = extract_hygiene_cover_image()
+                if image_path:
+                    blocks.append({"type": "figure", "src": image_path})
             continue
 
         text = paragraph.text.strip()
@@ -224,14 +224,540 @@ def docx_body_html(path: Path) -> tuple[str, str, str | None]:
             continue
 
         flush_list()
-        chunks.append(render_paragraph(text, bold))
+
+        if bold and len(text) < 120 and "\n" not in text:
+            blocks.append({"type": "h3", "text": text})
+        else:
+            blocks.append({"type": "p", "html": render_paragraph(text, bold)})
 
     flush_list()
 
     if not title:
         title = path.stem
 
-    return title, subtitle, "".join(chunks)
+    return title, subtitle, blocks
+
+
+def render_list(items: list[str], checks: bool = False, cols: bool = False) -> str:
+    cls = "desc ulr-preparedness-list"
+    if checks:
+        cls += " ulr-preparedness-list--checks"
+    if cols and len(items) >= 6:
+        cls += " ulr-preparedness-list--cols"
+    lis = "".join(f"<li>{linkify(item)}</li>" for item in items)
+    return f'<ul class="{cls}">{lis}</ul>'
+
+
+def collect_until(blocks: list[dict], start: int, stop_types: set[str]) -> tuple[list[dict], int]:
+    chunk: list[dict] = []
+    i = start
+    while i < len(blocks) and blocks[i]["type"] not in stop_types:
+        chunk.append(blocks[i])
+        i += 1
+    return chunk, i
+
+
+def collect_h3_pairs_until(
+    blocks: list[dict], start: int, stop_titles: set[str]
+) -> tuple[list[tuple[str, str]], int]:
+    pairs: list[tuple[str, str]] = []
+    i = start
+    while i < len(blocks) - 1:
+        if blocks[i]["type"] == "h3" and blocks[i]["text"] in stop_titles:
+            break
+        if blocks[i]["type"] == "h3" and blocks[i + 1]["type"] == "p":
+            pairs.append((blocks[i]["text"], blocks[i + 1]["html"]))
+            i += 2
+        else:
+            break
+    return pairs, i
+
+
+def split_contact_chunk(chunk: list[dict]) -> tuple[list[dict], list[dict]]:
+    band: list[dict] = []
+    contact: list[dict] = []
+    found = False
+    for block in chunk:
+        if not found and block["type"] == "p" and "Contact Us" in block["html"]:
+            found = True
+            continue
+        if found:
+            contact.append(block)
+        else:
+            band.append(block)
+    return band, contact
+
+
+def collect_card_pairs(blocks: list[dict], start: int) -> tuple[list[tuple[str, str]], int]:
+    stop_titles = (
+        BAND_HEADINGS
+        | CONTACT_HEADINGS
+        | TIER_PARENTS
+        | SPLIT_HEADINGS
+        | STAKEHOLDER_HEADINGS
+        | {"Vision", "Tuna", "Sardines", "Pilchards", "Why Tonno Bonno", "Products include:"}
+    )
+    pairs: list[tuple[str, str]] = []
+    i = start
+    while i < len(blocks) - 1:
+        if blocks[i]["type"] == "h3" and blocks[i]["text"] in stop_titles:
+            break
+        if blocks[i]["type"] == "h3" and blocks[i + 1]["type"] == "p":
+            pairs.append((blocks[i]["text"], blocks[i + 1]["html"]))
+            i += 2
+        else:
+            break
+    return pairs, i
+
+
+def is_tier_heading(text: str) -> bool:
+    return text in {
+        "High-Risk Population Centres & International Gateways",
+        "High-Risk Countries",
+        "Medium-Risk Regions",
+        "Medium-Risk Countries",
+        "Lower-Risk Countries",
+        "Districts, Municipalities & Institutional Facilities",
+    }
+
+
+def render_card_grid(title: str, pairs: list[tuple[str, str]], triple: bool = False) -> str:
+    grid_cls = "ulr-preparedness-card-grid"
+    if triple or len(pairs) == 3:
+        grid_cls += " ulr-preparedness-card-grid--triple"
+    cards = "".join(
+        f'<article class="ulr-preparedness-mini-card"><h4>{linkify(h)}</h4>{body}</article>'
+        for h, body in pairs
+    )
+    return (
+        f'<div class="ulr-preparedness-block">'
+        f'<div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">{linkify(title)}</h3></div>'
+        f'<div class="{grid_cls}">{cards}</div></div>'
+    )
+
+
+def render_split_section(title: str, chunk: list[dict]) -> str:
+    prose: list[str] = []
+    lists: list[dict] = []
+    tail: list[str] = []
+    seen_list = False
+
+    for block in chunk:
+        if block["type"] == "p":
+            if not seen_list:
+                prose.append(block["html"])
+            else:
+                tail.append(block["html"])
+        elif block["type"] == "ul":
+            if not seen_list:
+                seen_list = True
+            else:
+                tail.append(render_list(block["items"], cols=True))
+            lists.append(block)
+        elif block["type"] == "figure":
+            prose.insert(
+                0,
+                f'<figure class="ulr-preparedness-figure m-0">'
+                f'<img src="{block["src"]}" alt="" class="w-100" loading="lazy" decoding="async"></figure>',
+            )
+
+    list_html = ""
+    if lists:
+        list_html = (
+            f'<div class="ulr-preparedness-panel ulr-preparedness-panel--on-tint">'
+            f"{render_list(lists[0]['items'], cols=len(lists[0]['items']) >= 6)}</div>"
+        )
+
+    prose_col = "".join(prose)
+    tail_html = "".join(tail)
+    tail_block = (
+        f'<div class="ulr-preparedness-prose mt-4">{tail_html}</div>' if tail_html else ""
+    )
+    if list_html:
+        body = (
+            f'<div class="row g-4 g-lg-5 align-items-start ulr-preparedness-split">'
+            f'<div class="col-lg-7"><div class="ulr-preparedness-prose">{prose_col}</div></div>'
+            f'<div class="col-lg-5">{list_html}</div></div>'
+            f"{tail_block}"
+        )
+    else:
+        body = f'<div class="ulr-preparedness-prose">{prose_col}{tail_html}</div>'
+
+    return (
+        f'<div class="ulr-preparedness-block">'
+        f'<div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">{linkify(title)}</h3></div>'
+        f"{body}</div>"
+    )
+
+
+def render_water_capacity(title: str, chunk: list[dict]) -> str:
+    stats = [
+        ("1 Million Sachets", "20 Million Litres Safe Drinking Water"),
+        ("5 Million Sachets", "100 Million Litres Safe Drinking Water"),
+        ("10 Million Sachets", "200 Million Litres Safe Drinking Water"),
+    ]
+    cards = "".join(
+        f'<div class="ulr-preparedness-stat-card">'
+        f'<span class="ulr-preparedness-stat-card__value">{linkify(label)}</span>'
+        f'<span class="ulr-preparedness-stat-card__label">{linkify(cap)}</span></div>'
+        for label, cap in stats
+    )
+    return (
+        f'<div class="ulr-preparedness-block">'
+        f'<div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">{linkify(title)}</h3></div>'
+        f'<p class="desc"><strong>1 Sachet = 20 Litres Safe Drinking Water</strong></p>'
+        f'<div class="ulr-preparedness-stat-grid mt-3">{cards}</div></div>'
+    )
+
+
+def render_tier_group(title: str, blocks: list[dict], start: int) -> tuple[str, int]:
+    i = start
+    intro_parts: list[str] = []
+
+    while i < len(blocks) and not (
+        blocks[i]["type"] == "h3" and is_tier_heading(blocks[i]["text"])
+    ):
+        if blocks[i]["type"] == "p":
+            intro_parts.append(blocks[i]["html"])
+        elif blocks[i]["type"] == "ul":
+            intro_parts.append(render_list(blocks[i]["items"], cols=True))
+        elif blocks[i]["type"] == "h3":
+            break
+        i += 1
+
+    cards: list[str] = []
+    while i < len(blocks) and blocks[i]["type"] == "h3" and is_tier_heading(blocks[i]["text"]):
+        tier = blocks[i]["text"]
+        i += 1
+        parts: list[str] = []
+        while i < len(blocks) and blocks[i]["type"] != "h3":
+            if blocks[i]["type"] == "p":
+                parts.append(blocks[i]["html"])
+            elif blocks[i]["type"] == "ul":
+                parts.append(render_list(blocks[i]["items"], cols=True))
+            i += 1
+        cards.append(
+            f'<article class="ulr-preparedness-mini-card">'
+            f'<h4>{linkify(tier)}</h4>{"".join(parts)}</article>'
+        )
+
+    tail_parts: list[str] = []
+    while i < len(blocks) and blocks[i]["type"] != "h3":
+        if blocks[i]["type"] == "p":
+            tail_parts.append(blocks[i]["html"])
+        elif blocks[i]["type"] == "ul":
+            tail_parts.append(render_list(blocks[i]["items"], cols=True))
+        i += 1
+
+    if not cards:
+        chunk, i = collect_until(blocks, start, {"h3"})
+        return render_default_block(title, chunk), i
+
+    grid_cls = "ulr-preparedness-card-grid"
+    if len(cards) == 3:
+        grid_cls += " ulr-preparedness-card-grid--triple"
+    intro_html = (
+        f'<div class="ulr-preparedness-prose mb-4">{"".join(intro_parts)}</div>'
+        if intro_parts
+        else ""
+    )
+    tail_html = (
+        f'<div class="ulr-preparedness-prose mt-4">{"".join(tail_parts)}</div>'
+        if tail_parts
+        else ""
+    )
+    html = (
+        f'<div class="ulr-preparedness-block">'
+        f'<div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">{linkify(title)}</h3></div>'
+        f"{intro_html}"
+        f'<div class="{grid_cls}">{"".join(cards)}</div>'
+        f"{tail_html}</div>"
+    )
+    return html, i
+
+
+def render_product_block(blocks: list[dict], start: int) -> tuple[str, int]:
+    i = start
+    if i >= len(blocks) or blocks[i]["type"] != "h3":
+        return "", start
+
+    product_title = blocks[i]["text"]
+    i += 1
+    chunk, i = collect_until(blocks, i, {"h3"})
+    prose: list[str] = []
+    checks: list[str] = []
+    for block in chunk:
+        if block["type"] == "p":
+            prose.append(block["html"])
+        elif block["type"] == "ul" and block.get("checks"):
+            checks.extend(block["items"])
+        elif block["type"] == "ul":
+            prose.append(render_list(block["items"]))
+
+    check_html = ""
+    if checks:
+        half = (len(checks) + 1) // 2
+        check_html = (
+            f'<div class="ulr-preparedness-check-grid mt-3">'
+            f"{render_list(checks[:half], checks=True)}"
+            f"{render_list(checks[half:], checks=True)}</div>"
+        )
+
+    html = (
+        f'<div class="ulr-preparedness-panel">'
+        f'<h4 class="h5 sec-title mb-3">{linkify(product_title)}</h4>'
+        f'{"".join(prose)}{check_html}</div>'
+    )
+    return html, i
+
+
+def render_stakeholder_block(title: str, chunk: list[dict]) -> str:
+    body_parts: list[str] = []
+    for block in chunk:
+        if block["type"] == "p":
+            body_parts.append(block["html"])
+        elif block["type"] == "ul":
+            body_parts.append(render_list(block["items"], cols=True))
+    return (
+        f'<div class="ulr-preparedness-block">'
+        f'<div class="ulr-preparedness-panel">'
+        f'<div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">{linkify(title)}</h3></div>'
+        f'{"".join(body_parts)}</div></div>'
+    )
+
+
+def render_band(title: str, chunk: list[dict]) -> str:
+    body = "".join(
+        b["html"] if b["type"] == "p" else render_list(b["items"])
+        for b in chunk
+        if b["type"] in {"p", "ul"}
+    )
+    return (
+        f'<div class="ulr-preparedness-block">'
+        f'<div class="ulr-preparedness-band">'
+        f'<h3 class="h5 sec-title mb-3">{linkify(title)}</h3>{body}</div></div>'
+    )
+
+
+def render_contact(title: str, chunk: list[dict]) -> str:
+    body = "".join(b["html"] for b in chunk if b["type"] == "p")
+    return (
+        f'<div class="ulr-preparedness-block">'
+        f'<div class="ulr-preparedness-contact">'
+        f'<h3 class="h5 sec-title mb-3">{linkify(title)}</h3>{body}</div></div>'
+    )
+
+
+def render_default_block(title: str, chunk: list[dict]) -> str:
+    parts: list[str] = []
+    for block in chunk:
+        if block["type"] == "p":
+            parts.append(block["html"])
+        elif block["type"] == "ul":
+            parts.append(render_list(block["items"], block.get("checks", False), cols=True))
+        elif block["type"] == "figure":
+            parts.append(
+                f'<figure class="ulr-preparedness-figure m-0 mb-3">'
+                f'<img src="{block["src"]}" alt="" class="w-100" loading="lazy" decoding="async"></figure>'
+            )
+    return (
+        f'<div class="ulr-preparedness-block">'
+        f'<div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">{linkify(title)}</h3></div>'
+        f'<div class="ulr-preparedness-prose">{"".join(parts)}</div></div>'
+    )
+
+
+def render_intro(blocks: list[dict], start: int) -> tuple[str, int]:
+    chunk, end = collect_until(blocks, start, {"h3"})
+    if not chunk:
+        return "", start
+
+    figure = next((b for b in chunk if b["type"] == "figure"), None)
+    paras = [b["html"] for b in chunk if b["type"] == "p"]
+
+    if figure:
+        meta = ""
+        body_paras = paras
+        if len(paras) >= 2 and "Registration" in paras[1]:
+            meta = (
+                f'<div class="ulr-preparedness-meta mb-3">{paras[0]}{paras[1]}'
+                f'{paras[2] if len(paras) > 2 else ""}</div>'
+            )
+            body_paras = paras[3:]
+        figure_html = (
+            f'<figure class="ulr-preparedness-figure m-0">'
+            f'<img src="{figure["src"]}" alt="Environmental hygiene and infection-control readiness" '
+            f'class="w-100" loading="eager" decoding="async"></figure>'
+        )
+        html = (
+            f'<div class="row g-4 g-lg-5 align-items-start">'
+            f'<div class="col-lg-5">{figure_html}</div>'
+            f'<div class="col-lg-7">{meta}<div class="ulr-preparedness-prose">{"".join(body_paras)}</div></div>'
+            f"</div>"
+        )
+    else:
+        html = f'<div class="ulr-preparedness-prose">{"".join(paras)}</div>'
+
+    return f'<div class="ulr-preparedness-block">{html}</div>', end
+
+
+CARD_GRID_PARENTS = {
+    "Areas of Support",
+    "Strategic Applications",
+    "Benefits",
+}
+
+SPLIT_HEADINGS = {
+    "Why Preparedness Matters",
+    "The Challenge",
+    "Why Strategic Food Reserves Matter",
+}
+
+TIER_PARENTS = {
+    "Continental Preparedness Model",
+    "Scalable Preparedness Model",
+}
+
+STAKEHOLDER_HEADINGS = {
+    "Potential Stakeholders",
+    "Distribution Pathways",
+    "Transport Efficiency",
+    "Public Health Relevance",
+    "What This Means",
+    "Africa Planning Assumption",
+}
+
+BAND_HEADINGS = {"Vision", "Let's Strengthen Preparedness Together"}
+
+CONTACT_HEADINGS = {"Contact Us", "Contact Ubuntu Life Resources"}
+
+PRODUCT_CATALOG_HEADINGS = {"Tuna", "Sardines", "Pilchards"}
+
+
+def render_product_catalog(blocks: list[dict], start: int) -> tuple[str, int]:
+    cards: list[str] = []
+    i = start
+    while i < len(blocks) and blocks[i]["type"] == "h3" and blocks[i]["text"] in PRODUCT_CATALOG_HEADINGS:
+        name = blocks[i]["text"]
+        i += 1
+        parts: list[str] = []
+        while i < len(blocks) and blocks[i]["type"] != "h3":
+            if blocks[i]["type"] == "p":
+                parts.append(blocks[i]["html"])
+            elif blocks[i]["type"] == "ul":
+                parts.append(render_list(blocks[i]["items"]))
+            i += 1
+        cards.append(
+            f'<article class="ulr-preparedness-mini-card">'
+            f'<h4>{linkify(name)}</h4>{"".join(parts)}</article>'
+        )
+    html = (
+        f'<div class="ulr-preparedness-card-grid ulr-preparedness-card-grid--triple">'
+        f'{"".join(cards)}</div>'
+    )
+    return html, i
+
+
+def render_why_tonno_block(title: str, blocks: list[dict], start: int) -> tuple[str, int]:
+    chunk, i = collect_until(blocks, start, {"h3"})
+    lead = "".join(
+        b["html"] if b["type"] == "p" else render_list(b["items"], cols=True)
+        for b in chunk
+        if b["type"] in {"p", "ul"}
+    )
+    catalog_html, i = render_product_catalog(blocks, i)
+    html = (
+        f'<div class="ulr-preparedness-block">'
+        f'<div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">{linkify(title)}</h3></div>'
+        f'<div class="ulr-preparedness-prose mb-4">{lead}</div>{catalog_html}</div>'
+    )
+    return html, i
+
+
+def layout_blocks(blocks: list[dict]) -> str:
+    parts: list[str] = []
+    i = 0
+
+    intro_html, i = render_intro(blocks, i)
+    if intro_html:
+        parts.append(intro_html)
+
+    while i < len(blocks):
+        block = blocks[i]
+        if block["type"] != "h3":
+            i += 1
+            continue
+
+        title = block["text"]
+        i += 1
+
+        if title in CARD_GRID_PARENTS:
+            if title == "Benefits":
+                pairs, i = collect_h3_pairs_until(blocks, i, BAND_HEADINGS | CONTACT_HEADINGS)
+            else:
+                pairs, i = collect_card_pairs(blocks, i)
+            parts.append(render_card_grid(title, pairs))
+            continue
+
+        if title in TIER_PARENTS:
+            html, i = render_tier_group(title, blocks, i)
+            parts.append(html)
+            continue
+
+        if title == "Environmental Hygiene Solutions":
+            product_html, i = render_product_block(blocks, i)
+            parts.append(
+                f'<div class="ulr-preparedness-block">'
+                f'<div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">{linkify(title)}</h3></div>'
+                f"{product_html}</div>"
+            )
+            continue
+
+        if title == "Sani Amanzi Emergency Water Capacity":
+            chunk, i = collect_until(blocks, i, {"h3"})
+            parts.append(render_water_capacity(title, chunk))
+            continue
+
+        if title in CONTACT_HEADINGS:
+            chunk, i = collect_until(blocks, i, {"h3"})
+            parts.append(render_contact(title, chunk))
+            continue
+
+        if title in BAND_HEADINGS:
+            chunk, i = collect_until(blocks, i, {"h3"})
+            if title == "Let's Strengthen Preparedness Together":
+                band_chunk, contact_chunk = split_contact_chunk(chunk)
+                parts.append(render_band(title, band_chunk))
+                if contact_chunk:
+                    parts.append(render_contact("Contact Us", contact_chunk))
+            else:
+                parts.append(render_band(title, chunk))
+            continue
+
+        if title in SPLIT_HEADINGS:
+            chunk, i = collect_until(blocks, i, {"h3"})
+            parts.append(render_split_section(title, chunk))
+            continue
+
+        if title in STAKEHOLDER_HEADINGS or title.startswith("Stakeholder"):
+            chunk, i = collect_until(blocks, i, {"h3"})
+            parts.append(render_stakeholder_block(title, chunk))
+            continue
+
+        if title == "Why Tonno Bonno":
+            html, i = render_why_tonno_block(title, blocks, i)
+            parts.append(html)
+            continue
+
+        chunk, i = collect_until(blocks, i, {"h3"})
+        parts.append(render_default_block(title, chunk))
+
+    return "".join(parts)
+
+
+def docx_body_html(path: Path) -> tuple[str, str, str]:
+    title, subtitle, blocks = parse_docx_blocks(path)
+    return title, subtitle, layout_blocks(blocks)
 
 
 def section_html(key: str, bg: bool = False) -> str:
@@ -251,12 +777,12 @@ def section_html(key: str, bg: bool = False) -> str:
 
     return f"""        <section class="{cls}" aria-labelledby="{meta['id']}">
           <div class="container">
-            <div class="ulr-preparedness-section__header mb-4">
+            <div class="ulr-preparedness-section__header">
               <span class="ulr-preparedness-section__eyebrow">{meta['eyebrow']}</span>
               <h2 class="sec-title h3 mb-2" id="{meta['id']}">{linkify(title)}</h2>
               {subtitle_html}
             </div>
-            <div class="ulr-preparedness-doc-body ulr-brief-copy">
+            <div class="ulr-preparedness-layout ulr-brief-copy">
               {body}
             </div>
           </div>
@@ -264,16 +790,30 @@ def section_html(key: str, bg: bool = False) -> str:
 
 
 def intro_section() -> str:
-    return """        <section class="section-gap ulr-brief-section">
+    return """        <section class="section-gap ulr-brief-section bg-light">
           <div class="container">
-            <div class="ulr-preparedness-intro mb-4">
+            <div class="ulr-preparedness-intro">
               <span class="sub-title d-inline-block mb-2"><i class="tji-strategy"></i> One readiness framework</span>
-              <p class="desc mb-3">This page reproduces the full Ubuntu Life Resources preparedness briefs for environmental hygiene, emergency drinking water, and strategic protein food reserves — aligned for governments, institutions, humanitarian programmes, and emergency-response agencies across Africa.</p>
+              <p class="desc mb-3">Three preparedness briefs — environmental hygiene, emergency drinking water, and strategic protein food reserves — aligned for governments, institutions, humanitarian programmes, and emergency-response agencies across Africa.</p>
               <ul class="ulr-preparedness-nav" aria-label="Preparedness sections">
                 <li><a href="#hygiene-readiness">Hygiene &amp; infection control</a></li>
                 <li><a href="#water-security">Water security</a></li>
                 <li><a href="#nutrition-reserves">Protein food reserves</a></li>
               </ul>
+              <div class="ulr-preparedness-pillar-cards">
+                <article class="ulr-preparedness-pillar-card">
+                  <h3>Environmental hygiene</h3>
+                  <p class="desc small mb-0">Biosecurity, IPC discipline, and disinfection reserves for healthcare, food, and agricultural settings.</p>
+                </article>
+                <article class="ulr-preparedness-pillar-card">
+                  <h3>Water security</h3>
+                  <p class="desc small mb-0">Point-of-use treatment stockpiles for disaster, outbreak, and humanitarian corridors.</p>
+                </article>
+                <article class="ulr-preparedness-pillar-card">
+                  <h3>Nutritional resilience</h3>
+                  <p class="desc small mb-0">Shelf-stable protein reserves that hold without cold chain dependency.</p>
+                </article>
+              </div>
             </div>
           </div>
         </section>"""

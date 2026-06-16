@@ -1,11 +1,18 @@
 /**
- * Preparedness pillar — integrated readiness across hygiene, water, and nutrition
+ * Preparedness pillar — brief layouts aligned with other ULR pillar pages
  */
 
 body.ulr-preparedness-page {
   --ulr-preparedness-accent: var(--ulr-brand-green-dark, #2e7d32);
 }
 
+body.ulr-preparedness-page main#primary {
+  background: #fff;
+}
+
+/* ------------------------------------------------------------------ */
+/* Intro & jump nav                                                      */
+/* ------------------------------------------------------------------ */
 .ulr-preparedness-intro {
   max-width: min(52rem, 100%);
   margin-inline: auto;
@@ -41,8 +48,49 @@ body.ulr-preparedness-page {
   background: rgba(46, 125, 50, 0.08);
 }
 
+.ulr-preparedness-pillar-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+@media (max-width: 991px) {
+  .ulr-preparedness-pillar-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ulr-preparedness-pillar-card {
+  height: 100%;
+  padding: clamp(1rem, 2.5vw, 1.35rem);
+  border: 1px solid var(--tj-color-border-1, #dce5e5);
+  border-radius: 12px;
+  background: #fff;
+  text-align: left;
+}
+
+.ulr-preparedness-pillar-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+}
+
+/* ------------------------------------------------------------------ */
+/* Section shell                                                         */
+/* ------------------------------------------------------------------ */
 .ulr-preparedness-section {
   scroll-margin-top: clamp(5rem, 12vw, 7rem);
+}
+
+.ulr-preparedness-section__header {
+  max-width: min(52rem, 100%);
+  margin-bottom: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.bg-light .ulr-preparedness-section__header {
+  margin-inline: auto;
+  text-align: center;
 }
 
 .ulr-preparedness-section__eyebrow {
@@ -55,121 +103,160 @@ body.ulr-preparedness-page {
   color: var(--ulr-preparedness-accent);
 }
 
-.ulr-preparedness-placeholder {
-  position: relative;
-  width: 100%;
-  margin: 0;
-  border: 2px dashed #b8c9d6;
-  border-radius: 12px;
-  background: linear-gradient(145deg, #f4f8f8 0%, #e8eef0 100%);
-  overflow: hidden;
+.ulr-preparedness-section__subtitle {
+  margin-bottom: 0;
+  color: var(--tj-color-text-body, #4a5c5c);
 }
 
-.ulr-preparedness-placeholder__label {
-  position: absolute;
-  inset: 0;
+.ulr-preparedness-layout {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.25rem;
-  text-align: center;
-  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
-  font-weight: 600;
-  line-height: 1.45;
-  color: #5a6c75;
+  flex-direction: column;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
 }
 
-.ulr-preparedness-placeholder--banner {
-  min-height: clamp(12rem, 28vw, 18rem);
+/* ------------------------------------------------------------------ */
+/* Panels & cards (matches institutional / pillar patterns)              */
+/* ------------------------------------------------------------------ */
+.ulr-preparedness-panel {
+  height: 100%;
+  padding: clamp(1.15rem, 3vw, 1.5rem);
+  border: 1px solid var(--tj-color-border-1, #dce5e5);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 18px rgba(11, 46, 79, 0.06);
 }
 
-.ulr-preparedness-placeholder--square {
-  aspect-ratio: 1;
+.bg-light .ulr-preparedness-panel--on-tint {
+  background: #fff;
 }
 
-.ulr-preparedness-cards {
+.ulr-preparedness-panel .sec-title.h5 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.ulr-preparedness-panel .desc:last-child,
+.ulr-preparedness-panel .ulr-preparedness-list:last-child {
+  margin-bottom: 0;
+}
+
+.ulr-preparedness-meta {
+  padding: clamp(1rem, 2.5vw, 1.35rem);
+  border-radius: 12px;
+  border: 1px solid var(--tj-color-border-1, #dce5e5);
+  background: #f4f8f8;
+}
+
+.ulr-preparedness-meta .desc {
+  margin-bottom: 0.35rem;
+}
+
+.ulr-preparedness-meta .desc:last-child {
+  margin-bottom: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Split rows                                                            */
+/* ------------------------------------------------------------------ */
+.ulr-preparedness-split .desc:last-child {
+  margin-bottom: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Card grids                                                            */
+/* ------------------------------------------------------------------ */
+.ulr-preparedness-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+@media (max-width: 767px) {
+  .ulr-preparedness-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ulr-preparedness-card-grid--triple {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 991px) {
+  .ulr-preparedness-card-grid--triple {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ulr-preparedness-mini-card {
+  height: 100%;
+  padding: clamp(1rem, 2.5vw, 1.25rem);
+  border: 1px solid var(--tj-color-border-1, #dce5e5);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.bg-light .ulr-preparedness-mini-card {
+  box-shadow: 0 2px 12px rgba(11, 46, 79, 0.05);
+}
+
+.ulr-preparedness-mini-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--ulr-preparedness-accent);
+  line-height: 1.35;
+}
+
+.ulr-preparedness-mini-card .desc {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Stats                                                                 */
+/* ------------------------------------------------------------------ */
+.ulr-preparedness-stat-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(0.75rem, 2vw, 1.25rem);
 }
 
 @media (max-width: 991px) {
-  .ulr-preparedness-cards {
+  .ulr-preparedness-stat-grid {
     grid-template-columns: 1fr;
   }
 }
 
-.ulr-preparedness-card {
-  height: 100%;
-  padding: clamp(1rem, 2.5vw, 1.35rem);
-  border: 1px solid var(--tj-color-border-1, #dce5e5);
+.ulr-preparedness-stat-card {
+  text-align: center;
+  padding: clamp(1.15rem, 3vw, 1.5rem);
   border-radius: 12px;
-  background: #fff;
+  border: 1px solid var(--tj-color-border-1, #dce5e5);
+  background: linear-gradient(165deg, #f4f8f8 0%, #fff 100%);
 }
 
-.ulr-preparedness-card h3 {
-  font-size: 1.05rem;
-  margin-bottom: 0.5rem;
-  color: var(--ulr-brand-blue-deep, #0b2e4f);
-}
-
-.ulr-preparedness-card p:last-child {
-  margin-bottom: 0;
-}
-
-.ulr-preparedness-band {
-  background: linear-gradient(165deg, #0b2e4f 0%, #071a33 55%, #0a2540 100%);
-  color: #fff;
-}
-
-.ulr-preparedness-band .sec-title,
-.ulr-preparedness-band .desc,
-.ulr-preparedness-band li {
-  color: rgba(255, 255, 255, 0.92);
-}
-
-.ulr-preparedness-band .sec-title span {
-  color: #a5d6a7;
-}
-
-.ulr-preparedness-band ul.desc {
-  padding-left: 1.2rem;
-}
-
-.ulr-preparedness-cta-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(1.25rem, 3vw, 2rem);
-  align-items: start;
-}
-
-.ulr-preparedness-doc-body {
-  max-width: min(52rem, 100%);
-}
-
-.ulr-preparedness-doc-body .sec-title.h5 {
-  margin-top: 1.5rem;
-}
-
-.ulr-preparedness-doc-body .sec-title.h5:first-child {
-  margin-top: 0;
-}
-
-.ulr-preparedness-section__subtitle {
-  max-width: 48rem;
-}
-
-.ulr-preparedness-figure img {
+.ulr-preparedness-stat-card__value {
   display: block;
-  width: 100%;
-  max-height: min(520px, 70vh);
-  object-fit: contain;
-  object-position: center;
-  background: #f4f8f8;
+  font-family: var(--tj-ff-heading);
+  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--ulr-preparedness-accent);
+  margin-bottom: 0.35rem;
 }
 
+.ulr-preparedness-stat-card__label {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--tj-color-text-body, #4a5c5c);
+}
+
+/* ------------------------------------------------------------------ */
+/* Lists                                                                 */
+/* ------------------------------------------------------------------ */
 .ulr-preparedness-list {
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   padding-left: 1.2rem;
 }
 
@@ -195,8 +282,103 @@ body.ulr-preparedness-page {
   font-weight: 700;
 }
 
-@media (max-width: 767px) {
-  .ulr-preparedness-cta-split {
+.ulr-preparedness-list--cols {
+  column-count: 2;
+  column-gap: 1.5rem;
+}
+
+.ulr-preparedness-list--cols li {
+  break-inside: avoid;
+}
+
+@media (max-width: 575px) {
+  .ulr-preparedness-list--cols {
+    column-count: 1;
+  }
+}
+
+.ulr-preparedness-check-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.35rem 1.25rem;
+}
+
+@media (max-width: 575px) {
+  .ulr-preparedness-check-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ------------------------------------------------------------------ */
+/* Bands & contact                                                       */
+/* ------------------------------------------------------------------ */
+.ulr-preparedness-band {
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border-radius: 12px;
+  background: linear-gradient(
+    165deg,
+    var(--ulr-brand-blue-deep, #0b2e4f) 0%,
+    #071a33 55%,
+    #0a2540 100%
+  );
+  color: #fff;
+}
+
+.ulr-preparedness-band .desc {
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 0.65rem;
+}
+
+.ulr-preparedness-band .desc:last-child {
+  margin-bottom: 0;
+}
+
+.ulr-preparedness-band .sec-title.h5 {
+  color: #fff;
+  margin-top: 0;
+}
+
+.ulr-preparedness-contact {
+  max-width: 36rem;
+  margin-inline: auto;
+  text-align: center;
+  padding: clamp(1.5rem, 4vw, 2rem);
+  border-radius: 12px;
+  border: 1px solid var(--tj-color-border-1, #dce5e5);
+  background: #f4f8f8;
+}
+
+.ulr-preparedness-contact .desc {
+  margin-bottom: 0.35rem;
+}
+
+.ulr-preparedness-contact a {
+  color: var(--ulr-preparedness-accent);
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------------ */
+/* Figures & placeholders                                                */
+/* ------------------------------------------------------------------ */
+.ulr-preparedness-figure img {
+  display: block;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(11, 46, 79, 0.12);
+  max-height: min(480px, 65vh);
+  object-fit: contain;
+  object-position: center;
+  background: #f4f8f8;
+}
+
+.ulr-preparedness-block__title {
+  margin-bottom: 1rem;
+}
+
+.ulr-preparedness-block__title .sec-title.h5 {
+  margin: 0;
+}
+
+.ulr-preparedness-prose .desc:last-child {
+  margin-bottom: 0;
 }
