@@ -52,7 +52,6 @@ body.ulr-preparedness-page main#primary {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(0.75rem, 2vw, 1.25rem);
-  margin-top: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 @media (max-width: 991px) {
@@ -74,6 +73,46 @@ body.ulr-preparedness-page main#primary {
   font-size: 1.05rem;
   margin-bottom: 0.5rem;
   color: var(--ulr-brand-blue-deep, #0b2e4f);
+}
+
+/* ------------------------------------------------------------------ */
+/* Image placeholders                                                    */
+/* ------------------------------------------------------------------ */
+.ulr-preparedness-placeholder {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  border: 2px dashed #b8c9d6;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #f4f8f8 0%, #e8eef0 100%);
+  overflow: hidden;
+}
+
+.ulr-preparedness-placeholder__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  text-align: center;
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: #5a6c75;
+}
+
+.ulr-preparedness-placeholder--banner {
+  min-height: clamp(12rem, 28vw, 18rem);
+}
+
+.ulr-preparedness-placeholder--square {
+  aspect-ratio: 1;
+  min-height: 100%;
+}
+
+.ulr-preparedness-placeholder--side {
+  min-height: clamp(14rem, 32vw, 22rem);
 }
 
 /* ------------------------------------------------------------------ */
@@ -355,6 +394,33 @@ body.ulr-preparedness-page main#primary {
 .ulr-preparedness-contact a {
   color: var(--ulr-preparedness-accent);
   font-weight: 600;
+}
+
+/* ------------------------------------------------------------------ */
+/* Page-level engagement band (before CTA)                               */
+/* ------------------------------------------------------------------ */
+.ulr-preparedness-engagement-band {
+  background: linear-gradient(165deg, #0b2e4f 0%, #071a33 55%, #0a2540 100%);
+  color: #fff;
+}
+
+.ulr-preparedness-engagement-band .sec-title,
+.ulr-preparedness-engagement-band .desc,
+.ulr-preparedness-engagement-band .ulr-preparedness-list {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.ulr-preparedness-engagement-band .sec-title span {
+  color: #a5d6a7;
+}
+
+.ulr-preparedness-engagement-band .ulr-preparedness-placeholder {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+}
+
+.ulr-preparedness-engagement-band .ulr-preparedness-placeholder__label {
+  color: rgba(255, 255, 255, 0.82);
 }
 
 /* ------------------------------------------------------------------ */

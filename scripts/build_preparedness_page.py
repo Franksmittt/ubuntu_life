@@ -26,16 +26,25 @@ SECTION_META = {
         "id": "hygiene-readiness",
         "nav": "Hygiene &amp; infection control",
         "eyebrow": "Brief 1",
+        "banner": "Banner — environmental hygiene & infection-control readiness",
+        "side": "Side image — healthcare / facility disinfection",
+        "side_position": "left",
     },
     "water": {
         "id": "water-security",
         "nav": "Water security",
         "eyebrow": "Brief 2",
+        "banner": "Banner — water security & humanitarian response",
+        "side": "Side image — community water treatment deployment",
+        "side_position": "right",
     },
     "nutrition": {
         "id": "nutrition-reserves",
         "nav": "Protein food reserves",
         "eyebrow": "Brief 3",
+        "banner": "Banner — strategic protein food reserves",
+        "side": "Side image — shelf-stable food reserve stock",
+        "side_position": "left",
     },
 }
 
@@ -760,6 +769,17 @@ def docx_body_html(path: Path) -> tuple[str, str, str]:
     return title, subtitle, layout_blocks(blocks)
 
 
+def render_placeholder(label: str, variant: str = "") -> str:
+    cls = "ulr-preparedness-placeholder"
+    if variant:
+        cls += f" ulr-preparedness-placeholder--{variant}"
+    safe = esc(label)
+    return (
+        f'<figure class="{cls}" role="img" aria-label="Image placeholder: {safe}">'
+        f'<span class="ulr-preparedness-placeholder__label">{safe}</span></figure>'
+    )
+
+
 def section_html(key: str, bg: bool = False) -> str:
     path = DOCX_FILES[key]
     meta = SECTION_META[key]
@@ -775,16 +795,45 @@ def section_html(key: str, bg: bool = False) -> str:
         else ""
     )
 
+    header_html = (
+        f'<div class="ulr-preparedness-section__header">'
+        f'<span class="ulr-preparedness-section__eyebrow">{meta["eyebrow"]}</span>'
+        f'<h2 class="sec-title h3 mb-2" id="{meta["id"]}">{linkify(title)}</h2>'
+        f"{subtitle_html}</div>"
+    )
+
+    banner_html = (
+        f'<div class="mb-4 mb-lg-5">{render_placeholder(meta["banner"], "banner")}</div>'
+    )
+
+    content_col = (
+        f'{header_html}'
+        f'<div class="ulr-preparedness-layout ulr-brief-copy">{body}</div>'
+    )
+
+    side = meta.get("side")
+    side_position = meta.get("side_position", "right")
+    if side:
+        side_html = render_placeholder(side, "side")
+        if side_position == "left":
+            row_html = (
+                f'<div class="row g-4 g-lg-5 align-items-start">'
+                f'<div class="col-lg-5">{side_html}</div>'
+                f'<div class="col-lg-7">{content_col}</div></div>'
+            )
+        else:
+            row_html = (
+                f'<div class="row g-4 g-lg-5 align-items-start">'
+                f'<div class="col-lg-7">{content_col}</div>'
+                f'<div class="col-lg-5">{side_html}</div></div>'
+            )
+        inner = f"{banner_html}{row_html}"
+    else:
+        inner = f"{banner_html}{content_col}"
+
     return f"""        <section class="{cls}" aria-labelledby="{meta['id']}">
           <div class="container">
-            <div class="ulr-preparedness-section__header">
-              <span class="ulr-preparedness-section__eyebrow">{meta['eyebrow']}</span>
-              <h2 class="sec-title h3 mb-2" id="{meta['id']}">{linkify(title)}</h2>
-              {subtitle_html}
-            </div>
-            <div class="ulr-preparedness-layout ulr-brief-copy">
-              {body}
-            </div>
+            {inner}
           </div>
         </section>"""
 
@@ -792,7 +841,7 @@ def section_html(key: str, bg: bool = False) -> str:
 def intro_section() -> str:
     return """        <section class="section-gap ulr-brief-section bg-light">
           <div class="container">
-            <div class="ulr-preparedness-intro">
+            <div class="ulr-preparedness-intro mb-4">
               <span class="sub-title d-inline-block mb-2"><i class="tji-strategy"></i> One readiness framework</span>
               <p class="desc mb-3">Three preparedness briefs — environmental hygiene, emergency drinking water, and strategic protein food reserves — aligned for governments, institutions, humanitarian programmes, and emergency-response agencies across Africa.</p>
               <ul class="ulr-preparedness-nav" aria-label="Preparedness sections">
@@ -800,19 +849,74 @@ def intro_section() -> str:
                 <li><a href="#water-security">Water security</a></li>
                 <li><a href="#nutrition-reserves">Protein food reserves</a></li>
               </ul>
-              <div class="ulr-preparedness-pillar-cards">
-                <article class="ulr-preparedness-pillar-card">
-                  <h3>Environmental hygiene</h3>
-                  <p class="desc small mb-0">Biosecurity, IPC discipline, and disinfection reserves for healthcare, food, and agricultural settings.</p>
-                </article>
-                <article class="ulr-preparedness-pillar-card">
-                  <h3>Water security</h3>
-                  <p class="desc small mb-0">Point-of-use treatment stockpiles for disaster, outbreak, and humanitarian corridors.</p>
-                </article>
-                <article class="ulr-preparedness-pillar-card">
-                  <h3>Nutritional resilience</h3>
-                  <p class="desc small mb-0">Shelf-stable protein reserves that hold without cold chain dependency.</p>
-                </article>
+            </div>
+            <div class="row g-4 g-lg-5 align-items-stretch">
+              <div class="col-md-5 col-lg-4">
+                <figure class="ulr-preparedness-placeholder ulr-preparedness-placeholder--square h-100" role="img" aria-label="Image placeholder: Hero — integrated preparedness collage"><span class="ulr-preparedness-placeholder__label">Hero — integrated preparedness collage</span></figure>
+              </div>
+              <div class="col-md-7 col-lg-8">
+                <div class="ulr-preparedness-pillar-cards h-100">
+                  <article class="ulr-preparedness-pillar-card">
+                    <h3>Environmental hygiene</h3>
+                    <p class="desc small mb-0">Biosecurity, IPC discipline, and disinfection reserves for healthcare, food, and agricultural settings.</p>
+                  </article>
+                  <article class="ulr-preparedness-pillar-card">
+                    <h3>Water security</h3>
+                    <p class="desc small mb-0">Point-of-use treatment stockpiles for disaster, outbreak, and humanitarian corridors.</p>
+                  </article>
+                  <article class="ulr-preparedness-pillar-card">
+                    <h3>Nutritional resilience</h3>
+                    <p class="desc small mb-0">Shelf-stable protein reserves that hold without cold chain dependency.</p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>"""
+
+
+def engagement_band_section() -> str:
+    return """        <section class="section-gap ulr-preparedness-engagement-band">
+          <div class="container">
+            <div class="row g-4 g-lg-5 align-items-center">
+              <div class="col-lg-6">
+                <h2 class="sec-title">Integrated <span>readiness</span> engagement</h2>
+                <p class="desc">Ubuntu Life Resources helps programme sponsors translate preparedness briefs into supplier-aligned plans — reserve levels, documentation, training collateral, and phased roll-out that respects procurement reality.</p>
+                <ul class="desc ulr-preparedness-list mb-0">
+                  <li>Multi-pillar baskets spanning hygiene, water, and nutrition where programmes overlap</li>
+                  <li>Evidence and product truth aligned to supplier documentation and lab reports</li>
+                  <li>Single accountable commercial interface: <strong>Sanchia-Lynn Smit</strong>, CEO / Founder</li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <figure class="ulr-preparedness-placeholder ulr-preparedness-placeholder--side" role="img" aria-label="Image placeholder: Integrated readiness — programme planning / stakeholder briefing"><span class="ulr-preparedness-placeholder__label">Integrated readiness — programme planning / stakeholder briefing</span></figure>
+              </div>
+            </div>
+          </div>
+        </section>"""
+
+
+def cta_section() -> str:
+    return """        <section class="tj-cta-section section-gap-x">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <div class="cta-area">
+                  <div class="cta-content">
+                    <h2 class="title title-anim">Plan preparedness with Ubuntu Life Resources</h2>
+                    <p class="desc">Whether you are scoping hygiene reserves, water-security stockpiles, or protein food reserves — start with a structured conversation on scope, territories, and deployment timelines.</p>
+                    <div class="cta-btn mt-3 d-flex flex-wrap gap-2">
+                      <a class="tj-primary-btn" href="contact.html">
+                        <span class="btn-text"><span>Contact us</span></span>
+                        <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+                      </a>
+                      <a class="tj-primary-btn transparent-btn" href="pillars.html">
+                        <span class="btn-text"><span>All pillars</span></span>
+                        <span class="btn-icon"><i class="tji-arrow-right-long"></i></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -897,6 +1001,8 @@ def main_content() -> str:
         section_html("hygiene", bg=True),
         section_html("water", bg=False),
         section_html("nutrition", bg=True),
+        engagement_band_section(),
+        cta_section(),
         related_pillars_section(),
     ]
     return "\n".join(parts)
