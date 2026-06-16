@@ -131,6 +131,31 @@
   background: #f4f8f8;
 }
 
+/* Preparedness image placeholders (also used on pillars overview card) */
+.ulr-preparedness-placeholder {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  border: 2px dashed #b8c9d6;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #f4f8f8 0%, #e8eef0 100%);
+  overflow: hidden;
+}
+
+.ulr-preparedness-placeholder__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  text-align: center;
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: #5a6c75;
+}
+
 /* Strategic food supply pillar — hero banner (1536×1024, 3:2) */
 .ulr-food-banner__figure {
   width: 100%;
