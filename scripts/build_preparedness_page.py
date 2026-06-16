@@ -1040,7 +1040,7 @@ def build_page() -> None:
         )
 
     head = re.sub(
-        r'<li><a href="pillar-hygiene-sanitation\.html">Hygiene</a></li>',
+        r'<li><a href="pillar-preparedness\.html">Preparedness</a></li>',
         NAV_CURRENT,
         head,
         count=2,
