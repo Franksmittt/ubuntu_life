@@ -1,8 +1,6 @@
 (function () {
   "use strict";
 
-  var scisanFrame = document.getElementById("ulr-scisan-agri-frame");
-
   function requestBrochure(brochureName) {
     var trigger = document.createElement("button");
     trigger.type = "button";
@@ -20,18 +18,18 @@
 
     return (
       anchor.hasAttribute("data-ulr-brochure-name") ||
-      href.indexOf("SANI-99") !== -1 && href.toLowerCase().indexOf("brochure") !== -1 ||
+      (href.indexOf("SANI-99") !== -1 && href.toLowerCase().indexOf("brochure") !== -1) ||
       text.trim().toLowerCase() === "brochure"
     );
   }
 
-  function wireScisanBrochureLinks() {
-    if (!scisanFrame || !scisanFrame.contentWindow) {
+  function wireScisanBrochureLinks(frame) {
+    if (!frame || !frame.contentWindow) {
       return;
     }
 
     try {
-      var doc = scisanFrame.contentWindow.document;
+      var doc = frame.contentWindow.document;
       doc.querySelectorAll("a").forEach(function (anchor) {
         if (!isBrochureAnchor(anchor) || anchor.dataset.ulrBrochureWired === "true") {
           return;
@@ -50,40 +48,12 @@
     }
   }
 
-  function resizeScisanFrame() {
-    if (!scisanFrame || !scisanFrame.contentWindow) {
-      return;
-    }
-
-    try {
-      var doc = scisanFrame.contentWindow.document;
-      var body = doc.body;
-      var html = doc.documentElement;
-      var height = Math.max(
-        body ? body.scrollHeight : 0,
-        body ? body.offsetHeight : 0,
-        html ? html.clientHeight : 0,
-        html ? html.scrollHeight : 0,
-        html ? html.offsetHeight : 0
-      );
-
-      if (height) {
-        scisanFrame.style.height = height + "px";
-      }
-    } catch (error) {
-      scisanFrame.style.minHeight = "12000px";
-    }
-  }
-
-  if (scisanFrame) {
-    scisanFrame.addEventListener("load", function () {
-      wireScisanBrochureLinks();
-      resizeScisanFrame();
-      window.setTimeout(resizeScisanFrame, 500);
-      window.setTimeout(resizeScisanFrame, 1500);
-      window.setTimeout(wireScisanBrochureLinks, 1500);
+  if (typeof window.ulrInitScisanEmbed === "function") {
+    window.ulrInitScisanEmbed("ulr-scisan-agri-frame", {
+      onRefresh: function (frame) {
+        wireScisanBrochureLinks(frame);
+      },
     });
-    window.addEventListener("resize", resizeScisanFrame);
   }
 
   document.querySelectorAll(".ulr-amanzi-scisan-flip").forEach(function (btn) {

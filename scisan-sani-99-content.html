@@ -370,13 +370,13 @@ margin-right: auto;
 
 			</style>
 <style id="ulr-scisan-embed-fixes">
-  html, body { margin: 0; padding: 0; overflow-x: hidden; background: #fff; }
+  html, body { margin: 0; padding: 0; overflow: hidden; background: #fff; }
   body { min-height: 0; }
-  .ulr-scisan-source-page { width: 100%; overflow: hidden; }
+  .ulr-scisan-source-page { width: 100%; max-width: 100%; overflow: hidden; }
   .ulr-scisan-source-page img { max-width: 100%; height: auto; }
   .ulr-scisan-source-page .elementor-element,
   .ulr-scisan-source-page .e-con,
-  .ulr-scisan-source-page .e-con-inner { box-sizing: border-box; }
+  .ulr-scisan-source-page .e-con-inner { box-sizing: border-box; max-width: 100%; }
 
   /* Elementor scroll animations do not run in the iframe — show content immediately */
   .ulr-scisan-source-page .elementor-invisible {
@@ -498,6 +498,32 @@ margin-right: auto;
     min-height: 320px;
     aspect-ratio: auto;
     background: #000;
+  }
+
+  @media (max-width: 1024px) {
+    .ulr-scisan-source-page .elementor-widget-video-playlist.e-tabs-view-vertical .e-tabs-main-area {
+      flex-direction: column !important;
+      min-height: 0 !important;
+    }
+
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper {
+      min-height: 240px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .ulr-scisan-source-page .eael-elements-flip-box-flip-card {
+      min-height: 240px;
+    }
+
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {
+      min-height: 0 !important;
+    }
+
+    .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed .elementor-wrapper,
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {
+      min-height: 200px;
+    }
   }
 </style>
 

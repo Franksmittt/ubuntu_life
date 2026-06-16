@@ -67,7 +67,14 @@ Progressbar js
 
 	/* ------------- Gsap registration Js -------------*/
 	gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
-	if ($("#smooth-wrapper").length && $("#smooth-content").length) {
+	var isScisanEmbedPage =
+		document.body.classList.contains("ulr-hygiene-scisan") ||
+		document.body.classList.contains("ulr-agri-scisan");
+	if (
+		$("#smooth-wrapper").length &&
+		$("#smooth-content").length &&
+		!isScisanEmbedPage
+	) {
 		gsap.config({
 			nullTargetWarn: false,
 		});

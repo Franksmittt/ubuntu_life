@@ -1,0 +1,72 @@
+/**
+ * SciSan iframe embed shell — single document scroll, no ScrollSmoother conflict
+ */
+
+body.ulr-hygiene-scisan,
+body.ulr-agri-scisan {
+  overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+  body.ulr-hygiene-scisan,
+  body.ulr-agri-scisan {
+    overflow-x: hidden;
+  }
+}
+
+/* ScrollSmoother pins #smooth-wrapper; reset to normal flow on embed pages */
+body.ulr-hygiene-scisan #smooth-wrapper,
+body.ulr-agri-scisan #smooth-wrapper {
+  position: static !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
+body.ulr-hygiene-scisan #smooth-content,
+body.ulr-agri-scisan #smooth-content {
+  transform: none !important;
+  will-change: auto !important;
+}
+
+body.ulr-hygiene-scisan main#primary,
+body.ulr-agri-scisan main#primary {
+  overflow: visible;
+  background: #fff;
+}
+
+body.ulr-hygiene-scisan .ulr-scisan-exact-page,
+body.ulr-agri-scisan .ulr-scisan-exact-page {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body.ulr-hygiene-scisan .ulr-scisan-exact-page__frame,
+body.ulr-agri-scisan .ulr-scisan-exact-page__frame {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 0;
+  border: 0;
+  background: #fff;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+/* Footer sits in normal document flow after the iframe */
+body.ulr-hygiene-scisan .tj-footer-section,
+body.ulr-agri-scisan .tj-footer-section {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 767px) {
+  body.ulr-hygiene-scisan .space-for-header,
+  body.ulr-agri-scisan .space-for-header {
+    padding-top: 95px;
+  }
+}

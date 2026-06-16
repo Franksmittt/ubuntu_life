@@ -5,22 +5,3 @@
 body.ulr-hygiene-scisan {
   --ulr-scisan-accent: var(--ulr-brand-green-dark, #2e7d32);
 }
-
-body.ulr-hygiene-scisan main#primary {
-  background: #fff;
-}
-
-body.ulr-hygiene-scisan .ulr-scisan-exact-page {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  background: #fff;
-}
-
-body.ulr-hygiene-scisan .ulr-scisan-exact-page__frame {
-  display: block;
-  width: 100%;
-  min-height: 1400px;
-  border: 0;
-  background: #fff;
-}
