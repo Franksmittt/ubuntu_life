@@ -143,6 +143,58 @@ body.ulr-preparedness-page {
   align-items: start;
 }
 
+.ulr-preparedness-doc-body {
+  max-width: min(52rem, 100%);
+}
+
+.ulr-preparedness-doc-body .sec-title.h5 {
+  margin-top: 1.5rem;
+}
+
+.ulr-preparedness-doc-body .sec-title.h5:first-child {
+  margin-top: 0;
+}
+
+.ulr-preparedness-section__subtitle {
+  max-width: 48rem;
+}
+
+.ulr-preparedness-figure img {
+  display: block;
+  width: 100%;
+  max-height: min(520px, 70vh);
+  object-fit: contain;
+  object-position: center;
+  background: #f4f8f8;
+}
+
+.ulr-preparedness-list {
+  margin-bottom: 1rem;
+  padding-left: 1.2rem;
+}
+
+.ulr-preparedness-list li + li {
+  margin-top: 0.3rem;
+}
+
+.ulr-preparedness-list--checks {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ulr-preparedness-list--checks li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.ulr-preparedness-list--checks li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--ulr-preparedness-accent);
+  font-weight: 700;
+}
+
 @media (max-width: 767px) {
   .ulr-preparedness-cta-split {
     grid-template-columns: 1fr;
