@@ -1,0 +1,22 @@
+/**
+ * SciSan exact-page iframe embeds (agri, case studies, etc.)
+ */
+
+body.ulr-scisan-embed-page main#primary {
+  background: #fff;
+}
+
+.ulr-scisan-exact-page {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+.ulr-scisan-exact-page__frame {
+  display: block;
+  width: 100%;
+  min-height: 1200px;
+  border: 0;
+  background: #fff;
+}

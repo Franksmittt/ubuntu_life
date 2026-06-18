@@ -1,6 +1,54 @@
 (function () {
   "use strict";
 
+  function requestBrochure(brochureName) {
+    var trigger = document.createElement("button");
+    trigger.type = "button";
+    trigger.className = "js-request-brochure";
+    trigger.setAttribute("data-brochure-name", brochureName || "Product brochure");
+    trigger.hidden = true;
+    document.body.appendChild(trigger);
+    trigger.click();
+    trigger.remove();
+  }
+
+  function isBrochureAnchor(anchor) {
+    var href = anchor.getAttribute("href") || "";
+    var text = (anchor.textContent || "").trim().toLowerCase();
+
+    return (
+      anchor.hasAttribute("data-ulr-brochure-name") ||
+      (href.indexOf("brochure") !== -1 && /\.pdf|SANI|CuGROW/i.test(href)) ||
+      text === "brochure" ||
+      text.indexOf("download our brochure") !== -1
+    );
+  }
+
+  function wireBrochureLinks(frame) {
+    if (!frame || !frame.contentWindow) {
+      return;
+    }
+
+    try {
+      var doc = frame.contentWindow.document;
+      doc.querySelectorAll("a").forEach(function (anchor) {
+        if (!isBrochureAnchor(anchor) || anchor.dataset.ulrBrochureWired === "true") {
+          return;
+        }
+
+        anchor.dataset.ulrBrochureWired = "true";
+        anchor.removeAttribute("target");
+        anchor.setAttribute("href", "#request-brochure");
+        anchor.addEventListener("click", function (event) {
+          event.preventDefault();
+          requestBrochure(anchor.dataset.ulrBrochureName || anchor.textContent.trim());
+        });
+      });
+    } catch (error) {
+      // Same-origin iframe only; direct links remain as fallback.
+    }
+  }
+
   function lockIframeScroll(doc) {
     if (!doc || !doc.documentElement) {
       return;
@@ -115,4 +163,19 @@
       refresh: refreshEmbed,
     };
   };
+
+  var dedicatedFrames = {
+    "ulr-scisan-agri-frame": true,
+    "ulr-scisan-hygiene-frame": true,
+  };
+
+  document.querySelectorAll(".ulr-scisan-exact-page__frame").forEach(function (frame) {
+    if (!frame.id || dedicatedFrames[frame.id]) {
+      return;
+    }
+
+    window.ulrInitScisanEmbed(frame.id, {
+      onRefresh: wireBrochureLinks,
+    });
+  });
 })();
