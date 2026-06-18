@@ -251,14 +251,25 @@ def inject_header_nav(head: str, current_page: str | None = None) -> str:
         return head
 
     if current_page == "case-studies.html":
-        item = '                  <li class="current-menu-item"><a href="case-studies.html">Case studies</a></li>\n'
+        case_item = '                  <li class="current-menu-item"><a href="case-studies.html">Case studies</a></li>\n'
     else:
-        item = '                  <li><a href="case-studies.html">Case studies</a></li>\n'
+        case_item = '                  <li><a href="case-studies.html">Case studies</a></li>\n'
 
-    marker = '                  <li><a href="products.html#hygiene-sanitation">Hygiene</a></li>\n'
-    if marker not in head:
-        marker = '                  <li><a href="pillar-hygiene-sanitation.html">Hygiene</a></li>\n'
-    return head.replace(marker, marker + item, 2)
+    preparedness_marker = '                  <li><a href="pillar-preparedness.html">Preparedness</a></li>\n'
+    if preparedness_marker in head:
+        return head.replace(preparedness_marker, preparedness_marker + case_item, 2)
+
+    hygiene_marker = '                  <li><a href="pillar-hygiene-sanitation.html">Hygiene</a></li>\n'
+    fallback_marker = '                  <li><a href="products.html#hygiene-sanitation">Hygiene</a></li>\n'
+    preparedness_item = '                  <li><a href="pillar-preparedness.html">Preparedness</a></li>\n'
+    block = hygiene_marker + preparedness_item + case_item
+    fallback_block = fallback_marker + preparedness_item + case_item
+
+    if hygiene_marker in head:
+        return head.replace(hygiene_marker, block, 2)
+    if fallback_marker in head:
+        return head.replace(fallback_marker, fallback_block, 2)
+    return head
 
 
 def write_shell_page(
@@ -332,19 +343,13 @@ def patch_footer_nav() -> None:
 
 
 def patch_header_nav() -> None:
-    header_link = '                  <li><a href="case-studies.html">Case studies</a></li>\n'
     for path in ROOT.glob("*.html"):
         if path.name.startswith("scisan-"):
             continue
         text = path.read_text(encoding="utf-8")
-        if header_link in text:
+        if 'href="case-studies.html">Case studies</a></li>' in text:
             continue
-        marker = '                  <li><a href="products.html#hygiene-sanitation">Hygiene</a></li>\n'
-        if marker not in text:
-            marker = '                  <li><a href="pillar-hygiene-sanitation.html">Hygiene</a></li>\n'
-        if marker not in text:
-            continue
-        updated = text.replace(marker, marker + header_link, 2)
+        updated = inject_header_nav(text)
         if updated != text:
             path.write_text(updated, encoding="utf-8")
             print(f"Patched header nav in {path.name}")

@@ -12,6 +12,7 @@
   var EARLY_ACCESS = {
     "pillar-water-purification.html": true,
     "pillar-agri-biosecurity.html": true,
+    "pillar-hygiene-sanitation.html": true,
     "blog.html": true,
     "blog-sani-amanzi-point-of-use-water.html": true,
   };
@@ -19,12 +20,16 @@
   /** Pages temporarily held back while content changes are in progress. */
   var SOFT_LOCKED_PAGES = {};
 
+  /** Hash routes temporarily held back while content changes are in progress. */
+  var SOFT_LOCKED_ROUTES = {};
+
   /** Minimum phase required to view each page. */
   var PAGE_PHASE = {
     "index.html": 1,
     "": 1,
     "pillar-shelf-stable-nutrition.html": 1,
     "pillar-agri-biosecurity.html": 1,
+    "pillar-hygiene-sanitation.html": 1,
 
     "pillar-water-purification.html": 2,
     "pillar-institutional-supply.html": 2,
@@ -64,6 +69,11 @@
     return file;
   }
 
+  function routeKey(file) {
+    var hash = (window.location.hash || "").replace(/^#/, "");
+    return hash ? file + "#" + hash : file;
+  }
+
   function requiredPhase(file) {
     if (Object.prototype.hasOwnProperty.call(PAGE_PHASE, file)) {
       return PAGE_PHASE[file];
@@ -75,6 +85,9 @@
   }
 
   function isUnlocked(file) {
+    if (SOFT_LOCKED_ROUTES[routeKey(file)]) {
+      return false;
+    }
     if (SOFT_LOCKED_PAGES[file]) {
       return false;
     }
@@ -85,6 +98,10 @@
   }
 
   function gateMessage(file, required) {
+    var key = routeKey(file);
+    if (SOFT_LOCKED_ROUTES[key]) {
+      return SOFT_LOCKED_ROUTES[key];
+    }
     if (SOFT_LOCKED_PAGES[file]) {
       return SOFT_LOCKED_PAGES[file];
     }
@@ -136,11 +153,25 @@
   function applyGate() {
     var file = pageFile();
     if (isUnlocked(file)) {
+      document.documentElement.classList.remove("ulr-phase-locked");
       document.documentElement.classList.add("ulr-phase-open");
+      var existing = document.querySelector(".ulr-phase-gate");
+      if (existing) {
+        existing.remove();
+      }
+      var visible = document.getElementById("smooth-wrapper");
+      if (!visible) {
+        visible = document.querySelector("main");
+      }
+      if (visible) {
+        visible.removeAttribute("aria-hidden");
+      }
+      document.body.style.overflow = "";
       return;
     }
 
     var msg = gateMessage(file, requiredPhase(file));
+    document.documentElement.classList.remove("ulr-phase-open");
     document.documentElement.classList.add("ulr-phase-locked");
 
     var hide = document.getElementById("smooth-wrapper");
@@ -157,6 +188,10 @@
       pre.style.display = "none";
     }
 
+    var currentGate = document.querySelector(".ulr-phase-gate");
+    if (currentGate) {
+      currentGate.remove();
+    }
     document.body.appendChild(buildGate(msg));
     document.body.style.overflow = "hidden";
   }
@@ -166,10 +201,12 @@
   } else {
     applyGate();
   }
+  window.addEventListener("hashchange", applyGate);
 
   window.ULR_PHASE_GATE = {
     approved: APPROVED_PHASE,
     pageFile: pageFile,
+    routeKey: routeKey,
     requiredPhase: requiredPhase,
     isUnlocked: isUnlocked,
   };

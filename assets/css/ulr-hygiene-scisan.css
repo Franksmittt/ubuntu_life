@@ -1,0 +1,7 @@
+/**
+ * SANI-99 hygiene — exact SciSan embed with Ubuntu Life Resources shell
+ */
+
+body.ulr-hygiene-scisan {
+  --ulr-scisan-accent: var(--ulr-brand-green-dark, #2e7d32);
+}
