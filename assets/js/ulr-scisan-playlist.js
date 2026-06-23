@@ -12,11 +12,53 @@
     return match ? match[1] : "";
   }
 
-  function embedSrc(id) {
+  function parseDataSettings(element) {
+    if (!element) {
+      return {};
+    }
+
+    var raw = element.getAttribute("data-settings");
+    if (!raw) {
+      return {};
+    }
+
+    try {
+      return JSON.parse(
+        raw
+          .replace(/&quot;/g, '"')
+          .replace(/&amp;/g, "&")
+          .replace(/&#39;/g, "'")
+          .replace(/\\\//g, "/")
+      );
+    } catch (error) {
+      return {};
+    }
+  }
+
+  function youtubeEmbedSrc(id, settings) {
+    var params = ["rel=0", "controls=1", "modestbranding=1", "enablejsapi=1"];
+
+    if (!settings || settings.autoplay === "yes" || settings.mute === "yes") {
+      params.push("autoplay=1");
+      params.push("mute=1");
+    }
+
+    if (settings && settings.loop === "yes") {
+      params.push("loop=1");
+      params.push("playlist=" + id);
+    }
+
+    return "https://www.youtube.com/embed/" + id + "?" + params.join("&");
+  }
+
+  function buildYoutubeEmbed(id, settings) {
     return (
-      "https://www.youtube.com/embed/" +
-      id +
-      "?rel=0&controls=1&modestbranding=1&enablejsapi=1"
+      '<div class="ulr-scisan-video-embed">' +
+      '<div class="elementor-wrapper elementor-fit-aspect-ratio elementor-aspect-ratio-169 elementor-open-inline">' +
+      '<iframe class="elementor-video-iframe" title="YouTube video" src="' +
+      youtubeEmbedSrc(id, settings) +
+      '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>' +
+      "</div></div>"
     );
   }
 
@@ -38,7 +80,7 @@
 
     var holder = panelHolder(panel);
     var iframe = holder.querySelector("iframe");
-    var src = embedSrc(id);
+    var src = youtubeEmbedSrc(id, { autoplay: "yes", mute: "yes" });
 
     if (!iframe) {
       holder.innerHTML =
@@ -107,9 +149,84 @@
     }
   }
 
-  function initAll() {
-    document.querySelectorAll(".elementor-widget-video-playlist .e-tabs").forEach(initPlaylist);
+  function initYoutubeWidgets(root) {
+    root.querySelectorAll(".elementor-widget-video").forEach(function (widget) {
+      if (widget.closest(".elementor-widget-video-playlist")) {
+        return;
+      }
+
+      var settings = parseDataSettings(widget);
+      if (settings.video_type !== "youtube" || !settings.youtube_url) {
+        return;
+      }
+
+      var id = youtubeId(settings.youtube_url);
+      if (!id) {
+        return;
+      }
+
+      var wrapper = widget.querySelector(".elementor-wrapper");
+      var videoNode = widget.querySelector(".elementor-video");
+      if (!wrapper || (videoNode && videoNode.querySelector("iframe"))) {
+        return;
+      }
+
+      wrapper.innerHTML = buildYoutubeEmbed(id, settings);
+    });
   }
+
+  function initBackgroundVideos(root) {
+    root.querySelectorAll("[data-settings]").forEach(function (element) {
+      var settings = parseDataSettings(element);
+      if (!settings.background_video_link) {
+        return;
+      }
+
+      var video = element.querySelector("video.elementor-background-video-hosted");
+      if (!video || video.getAttribute("src")) {
+        return;
+      }
+
+      video.setAttribute("src", settings.background_video_link);
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+
+      var playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(function () {
+          // Autoplay may still be blocked until the user interacts.
+        });
+      }
+    });
+  }
+
+  function initHostedVideos(root) {
+    root.querySelectorAll("video.elementor-video[src]").forEach(function (video) {
+      if (video.hasAttribute("autoplay")) {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
+      }
+
+      var playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(function () {
+          // Leave controls available through native video UI if autoplay fails.
+        });
+      }
+    });
+  }
+
+  function initAll() {
+    var root = document.querySelector(".ulr-scisan-source-page") || document;
+    initBackgroundVideos(root);
+    initHostedVideos(root);
+    initYoutubeWidgets(root);
+    root.querySelectorAll(".elementor-widget-video-playlist .e-tabs").forEach(initPlaylist);
+  }
+
+  window.ulrInitScisanMedia = initAll;
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initAll);

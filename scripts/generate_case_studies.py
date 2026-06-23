@@ -27,6 +27,107 @@ EMBED_FIXES = """<style id="ulr-scisan-embed-fixes">
     animation: none !important;
     transform: none !important;
   }
+
+  .ulr-scisan-source-page .elementor-background-video-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .ulr-scisan-source-page .elementor-background-video-hosted {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ulr-scisan-source-page video.elementor-video {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .ulr-scisan-source-page .ulr-scisan-video-embed,
+  .ulr-scisan-source-page .e-tab-content-video {
+    width: 100%;
+  }
+
+  .ulr-scisan-source-page .ulr-scisan-video-embed .elementor-wrapper,
+  .ulr-scisan-source-page .e-tab-content-video .elementor-wrapper,
+  .ulr-scisan-source-page .elementor-widget-video .elementor-wrapper.elementor-open-inline {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+
+  .ulr-scisan-source-page .ulr-scisan-video-embed iframe,
+  .ulr-scisan-source-page .e-tab-content-video iframe,
+  .ulr-scisan-source-page .elementor-widget-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {
+    min-height: 434px;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper {
+    background: #000;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content {
+    display: none !important;
+    height: 100%;
+    background: #000;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active {
+    display: block !important;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active > div,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed .elementor-wrapper,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    aspect-ratio: auto;
+    background: #000;
+  }
+
+  @media (max-width: 1024px) {
+    .ulr-scisan-source-page .elementor-widget-video-playlist.e-tabs-view-vertical .e-tabs-main-area {
+      flex-direction: column !important;
+      min-height: 0 !important;
+    }
+
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper {
+      min-height: 240px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {
+      min-height: 0 !important;
+    }
+
+    .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed .elementor-wrapper,
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {
+      min-height: 200px;
+    }
+  }
 </style>"""
 
 CASE_STUDIES = [
@@ -209,13 +310,34 @@ def mark_elementor_lazyloaded(body: str) -> str:
 
 def extract_elementor_html(page_html: str) -> str:
     match = re.search(
-        r'(<div[^>]+data-elementor-type="wp-page"[^>]*>.*?</div>\s*)(?=<script|<div class="wd-prefooter|<footer|\Z)',
+        r'<div[^>]+data-elementor-type="wp-page"[^>]*>',
         page_html,
-        flags=re.I | re.S,
+        flags=re.I,
     )
     if not match:
         raise ValueError("Could not find Elementor page content")
-    return match.group(1).strip()
+
+    open_tag_start = page_html.rfind("<div", 0, match.start())
+    if open_tag_start == -1:
+        raise ValueError("Could not find Elementor wrapper start")
+
+    depth = 0
+    index = open_tag_start
+    length = len(page_html)
+    while index < length:
+        next_open = page_html.find("<div", index)
+        next_close = page_html.find("</div>", index)
+        if next_close == -1:
+            raise ValueError("Unbalanced div tags in elementor content")
+        if next_open != -1 and next_open < next_close:
+            depth += 1
+            index = next_open + 4
+            continue
+        depth -= 1
+        index = next_close + 6
+        if depth == 0:
+            return page_html[open_tag_start:index].strip()
+    raise ValueError("Could not close elementor wrapper")
 
 
 def build_content_document(page_html: str, aria_label: str) -> str:
@@ -236,6 +358,7 @@ def build_content_document(page_html: str, aria_label: str) -> str:
   <main class="ulr-scisan-source-page" aria-label="{html.escape(aria_label, quote=True)}">
 {body}
   </main>
+  <script src="assets/js/ulr-scisan-playlist.js" defer></script>
 </body>
 </html>
 """
