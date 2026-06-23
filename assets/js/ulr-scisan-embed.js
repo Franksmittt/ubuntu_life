@@ -62,6 +62,20 @@
     }
   }
 
+  function refreshIframeMedia(frame) {
+    if (!frame || !frame.contentWindow) {
+      return;
+    }
+
+    try {
+      if (typeof frame.contentWindow.ulrInitScisanMedia === "function") {
+        frame.contentWindow.ulrInitScisanMedia();
+      }
+    } catch (error) {
+      // Same-origin iframe only.
+    }
+  }
+
   function wireBrochureLinks(frame) {
     if (!frame || !frame.contentWindow) {
       return;
@@ -184,6 +198,7 @@
       if (typeof options.onRefresh === "function") {
         options.onRefresh(frame);
       }
+      refreshIframeMedia(frame);
       resizeFrame();
       observeContent();
     }

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>The Chirpy Egg Co &amp;#8211; Scientific Sanitation Solutions</title>
 <link rel='stylesheet' id='hfe-widgets-style-css' href='https://www.scisan.co.za/wp-content/plugins/header-footer-elementor/inc/widgets-css/frontend.css?ver=2.7.1' media='all' />
-<link rel='stylesheet' id='sps_front_css-css' href='https://www.scisan.co.za/wp-content/plugins/sync-post-with-other-site/assets/css/sps_front_style.css?rand=807&#038;ver=1.9.1' media='all' />
+<link rel='stylesheet' id='sps_front_css-css' href='https://www.scisan.co.za/wp-content/plugins/sync-post-with-other-site/assets/css/sps_front_style.css?rand=320&#038;ver=1.9.1' media='all' />
 <link rel='stylesheet' id='cmplz-general-css' href='https://www.scisan.co.za/wp-content/plugins/complianz-gdpr/assets/css/cookieblocker.min.css?ver=1766596683' media='all' />
 <link rel='stylesheet' id='hfe-style-css' href='https://www.scisan.co.za/wp-content/plugins/header-footer-elementor/assets/css/header-footer-elementor.css?ver=2.7.1' media='all' />
 <link rel='stylesheet' id='elementor-frontend-css' href='https://www.scisan.co.za/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=3.34.0' media='all' />
@@ -317,11 +317,114 @@ margin-right: auto;
     animation: none !important;
     transform: none !important;
   }
+
+  .ulr-scisan-source-page .elementor-background-video-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .ulr-scisan-source-page .elementor-background-video-hosted {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ulr-scisan-source-page video.elementor-video {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .ulr-scisan-source-page .ulr-scisan-video-embed,
+  .ulr-scisan-source-page .e-tab-content-video {
+    width: 100%;
+  }
+
+  .ulr-scisan-source-page .ulr-scisan-video-embed .elementor-wrapper,
+  .ulr-scisan-source-page .e-tab-content-video .elementor-wrapper,
+  .ulr-scisan-source-page .elementor-widget-video .elementor-wrapper.elementor-open-inline {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+
+  .ulr-scisan-source-page .ulr-scisan-video-embed iframe,
+  .ulr-scisan-source-page .e-tab-content-video iframe,
+  .ulr-scisan-source-page .elementor-widget-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {
+    min-height: 434px;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper {
+    background: #000;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content {
+    display: none !important;
+    height: 100%;
+    background: #000;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active {
+    display: block !important;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active > div,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed .elementor-wrapper,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    aspect-ratio: auto;
+    background: #000;
+  }
+
+  @media (max-width: 1024px) {
+    .ulr-scisan-source-page .elementor-widget-video-playlist.e-tabs-view-vertical .e-tabs-main-area {
+      flex-direction: column !important;
+      min-height: 0 !important;
+    }
+
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper {
+      min-height: 240px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {
+      min-height: 0 !important;
+    }
+
+    .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed .elementor-wrapper,
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {
+      min-height: 200px;
+    }
+  }
 </style>
 </head>
 <body>
   <main class="ulr-scisan-source-page" aria-label="The Chirpy Egg Co">
-<div data-elementor-type="wp-page" data-elementor-id="2599" class="elementor elementor-2599" data-elementor-settings="{&quot;ha_cmc_init_switcher&quot;:&quot;no&quot;}" data-elementor-post-type="page">
+<div class="wd-content-area site-content">
+									<article id="post-2599" class="entry-content post-2599 page type-page status-publish hentry">
+							<div data-elementor-type="wp-page" data-elementor-id="2599" class="elementor elementor-2599" data-elementor-settings="{&quot;ha_cmc_init_switcher&quot;:&quot;no&quot;}" data-elementor-post-type="page">
 				<div data-particle_enable="false" data-particle-mobile-disabled="false" class="e-lazyloaded elementor-element elementor-element-366e1618 e-con-full wd-section-stretch e-flex e-con e-parent" data-id="366e1618" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;video&quot;,&quot;shape_divider_bottom&quot;:&quot;wave-brush&quot;,&quot;background_video_link&quot;:&quot;https:\/\/sanidev1.cilek.ae\/wp-content\/uploads\/2023\/12\/file-29.mp4&quot;,&quot;background_play_on_mobile&quot;:&quot;yes&quot;,&quot;_ha_eqh_enable&quot;:false}">
 		<div class="elementor-background-video-container" aria-hidden="true">
 							<video class="elementor-background-video-hosted" autoplay muted playsinline loop></video>
@@ -554,5 +657,6 @@ SANI-<span style="color: #549843">99</span>™ for AGRI</h2>				</div>
 				</div>
 </div>
   </main>
+  <script src="assets/js/ulr-scisan-playlist.js" defer></script>
 </body>
 </html>
