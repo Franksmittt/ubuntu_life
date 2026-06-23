@@ -24,6 +24,44 @@
     );
   }
 
+  function isLocalPageLink(href) {
+    if (!href || href.charAt(0) === "#") {
+      return false;
+    }
+    if (/^(mailto:|tel:|javascript:)/i.test(href)) {
+      return false;
+    }
+    if (/^https?:\/\//i.test(href)) {
+      return /ubuntuliferesources\.co\.za/i.test(href);
+    }
+    return /\.html(?:[?#]|$)/i.test(href) || href.slice(-5) === ".html";
+  }
+
+  function wireParentNavigation(frame) {
+    if (!frame || !frame.contentWindow) {
+      return;
+    }
+
+    try {
+      var doc = frame.contentWindow.document;
+      doc.querySelectorAll("a[href]").forEach(function (anchor) {
+        if (isBrochureAnchor(anchor) || anchor.dataset.ulrParentNavWired === "true") {
+          return;
+        }
+
+        var href = anchor.getAttribute("href") || "";
+        if (!isLocalPageLink(href)) {
+          return;
+        }
+
+        anchor.dataset.ulrParentNavWired = "true";
+        anchor.setAttribute("target", "_parent");
+      });
+    } catch (error) {
+      // Same-origin iframe only.
+    }
+  }
+
   function wireBrochureLinks(frame) {
     if (!frame || !frame.contentWindow) {
       return;
@@ -176,7 +214,10 @@
     }
 
     window.ulrInitScisanEmbed(frame.id, {
-      onRefresh: wireBrochureLinks,
+      onRefresh: function (frame) {
+        wireParentNavigation(frame);
+        wireBrochureLinks(frame);
+      },
     });
   });
 })();

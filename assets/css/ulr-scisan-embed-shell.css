@@ -72,6 +72,12 @@ body.ulr-scisan-embed-page .tj-footer-section {
   z-index: 1;
 }
 
+body.ulr-scisan-embed-page .header-duplicate:not(.sticky) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
 @media (max-width: 767px) {
   body.ulr-hygiene-scisan .space-for-header,
   body.ulr-agri-scisan .space-for-header,
