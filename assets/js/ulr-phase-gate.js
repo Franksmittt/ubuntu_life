@@ -18,7 +18,16 @@
   };
 
   /** Pages temporarily held back while content changes are in progress. */
-  var SOFT_LOCKED_PAGES = {};
+  var SOFT_LOCKED_PAGES = {
+    "pillar-preparedness.html": {
+      title: "Preparedness page restricted",
+      lead:
+        "This preparedness section is temporarily restricted while updates are in progress. Please check back soon once the content has been reviewed.",
+      phaseLabel: "Preparedness updates",
+      currentlyAvailable:
+        "Home · Agricultural Biosecurity · Water Purification Solutions · Strategic Food Supply · Hygiene · Insights (blog)",
+    },
+  };
 
   /** Hash routes temporarily held back while content changes are in progress. */
   var SOFT_LOCKED_ROUTES = {};
