@@ -19,6 +19,14 @@ EMBED_FIXES = """<style id="ulr-scisan-embed-fixes">
   .ulr-scisan-source-page .elementor-element,
   .ulr-scisan-source-page .e-con,
   .ulr-scisan-source-page .e-con-inner { box-sizing: border-box; }
+
+  /* Elementor lazy backgrounds need frontend JS on SciSan; show immediately in embed */
+  .ulr-scisan-source-page .elementor-invisible {
+    visibility: visible !important;
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
 </style>"""
 
 CASE_STUDIES = [
@@ -145,6 +153,8 @@ def extract_head_assets(page_html: str) -> str:
         block = match.group(0)
         if "ulr-scisan-embed-fixes" in block:
             continue
+        if "e-lazyloaded" in block and "background-image: none" in block:
+            continue
         styles.append(block)
     return "\n".join(styles)
 
@@ -152,7 +162,28 @@ def extract_head_assets(page_html: str) -> str:
 def clean_embed_body(body: str) -> str:
     body = re.sub(r"\s*</article>\s*", "\n", body, flags=re.I)
     body = re.sub(r"\n{3,}", "\n\n", body)
-    return body.strip()
+    return mark_elementor_lazyloaded(body.strip())
+
+
+def mark_elementor_lazyloaded(body: str) -> str:
+    def add_lazyloaded(match: re.Match[str]) -> str:
+        tag = match.group(0)
+        if "e-lazyloaded" in tag:
+            return tag
+        return re.sub(
+            r'\bclass="',
+            'class="e-lazyloaded ',
+            tag,
+            count=1,
+            flags=re.I,
+        )
+
+    return re.sub(
+        r'<div\b[^>]*\bclass="[^"]*\be-con[^"]*\be-parent[^"]*"[^>]*>',
+        add_lazyloaded,
+        body,
+        flags=re.I,
+    )
 
 
 def extract_elementor_html(page_html: str) -> str:
@@ -333,8 +364,9 @@ def generate_shell_pages() -> None:
 
 def patch_footer_nav() -> None:
     footer_link = '<li><a href="case-studies.html">Case studies</a></li>'
+    skip = {"pillar-hygiene-sanitation.html", "pillar-preparedness.html"}
     for path in ROOT.glob("*.html"):
-        if path.name.startswith("scisan-"):
+        if path.name.startswith("scisan-") or path.name in skip:
             continue
         text = path.read_text(encoding="utf-8")
         if footer_link in text:
