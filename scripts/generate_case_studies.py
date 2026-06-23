@@ -149,6 +149,12 @@ def extract_head_assets(page_html: str) -> str:
     return "\n".join(styles)
 
 
+def clean_embed_body(body: str) -> str:
+    body = re.sub(r"\s*</article>\s*", "\n", body, flags=re.I)
+    body = re.sub(r"\n{3,}", "\n\n", body)
+    return body.strip()
+
+
 def extract_elementor_html(page_html: str) -> str:
     match = re.search(
         r'(<div[^>]+data-elementor-type="wp-page"[^>]*>.*?</div>\s*)(?=<script|<div class="wd-prefooter|<footer|\Z)',
@@ -162,7 +168,7 @@ def extract_elementor_html(page_html: str) -> str:
 
 def build_content_document(page_html: str, aria_label: str) -> str:
     head_assets = extract_head_assets(page_html)
-    body = rewrite_links(extract_elementor_html(page_html))
+    body = rewrite_links(clean_embed_body(extract_elementor_html(page_html)))
     title_match = re.search(r"<title>([^<]+)</title>", page_html, flags=re.I)
     title = html.escape(title_match.group(1).strip() if title_match else aria_label)
     return f"""<!doctype html>
@@ -213,6 +219,7 @@ def shell_parts() -> tuple[str, str]:
         head = head.replace(
             '  <link rel="stylesheet" href="assets/css/ulr-phase-gate.css">',
             '  <link rel="stylesheet" href="assets/css/ulr-phase-gate.css">\n'
+            '  <link rel="stylesheet" href="assets/css/ulr-scisan-embed-shell.css">\n'
             '  <link rel="stylesheet" href="assets/css/ulr-scisan-embed.css">',
         )
 
@@ -230,6 +237,7 @@ def embed_main(title: str, src: str, frame_id: str) -> str:
           <h1 id="{frame_id}-title" class="visually-hidden">{html.escape(title)}</h1>
           <iframe id="{frame_id}" class="ulr-scisan-exact-page__frame" src="{src}" title="{html.escape(title)} SciSan content" loading="eager" scrolling="no"></iframe>
         </section>
+      </main>
 """
 
 

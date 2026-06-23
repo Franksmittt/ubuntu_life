@@ -3,20 +3,23 @@
  */
 
 body.ulr-hygiene-scisan,
-body.ulr-agri-scisan {
+body.ulr-agri-scisan,
+body.ulr-scisan-embed-page {
   overflow-x: clip;
 }
 
 @supports not (overflow: clip) {
   body.ulr-hygiene-scisan,
-  body.ulr-agri-scisan {
+  body.ulr-agri-scisan,
+  body.ulr-scisan-embed-page {
     overflow-x: hidden;
   }
 }
 
 /* ScrollSmoother pins #smooth-wrapper; reset to normal flow on embed pages */
 body.ulr-hygiene-scisan #smooth-wrapper,
-body.ulr-agri-scisan #smooth-wrapper {
+body.ulr-agri-scisan #smooth-wrapper,
+body.ulr-scisan-embed-page #smooth-wrapper {
   position: static !important;
   width: 100% !important;
   height: auto !important;
@@ -25,19 +28,22 @@ body.ulr-agri-scisan #smooth-wrapper {
 }
 
 body.ulr-hygiene-scisan #smooth-content,
-body.ulr-agri-scisan #smooth-content {
+body.ulr-agri-scisan #smooth-content,
+body.ulr-scisan-embed-page #smooth-content {
   transform: none !important;
   will-change: auto !important;
 }
 
 body.ulr-hygiene-scisan main#primary,
-body.ulr-agri-scisan main#primary {
+body.ulr-agri-scisan main#primary,
+body.ulr-scisan-embed-page main#primary {
   overflow: visible;
   background: #fff;
 }
 
 body.ulr-hygiene-scisan .ulr-scisan-exact-page,
-body.ulr-agri-scisan .ulr-scisan-exact-page {
+body.ulr-agri-scisan .ulr-scisan-exact-page,
+body.ulr-scisan-embed-page .ulr-scisan-exact-page {
   width: 100%;
   max-width: 100%;
   margin: 0;
@@ -46,7 +52,8 @@ body.ulr-agri-scisan .ulr-scisan-exact-page {
 }
 
 body.ulr-hygiene-scisan .ulr-scisan-exact-page__frame,
-body.ulr-agri-scisan .ulr-scisan-exact-page__frame {
+body.ulr-agri-scisan .ulr-scisan-exact-page__frame,
+body.ulr-scisan-embed-page .ulr-scisan-exact-page__frame {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -59,14 +66,16 @@ body.ulr-agri-scisan .ulr-scisan-exact-page__frame {
 
 /* Footer sits in normal document flow after the iframe */
 body.ulr-hygiene-scisan .tj-footer-section,
-body.ulr-agri-scisan .tj-footer-section {
+body.ulr-agri-scisan .tj-footer-section,
+body.ulr-scisan-embed-page .tj-footer-section {
   position: relative;
   z-index: 1;
 }
 
 @media (max-width: 767px) {
   body.ulr-hygiene-scisan .space-for-header,
-  body.ulr-agri-scisan .space-for-header {
+  body.ulr-agri-scisan .space-for-header,
+  body.ulr-scisan-embed-page .space-for-header {
     padding-top: 95px;
   }
 }
