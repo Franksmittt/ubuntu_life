@@ -109,6 +109,7 @@
         if (height > 0) {
           frame.style.height = height + "px";
           frame.style.minHeight = "0";
+          window.dispatchEvent(new Event("resize"));
         }
       } catch (error) {
         // Keep the last known height if cross-origin access ever changes.
