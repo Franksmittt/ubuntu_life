@@ -76,7 +76,7 @@ CASE_STUDIES = [
         "title": "Safeguarding Heritage: Shakespeare's Globe Workshop",
         "card_title": "Safeguarding Heritage: How SANI-99™ Protected Shakespeare's Globe Workshop from Black Mould",
         "category": "Hygiene",
-        "pillar_href": "products.html#hygiene-sanitation",
+        "pillar_href": "pillar-hygiene-sanitation.html",
     },
     {
         "file_slug": "north-west-ambulance-service",
@@ -84,7 +84,7 @@ CASE_STUDIES = [
         "title": "North West Ambulance Service",
         "card_title": "North West Ambulance Service Enhances Hygiene with SANI-99™ Wipes",
         "category": "Hygiene",
-        "pillar_href": "products.html#hygiene-sanitation",
+        "pillar_href": "pillar-hygiene-sanitation.html",
     },
 ]
 
@@ -136,7 +136,28 @@ def rewrite_links(text: str) -> str:
         text,
         flags=re.I,
     )
-    return text
+    return tag_parent_navigation(text)
+
+
+def tag_parent_navigation(text: str) -> str:
+  def fix_anchor(match: re.Match[str]) -> str:
+      tag = match.group(0)
+      href_match = re.search(r'href=(["\'])(.*?)\1', tag, flags=re.I)
+      if not href_match:
+          return tag
+      href = href_match.group(2)
+      if href.startswith(("#", "mailto:", "tel:", "javascript:")):
+          return tag
+      if re.match(r"^https?://", href, flags=re.I):
+          if "ubuntuliferesources.co.za" not in href.lower():
+              return tag
+      elif ".html" not in href:
+          return tag
+      if re.search(r'\btarget=', tag, flags=re.I):
+          return re.sub(r'\btarget=(["\'])[^"\']*\1', 'target="_parent"', tag, flags=re.I)
+      return tag[:-1] + ' target="_parent">'
+
+  return re.sub(r"<a\b[^>]*>", fix_anchor, text, flags=re.I)
 
 
 def extract_head_assets(page_html: str) -> str:
@@ -383,8 +404,9 @@ def patch_footer_nav() -> None:
 
 
 def patch_header_nav() -> None:
+    skip = {"pillar-hygiene-sanitation.html", "pillar-preparedness.html"}
     for path in ROOT.glob("*.html"):
-        if path.name.startswith("scisan-"):
+        if path.name.startswith("scisan-") or path.name in skip:
             continue
         text = path.read_text(encoding="utf-8")
         if 'href="case-studies.html">Case studies</a></li>' in text:
