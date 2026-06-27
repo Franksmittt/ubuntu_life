@@ -26,7 +26,8 @@ SECTION_META = {
         "id": "hygiene-readiness",
         "nav": "Hygiene &amp; infection control",
         "eyebrow": "Brief 1",
-        "banner": "Banner — environmental hygiene & infection-control readiness",
+        "heroes": ("assets/images/pillars/preparedness/water/hero1.jpeg",),
+        "hero_alt": "Environmental hygiene and infection-control readiness",
     },
     "water": {
         "id": "water-security",
@@ -52,7 +53,7 @@ NAV_CURRENT = (
     '<li class="current-menu-item"><a href="pillar-preparedness.html">Preparedness</a></li>'
 )
 
-HYGIENE_HERO_REL = "assets/images/pillars/preparedness/water/hero1.jpeg"
+
 BULLET_RE = re.compile(r"^[\u2022\u2713\u2714•✔\-]\s*")
 EMAIL_RE = re.compile(r"([\w.+-]+@[\w.-]+\.\w+)")
 PHONE_RE = re.compile(r"(\+?\d[\d\s]{8,}\d)")
@@ -98,9 +99,6 @@ def is_meta_paragraph(html: str) -> bool:
         return True
     return False
 
-
-def ensure_hygiene_hero_image() -> str:
-    return HYGIENE_HERO_REL
 
 
 def split_bullet_block(text: str) -> list[str]:
@@ -568,27 +566,14 @@ def render_default_block(title: str, chunk: list[dict]) -> str:
     )
 
 
-def render_intro(
-    blocks: list[dict], start: int, *, hygiene_hero: str | None = None
-) -> tuple[str, int]:
+def render_intro(blocks: list[dict], start: int) -> tuple[str, int]:
     chunk, end = collect_until(blocks, start, {"h3"})
     if not chunk:
         return "", start
 
     paras = [b["html"] for b in chunk if b["type"] == "p"]
-    if hygiene_hero:
-        body_paras = [p for p in paras if not is_meta_paragraph(p)]
-        hero_html = (
-            f'<figure class="ulr-preparedness-figure ulr-preparedness-hero m-0 mb-4 mb-lg-5">'
-            f'<img src="{hygiene_hero}" alt="Environmental hygiene and infection-control readiness" '
-            f'class="w-100" loading="eager" decoding="async"></figure>'
-        )
-        html = (
-            f"{hero_html}"
-            f'<div class="ulr-preparedness-prose">{"".join(body_paras)}</div>'
-        )
-    else:
-        html = f'<div class="ulr-preparedness-prose">{"".join(paras)}</div>'
+    body_paras = [p for p in paras if not is_meta_paragraph(p)]
+    html = f'<div class="ulr-preparedness-prose">{"".join(body_paras)}</div>'
 
     return f'<div class="ulr-preparedness-block">{html}</div>', end
 
@@ -666,11 +651,11 @@ def render_why_tonno_block(title: str, blocks: list[dict], start: int) -> tuple[
     return html, i
 
 
-def layout_blocks(blocks: list[dict], *, hygiene_hero: str | None = None) -> str:
+def layout_blocks(blocks: list[dict]) -> str:
     parts: list[str] = []
     i = 0
 
-    intro_html, i = render_intro(blocks, i, hygiene_hero=hygiene_hero)
+    intro_html, i = render_intro(blocks, i)
     if intro_html:
         parts.append(intro_html)
 
@@ -749,8 +734,7 @@ def layout_blocks(blocks: list[dict], *, hygiene_hero: str | None = None) -> str
 
 def docx_body_html(path: Path) -> tuple[str, str, str]:
     title, subtitle, blocks = parse_docx_blocks(path)
-    hero = ensure_hygiene_hero_image() if path == DOCX_FILES["hygiene"] else None
-    return title, subtitle, layout_blocks(blocks, hygiene_hero=hero)
+    return title, subtitle, layout_blocks(blocks)
 
 
 def render_placeholder(label: str, variant: str = "") -> str:
