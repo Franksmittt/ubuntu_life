@@ -52,11 +52,7 @@ NAV_CURRENT = (
     '<li class="current-menu-item"><a href="pillar-preparedness.html">Preparedness</a></li>'
 )
 
-HYGIENE_HERO_REL = "assets/images/pillars/preparedness/hygiene-brief-hero.jpeg"
-HYGIENE_HERO_SOURCES = (
-    ROOT / "WhatsApp Image 2026-06-23 at 14.35.32.jpeg",
-    ROOT / "assets/images/pillars/preparedness/hygiene-brief-hero.jpeg",
-)
+HYGIENE_HERO_REL = "assets/images/pillars/preparedness/water/hero1.jpeg"
 BULLET_RE = re.compile(r"^[\u2022\u2713\u2714•✔\-]\s*")
 EMAIL_RE = re.compile(r"([\w.+-]+@[\w.-]+\.\w+)")
 PHONE_RE = re.compile(r"(\+?\d[\d\s]{8,}\d)")
@@ -104,35 +100,6 @@ def is_meta_paragraph(html: str) -> bool:
 
 
 def ensure_hygiene_hero_image() -> str:
-    IMG_DIR.mkdir(parents=True, exist_ok=True)
-    dest = IMG_DIR / "hygiene-brief-hero.jpeg"
-
-    if dest.exists() and dest.stat().st_size > 0:
-        return HYGIENE_HERO_REL
-
-    for src in HYGIENE_HERO_SOURCES:
-        if src.is_file() and src.resolve() != dest.resolve():
-            shutil.copy2(src, dest)
-            return HYGIENE_HERO_REL
-
-    docx_path = DOCX_FILES["hygiene"]
-    if docx_path.exists():
-        with zipfile.ZipFile(docx_path) as archive:
-            names = [n for n in archive.namelist() if n.startswith("word/media/")]
-            if names:
-                raw = archive.read(names[0])
-                try:
-                    from PIL import Image
-                    import io
-
-                    img = Image.open(io.BytesIO(raw))
-                    if img.mode in ("RGBA", "P"):
-                        img = img.convert("RGB")
-                    img.save(dest, "JPEG", quality=90)
-                except ImportError:
-                    dest.write_bytes(raw)
-                return HYGIENE_HERO_REL
-
     return HYGIENE_HERO_REL
 
 
