@@ -244,6 +244,11 @@ def render_list(items: list[str], checks: bool = False, cols: bool = False) -> s
     return f'<ul class="{cls}">{lis}</ul>'
 
 
+def render_tag_list(items: list[str]) -> str:
+    lis = "".join(f"<li>{linkify(item)}</li>" for item in items)
+    return f'<ul class="ulr-preparedness-tag-list">{lis}</ul>'
+
+
 def collect_until(blocks: list[dict], start: int, stop_types: set[str]) -> tuple[list[dict], int]:
     chunk: list[dict] = []
     i = start
@@ -359,22 +364,27 @@ def render_split_section(title: str, chunk: list[dict]) -> str:
 
     list_html = ""
     if lists:
-        list_html = (
-            f'<div class="ulr-preparedness-panel ulr-preparedness-panel--on-tint">'
-            f"{render_list(lists[0]['items'], cols=len(lists[0]['items']) >= 6)}</div>"
-        )
+        items = lists[0]["items"]
+        if len(items) >= 5:
+            list_html = render_tag_list(items)
+        else:
+            list_html = (
+                f'<div class="ulr-preparedness-callout">'
+                f"{render_list(items)}</div>"
+            )
 
     prose_col = "".join(prose)
     tail_html = "".join(tail)
     tail_block = (
-        f'<div class="ulr-preparedness-prose mt-4">{tail_html}</div>' if tail_html else ""
+        f'<div class="ulr-preparedness-prose">{tail_html}</div>' if tail_html else ""
     )
     if list_html:
         body = (
-            f'<div class="row g-4 g-lg-5 align-items-start ulr-preparedness-split">'
-            f'<div class="col-lg-7"><div class="ulr-preparedness-prose">{prose_col}</div></div>'
-            f'<div class="col-lg-5">{list_html}</div></div>'
+            f'<div class="ulr-preparedness-flow">'
+            f'<div class="ulr-preparedness-prose">{prose_col}</div>'
+            f"{list_html}"
             f"{tail_block}"
+            f"</div>"
         )
     else:
         body = f'<div class="ulr-preparedness-prose">{prose_col}{tail_html}</div>'
@@ -430,10 +440,14 @@ def render_tier_group(title: str, blocks: list[dict], start: int) -> tuple[str, 
             if blocks[i]["type"] == "p":
                 parts.append(blocks[i]["html"])
             elif blocks[i]["type"] == "ul":
-                parts.append(render_list(blocks[i]["items"], cols=True))
+                items = blocks[i]["items"]
+                if len(items) >= 6:
+                    parts.append(render_tag_list(items))
+                else:
+                    parts.append(render_list(items, cols=len(items) >= 4))
             i += 1
         cards.append(
-            f'<article class="ulr-preparedness-mini-card">'
+            f'<article class="ulr-preparedness-tier-card">'
             f'<h4>{linkify(tier)}</h4>{"".join(parts)}</article>'
         )
 
@@ -449,9 +463,7 @@ def render_tier_group(title: str, blocks: list[dict], start: int) -> tuple[str, 
         chunk, i = collect_until(blocks, start, {"h3"})
         return render_default_block(title, chunk), i
 
-    grid_cls = "ulr-preparedness-card-grid"
-    if len(cards) == 3:
-        grid_cls += " ulr-preparedness-card-grid--triple"
+    grid_cls = "ulr-preparedness-tier-stack"
     intro_html = (
         f'<div class="ulr-preparedness-prose mb-4">{"".join(intro_parts)}</div>'
         if intro_parts
