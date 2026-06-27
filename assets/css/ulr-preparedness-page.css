@@ -437,6 +437,14 @@ body.ulr-preparedness-page main#primary {
   background: #f4f8f8;
 }
 
+.ulr-preparedness-hero img {
+  max-height: none;
+  height: auto;
+  object-fit: unset;
+  object-position: top center;
+  background: #f4f8f8;
+}
+
 .ulr-preparedness-block__title {
   margin-bottom: 1rem;
 }

@@ -32,7 +32,11 @@ SECTION_META = {
         "id": "water-security",
         "nav": "Water security",
         "eyebrow": "Brief 2",
-        "banner": "Banner — water security & humanitarian response",
+        "heroes": (
+            "assets/images/pillars/preparedness/water/hero1.jpeg",
+            "assets/images/pillars/preparedness/water/hero2.jpeg",
+        ),
+        "hero_alt": "Water security and humanitarian response preparedness",
     },
     "nutrition": {
         "id": "nutrition-reserves",
@@ -48,6 +52,11 @@ NAV_CURRENT = (
     '<li class="current-menu-item"><a href="pillar-preparedness.html">Preparedness</a></li>'
 )
 
+HYGIENE_HERO_REL = "assets/images/pillars/preparedness/hygiene-brief-hero.jpeg"
+HYGIENE_HERO_SOURCES = (
+    ROOT / "WhatsApp Image 2026-06-23 at 14.35.32.jpeg",
+    ROOT / "assets/images/pillars/preparedness/hygiene-brief-hero.jpeg",
+)
 BULLET_RE = re.compile(r"^[\u2022\u2713\u2714•✔\-]\s*")
 EMAIL_RE = re.compile(r"([\w.+-]+@[\w.-]+\.\w+)")
 PHONE_RE = re.compile(r"(\+?\d[\d\s]{8,}\d)")
@@ -83,22 +92,48 @@ def paragraph_has_image(paragraph) -> bool:
     return False
 
 
-def extract_hygiene_cover_image() -> str | None:
-    docx_path = DOCX_FILES["hygiene"]
-    if not docx_path.exists():
-        return None
+def is_meta_paragraph(html: str) -> bool:
+    text = re.sub(r"<[^>]+>", "", html).strip()
+    if text in {"Ubuntu Life Resources", "Ubuntu\u00a0Life\u00a0Resources"}:
+        return True
+    if text.startswith("Registration Number:"):
+        return True
+    if text.startswith("Prepared by"):
+        return True
+    return False
 
+
+def ensure_hygiene_hero_image() -> str:
     IMG_DIR.mkdir(parents=True, exist_ok=True)
-    out = IMG_DIR / "hygiene-readiness-cover.png"
+    dest = IMG_DIR / "hygiene-brief-hero.jpeg"
 
-    with zipfile.ZipFile(docx_path) as archive:
-        names = [n for n in archive.namelist() if n.startswith("word/media/")]
-        if not names:
-            return None
-        with archive.open(names[0]) as src, out.open("wb") as dst:
-            shutil.copyfileobj(src, dst)
+    if dest.exists() and dest.stat().st_size > 0:
+        return HYGIENE_HERO_REL
 
-    return "assets/images/pillars/preparedness/hygiene-readiness-cover.png"
+    for src in HYGIENE_HERO_SOURCES:
+        if src.is_file() and src.resolve() != dest.resolve():
+            shutil.copy2(src, dest)
+            return HYGIENE_HERO_REL
+
+    docx_path = DOCX_FILES["hygiene"]
+    if docx_path.exists():
+        with zipfile.ZipFile(docx_path) as archive:
+            names = [n for n in archive.namelist() if n.startswith("word/media/")]
+            if names:
+                raw = archive.read(names[0])
+                try:
+                    from PIL import Image
+                    import io
+
+                    img = Image.open(io.BytesIO(raw))
+                    if img.mode in ("RGBA", "P"):
+                        img = img.convert("RGB")
+                    img.save(dest, "JPEG", quality=90)
+                except ImportError:
+                    dest.write_bytes(raw)
+                return HYGIENE_HERO_REL
+
+    return HYGIENE_HERO_REL
 
 
 def split_bullet_block(text: str) -> list[str]:
@@ -198,10 +233,6 @@ def parse_docx_blocks(path: Path) -> tuple[str, str, list[dict]]:
     for paragraph in doc.paragraphs:
         if paragraph_has_image(paragraph):
             flush_list()
-            if path == DOCX_FILES["hygiene"]:
-                image_path = extract_hygiene_cover_image()
-                if image_path:
-                    blocks.append({"type": "figure", "src": image_path})
             continue
 
         text = paragraph.text.strip()
@@ -570,33 +601,24 @@ def render_default_block(title: str, chunk: list[dict]) -> str:
     )
 
 
-def render_intro(blocks: list[dict], start: int) -> tuple[str, int]:
+def render_intro(
+    blocks: list[dict], start: int, *, hygiene_hero: str | None = None
+) -> tuple[str, int]:
     chunk, end = collect_until(blocks, start, {"h3"})
     if not chunk:
         return "", start
 
-    figure = next((b for b in chunk if b["type"] == "figure"), None)
     paras = [b["html"] for b in chunk if b["type"] == "p"]
-
-    if figure:
-        meta = ""
-        body_paras = paras
-        if len(paras) >= 2 and "Registration" in paras[1]:
-            meta = (
-                f'<div class="ulr-preparedness-meta mb-3">{paras[0]}{paras[1]}'
-                f'{paras[2] if len(paras) > 2 else ""}</div>'
-            )
-            body_paras = paras[3:]
-        figure_html = (
-            f'<figure class="ulr-preparedness-figure m-0">'
-            f'<img src="{figure["src"]}" alt="Environmental hygiene and infection-control readiness" '
+    if hygiene_hero:
+        body_paras = [p for p in paras if not is_meta_paragraph(p)]
+        hero_html = (
+            f'<figure class="ulr-preparedness-figure ulr-preparedness-hero m-0 mb-4 mb-lg-5">'
+            f'<img src="{hygiene_hero}" alt="Environmental hygiene and infection-control readiness" '
             f'class="w-100" loading="eager" decoding="async"></figure>'
         )
         html = (
-            f'<div class="row g-4 g-lg-5 align-items-start">'
-            f'<div class="col-lg-5">{figure_html}</div>'
-            f'<div class="col-lg-7">{meta}<div class="ulr-preparedness-prose">{"".join(body_paras)}</div></div>'
-            f"</div>"
+            f"{hero_html}"
+            f'<div class="ulr-preparedness-prose">{"".join(body_paras)}</div>'
         )
     else:
         html = f'<div class="ulr-preparedness-prose">{"".join(paras)}</div>'
@@ -677,11 +699,11 @@ def render_why_tonno_block(title: str, blocks: list[dict], start: int) -> tuple[
     return html, i
 
 
-def layout_blocks(blocks: list[dict]) -> str:
+def layout_blocks(blocks: list[dict], *, hygiene_hero: str | None = None) -> str:
     parts: list[str] = []
     i = 0
 
-    intro_html, i = render_intro(blocks, i)
+    intro_html, i = render_intro(blocks, i, hygiene_hero=hygiene_hero)
     if intro_html:
         parts.append(intro_html)
 
@@ -760,7 +782,8 @@ def layout_blocks(blocks: list[dict]) -> str:
 
 def docx_body_html(path: Path) -> tuple[str, str, str]:
     title, subtitle, blocks = parse_docx_blocks(path)
-    return title, subtitle, layout_blocks(blocks)
+    hero = ensure_hygiene_hero_image() if path == DOCX_FILES["hygiene"] else None
+    return title, subtitle, layout_blocks(blocks, hygiene_hero=hero)
 
 
 def render_placeholder(label: str, variant: str = "") -> str:
@@ -772,6 +795,19 @@ def render_placeholder(label: str, variant: str = "") -> str:
         f'<figure class="{cls}" role="img" aria-label="Image placeholder: {safe}">'
         f'<span class="ulr-preparedness-placeholder__label">{safe}</span></figure>'
     )
+
+
+def render_section_heroes(images: tuple[str, ...], alt: str) -> str:
+    parts: list[str] = []
+    for i, src in enumerate(images):
+        margin = "mb-4 mb-lg-5" if i == len(images) - 1 else "mb-3 mb-lg-4"
+        loading = "eager" if i == 0 else "lazy"
+        parts.append(
+            f'<figure class="ulr-preparedness-figure ulr-preparedness-hero m-0 {margin}">'
+            f'<img src="{src}" alt="{esc(alt)}" class="w-100" loading="{loading}" '
+            f'decoding="async"></figure>'
+        )
+    return "".join(parts)
 
 
 def section_html(key: str, bg: bool = False) -> str:
@@ -796,9 +832,15 @@ def section_html(key: str, bg: bool = False) -> str:
         f"{subtitle_html}</div>"
     )
 
-    banner_html = (
-        f'<div class="mb-4 mb-lg-5">{render_placeholder(meta["banner"], "banner")}</div>'
-    )
+    heroes = meta.get("heroes")
+    if heroes:
+        banner_html = render_section_heroes(heroes, meta.get("hero_alt", meta["eyebrow"]))
+    elif meta.get("banner"):
+        banner_html = (
+            f'<div class="mb-4 mb-lg-5">{render_placeholder(meta["banner"], "banner")}</div>'
+        )
+    else:
+        banner_html = ""
 
     inner = (
         f"{banner_html}"
