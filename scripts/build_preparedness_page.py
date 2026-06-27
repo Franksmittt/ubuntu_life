@@ -32,7 +32,11 @@ SECTION_META = {
         "id": "water-security",
         "nav": "Water security",
         "eyebrow": "Brief 2",
-        "banner": "Banner — water security & humanitarian response",
+        "heroes": (
+            "assets/images/pillars/preparedness/water/hero1.jpeg",
+            "assets/images/pillars/preparedness/water/hero2.jpeg",
+        ),
+        "hero_alt": "Water security and humanitarian response preparedness",
     },
     "nutrition": {
         "id": "nutrition-reserves",
@@ -793,6 +797,19 @@ def render_placeholder(label: str, variant: str = "") -> str:
     )
 
 
+def render_section_heroes(images: tuple[str, ...], alt: str) -> str:
+    parts: list[str] = []
+    for i, src in enumerate(images):
+        margin = "mb-4 mb-lg-5" if i == len(images) - 1 else "mb-3 mb-lg-4"
+        loading = "eager" if i == 0 else "lazy"
+        parts.append(
+            f'<figure class="ulr-preparedness-figure ulr-preparedness-hero m-0 {margin}">'
+            f'<img src="{src}" alt="{esc(alt)}" class="w-100" loading="{loading}" '
+            f'decoding="async"></figure>'
+        )
+    return "".join(parts)
+
+
 def section_html(key: str, bg: bool = False) -> str:
     path = DOCX_FILES[key]
     meta = SECTION_META[key]
@@ -815,9 +832,15 @@ def section_html(key: str, bg: bool = False) -> str:
         f"{subtitle_html}</div>"
     )
 
-    banner_html = (
-        f'<div class="mb-4 mb-lg-5">{render_placeholder(meta["banner"], "banner")}</div>'
-    )
+    heroes = meta.get("heroes")
+    if heroes:
+        banner_html = render_section_heroes(heroes, meta.get("hero_alt", meta["eyebrow"]))
+    elif meta.get("banner"):
+        banner_html = (
+            f'<div class="mb-4 mb-lg-5">{render_placeholder(meta["banner"], "banner")}</div>'
+        )
+    else:
+        banner_html = ""
 
     inner = (
         f"{banner_html}"
