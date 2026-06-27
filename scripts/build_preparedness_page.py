@@ -33,10 +33,7 @@ SECTION_META = {
         "id": "water-security",
         "nav": "Water security",
         "eyebrow": "Brief 2",
-        "heroes": (
-            "assets/images/pillars/preparedness/water/hero1.jpeg",
-            "assets/images/pillars/preparedness/water/hero2.jpeg",
-        ),
+        "heroes": ("assets/images/pillars/preparedness/water/hero2.jpeg",),
         "hero_alt": "Water security and humanitarian response preparedness",
     },
     "nutrition": {
