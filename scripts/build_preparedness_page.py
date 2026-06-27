@@ -27,24 +27,18 @@ SECTION_META = {
         "nav": "Hygiene &amp; infection control",
         "eyebrow": "Brief 1",
         "banner": "Banner — environmental hygiene & infection-control readiness",
-        "side": "Side image — healthcare / facility disinfection",
-        "side_position": "left",
     },
     "water": {
         "id": "water-security",
         "nav": "Water security",
         "eyebrow": "Brief 2",
         "banner": "Banner — water security & humanitarian response",
-        "side": "Side image — community water treatment deployment",
-        "side_position": "right",
     },
     "nutrition": {
         "id": "nutrition-reserves",
         "nav": "Protein food reserves",
         "eyebrow": "Brief 3",
         "banner": "Banner — strategic protein food reserves",
-        "side": "Side image — shelf-stable food reserve stock",
-        "side_position": "left",
     },
 }
 
@@ -806,30 +800,11 @@ def section_html(key: str, bg: bool = False) -> str:
         f'<div class="mb-4 mb-lg-5">{render_placeholder(meta["banner"], "banner")}</div>'
     )
 
-    content_col = (
-        f'{header_html}'
+    inner = (
+        f"{banner_html}"
+        f"{header_html}"
         f'<div class="ulr-preparedness-layout ulr-brief-copy">{body}</div>'
     )
-
-    side = meta.get("side")
-    side_position = meta.get("side_position", "right")
-    if side:
-        side_html = render_placeholder(side, "side")
-        if side_position == "left":
-            row_html = (
-                f'<div class="row g-4 g-lg-5 align-items-start">'
-                f'<div class="col-lg-5">{side_html}</div>'
-                f'<div class="col-lg-7">{content_col}</div></div>'
-            )
-        else:
-            row_html = (
-                f'<div class="row g-4 g-lg-5 align-items-start">'
-                f'<div class="col-lg-7">{content_col}</div>'
-                f'<div class="col-lg-5">{side_html}</div></div>'
-            )
-        inner = f"{banner_html}{row_html}"
-    else:
-        inner = f"{banner_html}{content_col}"
 
     return f"""        <section class="{cls}" aria-labelledby="{meta['id']}">
           <div class="container">
