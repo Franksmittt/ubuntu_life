@@ -836,18 +836,242 @@ def section_html(key: str, bg: bool = False) -> str:
         </section>"""
 
 
+def operational_brief_section() -> str:
+    capacity_rows = [
+        ("SANI AMANZI&trade;", "50,000 sachets", "Approx. 5 million sachets", "Approx. 60 million sachets"),
+        ("SANI-99&trade; Medical Grade", "50,000 sachets", "Approx. 5 million sachets", "Approx. 60 million sachets"),
+        ("SANI-99&trade; AGRI", "15,000 sachets", "Approx. 1.5 million sachets", "Approx. 18 million sachets"),
+    ]
+    table_rows = "".join(
+        f"<tr><th scope=\"row\">{row[0]}</th><td>{row[1]}</td><td>{row[2]}</td><td>{row[3]}</td></tr>"
+        for row in capacity_rows
+    )
+
+    packaging_cards = [
+        (
+            "SANI AMANZI&trade;",
+            [
+                "6g sachets",
+                "1,000 sachets per box",
+                "45 boxes per pallet",
+                "45,000 sachets per pallet",
+            ],
+        ),
+        (
+            "SANI-99&trade; Medical Grade",
+            [
+                "6g sachets",
+                "1,000 sachets per box",
+                "45 boxes per pallet",
+                "45,000 sachets per pallet",
+            ],
+        ),
+        (
+            "SANI-99&trade; AGRI",
+            [
+                "96g sachets",
+                "200 sachets per box",
+                "40 boxes per pallet",
+                "8,000 sachets per pallet",
+            ],
+        ),
+    ]
+    packaging_html = "".join(
+        f'<article class="ulr-preparedness-mini-card">'
+        f"<h4>{title}</h4>"
+        f'<ul class="desc ulr-preparedness-list">{"".join(f"<li>{item}</li>" for item in items)}</ul>'
+        f"</article>"
+        for title, items in packaging_cards
+    )
+
+    lead_times = [
+        "Products in stock: Immediate dispatch",
+        "Manufactured orders: Approximately 2–3 weeks",
+        "Drum orders: Approximately 3–5 working days",
+        "Container orders: Typically 3–5 working days after production is complete",
+    ]
+    lead_times_html = "".join(f"<li>{linkify(item)}</li>" for item in lead_times)
+
+    logistics_specs = [
+        ("Supply Terms", "Ex-Factory (EXW)"),
+        ("Collection", "Pretoria, South Africa"),
+        ("Pallet Size", "1200 mm × 1000 mm"),
+        ("Approximate Pallet Weight", "350–400 kg"),
+    ]
+    logistics_html = "".join(
+        f'<div class="ulr-preparedness-spec"><dt>{linkify(label)}</dt><dd>{linkify(value)}</dd></div>'
+        for label, value in logistics_specs
+    )
+
+    shelf_life = [
+        "SANI AMANZI™ – Approximately 2 years",
+        "SANI-99™ Medical Grade – Approximately 4 years",
+        "SANI-99™ AGRI – Approximately 4 years",
+    ]
+    shelf_life_html = "".join(f"<li>{linkify(item)}</li>" for item in shelf_life)
+
+    documentation = [
+        "Technical Data Sheets (TDS)",
+        "Safety Data Sheets (SDS/MSDS)",
+        "Product Specifications",
+        "Certificates of Analysis (COA)",
+        "Independent Laboratory Reports",
+        "Efficacy Reports",
+        "Test Certificates",
+        "Product Certifications",
+        "ISO Certifications (where applicable)",
+        "DEFRA approvals (where applicable)",
+        "Case Studies",
+        "Implementation Examples",
+        "Product Presentations",
+        "Usage & Mixing Instructions",
+        "Training Material",
+    ]
+    docs_html = "".join(f"<li>{linkify(item)}</li>" for item in documentation)
+
+    moq_items = [
+        "SANI AMANZI™ – 10,000 sachets",
+        "SANI-99™ Medical Grade – 20,000 sachets",
+        "SANI-99™ AGRI – 5,000 sachets",
+    ]
+    moq_html = "".join(f"<li>{linkify(item)}</li>" for item in moq_items)
+
+    commercial_terms = [
+        "Ex-Factory (EXW)",
+        "50% deposit upon acceptance of invoice",
+        "Balance payable prior to goods leaving the factory",
+        "Export documentation is coordinated through our appointed logistics partners.",
+    ]
+    terms_html = "".join(f"<li>{linkify(item)}</li>" for item in commercial_terms)
+
+    supporting = [
+        "Strategic stockpiling",
+        "Government preparedness programmes",
+        "Humanitarian response",
+        "NGO procurement",
+        "Public health programmes",
+        "Agricultural biosecurity",
+        "Emergency drinking water preparedness",
+        "Food security initiatives",
+    ]
+    supporting_html = "".join(f"<li>{linkify(item)}</li>" for item in supporting)
+
+    body = f"""
+            <div class="ulr-preparedness-section__header">
+              <span class="ulr-preparedness-section__eyebrow">Brief 3</span>
+              <h2 class="sec-title h3 mb-2" id="operational-procurement">Operational Capability &amp; Procurement Information</h2>
+              <p class="desc ulr-preparedness-section__subtitle"><strong>Ubuntu Life Resources supplies scalable preparedness solutions for governments, humanitarian organisations, NGOs, institutional buyers and commercial partners through an Ex-Factory (EXW) supply model.</strong></p>
+            </div>
+            <div class="ulr-preparedness-layout ulr-brief-copy">
+              <div class="ulr-preparedness-block">
+                <div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">Production Capacity</h3></div>
+                <div class="ulr-preparedness-prose mb-3"><p class="desc">Our manufacturing capability supports both routine procurement and large-scale preparedness programmes.</p></div>
+                <div class="ulr-preparedness-table-wrap">
+                  <table class="ulr-preparedness-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Standard Production Batch</th>
+                        <th scope="col">Monthly Capacity</th>
+                        <th scope="col">Annual Capacity</th>
+                      </tr>
+                    </thead>
+                    <tbody>{table_rows}</tbody>
+                  </table>
+                </div>
+                <p class="desc mt-3 mb-0">Production capacity can be increased depending on operational requirements and production scheduling.</p>
+              </div>
+              <div class="ulr-preparedness-block">
+                <div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">Packaging Options</h3></div>
+                <div class="ulr-preparedness-card-grid ulr-preparedness-card-grid--triple">{packaging_html}</div>
+              </div>
+              <div class="ulr-preparedness-block">
+                <div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">Bulk Supply Options</h3></div>
+                <div class="ulr-preparedness-panel">
+                  <p class="desc">Bulk packaging is available for large procurement programmes.</p>
+                  <p class="desc mb-2">Available packaging includes:</p>
+                  <ul class="desc ulr-preparedness-list mb-3"><li>10 kg drums</li><li>25 kg drums</li></ul>
+                  <p class="desc mb-0">For large-volume orders (typically 5 tonnes or more), products may also be supplied in 25 kg bags to improve international shipping efficiency.</p>
+                </div>
+              </div>
+              <div class="ulr-preparedness-block">
+                <div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">Lead Times</h3></div>
+                <div class="ulr-preparedness-panel">
+                  <p class="desc">Most products are manufactured to order.</p>
+                  <p class="desc mb-2">Typical lead times:</p>
+                  <ul class="desc ulr-preparedness-list">{lead_times_html}</ul>
+                  <p class="desc mb-0 mt-3">Lead times may vary depending on order volume, printing requirements and production scheduling.</p>
+                </div>
+              </div>
+              <div class="ulr-preparedness-block">
+                <div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">Logistics</h3></div>
+                <dl class="ulr-preparedness-spec-grid">{logistics_html}</dl>
+                <div class="ulr-preparedness-prose mt-3">
+                  <p class="desc mb-2"><strong>Container Loading Capacity:</strong></p>
+                  <ul class="desc ulr-preparedness-list mb-3"><li>20-foot container: Approximately 10 pallets</li><li>40-foot container: Approximately 20 pallets</li></ul>
+                  <p class="desc mb-2"><strong>Approximate Shipping Weight:</strong></p>
+                  <ul class="desc ulr-preparedness-list mb-0"><li>20-foot: 4–5 tonnes</li><li>40-foot: 8–9 tonnes</li></ul>
+                </div>
+              </div>
+              <div class="ulr-preparedness-block">
+                <div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">Shelf Life &amp; Storage</h3></div>
+                <dl class="ulr-preparedness-spec-grid">
+                  <div class="ulr-preparedness-spec"><dt>Recommended Storage Temperature</dt><dd>20°C–25°C</dd></div>
+                </dl>
+                <div class="ulr-preparedness-prose mt-3">
+                  <p class="desc mb-2"><strong>Shelf Life:</strong></p>
+                  <ul class="desc ulr-preparedness-list mb-2">{shelf_life_html}</ul>
+                  <p class="desc mb-0"><em>(Subject to recommended storage conditions.)</em></p>
+                </div>
+              </div>
+              <div class="ulr-preparedness-block">
+                <div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">Documentation Available</h3></div>
+                <div class="ulr-preparedness-prose mb-3"><p class="desc">Technical documentation is available upon request to support procurement evaluations.</p><p class="desc mb-0">Available documentation includes:</p></div>
+                <ul class="ulr-preparedness-tag-list">{docs_html}</ul>
+              </div>
+              <div class="ulr-preparedness-block">
+                <div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">Procurement Information</h3></div>
+                <div class="ulr-preparedness-card-grid">
+                  <article class="ulr-preparedness-panel">
+                    <h4 class="h5 sec-title mb-3">Minimum Order Quantities (MOQ)</h4>
+                    <ul class="desc ulr-preparedness-list mb-0">{moq_html}</ul>
+                  </article>
+                  <article class="ulr-preparedness-panel">
+                    <h4 class="h5 sec-title mb-3">Commercial Terms</h4>
+                    <ul class="desc ulr-preparedness-list mb-0">{terms_html}</ul>
+                  </article>
+                </div>
+              </div>
+              <div class="ulr-preparedness-block">
+                <div class="ulr-preparedness-band">
+                  <h3 class="h5 sec-title mb-3">Supporting Emergency Preparedness</h3>
+                  <p class="desc">Our operational capability has been developed to support:</p>
+                  <ul class="desc ulr-preparedness-list ulr-preparedness-list--cols mb-3">{supporting_html}</ul>
+                  <p class="desc mb-0">Our objective is to provide practical, scalable solutions that enable organisations to strengthen preparedness before emergencies occur.</p>
+                </div>
+              </div>
+            </div>"""
+
+    return f"""        <section class="section-gap ulr-brief-section ulr-preparedness-section bg-light" aria-labelledby="operational-procurement">
+          <div class="container">
+            {body}
+          </div>
+        </section>"""
+
+
 def intro_section() -> str:
     return """        <section class="section-gap ulr-brief-section bg-light">
           <div class="container">
             <div class="ulr-preparedness-intro mb-4">
               <span class="sub-title d-inline-block mb-2"><i class="tji-strategy"></i> One readiness framework</span>
-              <p class="desc mb-3">Two preparedness briefs — environmental hygiene and emergency drinking water — aligned for governments, institutions, humanitarian programmes, and emergency-response agencies across Africa.</p>
+              <p class="desc mb-3">Three preparedness briefs — environmental hygiene, emergency drinking water, and operational procurement capability — aligned for governments, institutions, humanitarian programmes, and emergency-response agencies across Africa.</p>
               <ul class="ulr-preparedness-nav" aria-label="Preparedness sections">
                 <li><a href="#hygiene-readiness">Hygiene &amp; infection control</a></li>
                 <li><a href="#water-security">Water security</a></li>
+                <li><a href="#operational-procurement">Operational &amp; procurement</a></li>
               </ul>
             </div>
-            <div class="ulr-preparedness-pillar-cards ulr-preparedness-pillar-cards--duo">
+            <div class="ulr-preparedness-pillar-cards">
               <article class="ulr-preparedness-pillar-card">
                 <h3>Environmental hygiene</h3>
                 <p class="desc small mb-0">Biosecurity, IPC discipline, and disinfection reserves for healthcare, food, and agricultural settings.</p>
@@ -855,6 +1079,10 @@ def intro_section() -> str:
               <article class="ulr-preparedness-pillar-card">
                 <h3>Water security</h3>
                 <p class="desc small mb-0">Point-of-use treatment stockpiles for disaster, outbreak, and humanitarian corridors.</p>
+              </article>
+              <article class="ulr-preparedness-pillar-card">
+                <h3>Operational capability</h3>
+                <p class="desc small mb-0">EXW supply, production capacity, packaging, logistics, and procurement documentation.</p>
               </article>
             </div>
           </div>
@@ -869,7 +1097,7 @@ def cta_section() -> str:
                 <div class="cta-area">
                   <div class="cta-content">
                     <h2 class="title title-anim">Plan preparedness with Ubuntu Life Resources</h2>
-                    <p class="desc">Whether you are scoping hygiene reserves or water-security stockpiles — start with a structured conversation on scope, territories, and deployment timelines.</p>
+                    <p class="desc">Whether you are scoping hygiene reserves, water-security stockpiles, or operational procurement — start with a structured conversation on scope, territories, and deployment timelines.</p>
                     <div class="cta-btn mt-3 d-flex flex-wrap gap-2">
                       <a class="tj-primary-btn" href="contact.html">
                         <span class="btn-text"><span>Contact us</span></span>
@@ -947,7 +1175,7 @@ def main_content() -> str:
               <div class="col-lg-12">
                 <div class="tj-page-header-content text-center">
                   <h1 class="tj-page-title">Preparedness</h1>
-                  <p class="pillar-header-lead">Environmental hygiene and emergency drinking water — preparedness briefs for disaster, outbreak, and humanitarian response across Africa.</p>
+                  <p class="pillar-header-lead">Environmental hygiene, emergency drinking water, and operational procurement capability — preparedness briefs for disaster, outbreak, and humanitarian response across Africa.</p>
                   <div class="tj-page-link">
                     <span><i class="tji-home"></i></span>
                     <span><a href="index.html">Home</a></span>
@@ -965,6 +1193,7 @@ def main_content() -> str:
         intro_section(),
         section_html("hygiene", bg=True),
         section_html("water", bg=False),
+        operational_brief_section(),
         cta_section(),
         related_pillars_section(),
     ]
@@ -988,7 +1217,7 @@ def build_page() -> None:
     )
     head = head.replace(
         'content="Institutional supply, RFQs, and audited representation for government and large buyers from Ubuntu Life Resources."',
-        'content="Preparedness briefs: environmental hygiene and water security for disaster, outbreak, and humanitarian response across Africa."',
+        'content="Preparedness briefs: environmental hygiene, water security, and operational procurement for disaster and humanitarian response across Africa."',
     )
     head = head.replace(
         '<body class="ulr-pillar-page">',

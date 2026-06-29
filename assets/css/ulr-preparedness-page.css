@@ -59,6 +59,12 @@ body.ulr-preparedness-page main#primary {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+@media (max-width: 991px) {
+  .ulr-preparedness-pillar-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 767px) {
   .ulr-preparedness-pillar-cards--duo {
     grid-template-columns: 1fr;
@@ -556,4 +562,88 @@ body.ulr-preparedness-page main#primary {
 
 body.ulr-preparedness-page .ulr-preparedness-compare .ulr-amanzi-compare__vs {
   color: var(--ulr-preparedness-accent);
+}
+
+/* ------------------------------------------------------------------ */
+/* Brief 3 — operational / procurement                                     */
+/* ------------------------------------------------------------------ */
+.ulr-preparedness-table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--tj-color-border-1, #dce5e5);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.ulr-preparedness-table {
+  width: 100%;
+  min-width: 36rem;
+  margin: 0;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.ulr-preparedness-table th,
+.ulr-preparedness-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--tj-color-border-1, #dce5e5);
+}
+
+.ulr-preparedness-table thead th {
+  background: #f4f8f8;
+  font-weight: 700;
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+}
+
+.ulr-preparedness-table tbody tr:last-child th,
+.ulr-preparedness-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ulr-preparedness-table tbody th {
+  font-weight: 600;
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+  white-space: nowrap;
+}
+
+.ulr-preparedness-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1.25rem;
+  margin: 0;
+}
+
+@media (max-width: 575px) {
+  .ulr-preparedness-spec-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ulr-preparedness-spec {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--tj-color-border-1, #dce5e5);
+  border-radius: 10px;
+  background: #f4f8f8;
+}
+
+.ulr-preparedness-spec dt {
+  margin: 0 0 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ulr-preparedness-accent);
+}
+
+.ulr-preparedness-spec dd {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--tj-color-text-body, #4a5c5c);
+}
+
+.bg-light .ulr-preparedness-table-wrap,
+.bg-light .ulr-preparedness-spec {
+  background: #fff;
 }
