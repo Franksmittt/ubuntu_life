@@ -544,3 +544,16 @@ body.ulr-preparedness-page main#primary {
 .ulr-preparedness-block__title .sec-title.h5 {
   margin: 0;
 }
+
+.ulr-preparedness-compare {
+  max-width: none;
+  margin-top: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.ulr-preparedness-compare__accent {
+  color: var(--ulr-preparedness-accent);
+}
+
+body.ulr-preparedness-page .ulr-preparedness-compare .ulr-amanzi-compare__vs {
+  color: var(--ulr-preparedness-accent);
+}

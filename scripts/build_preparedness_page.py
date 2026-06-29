@@ -612,6 +612,31 @@ CONTACT_HEADINGS = {"Contact Us", "Contact Ubuntu Life Resources"}
 PRODUCT_CATALOG_HEADINGS = {"Tuna", "Sardines", "Pilchards"}
 
 
+def render_transport_compare_block() -> str:
+    return (
+        '<div class="ulr-preparedness-block">'
+        '<div class="ulr-amanzi-compare ulr-preparedness-compare">'
+        '<div class="ulr-amanzi-compare__col">'
+        '<figure class="ulr-preparedness-figure m-0">'
+        '<img src="assets/images/pillars/sani-amanzi/scisan/amazi-trusk.png" '
+        'alt="66 trucks for bottled water transport" class="w-100" loading="lazy" decoding="async">'
+        "</figure>"
+        '<h4 class="h5 sec-title text-center mt-3 mb-2">66 <span class="ulr-preparedness-compare__accent">Trucks</span></h4>'
+        '<p class="desc text-center mb-0">Transportation requirements for <strong>2 million litres</strong> of '
+        "<strong>bottled water</strong></p></div>"
+        '<div class="ulr-amanzi-compare__vs" aria-hidden="true">VS</div>'
+        '<div class="ulr-amanzi-compare__col">'
+        '<figure class="ulr-preparedness-figure m-0">'
+        '<img src="assets/images/pillars/sani-amanzi/scisan/amazi-trusk-2.png" '
+        'alt="1 truck for SANI AMANZI transport" class="w-100" loading="lazy" decoding="async">'
+        "</figure>"
+        '<h4 class="h5 sec-title text-center mt-3 mb-2">1 <span class="ulr-preparedness-compare__accent">Truck</span></h4>'
+        '<p class="desc text-center mb-0">Transportation requirements for purifying '
+        "<strong>40 million litres</strong> of water using <strong>SANI AMANZI&trade;</strong></p></div>"
+        "</div></div>"
+    )
+
+
 def render_product_catalog(blocks: list[dict], start: int) -> tuple[str, int]:
     cards: list[str] = []
     i = start
@@ -723,6 +748,12 @@ def layout_blocks(blocks: list[dict]) -> str:
         if title == "Why Tonno Bonno":
             html, i = render_why_tonno_block(title, blocks, i)
             parts.append(html)
+            continue
+
+        if title == "Logistics Advantage":
+            chunk, i = collect_until(blocks, i, {"h3"})
+            parts.append(render_default_block(title, chunk))
+            parts.append(render_transport_compare_block())
             continue
 
         chunk, i = collect_until(blocks, i, {"h3"})
