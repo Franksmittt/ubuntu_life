@@ -17,8 +17,6 @@ DOCX_FILES = {
     "hygiene": ROOT / "Environmental Hygiene Biosecurity & Infection-Control Readiness.docx",
     "water": ROOT
     / "Strategic Water Security Planning for Disaster, Outbreak & Humanitarian Response Across Africa.docx",
-    "nutrition": ROOT
-    / "Supporting Nutritional Resilience Through Strategic Protein Food Reserves.docx",
 }
 
 SECTION_META = {
@@ -35,12 +33,6 @@ SECTION_META = {
         "eyebrow": "Brief 2",
         "heroes": ("assets/images/pillars/preparedness/water/hero2.jpeg",),
         "hero_alt": "Water security and humanitarian response preparedness",
-    },
-    "nutrition": {
-        "id": "nutrition-reserves",
-        "nav": "Protein food reserves",
-        "eyebrow": "Brief 3",
-        "banner": "Banner — strategic protein food reserves",
     },
 }
 
@@ -712,10 +704,8 @@ def layout_blocks(blocks: list[dict]) -> str:
         if title in BAND_HEADINGS:
             chunk, i = collect_until(blocks, i, {"h3"})
             if title == "Let's Strengthen Preparedness Together":
-                band_chunk, contact_chunk = split_contact_chunk(chunk)
+                band_chunk, _contact_chunk = split_contact_chunk(chunk)
                 parts.append(render_band(title, band_chunk))
-                if contact_chunk:
-                    parts.append(render_contact("Contact Us", contact_chunk))
             else:
                 parts.append(render_band(title, chunk))
             continue
@@ -820,14 +810,13 @@ def intro_section() -> str:
           <div class="container">
             <div class="ulr-preparedness-intro mb-4">
               <span class="sub-title d-inline-block mb-2"><i class="tji-strategy"></i> One readiness framework</span>
-              <p class="desc mb-3">Three preparedness briefs — environmental hygiene, emergency drinking water, and strategic protein food reserves — aligned for governments, institutions, humanitarian programmes, and emergency-response agencies across Africa.</p>
+              <p class="desc mb-3">Two preparedness briefs — environmental hygiene and emergency drinking water — aligned for governments, institutions, humanitarian programmes, and emergency-response agencies across Africa.</p>
               <ul class="ulr-preparedness-nav" aria-label="Preparedness sections">
                 <li><a href="#hygiene-readiness">Hygiene &amp; infection control</a></li>
                 <li><a href="#water-security">Water security</a></li>
-                <li><a href="#nutrition-reserves">Protein food reserves</a></li>
               </ul>
             </div>
-            <div class="ulr-preparedness-pillar-cards">
+            <div class="ulr-preparedness-pillar-cards ulr-preparedness-pillar-cards--duo">
               <article class="ulr-preparedness-pillar-card">
                 <h3>Environmental hygiene</h3>
                 <p class="desc small mb-0">Biosecurity, IPC discipline, and disinfection reserves for healthcare, food, and agricultural settings.</p>
@@ -836,31 +825,6 @@ def intro_section() -> str:
                 <h3>Water security</h3>
                 <p class="desc small mb-0">Point-of-use treatment stockpiles for disaster, outbreak, and humanitarian corridors.</p>
               </article>
-              <article class="ulr-preparedness-pillar-card">
-                <h3>Nutritional resilience</h3>
-                <p class="desc small mb-0">Shelf-stable protein reserves that hold without cold chain dependency.</p>
-              </article>
-            </div>
-          </div>
-        </section>"""
-
-
-def engagement_band_section() -> str:
-    return """        <section class="section-gap ulr-preparedness-engagement-band">
-          <div class="container">
-            <div class="row g-4 g-lg-5 align-items-center">
-              <div class="col-lg-6">
-                <h2 class="sec-title">Integrated <span>readiness</span> engagement</h2>
-                <p class="desc">Ubuntu Life Resources helps programme sponsors translate preparedness briefs into supplier-aligned plans — reserve levels, documentation, training collateral, and phased roll-out that respects procurement reality.</p>
-                <ul class="desc ulr-preparedness-list mb-0">
-                  <li>Multi-pillar baskets spanning hygiene, water, and nutrition where programmes overlap</li>
-                  <li>Evidence and product truth aligned to supplier documentation and lab reports</li>
-                  <li>Single accountable commercial interface: <strong>Sanchia-Lynn Smit</strong>, CEO / Founder</li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <figure class="ulr-preparedness-placeholder ulr-preparedness-placeholder--side" role="img" aria-label="Image placeholder: Integrated readiness — programme planning / stakeholder briefing"><span class="ulr-preparedness-placeholder__label">Integrated readiness — programme planning / stakeholder briefing</span></figure>
-              </div>
             </div>
           </div>
         </section>"""
@@ -874,7 +838,7 @@ def cta_section() -> str:
                 <div class="cta-area">
                   <div class="cta-content">
                     <h2 class="title title-anim">Plan preparedness with Ubuntu Life Resources</h2>
-                    <p class="desc">Whether you are scoping hygiene reserves, water-security stockpiles, or protein food reserves — start with a structured conversation on scope, territories, and deployment timelines.</p>
+                    <p class="desc">Whether you are scoping hygiene reserves or water-security stockpiles — start with a structured conversation on scope, territories, and deployment timelines.</p>
                     <div class="cta-btn mt-3 d-flex flex-wrap gap-2">
                       <a class="tj-primary-btn" href="contact.html">
                         <span class="btn-text"><span>Contact us</span></span>
@@ -952,7 +916,7 @@ def main_content() -> str:
               <div class="col-lg-12">
                 <div class="tj-page-header-content text-center">
                   <h1 class="tj-page-title">Preparedness</h1>
-                  <p class="pillar-header-lead">Environmental hygiene, emergency drinking water, and strategic protein food reserves — full preparedness briefs for disaster, outbreak, and humanitarian response across Africa.</p>
+                  <p class="pillar-header-lead">Environmental hygiene and emergency drinking water — preparedness briefs for disaster, outbreak, and humanitarian response across Africa.</p>
                   <div class="tj-page-link">
                     <span><i class="tji-home"></i></span>
                     <span><a href="index.html">Home</a></span>
@@ -970,8 +934,6 @@ def main_content() -> str:
         intro_section(),
         section_html("hygiene", bg=True),
         section_html("water", bg=False),
-        section_html("nutrition", bg=True),
-        engagement_band_section(),
         cta_section(),
         related_pillars_section(),
     ]
@@ -995,7 +957,7 @@ def build_page() -> None:
     )
     head = head.replace(
         'content="Institutional supply, RFQs, and audited representation for government and large buyers from Ubuntu Life Resources."',
-        'content="Full preparedness briefs: environmental hygiene, water security, and protein food reserves for disaster, outbreak, and humanitarian response across Africa."',
+        'content="Preparedness briefs: environmental hygiene and water security for disaster, outbreak, and humanitarian response across Africa."',
     )
     head = head.replace(
         '<body class="ulr-pillar-page">',
