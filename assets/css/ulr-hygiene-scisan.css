@@ -112,3 +112,13 @@ body.ulr-hygiene-scisan main#primary > .section-gap-x:not(.ulr-amanzi-scisan-her
   font: inherit;
   color: inherit;
 }
+
+@media (max-width: 767px) {
+  .ulr-hygiene-video .elementor-widget-video-playlist.e-tabs-view-vertical .e-tabs-main-area {
+    grid-template-columns: 1fr;
+  }
+
+  .ulr-hygiene-video .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active {
+    min-height: min(56vw, 320px);
+  }
+}

@@ -555,3 +555,60 @@ body.ulr-home .about-img {
 body.ulr-home .ulr-solution-img-wrap img {
   display: block;
 }
+
+/* ------------------------------------------------------------------ */
+/* Native SciSan pillar pages — normal scroll, no horizontal bleed      */
+/* ------------------------------------------------------------------ */
+body.ulr-hygiene-scisan,
+body.ulr-agri-scisan,
+body.ulr-amanzi-scisan {
+  overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+  body.ulr-hygiene-scisan,
+  body.ulr-agri-scisan,
+  body.ulr-amanzi-scisan {
+    overflow-x: hidden;
+  }
+}
+
+body.ulr-hygiene-scisan #smooth-wrapper,
+body.ulr-agri-scisan #smooth-wrapper,
+body.ulr-amanzi-scisan #smooth-wrapper {
+  position: static !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
+body.ulr-hygiene-scisan #smooth-content,
+body.ulr-agri-scisan #smooth-content,
+body.ulr-amanzi-scisan #smooth-content {
+  transform: none !important;
+  will-change: auto !important;
+}
+
+@media (max-width: 767px) {
+  body.ulr-hygiene-scisan .space-for-header,
+  body.ulr-agri-scisan .space-for-header,
+  body.ulr-amanzi-scisan .space-for-header {
+    padding-top: 95px;
+  }
+}
+
+/* Long-form pillar pages — keep media inside the viewport */
+body.ulr-pillar-page main#primary img,
+body.ulr-pillar-page main#primary video,
+body.ulr-pillar-page main#primary iframe,
+body.ulr-rich-subpage main#primary img,
+body.ulr-rich-subpage main#primary video,
+body.ulr-rich-subpage main#primary iframe {
+  max-width: 100%;
+}
+
+body.ulr-pillar-page main#primary table,
+body.ulr-rich-subpage main#primary table {
+  max-width: 100%;
+}

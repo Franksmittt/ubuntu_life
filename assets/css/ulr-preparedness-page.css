@@ -622,6 +622,12 @@ body.ulr-preparedness-page .ulr-preparedness-compare .ulr-amanzi-compare__vs {
   white-space: nowrap;
 }
 
+@media (max-width: 575px) {
+  .ulr-preparedness-table tbody th {
+    white-space: normal;
+  }
+}
+
 .ulr-preparedness-spec-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

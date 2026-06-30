@@ -16,7 +16,8 @@ body.ulr-scisan-embed-page main#primary {
 .ulr-scisan-exact-page__frame {
   display: block;
   width: 100%;
-  min-height: 1200px;
+  max-width: 100%;
+  min-height: min(50vh, 28rem);
   border: 0;
   background: #fff;
 }

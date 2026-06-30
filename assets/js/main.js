@@ -50,6 +50,9 @@ Progressbar js
 	// Preloader js
 	$(window).on("load", function () {
 		const tjPreloader = $(".tj-preloader");
+		const preloaderDelay = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+			? 0
+			: 350;
 		if (tjPreloader?.length) {
 			setTimeout(function () {
 				tjPreloader.removeClass("is-loading").addClass("is-loaded");
@@ -58,7 +61,7 @@ Progressbar js
 					wowController();
 					gsapController();
 				}, 700);
-			}, 2000);
+			}, preloaderDelay);
 		} else {
 			wowController();
 			gsapController();
@@ -70,11 +73,16 @@ Progressbar js
 	var isScisanEmbedPage =
 		document.body.classList.contains("ulr-hygiene-scisan") ||
 		document.body.classList.contains("ulr-agri-scisan") ||
+		document.body.classList.contains("ulr-amanzi-scisan") ||
 		document.body.classList.contains("ulr-scisan-embed-page");
+	var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+	var isNarrowViewport = window.matchMedia("(max-width: 991px)").matches;
 	if (
 		$("#smooth-wrapper").length &&
 		$("#smooth-content").length &&
-		!isScisanEmbedPage
+		!isScisanEmbedPage &&
+		!prefersReducedMotion &&
+		!isNarrowViewport
 	) {
 		gsap.config({
 			nullTargetWarn: false,

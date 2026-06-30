@@ -303,11 +303,21 @@ margin-right: auto;
 <style id="ulr-scisan-embed-fixes">
   html, body { margin: 0; padding: 0; overflow-x: hidden; background: #fff; }
   body { min-height: 0; }
-  .ulr-scisan-source-page { width: 100%; overflow: hidden; }
+  .ulr-scisan-source-page { width: 100%; max-width: 100%; overflow-x: hidden; }
   .ulr-scisan-source-page img { max-width: 100%; height: auto; }
   .ulr-scisan-source-page .elementor-element,
   .ulr-scisan-source-page .e-con,
-  .ulr-scisan-source-page .e-con-inner { box-sizing: border-box; }
+  .ulr-scisan-source-page .e-con-inner { box-sizing: border-box; max-width: 100%; }
+
+  .ulr-scisan-source-page .wd-section-stretch-content,
+  .ulr-scisan-source-page .wd-section-stretch {
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 
   /* Elementor lazy backgrounds need frontend JS on SciSan; show immediately in embed */
   .ulr-scisan-source-page .elementor-invisible {
@@ -408,13 +418,17 @@ margin-right: auto;
   }
 
   @media (max-width: 767px) {
+    .ulr-scisan-source-page .elementor-widget-video-playlist.e-tabs-view-vertical .e-tabs-main-area {
+      grid-template-columns: 1fr;
+    }
+
     .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {
       min-height: 0 !important;
     }
 
     .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed .elementor-wrapper,
     .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {
-      min-height: 200px;
+      min-height: min(56vw, 200px);
     }
   }
 </style>
