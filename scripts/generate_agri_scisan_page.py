@@ -16,14 +16,14 @@ PAGES = (
     ROOT / "product-sani-99-agri.html",
 )
 REQUIRED_STYLES = (
-    "assets/css/ulr-scisan-embed-shell.css",
-    "assets/css/ulr-scisan-embed.css",
-)
-DEPRECATED_STYLES = (
     "assets/css/ulr-pillar-brief.css",
     "assets/css/ulr-amanzi-page.css",
     "assets/css/ulr-amanzi-scisan.css",
     "assets/css/ulr-agri-scisan.css",
+)
+DEPRECATED_STYLES = (
+    "assets/css/ulr-scisan-embed-shell.css",
+    "assets/css/ulr-scisan-embed.css",
 )
 
 
@@ -432,9 +432,9 @@ def ensure_body_classes(head: str) -> str:
     classes = [
         cls
         for cls in match.group(1).split()
-        if cls not in {"ulr-pillar-page", "ulr-amanzi-page", "ulr-agri-scisan"}
+        if cls not in {"ulr-rich-subpage", "ulr-scisan-embed-page", "ulr-amanzi-scisan"}
     ]
-    for required in ("ulr-rich-subpage", "ulr-scisan-embed-page"):
+    for required in ("ulr-pillar-page", "ulr-amanzi-page", "ulr-agri-scisan"):
         if required not in classes:
             classes.append(required)
 
@@ -484,27 +484,35 @@ def splice_page(path: Path, main_html: str) -> None:
         "<title>SANI-99&trade; for AGRI | Agricultural Biosecurity | Ubuntu Life Resources</title>",
     )
 
+    tail = re.sub(
+        r'\s*<script src="assets/js/ulr-scisan-embed\.js" defer></script>\n?',
+        "\n",
+        tail,
+    )
+    tail = re.sub(
+        r'\s*<script src="assets/js/ulr-agri-scisan\.js" defer></script>\n?',
+        "\n",
+        tail,
+    )
+    tail = re.sub(
+        r'\s*<script src="assets/js/ulr-amanzi-scisan\.js" defer></script>\n?',
+        "\n",
+        tail,
+    )
     script = (
-        '  <script src="assets/js/ulr-scisan-embed.js" defer></script>\n'
+        '  <script src="assets/js/ulr-amanzi-scisan.js" defer></script>\n'
         '  <script src="assets/js/ulr-agri-scisan.js" defer></script>'
     )
-    if "ulr-agri-scisan.js" not in tail:
-        tail = tail.replace('  <script src="assets/js/ulr-amanzi-scisan.js" defer></script>\n', "")
-        tail = tail.replace("</body>", f"{script}\n</body>", 1)
-    elif "ulr-scisan-embed.js" not in tail:
-        tail = tail.replace(
-            '  <script src="assets/js/ulr-agri-scisan.js" defer></script>',
-            script,
-        )
+    tail = tail.replace("</body>", f"{script}\n</body>", 1)
 
     path.write_text(head + main_html + "\n" + tail, encoding="utf-8")
 
 
 def main() -> None:
-    main_html = build_exact_embed_main()
+    main_html = build_main()
     for page in PAGES:
         splice_page(page, main_html)
-        print(f"Updated {page.name} (scisan layout).")
+        print(f"Updated {page.name} (native agri layout).")
 
 
 if __name__ == "__main__":
