@@ -202,15 +202,16 @@ body.ulr-preparedness-page main#primary {
   align-items: center;
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
-  border: 1px solid var(--tj-color-border-1, #dce5e5);
-  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(
+    165deg,
+    var(--ulr-brand-blue-deep, #0b2e4f) 0%,
+    #071a33 55%,
+    #0a2540 100%
+  );
   font-size: 0.88rem;
   line-height: 1.35;
-  color: var(--ulr-brand-blue-deep, #0b2e4f);
-}
-
-.bg-light .ulr-preparedness-tag-list li {
-  background: #fff;
+  color: #fff;
 }
 
 /* ------------------------------------------------------------------ */

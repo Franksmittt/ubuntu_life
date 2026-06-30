@@ -1195,7 +1195,6 @@ def main_content() -> str:
         section_html("water", bg=False),
         operational_brief_section(),
         cta_section(),
-        related_pillars_section(),
     ]
     return "\n".join(parts)
 
