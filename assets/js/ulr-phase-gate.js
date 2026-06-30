@@ -13,6 +13,7 @@
     "pillar-water-purification.html": true,
     "pillar-agri-biosecurity.html": true,
     "pillar-hygiene-sanitation.html": true,
+    "pillar-preparedness.html": true,
     "blog.html": true,
     "blog-sani-amanzi-point-of-use-water.html": true,
   };
@@ -21,15 +22,7 @@
   var SOFT_LOCKED_PAGES = {};
 
   /** Soft password preview — unlock persists for the browser session only. */
-  var PASSWORD_LOCKED_PAGES = {
-    "pillar-preparedness.html": {
-      password: "85879",
-      storageKey: "ulr-preparedness-unlock",
-      title: "Preparedness preview",
-      lead:
-        "This preparedness page is in preview. Enter the password to view it while updates are in progress.",
-    },
-  };
+  var PASSWORD_LOCKED_PAGES = {};
 
   /** Hash routes temporarily held back while content changes are in progress. */
   var SOFT_LOCKED_ROUTES = {};
@@ -41,6 +34,7 @@
     "pillar-shelf-stable-nutrition.html": 1,
     "pillar-agri-biosecurity.html": 1,
     "pillar-hygiene-sanitation.html": 1,
+    "pillar-preparedness.html": 2,
 
     "pillar-water-purification.html": 2,
     "pillar-institutional-supply.html": 2,
