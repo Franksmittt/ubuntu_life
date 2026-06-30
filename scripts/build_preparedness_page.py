@@ -455,6 +455,18 @@ def render_tier_group(title: str, blocks: list[dict], start: int) -> tuple[str, 
         chunk, i = collect_until(blocks, start, {"h3"})
         return render_default_block(title, chunk), i
 
+    def join_tier_cards(tier_cards: list[str]) -> str:
+        if (
+            len(tier_cards) == 3
+            and "Medium-Risk Countries" in tier_cards[1]
+            and "Lower-Risk Countries" in tier_cards[2]
+        ):
+            return (
+                tier_cards[0]
+                + f'<div class="ulr-preparedness-tier-duo">{tier_cards[1]}{tier_cards[2]}</div>'
+            )
+        return "".join(tier_cards)
+
     grid_cls = "ulr-preparedness-tier-stack"
     intro_html = (
         f'<div class="ulr-preparedness-prose mb-4">{"".join(intro_parts)}</div>'
@@ -470,7 +482,7 @@ def render_tier_group(title: str, blocks: list[dict], start: int) -> tuple[str, 
         f'<div class="ulr-preparedness-block">'
         f'<div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">{linkify(title)}</h3></div>'
         f"{intro_html}"
-        f'<div class="{grid_cls}">{"".join(cards)}</div>'
+        f'<div class="{grid_cls}">{join_tier_cards(cards)}</div>'
         f"{tail_html}</div>"
     )
     return html, i
