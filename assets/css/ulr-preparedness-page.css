@@ -661,3 +661,46 @@ body.ulr-preparedness-page .ulr-preparedness-compare .ulr-amanzi-compare__vs {
 .bg-light .ulr-preparedness-spec {
   background: #fff;
 }
+
+/* Preparedness CTA — centered, compact, wider subtext */
+body.ulr-preparedness-page .ulr-preparedness-cta .cta-area {
+  display: block;
+}
+
+body.ulr-preparedness-page .ulr-preparedness-cta .cta-area .cta-content {
+  width: 100% !important;
+  max-width: min(56rem, 100%);
+  margin-inline: auto;
+  padding: clamp(1.35rem, 3vw, 1.85rem) clamp(1.25rem, 3vw, 2rem) !important;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+body.ulr-preparedness-page .ulr-preparedness-cta .cta-area .cta-content .title {
+  font-size: clamp(1.35rem, 2.6vw, 1.9rem) !important;
+  line-height: 1.25 !important;
+  margin-bottom: 0.65rem !important;
+  color: #fff !important;
+  overflow-wrap: normal;
+  word-wrap: normal;
+  max-width: min(44rem, 100%);
+  margin-inline: auto;
+}
+
+body.ulr-preparedness-page .ulr-preparedness-cta .cta-area .cta-content .desc {
+  max-width: min(52rem, 100%);
+  margin-inline: auto;
+  margin-bottom: 0;
+  color: #fff !important;
+  opacity: 1 !important;
+  line-height: 1.55;
+}
+
+body.ulr-preparedness-page .ulr-preparedness-cta .cta-btn {
+  margin-top: 1rem !important;
+}
+
+body.ulr-preparedness-page main#primary > .ulr-preparedness-cta.tj-cta-section {
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  padding-bottom: clamp(1rem, 2.5vw, 1.5rem);
+}
