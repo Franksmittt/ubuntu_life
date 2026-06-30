@@ -373,6 +373,164 @@ margin-right: auto;
   .ulr-scisan-source-page .elementor-element,
   .ulr-scisan-source-page .e-con,
   .ulr-scisan-source-page .e-con-inner { box-sizing: border-box; max-width: 100%; }
+
+  .ulr-scisan-source-page .wd-section-stretch-content,
+  .ulr-scisan-source-page .wd-section-stretch {
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Elementor scroll animations do not run in the iframe — show content immediately */
+  .ulr-scisan-source-page .elementor-invisible {
+    visibility: visible !important;
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* Disable load animations that cause flip-card text overlap */
+  .ulr-scisan-source-page .eael-animate-zoom-in,
+  .ulr-scisan-source-page .eael-animate-flip {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-container {
+    overflow: hidden !important;
+    perspective: 1200px;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-flip-card {
+    position: relative;
+    width: 100%;
+    min-height: 280px;
+    transform-style: preserve-3d;
+    transition: transform 0.55s ease;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-front-container,
+  .ulr-scisan-source-page .eael-elements-flip-box-rear-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    overflow: hidden;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-rear-container {
+    transform: rotateY(180deg);
+  }
+
+  .ulr-scisan-source-page .eael-flip-box-hover:hover .eael-elements-flip-box-flip-card {
+    transform: rotateY(180deg);
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-heading,
+  .ulr-scisan-source-page .eael-elements-flip-box-content,
+  .ulr-scisan-source-page .flipcontent {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-content .flipcontent {
+    margin: 0;
+    padding-left: 1.1rem;
+    text-align: left;
+  }
+
+  .ulr-scisan-source-page .eael-elements-flip-box-content .flipcontent li + li {
+    margin-top: 0.2rem;
+  }
+
+  .ulr-scisan-source-page .ulr-scisan-video-embed,
+  .ulr-scisan-source-page .e-tab-content-video {
+    width: 100%;
+  }
+
+  .ulr-scisan-source-page .ulr-scisan-video-embed .elementor-wrapper,
+  .ulr-scisan-source-page .e-tab-content-video .elementor-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+  }
+
+  .ulr-scisan-source-page .ulr-scisan-video-embed iframe,
+  .ulr-scisan-source-page .e-tab-content-video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {
+    min-height: 434px;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper {
+    background: #000;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content {
+    display: none !important;
+    height: 100%;
+    background: #000;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active {
+    display: block !important;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active > div,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed .elementor-wrapper,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    aspect-ratio: auto;
+    background: #000;
+  }
+
+  @media (max-width: 1024px) {
+    .ulr-scisan-source-page .elementor-widget-video-playlist.e-tabs-view-vertical .e-tabs-main-area {
+      flex-direction: column !important;
+      min-height: 0 !important;
+    }
+
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper {
+      min-height: 240px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .ulr-scisan-source-page .eael-elements-flip-box-flip-card {
+      min-height: 240px;
+    }
+
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {
+      min-height: 0 !important;
+    }
+
+    .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed .elementor-wrapper,
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {
+      min-height: 200px;
+    }
+  }
 </style>
 </head>
 <body class="wp-singular page-template-default page page-id-2357 wp-theme-woodmart wp-child-theme-woodmart-child ehf-header ehf-footer ehf-template-woodmart ehf-stylesheet-woodmart-child wrapper-custom  categories-accordion-on woodmart-ajax-shop-on elementor-default elementor-kit-6 elementor-page elementor-page-2357">

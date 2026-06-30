@@ -16,10 +16,14 @@ PAGES = (
     ROOT / "product-sani-99-agri.html",
 )
 REQUIRED_STYLES = (
+    "assets/css/ulr-scisan-embed-shell.css",
+    "assets/css/ulr-scisan-embed.css",
+)
+DEPRECATED_STYLES = (
+    "assets/css/ulr-pillar-brief.css",
     "assets/css/ulr-amanzi-page.css",
     "assets/css/ulr-amanzi-scisan.css",
     "assets/css/ulr-agri-scisan.css",
-    "assets/css/ulr-scisan-embed-shell.css",
 )
 
 
@@ -425,8 +429,12 @@ def ensure_body_classes(head: str) -> str:
     if not match:
         return head
 
-    classes = match.group(1).split()
-    for required in ("ulr-pillar-page", "ulr-amanzi-page", "ulr-agri-scisan"):
+    classes = [
+        cls
+        for cls in match.group(1).split()
+        if cls not in {"ulr-pillar-page", "ulr-amanzi-page", "ulr-agri-scisan"}
+    ]
+    for required in ("ulr-rich-subpage", "ulr-scisan-embed-page"):
         if required not in classes:
             classes.append(required)
 
@@ -434,6 +442,13 @@ def ensure_body_classes(head: str) -> str:
 
 
 def ensure_styles(head: str) -> str:
+    for href in DEPRECATED_STYLES:
+        head = re.sub(
+            rf'\s*<link rel="stylesheet" href="{re.escape(href)}">\n?',
+            "\n",
+            head,
+        )
+
     missing = [
         href
         for href in REQUIRED_STYLES
