@@ -239,6 +239,33 @@ body.ulr-preparedness-page main#primary {
   margin-bottom: 0;
 }
 
+.ulr-preparedness-panel--blue {
+  border: none;
+  background: linear-gradient(
+    165deg,
+    var(--ulr-brand-blue-deep, #0b2e4f) 0%,
+    #071a33 55%,
+    #0a2540 100%
+  );
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(11, 46, 79, 0.18);
+}
+
+.ulr-preparedness-panel--blue .sec-title,
+.ulr-preparedness-panel--blue .desc,
+.ulr-preparedness-panel--blue .ulr-preparedness-list li {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.ulr-preparedness-panel--blue .sec-title.h5,
+.ulr-preparedness-panel--blue h4.sec-title {
+  color: #fff;
+}
+
+.ulr-preparedness-panel--blue .ulr-preparedness-list--checks li::before {
+  color: #a5d6a7;
+}
+
 .ulr-preparedness-meta {
   padding: clamp(1rem, 2.5vw, 1.35rem);
   border-radius: 12px;

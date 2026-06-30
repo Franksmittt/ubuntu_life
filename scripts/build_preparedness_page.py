@@ -516,7 +516,7 @@ def render_product_block(blocks: list[dict], start: int) -> tuple[str, int]:
         )
 
     html = (
-        f'<div class="ulr-preparedness-panel">'
+        f'<div class="ulr-preparedness-panel ulr-preparedness-panel--blue">'
         f'<h4 class="h5 sec-title mb-3">{linkify(product_title)}</h4>'
         f'{"".join(prose)}{check_html}</div>'
     )
@@ -530,9 +530,12 @@ def render_stakeholder_block(title: str, chunk: list[dict]) -> str:
             body_parts.append(block["html"])
         elif block["type"] == "ul":
             body_parts.append(render_list(block["items"], cols=True))
+    panel_cls = "ulr-preparedness-panel"
+    if title == "Africa Planning Assumption":
+        panel_cls += " ulr-preparedness-panel--blue"
     return (
         f'<div class="ulr-preparedness-block">'
-        f'<div class="ulr-preparedness-panel">'
+        f'<div class="{panel_cls}">'
         f'<div class="ulr-preparedness-block__title"><h3 class="h5 sec-title">{linkify(title)}</h3></div>'
         f'{"".join(body_parts)}</div></div>'
     )
