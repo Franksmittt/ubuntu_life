@@ -1,7 +1,114 @@
 /**
- * SANI-99 hygiene — exact SciSan embed with Ubuntu Life Resources shell
+ * SANI-99 hygiene — native Scisan-style layout with Ubuntu Life Resources branding
  */
 
 body.ulr-hygiene-scisan {
   --ulr-scisan-accent: var(--ulr-brand-green-dark, #2e7d32);
+}
+
+body.ulr-hygiene-scisan .ulr-accent {
+  color: var(--ulr-scisan-accent, #2e7d32);
+}
+
+body.ulr-hygiene-scisan main#primary {
+  background: #fff;
+}
+
+body.ulr-hygiene-scisan main#primary > .section-gap:not(.ulr-amanzi-scisan-hero),
+body.ulr-hygiene-scisan main#primary > .section-gap-x:not(.ulr-amanzi-scisan-hero) {
+  padding-top: var(--ulr-section-y, clamp(2.5rem, 5vw, 4rem));
+  padding-bottom: var(--ulr-section-y, clamp(2.5rem, 5vw, 4rem));
+}
+
+.ulr-hygiene-hero__content {
+  max-width: min(52rem, 94vw);
+}
+
+.ulr-hygiene-hero__lead {
+  margin: 0.35rem 0 0;
+  font-family: var(--tj-ff-heading);
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: #000;
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 1),
+    0 0 12px rgba(255, 255, 255, 0.95),
+    0 0 28px rgba(255, 255, 255, 0.85);
+}
+
+.ulr-hygiene-kf-strip {
+  max-width: min(64rem, 100%);
+  margin-inline: auto;
+}
+
+.ulr-hygiene-kf-strip img {
+  width: 100%;
+  height: auto;
+}
+
+.ulr-hygiene-video .elementor-widget-video-playlist .e-tabs-main-area {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 992px) {
+  .ulr-hygiene-video .elementor-widget-video-playlist.e-tabs-view-vertical .e-tabs-main-area {
+    grid-template-columns: minmax(220px, 34%) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.ulr-hygiene-video .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content {
+  display: none;
+}
+
+.ulr-hygiene-video .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active {
+  display: block;
+}
+
+.ulr-hygiene-video .elementor-widget-video-playlist .ulr-scisan-video-embed .elementor-wrapper,
+.ulr-hygiene-video .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.ulr-hygiene-video .elementor-widget-video-playlist .ulr-scisan-video-embed iframe,
+.ulr-hygiene-video .elementor-widget-video-playlist .e-tab-content-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.ulr-hygiene-video .e-tab-title {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(11, 46, 79, 0.12);
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ulr-hygiene-video .e-tab-title + .e-tab-title {
+  margin-top: 0.5rem;
+}
+
+.ulr-hygiene-video .e-tab-title.e-active,
+.ulr-hygiene-video .e-tab-title[aria-selected="true"] {
+  border-color: var(--ulr-scisan-accent, #2e7d32);
+  background: rgba(46, 125, 50, 0.06);
+}
+
+.ulr-hygiene-video .e-tab-title-text button {
+  all: unset;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
 }
