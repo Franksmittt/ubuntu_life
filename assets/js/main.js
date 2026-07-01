@@ -124,20 +124,12 @@ Progressbar js
 
 	////////////////////////////////////////////////////
 	// Sticky Nav Js
-	var lastScrollTop = "";
 	function stickyMenu($targetMenu, $toggleClass) {
-		var st = $(window).scrollTop();
-		if ($(window).scrollTop() > 500) {
-			if (st > lastScrollTop) {
-				$targetMenu.removeClass($toggleClass);
-			} else {
-				$targetMenu.addClass($toggleClass);
-			}
-		} else {
-			$targetMenu.removeClass($toggleClass);
-		}
+		$targetMenu.addClass($toggleClass);
+	}
 
-		lastScrollTop = st;
+	if ($(".header-area").length) {
+		stickyMenu($(".header-sticky"), "sticky");
 	}
 
 	$(window).on("scroll", function () {
