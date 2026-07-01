@@ -1977,7 +1977,7 @@ Progressbar js
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="brochure_request_title">Request a brochure</h5>
+					<h5 class="modal-title" id="brochure_request_title">Request Brochure</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
@@ -2045,7 +2045,7 @@ Progressbar js
 		const brochureName = $(this).data("brochure-name") || "Brochure";
 		$("#brochure-request-name").val(brochureName);
 		$("#brochure-form-subject").val("Brochure request: " + brochureName);
-		$("#brochure_request_title").text("Request a brochure");
+		$("#brochure_request_title").text("Request Brochure");
 		if (brochureModal) {
 			brochureModal.show();
 		}
