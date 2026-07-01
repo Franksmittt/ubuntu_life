@@ -422,7 +422,7 @@ def build_exact_embed_main() -> str:
     return """        <div class="space-for-header"></div>
         <section class="ulr-scisan-exact-page" aria-labelledby="ulr-scisan-agri-title">
           <h1 id="ulr-scisan-agri-title" class="visually-hidden">SANI-99 for AGRI</h1>
-          <iframe id="ulr-scisan-agri-frame" class="ulr-scisan-exact-page__frame" src="scisan-agri-content.html" title="SANI-99 for AGRI SciSan page content" loading="eager" scrolling="no"></iframe>
+          <iframe id="ulr-scisan-agri-frame" class="ulr-scisan-exact-page__frame" src="scisan-agri-content.html" title="SANI-99 for AGRI SciSan page content" loading="lazy" scrolling="no"></iframe>
         </section>"""
 
 

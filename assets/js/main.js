@@ -47,8 +47,21 @@ Progressbar js
 		}
 	}
 	splitTextToSpans(target);
-	// Preloader js
-	$(window).on("load", function () {
+
+	var isScisanEmbedPage =
+		document.body.classList.contains("ulr-hygiene-scisan") ||
+		document.body.classList.contains("ulr-agri-scisan") ||
+		document.body.classList.contains("ulr-amanzi-scisan") ||
+		document.body.classList.contains("ulr-scisan-embed-page");
+
+	var preloaderDismissed = false;
+
+	function dismissPreloader() {
+		if (preloaderDismissed) {
+			return;
+		}
+		preloaderDismissed = true;
+
 		const tjPreloader = $(".tj-preloader");
 		const preloaderDelay = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 			? 0
@@ -66,15 +79,20 @@ Progressbar js
 			wowController();
 			gsapController();
 		}
-	});
+	}
+
+	// SciSan iframe shells load many third-party assets — don't wait on window.load.
+	if (isScisanEmbedPage) {
+		$(dismissPreloader);
+	} else {
+		$(window).on("load", dismissPreloader);
+	}
+
+	// Safety net if a subresource (e.g. iframe CDN) never finishes loading.
+	setTimeout(dismissPreloader, 4000);
 
 	/* ------------- Gsap registration Js -------------*/
 	gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
-	var isScisanEmbedPage =
-		document.body.classList.contains("ulr-hygiene-scisan") ||
-		document.body.classList.contains("ulr-agri-scisan") ||
-		document.body.classList.contains("ulr-amanzi-scisan") ||
-		document.body.classList.contains("ulr-scisan-embed-page");
 	var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 	var isNarrowViewport = window.matchMedia("(max-width: 991px)").matches;
 	if (
