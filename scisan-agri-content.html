@@ -376,6 +376,39 @@ margin-right: auto;
     margin-left: auto;
     margin-right: auto;
   }
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {
+    display: grid !important;
+    gap: 1.25rem !important;
+  }
+  @media (min-width: 992px) {
+    .ulr-scisan-source-page .elementor-widget-video-playlist.e-tabs-view-vertical .e-tabs-main-area {
+      grid-template-columns: minmax(220px, 34%) minmax(0, 1fr) !important;
+      align-items: start !important;
+    }
+  }
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content {
+    display: none;
+  }
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active {
+    display: block !important;
+  }
+  .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed .elementor-wrapper,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    background: #000;
+  }
+  .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed iframe,
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video iframe {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border: 0 !important;
+  }
   .ulr-scisan-source-page .elementor-element-234e37d .eael-elements-flip-box-front-container {
     background-image: url('/assets/vendor/scisan-mirror/www.scisan.co.za/wp-content/uploads/2023/11/flip-1.1047c9a616.jpg') !important;
   }
