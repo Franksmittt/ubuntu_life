@@ -122,11 +122,14 @@
     var body = doc.body;
     var html = doc.documentElement;
     var source = doc.querySelector(".ulr-scisan-source-page");
+    var elementor = doc.querySelector(".elementor");
 
     return Math.ceil(
       Math.max(
         source ? source.scrollHeight : 0,
         source ? source.offsetHeight : 0,
+        elementor ? elementor.scrollHeight : 0,
+        elementor ? elementor.offsetHeight : 0,
         body ? body.scrollHeight : 0,
         body ? body.offsetHeight : 0,
         html ? html.scrollHeight : 0,
@@ -205,10 +208,22 @@
 
     frame.addEventListener("load", function () {
       refreshEmbed();
-      window.setTimeout(refreshEmbed, 100);
-      window.setTimeout(refreshEmbed, 500);
-      window.setTimeout(refreshEmbed, 1500);
+      [100, 500, 1500, 3000, 5000, 8000].forEach(function (delay) {
+        window.setTimeout(refreshEmbed, delay);
+      });
     });
+
+    try {
+      var doc = frame.contentDocument || frame.contentWindow.document;
+      if (doc && doc.readyState === "complete") {
+        refreshEmbed();
+        [100, 500, 1500, 3000, 5000, 8000].forEach(function (delay) {
+          window.setTimeout(refreshEmbed, delay);
+        });
+      }
+    } catch (error) {
+      // Wait for load if the iframe is not accessible yet.
+    }
 
     window.addEventListener("resize", scheduleResize);
 
@@ -218,21 +233,32 @@
     };
   };
 
-  var dedicatedFrames = {
+  var dedicatedFrameIds = {
     "ulr-scisan-agri-frame": true,
     "ulr-scisan-hygiene-frame": true,
   };
 
-  document.querySelectorAll(".ulr-scisan-exact-page__frame").forEach(function (frame) {
-    if (!frame.id || dedicatedFrames[frame.id]) {
+  function initEmbedFrame(frameId, options) {
+    if (!document.getElementById(frameId)) {
       return;
     }
 
-    window.ulrInitScisanEmbed(frame.id, {
+    window.ulrInitScisanEmbed(frameId, options || {
       onRefresh: function (frame) {
         wireParentNavigation(frame);
         wireBrochureLinks(frame);
       },
     });
+  }
+
+  initEmbedFrame("ulr-scisan-agri-frame");
+  initEmbedFrame("ulr-scisan-hygiene-frame");
+
+  document.querySelectorAll(".ulr-scisan-exact-page__frame").forEach(function (frame) {
+    if (!frame.id || dedicatedFrameIds[frame.id]) {
+      return;
+    }
+
+    initEmbedFrame(frame.id);
   });
 })();
