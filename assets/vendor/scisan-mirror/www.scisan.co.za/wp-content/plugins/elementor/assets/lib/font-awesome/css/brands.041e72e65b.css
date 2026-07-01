@@ -1,0 +1,15 @@
+/*!
+ * Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+@font-face {
+  font-family: 'Font Awesome 5 Brands';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url('/assets/vendor/scisan-mirror/www.scisan.co.za/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-brands-400.f98f3a9769.eot');
+  src: url('/assets/vendor/scisan-mirror/www.scisan.co.za/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-brands-400.7659904f2c.eot') format("embedded-opentype"), url('/assets/vendor/scisan-mirror/www.scisan.co.za/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-brands-400.113bfe34d9.woff2') format("woff2"), url('/assets/vendor/scisan-mirror/www.scisan.co.za/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-brands-400.352964872c.woff') format("woff"), url('/assets/vendor/scisan-mirror/www.scisan.co.za/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-brands-400.38c8ad2581.ttf') format("truetype"), url('/assets/vendor/scisan-mirror/www.scisan.co.za/wp-content/plugins/elementor/assets/lib/font-awesome/webfonts/fa-brands-400.77aa3453eb.svg') format("svg"); }
+
+.fab {
+  font-family: 'Font Awesome 5 Brands';
+  font-weight: 400; }
