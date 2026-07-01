@@ -414,17 +414,56 @@ margin-right: auto;
     align-items: stretch !important;
     gap: 0 !important;
     width: 100% !important;
+    height: clamp(260px, 30vw, 360px) !important;
+    overflow: hidden !important;
   }
   .ulr-scisan-source-page .elementor-element-8547a74 > .elementor-element-ce2b16c,
   .ulr-scisan-source-page .elementor-element-8547a74 > .elementor-element-62bdb73 {
     display: flex !important;
     flex: 1 1 26% !important;
-    min-height: clamp(260px, 32vw, 430px) !important;
+    height: 100% !important;
+    min-height: 0 !important;
     overflow: hidden !important;
   }
   .ulr-scisan-source-page .elementor-element-8547a74 > .elementor-element-9826630 {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
     flex: 0 0 48% !important;
+    height: 100% !important;
+    min-height: 0 !important;
     background: #000 !important;
+    padding: clamp(14px, 2vw, 24px) clamp(18px, 2.4vw, 32px) !important;
+    overflow: hidden !important;
+  }
+  .ulr-scisan-source-page .elementor-element-9826630 .elementor-widget-heading > .elementor-widget-container,
+  .ulr-scisan-source-page .elementor-element-9826630 .elementor-widget-text-editor > .elementor-widget-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .ulr-scisan-source-page .elementor-element-9826630 .elementor-heading-title {
+    font-size: clamp(22px, 2.8vw, 36px) !important;
+    line-height: 1.1 !important;
+    margin: 0 0 0.45rem !important;
+  }
+  .ulr-scisan-source-page .elementor-element-9826630 .elementor-widget-text-editor,
+  .ulr-scisan-source-page .elementor-element-9826630 .elementor-widget-text-editor p,
+  .ulr-scisan-source-page .elementor-element-9826630 .elementor-widget-text-editor li {
+    font-size: clamp(10px, 1vw, 14px) !important;
+    line-height: 1.35 !important;
+  }
+  .ulr-scisan-source-page .elementor-element-9826630 .elementor-widget-text-editor p,
+  .ulr-scisan-source-page .elementor-element-9826630 .elementor-widget-text-editor ul {
+    margin-bottom: 0.45rem !important;
+  }
+  .ulr-scisan-source-page .elementor-element-9826630 .elementor-widget-image img {
+    max-height: clamp(70px, 9vw, 115px) !important;
+    width: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+  }
+  .ulr-scisan-source-page .elementor-element-9826630 .elementor-widget-image > .elementor-widget-container {
+    text-align: center !important;
   }
   .ulr-agri-instructions-side-img {
     display: block;
@@ -476,15 +515,22 @@ margin-right: auto;
     }
     .ulr-scisan-source-page .elementor-element-8547a74 {
       flex-direction: column !important;
+      height: auto !important;
+      overflow: visible !important;
     }
     .ulr-scisan-source-page .elementor-element-8547a74 > .elementor-element-ce2b16c,
     .ulr-scisan-source-page .elementor-element-8547a74 > .elementor-element-62bdb73,
     .ulr-scisan-source-page .elementor-element-8547a74 > .elementor-element-9826630 {
       flex: 0 0 auto !important;
+      height: auto !important;
     }
     .ulr-scisan-source-page .elementor-element-8547a74 > .elementor-element-ce2b16c,
     .ulr-scisan-source-page .elementor-element-8547a74 > .elementor-element-62bdb73 {
       min-height: 220px !important;
+    }
+    .ulr-scisan-source-page .elementor-element-9826630 .elementor-widget-image img {
+      max-height: none !important;
+      width: 100% !important;
     }
   }
 </style>
