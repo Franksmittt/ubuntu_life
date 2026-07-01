@@ -758,6 +758,8 @@ def layout_blocks(blocks: list[dict]) -> str:
         if title in STAKEHOLDER_HEADINGS or title.startswith("Stakeholder"):
             chunk, i = collect_until(blocks, i, {"h3"})
             parts.append(render_stakeholder_block(title, chunk))
+            if title == "Transport Efficiency":
+                parts.append(render_transport_compare_block())
             continue
 
         if title == "Why Tonno Bonno":
