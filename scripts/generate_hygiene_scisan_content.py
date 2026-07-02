@@ -11,48 +11,109 @@ SOURCE_URL = "https://www.scisan.co.za/sani-99/"
 SOURCE_HTML = ROOT / "scripts" / ".cache" / "scisan-sani-99.html"
 OUTPUT = ROOT / "scisan-sani-99-content.html"
 PAGE_ID = "1959"
+HERO_BG = (
+    "/assets/vendor/scisan-mirror/www.scisan.co.za/wp-content/uploads/2024/06/"
+    "SANI-99-Stater-Pack.185de69a25.webp"
+)
 
-EMBED_FIXES = """
+EMBED_FIXES = f"""
 <style id="ulr-scisan-embed-fixes">
-  html, body { margin: 0; padding: 0; overflow: hidden; background: #fff; }
-  body { min-height: 0; }
-  .ulr-scisan-source-page { width: 100%; max-width: 100%; overflow: hidden; }
-  .ulr-scisan-source-page img { max-width: 100%; height: auto; }
+  html, body {{ margin: 0; padding: 0; overflow-x: hidden; background: #fff; }}
+  body {{ min-height: 0; }}
+  .ulr-scisan-source-page {{ width: 100%; max-width: 100%; overflow-x: hidden; }}
+  .ulr-scisan-source-page img {{ max-width: 100%; height: auto; }}
   .ulr-scisan-source-page .elementor-element,
   .ulr-scisan-source-page .e-con,
-  .ulr-scisan-source-page .e-con-inner { box-sizing: border-box; max-width: 100%; }
+  .ulr-scisan-source-page .e-con-inner {{ box-sizing: border-box; max-width: 100%; }}
+
+  .ulr-scisan-source-page .wd-section-stretch-content,
+  .ulr-scisan-source-page .wd-section-stretch {{
+    width: 100% !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }}
+
+  .ulr-scisan-source-page .elementor-widget-text-editor {{
+    width: 100% !important;
+    max-width: 100% !important;
+  }}
+
+  .ulr-scisan-source-page .elementor-widget-text-editor > .elementor-widget-container,
+  .ulr-scisan-source-page .elementor-widget-heading > .elementor-widget-container {{
+    width: 80% !important;
+    max-width: 80% !important;
+    margin-left: auto;
+    margin-right: auto;
+  }}
+
+  .ulr-scisan-source-page .elementor-widget-image > .elementor-widget-container,
+  .ulr-scisan-source-page .elementor-widget-eael-flip-box > .elementor-widget-container {{
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto;
+    margin-right: auto;
+  }}
+
+  .ulr-scisan-source-page .elementor-widget-video-playlist {{
+    width: 80% !important;
+    max-width: 80% !important;
+    margin-left: auto;
+    margin-right: auto;
+  }}
+
+  .ulr-scisan-source-page .elementor-element-76af5ff,
+  .ulr-scisan-source-page .elementor-element-76af5ff > .elementor-motion-effects-container > .elementor-motion-effects-layer {{
+    background-image: url('{HERO_BG}') !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }}
+
+  .ulr-scisan-source-page .elementor-element-76af5ff .elementor-widget-heading > .elementor-widget-container {{
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center;
+  }}
+
+  .ulr-scisan-source-page .elementor-element-f39fde8 .elementor-widget-heading > .elementor-widget-container {{
+    width: 100% !important;
+    max-width: 100% !important;
+  }}
 
   /* Elementor scroll animations do not run in the iframe — show content immediately */
-  .ulr-scisan-source-page .elementor-invisible {
+  .ulr-scisan-source-page .elementor-invisible {{
     visibility: visible !important;
     opacity: 1 !important;
     animation: none !important;
     transform: none !important;
-  }
+  }}
 
   /* Disable load animations that cause flip-card text overlap */
   .ulr-scisan-source-page .eael-animate-zoom-in,
-  .ulr-scisan-source-page .eael-animate-flip {
+  .ulr-scisan-source-page .eael-animate-flip {{
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
-  }
+  }}
 
-  .ulr-scisan-source-page .eael-elements-flip-box-container {
+  .ulr-scisan-source-page .eael-elements-flip-box-container {{
     overflow: hidden !important;
     perspective: 1200px;
-  }
+  }}
 
-  .ulr-scisan-source-page .eael-elements-flip-box-flip-card {
+  .ulr-scisan-source-page .eael-elements-flip-box-flip-card {{
     position: relative;
     width: 100%;
     min-height: 280px;
     transform-style: preserve-3d;
     transition: transform 0.55s ease;
-  }
+  }}
 
   .ulr-scisan-source-page .eael-elements-flip-box-front-container,
-  .ulr-scisan-source-page .eael-elements-flip-box-rear-container {
+  .ulr-scisan-source-page .eael-elements-flip-box-rear-container {{
     position: absolute;
     inset: 0;
     width: 100%;
@@ -60,115 +121,125 @@ EMBED_FIXES = """
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     overflow: hidden;
-  }
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+  }}
 
-  .ulr-scisan-source-page .eael-elements-flip-box-rear-container {
+  .ulr-scisan-source-page .eael-elements-flip-box-rear-container {{
     transform: rotateY(180deg);
-  }
+  }}
 
-  .ulr-scisan-source-page .eael-flip-box-hover:hover .eael-elements-flip-box-flip-card {
+  .ulr-scisan-source-page .eael-flip-box-hover:hover .eael-elements-flip-box-flip-card {{
     transform: rotateY(180deg);
-  }
+  }}
 
   .ulr-scisan-source-page .eael-elements-flip-box-heading,
   .ulr-scisan-source-page .eael-elements-flip-box-content,
-  .ulr-scisan-source-page .flipcontent {
+  .ulr-scisan-source-page .flipcontent {{
     position: relative;
     z-index: 1;
-  }
+  }}
 
-  .ulr-scisan-source-page .eael-elements-flip-box-content .flipcontent {
+  .ulr-scisan-source-page .eael-elements-flip-box-content .flipcontent {{
     margin: 0;
     padding-left: 1.1rem;
     text-align: left;
-  }
+  }}
 
-  .ulr-scisan-source-page .eael-elements-flip-box-content .flipcontent li + li {
+  .ulr-scisan-source-page .eael-elements-flip-box-content .flipcontent li + li {{
     margin-top: 0.2rem;
-  }
+  }}
 
   .ulr-scisan-source-page .ulr-scisan-video-embed,
-  .ulr-scisan-source-page .e-tab-content-video {
+  .ulr-scisan-source-page .e-tab-content-video {{
     width: 100%;
-  }
+  }}
 
   .ulr-scisan-source-page .ulr-scisan-video-embed .elementor-wrapper,
-  .ulr-scisan-source-page .e-tab-content-video .elementor-wrapper {
+  .ulr-scisan-source-page .e-tab-content-video .elementor-wrapper {{
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
     background: #000;
-  }
+  }}
 
   .ulr-scisan-source-page .ulr-scisan-video-embed iframe,
-  .ulr-scisan-source-page .e-tab-content-video iframe {
+  .ulr-scisan-source-page .e-tab-content-video iframe {{
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     border: 0;
-  }
+  }}
 
-  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {{
     min-height: 434px;
-  }
+  }}
 
-  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper {
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper {{
     background: #000;
-  }
+  }}
 
-  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content {
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content {{
     display: none !important;
     height: 100%;
     background: #000;
-  }
+  }}
 
-  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active {
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active {{
     display: block !important;
-  }
+  }}
 
   .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper .e-tab-content.ulr-scisan-tab-active > div,
   .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed,
-  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video {
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video {{
     height: 100%;
     min-height: 100%;
-  }
+  }}
 
   .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed .elementor-wrapper,
-  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {
+  .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {{
     position: relative;
     width: 100%;
     height: 100%;
     min-height: 320px;
     aspect-ratio: auto;
     background: #000;
-  }
+  }}
 
-  @media (max-width: 1024px) {
-    .ulr-scisan-source-page .elementor-widget-video-playlist.e-tabs-view-vertical .e-tabs-main-area {
+  @media (max-width: 1024px) {{
+    .ulr-scisan-source-page .elementor-widget-video-playlist.e-tabs-view-vertical .e-tabs-main-area {{
       flex-direction: column !important;
       min-height: 0 !important;
-    }
+    }}
 
-    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper {
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-content-wrapper {{
       min-height: 240px;
-    }
-  }
+    }}
+  }}
 
-  @media (max-width: 767px) {
-    .ulr-scisan-source-page .eael-elements-flip-box-flip-card {
+  @media (max-width: 767px) {{
+    .ulr-scisan-source-page .elementor-widget-text-editor > .elementor-widget-container,
+    .ulr-scisan-source-page .elementor-widget-heading > .elementor-widget-container,
+    .ulr-scisan-source-page .elementor-widget-video-playlist {{
+      width: 100% !important;
+      max-width: 100% !important;
+    }}
+
+    .ulr-scisan-source-page .eael-elements-flip-box-flip-card {{
       min-height: 240px;
-    }
+    }}
 
-    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tabs-main-area {{
       min-height: 0 !important;
-    }
+    }}
 
     .ulr-scisan-source-page .elementor-widget-video-playlist .ulr-scisan-video-embed .elementor-wrapper,
-    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {
+    .ulr-scisan-source-page .elementor-widget-video-playlist .e-tab-content-video .elementor-wrapper {{
       min-height: 200px;
-    }
-  }
+    }}
+  }}
 </style>
 """
 
@@ -207,6 +278,13 @@ def extract_head(html: str) -> str:
     head = re.sub(
         r"<title>.*?</title>",
         "<title>SANI-99 &#8211; Scientific Sanitation Solutions</title>",
+        head,
+        count=1,
+        flags=re.DOTALL,
+    )
+    head = re.sub(
+        r"<style>\s*\.e-con\.e-parent:nth-of-type.*?background-image:\s*none\s*!important;.*?</style>",
+        "",
         head,
         count=1,
         flags=re.DOTALL,
@@ -300,6 +378,21 @@ def apply_ulr_fixes(content: str) -> str:
     return apply_brochure_copy(updated)
 
 
+def mark_elementor_lazyloaded(body: str) -> str:
+    def add_lazyloaded(match: re.Match[str]) -> str:
+        tag = match.group(0)
+        if "e-lazyloaded" in tag:
+            return tag
+        return re.sub(r'\bclass="', 'class="e-lazyloaded ', tag, count=1, flags=re.I)
+
+    return re.sub(
+        r'<div\b[^>]*\bclass="[^"]*\be-con[^"]*\be-parent[^"]*"[^>]*>',
+        add_lazyloaded,
+        body,
+        flags=re.I,
+    )
+
+
 def wire_brochure_links(content: str) -> str:
     updated = content
     for old, new in BROCHURE_REPLACEMENTS:
@@ -309,7 +402,9 @@ def wire_brochure_links(content: str) -> str:
 
 def build_document(html: str) -> str:
     head = extract_head(html)
-    elementor = apply_ulr_fixes(wire_brochure_links(extract_elementor_content(html)))
+    elementor = mark_elementor_lazyloaded(
+        apply_ulr_fixes(wire_brochure_links(extract_elementor_content(html)))
+    )
     body_class = (
         "wp-singular page-template-default page page-id-1959 wp-theme-woodmart "
         "wp-child-theme-woodmart-child ehf-header ehf-footer ehf-template-woodmart "
