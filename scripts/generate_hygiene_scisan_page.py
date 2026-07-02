@@ -11,15 +11,16 @@ IMG = "assets/images/pillars/hygiene-sanitation/scisan"
 HERO = "assets/images/hero/ulr-hero-hygiene-sanitation.jpg"
 PAGE = ROOT / "pillar-hygiene-sanitation.html"
 REQUIRED_STYLES = (
+    "assets/css/ulr-scisan-embed-shell.css",
+    "assets/css/ulr-scisan-embed.css",
+)
+DEPRECATED_STYLES = (
     "assets/css/ulr-pillar-brief.css",
     "assets/css/ulr-amanzi-page.css",
     "assets/css/ulr-amanzi-scisan.css",
     "assets/css/ulr-hygiene-scisan.css",
 )
-DEPRECATED_STYLES = (
-    "assets/css/ulr-scisan-embed-shell.css",
-    "assets/css/ulr-scisan-embed.css",
-)
+EMBED_BODY_CLASSES = ("ulr-pillar-page", "ulr-hygiene-scisan", "ulr-scisan-embed-page")
 
 
 def src(name: str) -> str:
@@ -394,6 +395,14 @@ def build_main() -> str:
     return "\n".join(parts)
 
 
+def build_exact_embed_main() -> str:
+    return """        <div class="space-for-header"></div>
+        <section class="ulr-scisan-exact-page" aria-labelledby="ulr-scisan-hygiene-title">
+          <h1 id="ulr-scisan-hygiene-title" class="visually-hidden">SANI-99</h1>
+          <iframe id="ulr-scisan-hygiene-frame" class="ulr-scisan-exact-page__frame" src="scisan-sani-99-content.html" title="SANI-99 SciSan page content" loading="eager" scrolling="no"></iframe>
+        </section>"""
+
+
 def ensure_body_classes(head: str) -> str:
     match = re.search(r'<body class="([^"]*)">', head)
     if not match:
@@ -402,9 +411,9 @@ def ensure_body_classes(head: str) -> str:
     classes = [
         cls
         for cls in match.group(1).split()
-        if cls not in {"ulr-rich-subpage", "ulr-scisan-embed-page", "ulr-amanzi-scisan"}
+        if cls not in {"ulr-rich-subpage", "ulr-amanzi-page", "ulr-amanzi-scisan"}
     ]
-    for required in ("ulr-pillar-page", "ulr-amanzi-page", "ulr-hygiene-scisan"):
+    for required in EMBED_BODY_CLASSES:
         if required not in classes:
             classes.append(required)
 
@@ -433,27 +442,26 @@ def ensure_styles(head: str) -> str:
 
 def splice_page(path: Path, main_html: str) -> None:
     text = path.read_text(encoding="utf-8")
-    for marker in (
-        '        <section class="ulr-scisan-exact-page"',
-        '        <section class="ulr-amanzi-scisan-hero section-gap-x"',
-        '        <section class="ulr-amanzi-scisan-hero ulr-hygiene-hero section-gap-x"',
-        '        <section class="tj-page-header section-gap-x"',
-    ):
-        if marker in text:
-            start = text.index(marker)
-            break
+    marker = '        <div class="space-for-header"></div>'
+    if marker in text:
+        start = text.index(marker)
     else:
-        raise ValueError("Could not find hygiene page content start")
+        for fallback in (
+            '        <section class="ulr-scisan-exact-page"',
+            '        <section class="ulr-amanzi-scisan-hero section-gap-x"',
+            '        <section class="ulr-amanzi-scisan-hero ulr-hygiene-hero section-gap-x"',
+            '        <section class="tj-page-header section-gap-x"',
+        ):
+            if fallback in text:
+                start = text.index(fallback)
+                break
+        else:
+            raise ValueError("Could not find hygiene page content start")
     end = text.index('      </main>')
     head, tail = text[:start], text[end:]
 
     head = ensure_body_classes(ensure_styles(head))
 
-    tail = re.sub(
-        r'\s*<script src="assets/js/ulr-scisan-embed\.js" defer></script>\n?',
-        "\n",
-        tail,
-    )
     tail = re.sub(
         r'\s*<script src="assets/js/ulr-hygiene-scisan\.js" defer></script>\n?',
         "\n",
@@ -469,19 +477,20 @@ def splice_page(path: Path, main_html: str) -> None:
         "\n",
         tail,
     )
-    script = (
-        '  <script src="assets/js/ulr-amanzi-scisan.js" defer></script>\n'
-        '  <script src="assets/js/ulr-scisan-playlist.js" defer></script>'
-    )
-    tail = tail.replace("</body>", f"{script}\n</body>", 1)
+    if "ulr-scisan-embed.js" not in tail:
+        tail = tail.replace(
+            "</body>",
+            '  <script src="assets/js/ulr-scisan-embed.js" defer></script>\n</body>',
+            1,
+        )
 
     path.write_text(head + main_html + "\n" + tail, encoding="utf-8")
 
 
 def main() -> None:
-    main_html = build_main()
+    main_html = build_exact_embed_main()
     splice_page(PAGE, main_html)
-    print(f"Updated {PAGE.name} (native hygiene layout).")
+    print(f"Updated {PAGE.name} (SciSan iframe embed).")
 
 
 if __name__ == "__main__":

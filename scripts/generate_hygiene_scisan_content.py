@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_URL = "https://www.scisan.co.za/sani-99/"
-SOURCE_HTML = Path("/tmp/scisan-sani-99.html")
+SOURCE_HTML = ROOT / "scripts" / ".cache" / "scisan-sani-99.html"
 OUTPUT = ROOT / "scisan-sani-99-content.html"
 PAGE_ID = "1959"
 
@@ -192,6 +192,7 @@ def fetch_source() -> str:
     if SOURCE_HTML.exists() and SOURCE_HTML.stat().st_size > 10000:
         return SOURCE_HTML.read_text(encoding="utf-8", errors="replace")
     print(f"Fetching {SOURCE_URL}")
+    SOURCE_HTML.parent.mkdir(parents=True, exist_ok=True)
     with urllib.request.urlopen(SOURCE_URL, timeout=120) as response:
         html = response.read().decode("utf-8", errors="replace")
     SOURCE_HTML.write_text(html, encoding="utf-8")
