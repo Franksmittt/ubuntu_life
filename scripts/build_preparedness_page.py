@@ -531,7 +531,7 @@ def render_stakeholder_block(title: str, chunk: list[dict]) -> str:
         elif block["type"] == "ul":
             body_parts.append(render_list(block["items"], cols=True))
     panel_cls = "ulr-preparedness-panel"
-    if title == "Africa Planning Assumption":
+    if title in {"Africa Planning Assumption", "Public Health Relevance"}:
         panel_cls += " ulr-preparedness-panel--blue"
     return (
         f'<div class="ulr-preparedness-block">'
