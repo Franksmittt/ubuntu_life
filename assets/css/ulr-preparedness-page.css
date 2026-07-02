@@ -506,6 +506,16 @@ body.ulr-preparedness-page main#primary {
   margin-bottom: 0.65rem;
 }
 
+.ulr-preparedness-band .ulr-preparedness-list,
+.ulr-preparedness-band ul.desc,
+.ulr-preparedness-band ul.desc li {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.ulr-preparedness-band ul.desc li::marker {
+  color: rgba(255, 255, 255, 0.75);
+}
+
 .ulr-preparedness-band .desc:last-child {
   margin-bottom: 0;
 }
