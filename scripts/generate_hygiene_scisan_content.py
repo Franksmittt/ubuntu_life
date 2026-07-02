@@ -365,6 +365,7 @@ def apply_brochure_copy(content: str) -> str:
 
 def apply_ulr_fixes(content: str) -> str:
     updated = remove_element_by_data_id(content, "cffe84c")
+    updated = remove_element_by_data_id(updated, "655914c")
     updated = updated.replace(
         "elementor-element-dc63de8 elementor-invisible elementor-widget",
         "elementor-element-dc63de8 elementor-widget",
