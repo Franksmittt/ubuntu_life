@@ -38,9 +38,6 @@ SECTION_META = {
 
 NAV_ITEM = '<li><a href="pillar-preparedness.html">Preparedness</a></li>'
 NAV_AFTER = '<li><a href="pillar-hygiene-sanitation.html">Hygiene</a></li>'
-NAV_CURRENT = (
-    '<li class="current-menu-item"><a href="pillar-preparedness.html">Preparedness</a></li>'
-)
 
 
 BULLET_RE = re.compile(r"^[\u2022\u2713\u2714•✔\-]\s*")
@@ -1248,10 +1245,9 @@ def build_page() -> None:
         )
 
     head = re.sub(
-        r'<li><a href="pillar-preparedness\.html">Preparedness</a></li>',
-        NAV_CURRENT,
+        r'<li class="current-menu-item"><a href="pillar-preparedness\.html">Preparedness</a></li>',
+        NAV_ITEM,
         head,
-        count=2,
     )
 
     OUTPUT.write_text(head + main_content() + "\n" + tail, encoding="utf-8")

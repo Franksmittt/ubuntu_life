@@ -10,6 +10,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SHELL = ROOT / "about.html"
 INDEX_URL = "https://www.scisan.co.za/case-studies/"
+CASE_STUDIES_ACTIVE = (
+    '<li class="current-menu-item"><a href="case-studies.html">Case studies</a></li>'
+)
+CASE_STUDIES_LINK = '<li><a href="case-studies.html">Case studies</a></li>'
 
 EMBED_FIXES = """<style id="ulr-scisan-embed-fixes">
   html, body { margin: 0; padding: 0; overflow-x: hidden; background: #fff; }
@@ -438,19 +442,11 @@ def ensure_embed_script(tail: str) -> str:
 
 
 def inject_header_nav(head: str, current_page: str | None = None) -> str:
+    head = head.replace(CASE_STUDIES_ACTIVE, CASE_STUDIES_LINK)
     if 'href="case-studies.html">Case studies</a></li>' in head:
-        if current_page == "case-studies.html":
-            head = head.replace(
-                '<li><a href="case-studies.html">Case studies</a></li>',
-                '<li class="current-menu-item"><a href="case-studies.html">Case studies</a></li>',
-                2,
-            )
         return head
 
-    if current_page == "case-studies.html":
-        case_item = '                  <li class="current-menu-item"><a href="case-studies.html">Case studies</a></li>\n'
-    else:
-        case_item = '                  <li><a href="case-studies.html">Case studies</a></li>\n'
+    case_item = '                  <li><a href="case-studies.html">Case studies</a></li>\n'
 
     preparedness_marker = '                  <li><a href="pillar-preparedness.html">Preparedness</a></li>\n'
     if preparedness_marker in head:
