@@ -237,6 +237,18 @@ body.ulr-rich-subpage .pillar-header-lead strong {
   color: var(--ulr-text-on-dark-muted) !important;
 }
 
+.tj-footer-section.ulr-site-footer .ulr-footer-creds__kicker {
+  color: var(--ulr-footer-muted) !important;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-creds__org {
+  color: #e4c889 !important;
+}
+
+.tj-footer-section.ulr-site-footer .ulr-footer-creds__num {
+  color: var(--ulr-text-on-dark) !important;
+}
+
 /* ------------------------------------------------------------------ */
 /* Partner — light card layouts only (not homepage dark panel)          */
 /* ------------------------------------------------------------------ */
