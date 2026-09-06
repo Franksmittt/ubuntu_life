@@ -236,4 +236,10 @@
     align-items: flex-start;
     text-align: start;
   }
+
+  .tj-footer-section.ulr-site-footer .ulr-footer-creds__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem 1rem;
+  }
 }
