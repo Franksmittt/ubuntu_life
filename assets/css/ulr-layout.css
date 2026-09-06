@@ -715,6 +715,19 @@ body.ulr-rich-subpage main#primary table {
   color: var(--ulr-text-on-light-muted, #525a63);
 }
 
+.ulr-creds--after-hero {
+  padding: 1.25rem 0 1.5rem;
+}
+
+.ulr-creds__kicker-inline {
+  margin: 0 auto 0.9rem;
+  max-width: 48rem;
+  text-align: center;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ulr-brand-blue-deep, #0b2e4f);
+}
+
 @media (max-width: 991px) {
   .ulr-creds__grid,
   .ulr-creds-strip {
