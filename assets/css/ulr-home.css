@@ -159,6 +159,10 @@ body.ulr-home .ulr-home-section-head .sec-title span {
   color: var(--tj-color-theme-primary);
 }
 
+body.ulr-home .ulr-home-section-head .desc {
+  margin: 0.85rem auto 0;
+}
+
 /* ------------------------------------------------------------------ */
 /* Who we are — editorial split                                          */
 /* ------------------------------------------------------------------ */
